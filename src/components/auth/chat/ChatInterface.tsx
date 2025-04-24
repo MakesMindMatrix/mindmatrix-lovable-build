@@ -1,7 +1,7 @@
 
 import React from "react";
-import { MessageContent } from "./MessageContent";
 import { SidebarButton } from "./SidebarButton";
+import EducationForm from "../EducationForm";
 
 export const ChatInterface = () => {
   return (
@@ -13,7 +13,7 @@ export const ChatInterface = () => {
       />
       <div className="flex relative flex-wrap gap-10 justify-between items-center max-w-full w-[876px]">
         <SidebarButton />
-        <MessageContent />
+        <EducationForm />
       </div>
     </section>
   );
