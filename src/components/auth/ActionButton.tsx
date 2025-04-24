@@ -20,7 +20,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   return (
     <button
       className={cn(
-        "flex overflow-hidden flex-col justify-center px-16 py-3 w-full rounded-xl max-w-[346px] shadow-[0px_1px_30px_rgba(69,42,124,0.1)] bg-white hover:bg-gray-50 transition-colors max-md:px-5",
+        "flex overflow-hidden flex-col justify-center px-16 py-3 w-full rounded-xl backdrop-blur-md bg-white/20 border border-white/30 text-white shadow-lg hover:bg-white/30 transition-colors max-md:px-5",
         variant === "semibold" ? "font-semibold" : "font-medium",
         className
       )}

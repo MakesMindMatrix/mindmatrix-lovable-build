@@ -5,14 +5,16 @@ import SignupForm from "@/components/auth/SignupForm";
 
 const Signup = () => {
   return (
-    <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white max-md:px-5">
+    <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white min-h-screen max-md:px-5">
       <Header />
-      <section className="flex relative flex-col items-center px-20 pt-52 pb-28 mt-3 text-white min-h-[732px] rounded-[40px] max-md:px-5 max-md:py-24 max-md:max-w-full">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d631192c018e2cf26adec813bbcc046519bd3b24"
-          alt="Background gradient"
-          className="object-cover absolute inset-0 size-full rounded-[40px]"
-        />
+      <section 
+        className="flex relative flex-col items-center px-5 pt-20 pb-20 mt-3 text-white min-h-[732px] rounded-[40px]"
+        style={{
+          background: "linear-gradient(135deg, #4C35DE 0%, #9283FC 100%)",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
         <SignupForm />
       </section>
     </main>

@@ -125,6 +125,10 @@
   .mindmatrix-btn-outline {
     @apply border border-mindmatrix-border text-mindmatrix-primary hover:bg-mindmatrix-accent rounded-lg px-6 py-3 font-medium transition-all;
   }
+  
+  .mindmatrix-btn-glass {
+    @apply backdrop-blur-md bg-white/20 border border-white/30 text-white hover:bg-white/30 rounded-lg px-6 py-3 font-medium transition-all shadow-lg;
+  }
 
   .mindmatrix-input {
     @apply w-full px-4 py-3 rounded-lg border border-mindmatrix-border focus:ring-2 focus:ring-mindmatrix-primary/20 focus:border-mindmatrix-primary outline-none transition-all;
@@ -140,5 +144,9 @@
 
   .mindmatrix-progress-bar {
     @apply bg-mindmatrix-primary h-full transition-all duration-300 ease-in-out;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/20 border border-white/30 shadow-lg;
   }
 }
