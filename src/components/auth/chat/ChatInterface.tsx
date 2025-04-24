@@ -1,9 +1,16 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { SidebarButton } from "./SidebarButton";
 import EducationForm from "../EducationForm";
+import { MessageContent } from "./MessageContent";
 
 export const ChatInterface = () => {
+  const [showEducationForm, setShowEducationForm] = useState(false);
+
+  const handleContinue = () => {
+    setShowEducationForm(true);
+  };
+
   return (
     <section className="flex relative flex-col items-start px-10 mt-3 w-full min-h-[732px] rounded-[40px] max-md:px-5 max-md:max-w-full">
       <img
@@ -13,7 +20,11 @@ export const ChatInterface = () => {
       />
       <div className="flex relative flex-wrap gap-10 justify-between items-center max-w-full w-[876px]">
         <SidebarButton />
-        <EducationForm />
+        {showEducationForm ? (
+          <EducationForm />
+        ) : (
+          <MessageContent onContinue={handleContinue} />
+        )}
       </div>
     </section>
   );
