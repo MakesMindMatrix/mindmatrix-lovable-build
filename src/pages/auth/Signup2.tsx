@@ -1,9 +1,9 @@
+"use client";
+import * as React from "react";
+import { Header } from "../components/shared/Header";
+import { PasswordForm } from "../components/auth/PasswordForm";
 
-import React from "react";
-import Header from "@/components/shared/Header";
-import PasswordForm from "@/components/auth/PasswordForm";
-
-const Signup2 = () => {
+function Desktop68() {
   return (
     <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white max-md:px-5">
       <Header />
@@ -17,6 +17,6 @@ const Signup2 = () => {
       </section>
     </main>
   );
-};
+}
 
-export default Signup2;
+export default Desktop68;
