@@ -30,12 +30,13 @@ const SignupForm = () => {
             icon="https://cdn.builder.io/api/v1/image/assets/TEMP/123d52e9f916c7e130d22894e0de7ae96543459d"
             text="Continue with Email"
             variant="medium"
+            className="glass-btn mb-2.5"
             onClick={handleEmailSignup}
           />
           <ActionButton
             text="Continue with Google"
             variant="semibold"
-            className="mt-2.5"
+            className="glass-btn"
           />
         </div>
       </div>
