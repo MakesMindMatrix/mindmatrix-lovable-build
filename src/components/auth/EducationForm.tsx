@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -20,8 +19,7 @@ const EducationForm = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Form submitted with:", formData);
-    // We will implement the next page navigation once created
-    // navigate("/next-page");
+    navigate("/input-details");
   };
 
   return (
