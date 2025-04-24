@@ -19,7 +19,7 @@ const EducationForm = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Form submitted with:", formData);
-    navigate("/input-details");
+    navigate("/registration/input-details");
   };
 
   return (
