@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import WelcomeScreen from "./pages/auth/WelcomeScreen";
 import Signup from "./pages/auth/Signup";
+import Signup2 from "./pages/auth/Signup2";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/welcome" element={<WelcomeScreen />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signup2" element={<Signup2 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
