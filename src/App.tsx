@@ -13,7 +13,10 @@ import Signup2 from "./pages/auth/Signup2";
 import SignupName from "./pages/auth/SignupName";
 import EducationInfo from "./pages/auth/EducationInfo";
 import InputDetails from "./pages/auth/InputDetails";
+import SkillScan from "./pages/auth/SkillScan";
 import Guidance from "./pages/auth/Guidance";
+import Questions from "./pages/auth/Questions";
+import Completion from "./pages/auth/Completion";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +34,10 @@ const App = () => (
           <Route path="/signup-name" element={<SignupName />} />
           <Route path="/education-info" element={<EducationInfo />} />
           <Route path="/input-details" element={<InputDetails />} />
+          <Route path="/skill-scan" element={<SkillScan />} />
           <Route path="/guidance" element={<Guidance />} />
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/completion" element={<Completion />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

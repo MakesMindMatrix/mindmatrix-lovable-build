@@ -1,3 +1,4 @@
+
 "use client";
 import * as React from "react";
 import Header from "@/components/shared/Header";
@@ -5,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-function Guidance() {
+function SkillScan() {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/questions");
+    navigate("/guidance");
   };
 
   const handleBack = () => {
@@ -37,12 +38,11 @@ function Guidance() {
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
             className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
-            alt="Guidance icon"
+            alt="Skill scan icon"
           />
           
           <h2 className="self-stretch mt-7 text-3xl tracking-tight leading-10 text-center text-white max-md:max-w-full">
-            No pressure! This helps me guide you better. Just choose what feels
-            most right.
+            Let's do a quick skill scan to understand your starting point.
           </h2>
           
           <Button 
@@ -57,4 +57,4 @@ function Guidance() {
   );
 }
 
-export default Guidance;
+export default SkillScan;
