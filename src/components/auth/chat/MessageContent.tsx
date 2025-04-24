@@ -38,7 +38,8 @@ const ResponseButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/education-form");
+    // Fix the navigation path to the correct route
+    navigate("/education-info");
   };
 
   return (

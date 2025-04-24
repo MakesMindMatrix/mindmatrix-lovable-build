@@ -19,8 +19,8 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
     if (onContinue) {
       onContinue(firstName);
     }
-    // Navigate to the next step
-    navigate("/welcome");
+    // Navigate to the education info page instead of welcome
+    navigate("/education-info");
   };
 
   return (
