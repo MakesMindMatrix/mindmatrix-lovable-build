@@ -1,7 +1,8 @@
+
 "use client";
 import * as React from "react";
-import { Header } from "../components/shared/Header";
-import { PasswordForm } from "../components/auth/PasswordForm";
+import { Header } from "@/components/shared/Header";
+import { PasswordForm } from "@/components/auth/PasswordForm";
 
 function Desktop68() {
   return (
