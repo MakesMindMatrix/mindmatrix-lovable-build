@@ -1,178 +1,42 @@
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "@/components/shared/Button";
-import Input from "@/components/shared/Input";
 import ProgressBar from "@/components/auth/ProgressBar";
-import { useToast } from "@/hooks/use-toast";
+import RegisterAccount from "@/components/auth/RegisterAccount";
+import RegisterPersonal from "@/components/auth/RegisterPersonal";
+import RegisterReview from "@/components/auth/RegisterReview";
+import { useRegister } from "@/hooks/useRegister";
 
 const Register = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-  });
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-  });
-
-  const navigate = useNavigate();
-  const { toast } = useToast();
-
-  const steps = [
-    {
-      title: "Create Account",
-      fields: ["email", "password", "confirmPassword"],
-    },
-    {
-      title: "Personal Information",
-      fields: ["firstName", "lastName"],
-    },
-    {
-      title: "Confirm Details",
-      fields: [],
-    },
-  ];
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user types
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const validateStep = () => {
-    const currentFields = steps[currentStep].fields;
-    const newErrors = { ...errors };
-    let isValid = true;
-
-    currentFields.forEach((field) => {
-      if (!formData[field as keyof typeof formData]) {
-        newErrors[field as keyof typeof errors] = `${field} is required`;
-        isValid = false;
-      } else if (field === "email" && !/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = "Please enter a valid email address";
-        isValid = false;
-      } else if (field === "password" && formData.password.length < 8) {
-        newErrors.password = "Password must be at least 8 characters";
-        isValid = false;
-      } else if (
-        field === "confirmPassword" &&
-        formData.password !== formData.confirmPassword
-      ) {
-        newErrors.confirmPassword = "Passwords do not match";
-        isValid = false;
-      }
-    });
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
-  const handleNext = () => {
-    if (validateStep()) {
-      if (currentStep < steps.length - 1) {
-        setCurrentStep((prev) => prev + 1);
-      } else {
-        // Submit the form
-        handleSubmit();
-      }
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1);
-    }
-  };
-
-  const handleSubmit = () => {
-    toast({
-      title: "Account created!",
-      description: "You have successfully registered.",
-    });
-    navigate("/onboarding");
-  };
+  const {
+    currentStep,
+    formData,
+    errors,
+    steps,
+    handleChange,
+    handleNext,
+    handleBack,
+  } = useRegister();
 
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6">
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Create a password"
-              value={formData.password}
-              onChange={handleChange}
-              error={errors.password}
-            />
-            <Input
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword}
-            />
-          </div>
+          <RegisterAccount
+            formData={formData}
+            errors={errors}
+            onChange={handleChange}
+          />
         );
       case 1:
         return (
-          <div className="space-y-6">
-            <Input
-              label="First Name"
-              name="firstName"
-              placeholder="Enter your first name"
-              value={formData.firstName}
-              onChange={handleChange}
-              error={errors.firstName}
-            />
-            <Input
-              label="Last Name"
-              name="lastName"
-              placeholder="Enter your last name"
-              value={formData.lastName}
-              onChange={handleChange}
-              error={errors.lastName}
-            />
-          </div>
+          <RegisterPersonal
+            formData={formData}
+            errors={errors}
+            onChange={handleChange}
+          />
         );
       case 2:
-        return (
-          <div className="space-y-6">
-            <div className="p-6 bg-mindmatrix-accent rounded-lg">
-              <h3 className="text-lg font-medium mb-4">Review your information</h3>
-              <div className="space-y-2">
-                <p>
-                  <span className="font-medium">Email:</span> {formData.email}
-                </p>
-                <p>
-                  <span className="font-medium">Name:</span> {formData.firstName}{" "}
-                  {formData.lastName}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
+        return <RegisterReview formData={formData} />;
       default:
         return null;
     }
