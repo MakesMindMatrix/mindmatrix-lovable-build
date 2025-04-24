@@ -56,7 +56,14 @@ function Questions() {
         </button>
 
         <div className="relative flex flex-col justify-center items-center mt-20 w-full max-w-[522px] z-10 max-md:mt-16">
-          <div className="flex overflow-hidden flex-col justify-center px-0.5 py-8 rounded-3xl w-full shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+          <div 
+            className="flex overflow-hidden flex-col justify-center px-0.5 py-8 rounded-3xl w-full shadow-[0px_1px_30px_rgba(69,42,124,0.1)]"
+            style={{ 
+              backgroundImage: `url('/lovable-uploads/353bce9c-c773-4db9-a734-47b4f950e212.png')`, 
+              backgroundSize: 'cover', 
+              backgroundPosition: 'center' 
+            }}
+          >
             <div className="flex flex-col items-center">
               <div className="flex flex-col max-w-full text-2xl font-medium tracking-tight leading-8 text-center text-white w-[456px]">
                 <img
