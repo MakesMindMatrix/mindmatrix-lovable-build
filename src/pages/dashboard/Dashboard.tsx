@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { 
   BarChart, 
   Calendar, 
+  Check, // Added the missing Check icon import
   ChevronRight, 
   Clock, 
   Home, 
