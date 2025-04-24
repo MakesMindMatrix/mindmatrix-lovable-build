@@ -9,6 +9,7 @@ import WelcomeScreen from "./pages/auth/WelcomeScreen";
 import Signup from "./pages/auth/Signup";
 import Signup2 from "./pages/auth/Signup2";
 import SignupName from "./pages/auth/SignupName";
+import EducationInfo from "./pages/auth/EducationInfo";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/signup2" element={<Signup2 />} />
           <Route path="/signup-name" element={<SignupName />} />
+          <Route path="/education-info" element={<EducationInfo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
