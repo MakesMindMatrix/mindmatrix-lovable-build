@@ -10,7 +10,7 @@ function InputDetails() {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/skill-scan");
+    navigate("/guidance");
   };
 
   const handleBack = () => {
