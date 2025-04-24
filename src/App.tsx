@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -13,6 +12,7 @@ import Signup2 from "./pages/auth/Signup2";
 import SignupName from "./pages/auth/SignupName";
 import EducationInfo from "./pages/auth/EducationInfo";
 import InputDetails from "./pages/auth/InputDetails";
+import SkillScan from "./pages/auth/SkillScan";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +30,7 @@ const App = () => (
           <Route path="/signup-name" element={<SignupName />} />
           <Route path="/education-info" element={<EducationInfo />} />
           <Route path="/input-details" element={<InputDetails />} />
+          <Route path="/skill-scan" element={<SkillScan />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
