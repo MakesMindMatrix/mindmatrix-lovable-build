@@ -1,3 +1,4 @@
+
 "use client";
 import * as React from "react";
 import Header from "@/components/shared/Header";
@@ -10,7 +11,7 @@ function InputDetails() {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/skill-scan");
+    navigate("/guidance");
   };
 
   const handleBack = () => {
