@@ -1,7 +1,7 @@
 
 import React from "react";
 import Header from "@/components/shared/Header";
-import PasswordRegistrationForm from "@/components/auth/PasswordRegistrationForm";
+import SignupForm from "@/components/auth/SignupForm";
 
 const Signup = () => {
   return (
@@ -13,7 +13,7 @@ const Signup = () => {
           alt="Background gradient"
           className="object-cover absolute inset-0 size-full rounded-[40px]"
         />
-        <PasswordRegistrationForm />
+        <SignupForm />
       </section>
     </main>
   );
