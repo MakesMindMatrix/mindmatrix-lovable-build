@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -23,8 +24,11 @@ const EducationForm = () => {
   };
 
   return (
-    <div className="self-stretch pt-40 pb-20 my-auto font-medium min-w-60 w-[456px] max-md:pt-24 max-md:max-w-full">
-      <form onSubmit={handleSubmit} className="w-full leading-none max-md:max-w-full space-y-9">
+    <div className="relative w-full max-w-[456px] p-6">
+      <h2 className="text-3xl font-medium tracking-tight leading-10 text-white text-center mb-12 max-md:text-2xl">
+        Tell us about your education
+      </h2>
+      <form onSubmit={handleSubmit} className="w-full leading-none space-y-9">
         <FormSelect 
           label="College Name"
           placeholder="Select your college"
@@ -72,7 +76,7 @@ const EducationForm = () => {
 
         <Button 
           type="submit" 
-          className="w-full bg-blue-700 hover:bg-blue-600"
+          className="w-full bg-blue-700 hover:bg-blue-600 glass-btn py-3"
         >
           All set <span className="font-semibold ml-1">What's Next?</span>
         </Button>
@@ -91,10 +95,10 @@ interface FormSelectProps {
 
 const FormSelect = ({ label, placeholder, children, value, onValueChange }: FormSelectProps) => {
   return (
-    <div className="w-full max-md:max-w-full">
-      <label className="text-base text-white max-md:max-w-full">{label}</label>
+    <div className="w-full">
+      <label className="text-base text-white mb-2 block">{label}</label>
       <Select value={value} onValueChange={onValueChange}>
-        <SelectTrigger className="mt-4 bg-transparent border-none text-indigo-300 shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+        <SelectTrigger className="mt-2 bg-transparent border-none text-indigo-300 shadow-[0px_1px_30px_rgba(69,42,124,0.1)] glass-input">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>

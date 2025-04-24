@@ -1,16 +1,17 @@
 
-"use client";
-import * as React from "react";
-import Header from "@/components/shared/Header";
-import { ChatInterface } from "@/components/auth/chat/ChatInterface";
+import React from "react";
+import EducationForm from "@/components/auth/EducationForm";
+import BackButton from "@/components/auth/BackButton";
 
-function EducationInfo() {
+const EducationInfo = () => {
   return (
-    <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white max-md:px-5">
-      <Header />
-      <ChatInterface />
-    </main>
+    <div className="relative flex flex-col items-center w-full">
+      <div className="absolute top-8 left-8">
+        <BackButton />
+      </div>
+      <EducationForm />
+    </div>
   );
-}
+};
 
 export default EducationInfo;
