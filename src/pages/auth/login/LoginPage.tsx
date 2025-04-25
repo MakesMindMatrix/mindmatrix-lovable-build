@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
       <div className="w-full max-w-md p-8 rounded-3xl bg-white/10 backdrop-blur-xl shadow-lg">
         <div className="flex flex-col items-center gap-8">
           <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-            <LogoIcon className="w-8 h-8" />
+            <LogoIcon />
           </div>
 
           <h1 className="text-2xl md:text-3xl text-center text-white font-normal">
