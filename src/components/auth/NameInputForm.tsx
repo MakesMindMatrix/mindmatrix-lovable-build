@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +18,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
     if (onContinue) {
       onContinue(firstName);
     }
-    // Navigate to the education info page instead of welcome
-    navigate("/education-info");
+    navigate("/user-registration/education-info");
   };
 
   return (

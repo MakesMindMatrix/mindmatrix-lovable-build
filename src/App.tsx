@@ -17,6 +17,7 @@ import SkillScan from "./pages/auth/SkillScan";
 import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
+import RegistrationLayout from "./pages/user-registration/RegistrationLayout";
 
 const queryClient = new QueryClient();
 
@@ -29,11 +30,17 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/welcome" element={<WelcomeScreen />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signup2" element={<Signup2 />} />
-          <Route path="/signup-name" element={<SignupName />} />
-          <Route path="/education-info" element={<EducationInfo />} />
-          <Route path="/input-details" element={<InputDetails />} />
+          
+          {/* User Registration Flow */}
+          <Route path="/user-registration" element={<RegistrationLayout />}>
+            <Route index element={<Navigate to="signup" replace />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="signup2" element={<Signup2 />} />
+            <Route path="signup-name" element={<SignupName />} />
+            <Route path="education-info" element={<EducationInfo />} />
+            <Route path="input-details" element={<InputDetails />} />
+          </Route>
+
           <Route path="/skill-scan" element={<SkillScan />} />
           <Route path="/guidance" element={<Guidance />} />
           <Route path="/questions" element={<Questions />} />

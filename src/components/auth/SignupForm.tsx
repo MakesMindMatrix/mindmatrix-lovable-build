@@ -7,7 +7,7 @@ const SignupForm = () => {
   const navigate = useNavigate();
 
   const handleEmailSignup = () => {
-    navigate("/signup2");
+    navigate("/user-registration/signup2");
   };
 
   return (
