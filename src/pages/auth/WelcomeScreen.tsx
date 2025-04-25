@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoIcon from "@/components/shared/LogoIcon";
@@ -7,7 +8,7 @@ const WelcomeScreen: React.FC = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/signup");
+    navigate("/user-registration/signup");
   };
 
   return (
