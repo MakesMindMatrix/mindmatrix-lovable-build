@@ -27,7 +27,7 @@ export const PasswordForm: React.FC = () => {
       title: "All set!",
       description: "You can now continue to the next step.",
     });
-    navigate("/user-registration/signup-name");
+    navigate("/signup-name");
   };
 
   return (

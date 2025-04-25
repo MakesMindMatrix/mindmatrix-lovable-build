@@ -16,10 +16,10 @@ const EducationForm = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Form submitted with:", formData);
-    navigate("/user-registration/input-details");
+    navigate("/input-details");
   };
 
   return (

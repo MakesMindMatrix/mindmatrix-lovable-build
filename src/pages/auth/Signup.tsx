@@ -1,9 +1,9 @@
 
 import React from "react";
-import { Outlet } from "react-router-dom";
 import Header from "@/components/shared/Header";
+import SignupForm from "@/components/auth/SignupForm";
 
-const RegistrationLayout = () => {
+const Signup = () => {
   return (
     <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white max-md:px-5">
       <Header />
@@ -13,10 +13,10 @@ const RegistrationLayout = () => {
           alt="Background gradient"
           className="object-cover absolute inset-0 size-full rounded-[40px]"
         />
-        <Outlet />
+        <SignupForm />
       </section>
     </main>
   );
 };
 
-export default RegistrationLayout;
+export default Signup;
