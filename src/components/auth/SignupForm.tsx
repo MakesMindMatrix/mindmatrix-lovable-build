@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Google } from "lucide-react";
 import ActionButton from "./ActionButton";
 
 const SignupForm = () => {
@@ -37,6 +38,7 @@ const SignupForm = () => {
             text="Continue with Google"
             variant="semibold"
             className="glass-btn"
+            icon={<Google size={19} />}
           />
         </div>
       </div>
