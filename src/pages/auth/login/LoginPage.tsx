@@ -8,7 +8,7 @@ import LoginButton from "./LoginButton";
 import LogoIcon from "@/components/shared/LogoIcon";
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>("example@gmail.com");
   const [password, setPassword] = useState<string>("");
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -27,24 +27,24 @@ const LoginPage: React.FC = () => {
 
       <section className="flex relative flex-col gap-7 items-center z-[1] max-md:w-4/5 max-sm:w-[90%]">
         {/* Logo Circle */}
-        <div className="flex justify-center items-center bg-white rounded-full h-[68px] w-[68px] shadow-[0px_46.83px_12.83px_rgba(0,0,0,0),0px_30.151px_12.189px_rgba(0,0,0,0.01),0px_16.679px_10.264px_rgba(0,0,0,0.05),0px_7.698px_7.698px_rgba(0,0,0,0.09),0px_1.925px_3.849px_rgba(0,0,0,0.1)]">
+        <div className="flex justify-center items-center bg-[#FF1616] rounded-full h-[68px] w-[68px] shadow-[0px_46.83px_12.83px_rgba(0,0,0,0),0px_30.151px_12.189px_rgba(0,0,0,0.01),0px_16.679px_10.264px_rgba(0,0,0,0.05),0px_7.698px_7.698px_rgba(0,0,0,0.09),0px_1.925px_3.849px_rgba(0,0,0,0.1)]">
           <LogoIcon />
         </div>
 
         {/* Welcome Text */}
-        <h1 className="text-3xl tracking-tight leading-10 text-center text-white max-w-[633px] max-md:text-3xl max-sm:text-2xl">
+        <h1 className="text-3xl tracking-tight leading-[129%] text-center text-white w-[633px] -tracking-[0.3px] font-normal max-md:text-2xl max-sm:text-xl max-md:w-full">
           Welcome Back to <strong>MindMatrix</strong>, enter your username and
           password to continue.
         </h1>
 
         {/* Form Container */}
-        <form className="flex flex-col gap-12 items-start w-[456px] max-md:w-4/5 max-sm:w-[90%]">
+        <form className="flex flex-col gap-[50px] items-start w-[456px] max-md:w-4/5 max-sm:w-[90%]">
           {/* Email Field */}
           <InputField
             label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder="example@gmail.com"
           />
 
           {/* Password Field */}
@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
 
             <button
               type="button"
-              className="text-base font-semibold text-blue-400"
+              className="text-[15px] font-semibold text-[#69ADE9]"
             >
               Forgot Password?
             </button>
@@ -76,11 +76,11 @@ const LoginPage: React.FC = () => {
         <LoginButton onClick={handleLogin} />
 
         {/* Sign Up Prompt */}
-        <p className="flex gap-1.5 items-center text-xl font-medium text-white">
+        <p className="flex gap-[5px] items-center text-xl font-medium text-white">
           Not registered yet?{" "}
           <button 
             onClick={() => navigate("/welcome")}
-            className="font-bold underline"
+            className="text-xl font-bold underline"
           >
             SignUp
           </button>

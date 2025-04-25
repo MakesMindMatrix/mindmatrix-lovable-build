@@ -14,13 +14,15 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   onChange,
 }) => {
   return (
-    <label className="flex gap-2.5 items-center cursor-pointer">
-      <Checkbox 
-        checked={checked}
-        onCheckedChange={onChange}
-        className="border-2 border-white data-[state=checked]:border-white data-[state=checked]:bg-blue-700"
-      />
-      <span className="text-base font-medium text-white">{label}</span>
+    <label className="flex gap-[10px] items-center cursor-pointer">
+      <div className="w-[18px] h-[18px] bg-white rounded-[2px]">
+        <Checkbox 
+          checked={checked}
+          onCheckedChange={onChange}
+          className="data-[state=checked]:bg-[#012FFF] data-[state=checked]:border-[#012FFF]"
+        />
+      </div>
+      <span className="text-[15px] font-medium text-white">{label}</span>
     </label>
   );
 };

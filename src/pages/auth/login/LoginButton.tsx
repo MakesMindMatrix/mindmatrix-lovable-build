@@ -10,7 +10,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
     <button
       type="button"
       onClick={onClick}
-      className="px-0 py-3 w-full text-base font-medium leading-5 text-white bg-blue-700 rounded-xl text-center cursor-pointer hover:bg-blue-800 transition-colors max-md:w-4/5 max-sm:w-[90%]"
+      className="w-full py-[11px] text-[15px] font-medium leading-[129%] text-white bg-[#012FFF] rounded-[10px] text-center cursor-pointer hover:bg-[#012FFF]/90 transition-colors max-md:w-4/5 max-sm:w-[90%]"
     >
       Login
     </button>

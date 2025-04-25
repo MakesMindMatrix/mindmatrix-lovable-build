@@ -22,29 +22,25 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 items-start w-full">
-      <label className="text-base font-medium leading-5 text-white">
+    <div className="flex flex-col gap-[17px] items-start w-full">
+      <label className="text-[15px] font-medium leading-[125%] text-white">
         {label}
       </label>
-      <div className="flex relative items-center w-full">
+      <div className="relative flex items-center w-full px-[15px] py-3 rounded-[5px] border-[3px] border-white/50 bg-gradient-to-r from-white/20 to-white/[0.04] shadow-[0px_1.197px_29.915px_rgba(69,42,124,0.1)] backdrop-blur-[35px]">
         <input
           type={showPassword ? "text" : "password"}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="px-4 py-3 w-full text-base font-medium leading-5 text-indigo-300 rounded-md border-solid backdrop-blur-[35px] border-[3px] border-white border-opacity-50 shadow-[0px_1.197px_29.915px_rgba(69,42,124,0.1)] bg-transparent"
+          className="w-full text-base font-medium leading-[125%] text-[#9BB4E8] bg-transparent outline-none"
         />
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-4"
+          className="absolute right-[15px] text-white"
           aria-label={showPassword ? "Hide password" : "Show password"}
         >
-          {showPassword ? (
-            <EyeOff className="h-5 w-5 text-white" />
-          ) : (
-            <Eye className="h-5 w-5 text-white" />
-          )}
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
       </div>
     </div>
