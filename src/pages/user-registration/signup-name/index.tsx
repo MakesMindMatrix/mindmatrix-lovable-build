@@ -11,10 +11,12 @@ const SignupName = () => {
   return (
     <div className="flex relative flex-wrap gap-10 justify-between items-center max-w-full w-[877px]">
       <BackButton />
-      <NameInputForm
-        avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-        onContinue={handleContinue}
-      />
+      <div className="flex flex-col items-center justify-center w-full">
+        <NameInputForm
+          avatarSrc="/lovable-uploads/4c05d5c7-4d09-4958-98e1-8b1ca2d58173.png"
+          onContinue={handleContinue}
+        />
+      </div>
     </div>
   );
 };
