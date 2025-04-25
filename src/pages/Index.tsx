@@ -12,6 +12,10 @@ const Index = () => {
     navigate("/welcome");
   };
 
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <main className="relative min-h-screen w-full bg-gradient-to-b from-blue-50 to-white">
       {/* Glass Toolbar */}
@@ -36,6 +40,7 @@ const Index = () => {
                 Register at no cost
               </Button>
               <Button
+                onClick={handleLogin}
                 className="flex items-center gap-2"
                 variant="outline"
               >
