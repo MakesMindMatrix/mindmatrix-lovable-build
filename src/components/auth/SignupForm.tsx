@@ -37,7 +37,6 @@ const SignupForm = () => {
             text="Continue with Google"
             variant="semibold"
             className="glass-btn"
-            icon="/lovable-uploads/6f701c41-8cd2-415d-9379-c2b16cc9b55c.png"
           />
         </div>
       </div>

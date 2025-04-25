@@ -1,9 +1,6 @@
-
 "use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "@/components/ui/input"; 
-import { Button } from "@/components/ui/button";
 
 type NameInputFormProps = {
   avatarSrc: string;
@@ -25,43 +22,45 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
   };
 
   return (
-    <section className="flex flex-col justify-center items-center self-stretch py-16 my-auto font-medium min-w-60 w-full max-w-[456px] max-md:max-w-full">
-      <div className="w-full max-w-[400px]">
-        <div className="flex flex-col items-center w-full">
-          <img
-            src={avatarSrc}
-            alt="Welcome avatar"
-            className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
-          />
-          <h2 className="mt-7 text-3xl font-medium text-center text-white">
-            Awesome! <br />
-            What should i call you?
-          </h2>
-          
-          <div className="mt-7 w-full">
-            <label
-              htmlFor="firstName"
-              className="block text-base text-white mb-2"
-            >
-              First Name
-            </label>
-            <Input
-              id="firstName"
-              type="text"
-              placeholder="Your preferred name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="glass-input w-full text-base text-white px-4 py-3 rounded-md"
+    <section className="flex flex-col justify-center self-stretch py-16 my-auto font-medium min-w-60 w-[456px] max-md:max-w-full">
+      <div className="max-md:max-w-full">
+        <div className="flex flex-col w-full max-md:max-w-full">
+          <div className="flex flex-col self-center max-w-full text-3xl tracking-tight leading-10 text-center text-white w-[344px]">
+            <img
+              src={avatarSrc}
+              alt="Welcome avatar"
+              className="object-contain self-center aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
             />
+            <h2 className="mt-7">
+              Awesome! <br />
+              What should i call you?
+            </h2>
           </div>
-          
-          <Button
-            onClick={handleContinue}
-            className="w-full mt-10 bg-blue-700 hover:bg-blue-600 text-white text-base py-3 rounded-xl"
-          >
-            Let's continue
-          </Button>
+          <div className="mt-7 w-full leading-none max-md:max-w-full">
+            <div className="w-full max-md:max-w-full">
+              <label
+                htmlFor="firstName"
+                className="text-base text-white max-md:max-w-full"
+              >
+                First Name
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                placeholder="Your preferred name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="overflow-hidden px-4 py-3 mt-4 w-full text-base text-indigo-300 rounded-md rotate-[2.7755575615628914e-17rad] shadow-[0px_1px_30px_rgba(69,42,124,0.1)] max-md:pr-5 max-md:max-w-full"
+              />
+            </div>
+          </div>
         </div>
+        <button
+          onClick={handleContinue}
+          className="overflow-hidden px-16 py-3 mt-64 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl max-md:px-5 max-md:mt-10 max-md:max-w-full"
+        >
+          Let's continue
+        </button>
       </div>
     </section>
   );

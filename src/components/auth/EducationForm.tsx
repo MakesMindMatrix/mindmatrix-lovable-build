@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,8 +23,8 @@ const EducationForm = () => {
   };
 
   return (
-    <div className="w-full max-w-[400px]">
-      <form onSubmit={handleSubmit} className="w-full leading-none space-y-6">
+    <div className="self-stretch pt-40 pb-20 my-auto font-medium min-w-60 w-[456px] max-md:pt-24 max-md:max-w-full">
+      <form onSubmit={handleSubmit} className="w-full leading-none max-md:max-w-full space-y-9">
         <FormSelect 
           label="College Name"
           placeholder="Select your college"
@@ -73,9 +72,9 @@ const EducationForm = () => {
 
         <Button 
           type="submit" 
-          className="w-full bg-blue-700 hover:bg-blue-600 text-white font-medium py-3 rounded-xl mt-6"
+          className="w-full bg-blue-700 hover:bg-blue-600"
         >
-          Sure thing!
+          All set <span className="font-semibold ml-1">What's Next?</span>
         </Button>
       </form>
     </div>
@@ -92,10 +91,10 @@ interface FormSelectProps {
 
 const FormSelect = ({ label, placeholder, children, value, onValueChange }: FormSelectProps) => {
   return (
-    <div className="w-full">
-      <label className="block text-base text-white mb-2">{label}</label>
+    <div className="w-full max-md:max-w-full">
+      <label className="text-base text-white max-md:max-w-full">{label}</label>
       <Select value={value} onValueChange={onValueChange}>
-        <SelectTrigger className="glass-input bg-white/10 backdrop-blur-sm border border-white/30 text-white">
+        <SelectTrigger className="mt-4 bg-transparent border-none text-indigo-300 shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>

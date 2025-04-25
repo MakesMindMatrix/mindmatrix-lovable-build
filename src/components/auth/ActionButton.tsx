@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface ActionButtonProps {
-  icon?: React.ReactNode | string;
+  icon?: string;
   text: string;
   variant?: "medium" | "semibold";
   className?: string;
@@ -28,16 +28,12 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       onClick={onClick}
     >
       <div className="flex gap-2 items-center">
-        {icon && typeof icon === "string" ? (
+        {icon ? (
           <img
             src={icon}
             alt=""
             className="object-contain shrink-0 self-stretch my-auto aspect-[1.06] w-[19px]"
           />
-        ) : icon ? (
-          <div className="flex shrink-0 self-stretch my-auto h-5 w-[21px]">
-            {icon}
-          </div>
         ) : (
           <div className="flex shrink-0 self-stretch my-auto h-5 w-[21px]" />
         )}
