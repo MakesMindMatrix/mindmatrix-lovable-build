@@ -1,7 +1,6 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { icons } from "lucide-react";
 import ActionButton from "./ActionButton";
 
 const SignupForm = () => {
