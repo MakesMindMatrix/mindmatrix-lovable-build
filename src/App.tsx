@@ -8,16 +8,16 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import WelcomeScreen from "./pages/auth/WelcomeScreen";
-import Signup from "./pages/auth/Signup";
-import Signup2 from "./pages/auth/Signup2";
-import SignupName from "./pages/auth/SignupName";
-import EducationInfo from "./pages/auth/EducationInfo";
-import InputDetails from "./pages/auth/InputDetails";
+import RegistrationLayout from "./pages/user-registration/RegistrationLayout";
+import Signup from "./pages/user-registration/signup";
+import Signup2 from "./pages/user-registration/signup2";
+import SignupName from "./pages/user-registration/signup-name";
+import EducationInfo from "./pages/user-registration/education-info";
+import InputDetails from "./pages/user-registration/input-details";
 import SkillScan from "./pages/auth/SkillScan";
 import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
-import RegistrationLayout from "./pages/user-registration/RegistrationLayout";
 
 const queryClient = new QueryClient();
 
