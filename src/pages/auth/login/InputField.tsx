@@ -15,19 +15,17 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
 }) => {
   return (
-    <div className="flex flex-col gap-[17px] items-start w-full">
-      <label className="text-[15px] font-medium leading-[125%] text-white">
+    <div className="space-y-2 w-full">
+      <label className="text-sm font-medium text-white">
         {label}
       </label>
-      <div className="relative flex items-center w-full px-[15px] py-3 rounded-[5px] border-[3px] border-white/50 bg-gradient-to-r from-white/20 to-white/[0.04] shadow-[0px_1.197px_29.915px_rgba(69,42,124,0.1)] backdrop-blur-[35px]">
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="w-full text-base font-medium leading-[125%] text-[#9BB4E8] bg-transparent outline-none"
-        />
-      </div>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="w-full px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/20"
+      />
     </div>
   );
 };
