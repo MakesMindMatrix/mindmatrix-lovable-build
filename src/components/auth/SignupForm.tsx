@@ -37,7 +37,7 @@ const SignupForm = () => {
             text="Continue with Google"
             variant="semibold"
             className="glass-btn"
-            icon="/lovable-uploads/b49f6647-0d87-4689-a96a-4e0f2774b4d3.png"
+            icon="https://cdn.builder.io/api/v1/image/assets/TEMP/google-icon.png"
           />
         </div>
       </div>
@@ -50,4 +50,3 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
-
