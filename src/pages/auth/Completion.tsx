@@ -1,4 +1,3 @@
-
 "use client";
 import * as React from "react";
 import Header from "@/components/shared/Header";
@@ -29,8 +28,8 @@ function Completion() {
     if (step < completionSteps.length - 1) {
       setStep(prev => prev + 1);
     } else {
-      // Navigate to the final destination (e.g., dashboard)
-      navigate("/");
+      // Navigate to the dashboard instead of home
+      navigate("/dashboard-Day1");
     }
   };
 
