@@ -16,7 +16,7 @@ import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
 import NotFound from "./pages/NotFound";
-import DashboardDay1 from "./pages/DashboardDay1";
+import DashboardDay1 from "./pages/dashboard/Day1";
 
 const queryClient = new QueryClient();
 
