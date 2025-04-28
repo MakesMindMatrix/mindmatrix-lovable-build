@@ -1,53 +1,34 @@
 
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell } from "lucide-react";
+import { Trophy, Clock, CheckSquare } from "lucide-react";
 
 export const Topbar: React.FC = () => {
   return (
-    <header className="bg-white border-b border-gray-200 h-16 flex items-center px-6">
-      <div className="flex-1 flex items-center space-x-8">
-        {/* Points Earned */}
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-            <span className="text-yellow-600 text-sm font-bold">🏆</span>
-          </div>
-          <div className="ml-2">
-            <p className="text-xs text-gray-500">Points Earned</p>
-            <p className="font-semibold text-gray-800">50 Pts</p>
-          </div>
-        </div>
-        
-        {/* Time Invested */}
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-            <span className="text-blue-600 text-sm font-bold">⏱️</span>
-          </div>
-          <div className="ml-2">
-            <p className="text-xs text-gray-500">Time Invested Today</p>
-            <p className="font-semibold text-gray-800">1hr 30min</p>
-          </div>
-        </div>
-        
-        {/* Tasks Completed */}
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-            <span className="text-green-600 text-sm font-bold">✓</span>
-          </div>
-          <div className="ml-2">
-            <p className="text-xs text-gray-500">Tasks Completed</p>
-            <p className="font-semibold text-gray-800">0/4 completed</p>
-          </div>
-        </div>
+    <header className="bg-blue-600 px-6 py-4 flex items-center justify-between text-white">
+      <div className="flex items-center gap-2">
+        <HomeIcon className="w-6 h-6" />
+        <h1 className="text-xl font-semibold">Home</h1>
       </div>
       
-      {/* User Profile */}
-      <div className="flex items-center space-x-4">
-        <button className="rounded-full p-2 text-gray-500 hover:bg-gray-100">
-          <Bell className="w-5 h-5" />
-        </button>
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+      <div className="flex items-center gap-8">
+        <div className="flex items-center gap-8">
+          <div className="flex items-center gap-2">
+            <Trophy className="w-5 h-5" />
+            <span>50Pts</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock className="w-5 h-5" />
+            <span>1hr30min</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <CheckSquare className="w-5 h-5" />
+            <span>0/4 completed</span>
+          </div>
+        </div>
+        
+        <Avatar className="w-10 h-10 border-2 border-white">
+          <AvatarImage src="/placeholder-avatar.png" />
           <AvatarFallback>UN</AvatarFallback>
         </Avatar>
       </div>

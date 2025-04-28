@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 
 export interface NavigationItemProps {
-  icon: string;
+  icon: ReactNode;
   label: string;
   isActive: boolean;
 }

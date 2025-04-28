@@ -1,24 +1,21 @@
 
 import React from "react";
+import { ArrowRight } from "lucide-react";
 
 const PromotionBanner: React.FC = () => {
   return (
-    <section className="p-4 text-white bg-blue-700 rounded-2xl rotate-[4.5911985324664784e-10rad]">
-      <h3 className="text-sm font-bold rotate-[-4.5911985324664784e-10rad]">
+    <div className="bg-blue-600 text-white p-4 rounded-xl">
+      <h3 className="text-sm font-bold">
         Get 50% Off on MindMatrix Genesis Subscription!
       </h3>
-      <p className="mt-5 text-xs rotate-[-4.5911985324664784e-10rad]">
+      <p className="mt-2 text-sm opacity-90">
         Hurry ends in 2 days
       </p>
-      <button className="flex gap-1.5 items-start py-3 pr-14 pl-3 mt-5 text-base leading-none text-center text-blue-700 bg-white rounded-xl rotate-[-4.5911985324664784e-10rad] max-md:pr-5">
+      <button className="mt-4 w-full bg-white text-blue-600 px-4 py-2 rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-blue-50 transition-colors">
         <span>Start Now</span>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7107b7e1f7f318333f57570c208f94704665efd3?placeholderIfAbsent=true"
-          alt="Arrow icon"
-          className="object-contain shrink-0 w-5 aspect-square"
-        />
+        <ArrowRight className="w-4 h-4" />
       </button>
-    </section>
+    </div>
   );
 };
 
