@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
   const navigate = useNavigate();
 
   return (
-    <aside className="h-full w-[191px] p-3 flex flex-col overflow-hidden">
+    <aside className="h-full w-[191px] p-3 flex flex-col overflow-hidden bg-[#FFFFFF]">
       <header className="flex gap-2 items-center text-2xl font-medium tracking-tighter whitespace-nowrap text-neutral-900">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/a9ced579ea853ef0485d8fd0f7a0b584b4c4733c"
