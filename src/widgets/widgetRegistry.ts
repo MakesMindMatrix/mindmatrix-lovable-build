@@ -28,6 +28,14 @@ export const widgetsDb: WidgetsDatabase = {
       widget_content: "Shows user's engagement metrics and consistency",
       associated_zuno_reply_id: "zuno_engagement_001",
       day: 2
+    },
+    {
+      widget_id: "overall_progress_001",
+      widget_name: "Overall Progress",
+      widget_code_file: "overall_progress/index.ts",
+      widget_content: "Displays overall progress including tasks and achievements",
+      associated_zuno_reply_id: "zuno_overall_progress_001",
+      day: 2
     }
   ]
 };
