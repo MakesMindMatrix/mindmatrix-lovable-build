@@ -16,7 +16,6 @@ import SkillScan from "./pages/auth/SkillScan";
 import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
-import DashboardDay1 from "./pages/dashboard/DashboardDay1";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,7 +38,6 @@ const App = () => (
           <Route path="/guidance" element={<Guidance />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/completion" element={<Completion />} />
-          <Route path="/dashboard-Day1" element={<DashboardDay1 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
