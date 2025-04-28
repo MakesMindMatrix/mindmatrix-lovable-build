@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -17,6 +16,7 @@ import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
 import NotFound from "./pages/NotFound";
+import DashboardDay1 from "./pages/DashboardDay1";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +38,7 @@ const App = () => (
           <Route path="/guidance" element={<Guidance />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/completion" element={<Completion />} />
+          <Route path="/dashboard-Day1" element={<DashboardDay1 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
