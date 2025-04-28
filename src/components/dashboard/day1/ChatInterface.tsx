@@ -1,11 +1,10 @@
-
 "use client";
 import React from "react";
 import ChatOption from "./ChatOption";
 
 const ChatInterface: React.FC = () => {
   return (
-    <section className="flex overflow-hidden flex-col items-center px-20 pt-48 pb-20 bg-blue-200 rounded-2xl max-md:px-5 max-md:pt-24 max-md:max-w-full min-h-[726px]">
+    <section className="flex overflow-hidden flex-col items-center px-20 py-12 bg-blue-200 rounded-3xl max-md:px-5 max-md:max-w-full min-h-[726px]">
       <div className="py-1 max-w-full w-[766px]">
         <div className="flex flex-col mx-3 text-white max-md:mr-2.5 max-md:max-w-full">
           <img
