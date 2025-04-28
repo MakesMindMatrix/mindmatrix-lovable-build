@@ -1,18 +1,7 @@
 
-import React, { ReactNode } from "react";
+import React from "react";
 import NavigationItem from "./NavigationItem";
-
-interface NavigationItemProps {
-  icon: ReactNode;
-  label: string;
-  isActive: boolean;
-}
-
-interface NavigationSectionProps {
-  title: string;
-  items: NavigationItemProps[];
-  className?: string;
-}
+import { NavigationItemProps, NavigationSectionProps } from "@/types/navigation";
 
 const NavigationSection: React.FC<NavigationSectionProps> = ({
   title,
@@ -20,9 +9,9 @@ const NavigationSection: React.FC<NavigationSectionProps> = ({
   className = "",
 }) => {
   return (
-    <section className={`w-full whitespace-nowrap ${className}`}>
-      <h2 className="text-sm">{title}</h2>
-      <div className="mt-4 w-full text-base space-y-2">
+    <div className={className}>
+      <h2 className="px-4 text-xs font-medium text-gray-500 mb-2">{title}</h2>
+      <div className="space-y-1">
         {items.map((item, index) => (
           <NavigationItem
             key={index}
@@ -32,7 +21,7 @@ const NavigationSection: React.FC<NavigationSectionProps> = ({
           />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

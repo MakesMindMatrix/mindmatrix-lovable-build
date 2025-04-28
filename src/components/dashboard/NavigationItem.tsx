@@ -1,8 +1,9 @@
 
-import React, { ReactNode } from "react";
+import React from "react";
+import { cn } from "@/lib/utils";
 
 interface NavigationItemProps {
-  icon: ReactNode;
+  icon: React.ReactNode;
   label: string;
   isActive: boolean;
 }
@@ -14,9 +15,12 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
 }) => {
   return (
     <button
-      className={`flex gap-2 items-center py-4 px-5 w-full rounded-xl min-h-[49px] transition-colors ${
-        isActive ? "text-white bg-indigo-300" : "text-stone-500 hover:bg-gray-50"
-      }`}
+      className={cn(
+        "flex w-full items-center gap-3 px-4 py-2.5 rounded-lg transition-colors",
+        isActive
+          ? "bg-blue-100 text-blue-600"
+          : "text-gray-600 hover:bg-gray-50"
+      )}
     >
       {icon}
       <span>{label}</span>
