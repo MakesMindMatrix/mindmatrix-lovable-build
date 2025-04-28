@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -17,7 +18,6 @@ import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
 import NotFound from "./pages/NotFound";
 import DashboardDay1 from "./pages/dashboard/Day1";
-import Desktop95 from "./components/auth/Desktop95";
 import Login from "./pages/auth/Login";
 
 const queryClient = new QueryClient();
