@@ -13,16 +13,14 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   isActive,
 }) => {
   return (
-    <div
-      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-        isActive 
-          ? "bg-blue-100 text-blue-600" 
-          : "text-gray-600 hover:bg-gray-50"
+    <button
+      className={`flex gap-2 items-center py-4 px-5 w-full rounded-xl min-h-[49px] transition-colors ${
+        isActive ? "text-white bg-indigo-300" : "text-stone-500 hover:bg-gray-50"
       }`}
     >
       {icon}
-      <span className="font-medium">{label}</span>
-    </div>
+      <span>{label}</span>
+    </button>
   );
 };
 

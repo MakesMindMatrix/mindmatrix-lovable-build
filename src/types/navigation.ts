@@ -9,5 +9,6 @@ export interface NavigationItemProps {
 
 export interface NavigationSectionProps {
   title: string;
-  children: ReactNode;
+  items: NavigationItemProps[];
+  className?: string;
 }

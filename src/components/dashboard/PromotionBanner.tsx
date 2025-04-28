@@ -4,18 +4,18 @@ import { ArrowRight } from "lucide-react";
 
 const PromotionBanner: React.FC = () => {
   return (
-    <div className="bg-blue-600 text-white p-4 rounded-xl">
+    <article className="p-4 text-white bg-blue-700 rounded-2xl">
       <h3 className="text-sm font-bold">
         Get 50% Off on MindMatrix Genesis Subscription!
       </h3>
-      <p className="mt-2 text-sm opacity-90">
+      <p className="mt-5 text-xs opacity-80">
         Hurry ends in 2 days
       </p>
-      <button className="mt-4 w-full bg-white text-blue-600 px-4 py-2 rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-blue-50 transition-colors">
+      <button className="flex items-center justify-center gap-1.5 px-3 py-3 mt-5 w-full text-base font-medium text-blue-700 bg-white rounded-xl hover:bg-blue-50 transition-colors">
         <span>Start Now</span>
         <ArrowRight className="w-4 h-4" />
       </button>
-    </div>
+    </article>
   );
 };
 

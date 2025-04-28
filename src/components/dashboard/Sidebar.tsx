@@ -3,34 +3,51 @@ import React from "react";
 import Logo from "./Logo";
 import NavigationSection from "./NavigationSection";
 import PromotionBanner from "./PromotionBanner";
-import NavigationItem from "./NavigationItem";
-import { HomeIcon, BookOpen, CheckSquare, User, HelpCircle, Settings } from "lucide-react";
+import { Home, BookOpen, CheckSquare, User, HelpCircle, Settings } from "lucide-react";
 
 const Sidebar: React.FC = () => {
+  const generalNavItems = [
+    { icon: <Home className="w-4 h-4" />, label: "Home", isActive: true },
+    { icon: <BookOpen className="w-4 h-4" />, label: "Programs", isActive: false },
+    { icon: <CheckSquare className="w-4 h-4" />, label: "Tasks", isActive: false },
+  ];
+
+  const personalNavItems = [
+    { icon: <User className="w-4 h-4" />, label: "My Space", isActive: false },
+  ];
+
+  const supportNavItems = [
+    { icon: <HelpCircle className="w-4 h-4" />, label: "Support", isActive: false },
+    { icon: <Settings className="w-4 h-4" />, label: "Settings", isActive: false },
+  ];
+
   return (
-    <aside className="w-64 h-screen bg-white border-r border-gray-200 p-6">
-      <div className="flex flex-col h-full">
+    <aside className="self-stretch my-auto w-[191px]">
+      <div className="flex flex-col w-full">
         <Logo />
-        
-        <nav className="mt-12 flex-1">
-          <NavigationSection title="GENERAL">
-            <NavigationItem icon={<HomeIcon className="w-5 h-5" />} label="Home" isActive={true} />
-            <NavigationItem icon={<BookOpen className="w-5 h-5" />} label="Programs" isActive={false} />
-            <NavigationItem icon={<CheckSquare className="w-5 h-5" />} label="Tasks" isActive={false} />
-          </NavigationSection>
-
-          <NavigationSection title="PERSONAL">
-            <NavigationItem icon={<User className="w-5 h-5" />} label="My Space" isActive={false} />
-          </NavigationSection>
+        <nav className="mt-16 w-full font-semibold text-stone-500 max-md:mt-10">
+          <NavigationSection title="GENERAL" items={generalNavItems} />
+          <NavigationSection
+            title="PERSONAL"
+            items={personalNavItems}
+            className="mt-6"
+          />
         </nav>
+      </div>
 
-        <div className="mt-auto">
-          <PromotionBanner />
-          <div className="mt-4 space-y-2">
-            <NavigationItem icon={<HelpCircle className="w-5 h-5" />} label="Support" isActive={false} />
-            <NavigationItem icon={<Settings className="w-5 h-5" />} label="Settings" isActive={false} />
-          </div>
-        </div>
+      <div className="mt-32 w-full font-semibold max-md:mt-10">
+        <PromotionBanner />
+        <nav className="mt-3.5 w-full space-y-2">
+          {supportNavItems.map((item, index) => (
+            <div
+              key={index}
+              className="flex gap-2 items-center px-5 py-4 rounded-xl text-stone-500 hover:bg-gray-50"
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </nav>
       </div>
     </aside>
   );
