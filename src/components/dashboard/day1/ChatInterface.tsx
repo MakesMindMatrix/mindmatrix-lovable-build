@@ -1,5 +1,6 @@
 
 import React from "react";
+import ChatOption from "./ChatOption";
 
 const ChatInterface: React.FC<{ simplified?: boolean }> = ({ simplified = false }) => {
   if (simplified) {
