@@ -10,6 +10,10 @@ const LandingPage = () => {
     navigate("/welcome");
   };
 
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
       {/* Glass Toolbar */}
@@ -31,9 +35,9 @@ const LandingPage = () => {
               Register at no cost
             </Button>
             <Button
+              onClick={handleLogin}
               variant="outline"
               className="border-blue-700 text-blue-700 hover:bg-blue-50"
-              disabled
             >
               My Dashboard
             </Button>
