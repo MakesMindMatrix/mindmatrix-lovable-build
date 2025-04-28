@@ -1,11 +1,18 @@
 
 "use client";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import NavigationSection from "./NavigationSection";
 import PromotionBanner from "./PromotionBanner";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  activeTab?: 'home' | 'programs' | 'tasks';
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
+  const navigate = useNavigate();
+
   return (
     <aside className="self-stretch my-auto w-[191px]">
       <div className="flex flex-col w-full">
@@ -21,14 +28,32 @@ const Sidebar: React.FC = () => {
         <div className="mt-16 w-full font-semibold text-stone-500 max-md:mt-10">
           <NavigationSection title="GENERAL">
             <div className="space-y-0">
-              <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/ff619270b330549c07f249780801b17ff750c4b8" label="Home" isActive={true} />
-              <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/3430fc681841546943ce12f63288136245f101f2" label="Programs" />
-              <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/333534a9d2531e48b58aeaa0350713eebb17d760" label="Tasks" />
+              <NavigationItem 
+                icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/ff619270b330549c07f249780801b17ff750c4b8" 
+                label="Home" 
+                isActive={activeTab === 'home'}
+                onClick={() => navigate('/dashboard-Day1')}
+              />
+              <NavigationItem 
+                icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/3430fc681841546943ce12f63288136245f101f2" 
+                label="My Programs" 
+                isActive={activeTab === 'programs'}
+                onClick={() => navigate('/programs')}
+              />
+              <NavigationItem 
+                icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/333534a9d2531e48b58aeaa0350713eebb17d760" 
+                label="Tasks" 
+                isActive={activeTab === 'tasks'}
+                onClick={() => navigate('/tasks')}
+              />
             </div>
           </NavigationSection>
 
           <NavigationSection title="PERSONAL" className="mt-6">
-            <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/18730a68846538343f892bde033ffcb8d6f2be3e" label="My Space" />
+            <NavigationItem 
+              icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/18730a68846538343f892bde033ffcb8d6f2be3e" 
+              label="My Space" 
+            />
           </NavigationSection>
         </div>
       </div>
@@ -37,8 +62,14 @@ const Sidebar: React.FC = () => {
         <PromotionBanner />
 
         <div className="mt-3.5 w-full text-base whitespace-nowrap text-stone-500">
-          <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" label="Support" />
-          <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" label="Settings" />
+          <NavigationItem 
+            icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" 
+            label="Support" 
+          />
+          <NavigationItem 
+            icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" 
+            label="Settings" 
+          />
         </div>
       </div>
     </aside>
