@@ -11,6 +11,14 @@ export const widgetsDb: WidgetsDatabase = {
       widget_content: "Shows user's performance metrics and progress",
       associated_zuno_reply_id: "zuno_performance_001",
       day: 2
+    },
+    {
+      widget_id: "skill_momentum_001",
+      widget_name: "Skill Momentum",
+      widget_code_file: "skill_momentum/index.ts",
+      widget_content: "Displays skill progress and goals in a radar chart",
+      associated_zuno_reply_id: "zuno_skill_momentum_001",
+      day: 2
     }
   ]
 };
