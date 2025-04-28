@@ -1,3 +1,4 @@
+
 import { Day1Widget, Day2OnwardsWidget, WidgetsDatabase } from "./types";
 
 // This simulates the database until connected to a real backend
@@ -18,6 +19,14 @@ export const widgetsDb: WidgetsDatabase = {
       widget_code_file: "skill_momentum/index.ts",
       widget_content: "Displays skill progress and goals in a radar chart",
       associated_zuno_reply_id: "zuno_skill_momentum_001",
+      day: 2
+    },
+    {
+      widget_id: "engagement_summary_001",
+      widget_name: "Engagement Summary",
+      widget_code_file: "engagement_summary/index.ts",
+      widget_content: "Shows user's engagement metrics and consistency",
+      associated_zuno_reply_id: "zuno_engagement_001",
       day: 2
     }
   ]
