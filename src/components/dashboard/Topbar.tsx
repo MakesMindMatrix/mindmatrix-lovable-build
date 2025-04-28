@@ -1,13 +1,13 @@
 
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Trophy, Clock, CheckSquare } from "lucide-react";
+import { Trophy, Clock, CheckSquare, Home } from "lucide-react";
 
 export const Topbar: React.FC = () => {
   return (
     <header className="bg-blue-600 px-6 py-4 flex items-center justify-between text-white">
       <div className="flex items-center gap-2">
-        <HomeIcon className="w-6 h-6" />
+        <Home className="w-6 h-6" />
         <h1 className="text-xl font-semibold">Home</h1>
       </div>
       
