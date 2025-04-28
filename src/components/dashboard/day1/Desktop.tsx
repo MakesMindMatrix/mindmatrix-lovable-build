@@ -10,9 +10,11 @@ interface DesktopProps {
 
 const Desktop: React.FC<DesktopProps> = ({ activeTab = 'home' }) => {
   return (
-    <div className="flex overflow-hidden flex-col px-3 py-2.5 bg-white min-h-screen">
-      <div className="flex flex-wrap gap-5 justify-between items-center w-full max-md:max-w-full">
+    <div className="flex h-screen overflow-hidden bg-white">
+      <div className="fixed h-screen">
         <Sidebar activeTab={activeTab} />
+      </div>
+      <div className="flex-1 ml-[191px]">
         <MainContent />
       </div>
     </div>
