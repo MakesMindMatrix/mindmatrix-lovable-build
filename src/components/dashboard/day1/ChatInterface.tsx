@@ -1,21 +1,16 @@
-
 import React from "react";
 import ChatOption from "./ChatOption";
-import InputDesign from "@/components/shared/InputDesign";
 
 const ChatInterface: React.FC<{ simplified?: boolean }> = ({ simplified = false }) => {
   if (simplified) {
     return (
-      <section className="relative flex flex-col h-full overflow-hidden rounded-[15px] bg-[#B7CCF0]">
-        <InputDesign />
-      </section>
+      <section className="relative flex flex-col h-full overflow-hidden rounded-[15px] bg-[#B7CCF0]" />
     );
   }
 
   return (
     <section className="relative flex flex-col h-full overflow-hidden rounded-[15px] bg-[#B7CCF0]">
-      <InputDesign />
-      <div className="flex-1 overflow-y-auto px-20 py-12 max-md:px-5 relative z-20">
+      <div className="flex-1 overflow-y-auto px-20 py-12 max-md:px-5">
         <div className="max-w-full w-[766px] mx-auto">
           <div className="flex flex-col text-white max-md:mr-2.5">
             <img
