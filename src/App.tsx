@@ -18,6 +18,8 @@ import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
 import NotFound from "./pages/NotFound";
 import DashboardDay1 from "./pages/dashboard/Day1";
+import Programs from "./pages/dashboard/Programs";
+import Tasks from "./pages/dashboard/Tasks";
 import Login from "./pages/auth/Login";
 
 const queryClient = new QueryClient();
