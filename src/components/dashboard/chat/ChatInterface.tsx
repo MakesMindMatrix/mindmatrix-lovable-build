@@ -12,6 +12,8 @@ export type MessageType = {
   sender: "zuno" | "user";
   timestamp: Date;
   options?: string[];
+  widgetId?: string;
+  widgetProps?: Record<string, any>;
 };
 
 export const ChatInterface: React.FC = () => {
