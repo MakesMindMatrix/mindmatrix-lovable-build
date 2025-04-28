@@ -1,10 +1,18 @@
-
 import { Day1Widget, Day2OnwardsWidget, WidgetsDatabase } from "./types";
 
 // This simulates the database until connected to a real backend
 export const widgetsDb: WidgetsDatabase = {
   day1_widgets_data: [],
-  day2onwards_widgets_data: []
+  day2onwards_widgets_data: [
+    {
+      widget_id: "performance_summary_001",
+      widget_name: "Performance Summary",
+      widget_code_file: "performance/index.ts",
+      widget_content: "Shows user's performance metrics and progress",
+      associated_zuno_reply_id: "zuno_performance_001",
+      day: 2
+    }
+  ]
 };
 
 // Widget registry to map widget_id to component
