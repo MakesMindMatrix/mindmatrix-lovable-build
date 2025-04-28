@@ -24,7 +24,9 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
     >
       <img
         src={icon}
-        className="object-contain shrink-0 w-4 aspect-square"
+        className={`object-contain shrink-0 w-4 aspect-square ${
+          isActive ? "brightness-0 invert" : "brightness-100"
+        }`}
         alt={`${label} icon`}
       />
       <span>{label}</span>
