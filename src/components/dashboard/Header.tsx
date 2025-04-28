@@ -5,10 +5,10 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between bg-blue-600 px-6 py-3 rounded-2xl text-white">
+    <header className="flex items-center justify-between bg-[#0f56cc] px-6 py-3 rounded-2xl text-white">
       <div className="flex items-center gap-3">
         <Home className="w-6 h-6" />
-        <h1 className="text-xl font-semibold">Home</h1>
+        <h1 className="text-2xl font-semibold">Home</h1>
       </div>
       
       <div className="flex items-center gap-8">

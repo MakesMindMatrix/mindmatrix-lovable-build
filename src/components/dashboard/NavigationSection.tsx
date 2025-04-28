@@ -10,7 +10,7 @@ const NavigationSection: React.FC<NavigationSectionProps> = ({
 }) => {
   return (
     <div className={className}>
-      <h2 className="px-4 text-xs font-medium text-gray-500 mb-2">{title}</h2>
+      <h2 className="px-4 text-xs font-semibold text-[#696969] mb-2">{title}</h2>
       <div className="space-y-1">
         {items.map((item, index) => (
           <NavigationItem

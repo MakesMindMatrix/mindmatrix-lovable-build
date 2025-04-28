@@ -1,16 +1,14 @@
 
 import React from "react";
 import Header from "./Header";
-import { ChatInterface } from "./chat/ChatInterface";
+import ChatArea from "./ChatArea";
 
 const MainContent: React.FC = () => {
   return (
-    <section className="self-stretch my-auto min-w-60 w-[1204px] max-md:max-w-full">
+    <div className="flex-1 p-6 overflow-auto">
       <Header />
-      <div className="mt-2.5 w-full rounded-2xl">
-        <ChatInterface />
-      </div>
-    </section>
+      <ChatArea />
+    </div>
   );
 };
 

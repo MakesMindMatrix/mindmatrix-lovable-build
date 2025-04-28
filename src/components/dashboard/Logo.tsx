@@ -8,7 +8,7 @@ const Logo: React.FC = () => {
       <div className="w-8 h-8">
         <LogoIcon />
       </div>
-      <span className="text-xl font-semibold">MindMatrix</span>
+      <span className="text-xl font-medium text-neutral-900 tracking-[-0.5px]">MindMatrix</span>
     </div>
   );
 };

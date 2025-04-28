@@ -22,10 +22,11 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="self-stretch my-auto w-[191px]">
+    <div className="flex flex-col h-full w-[191px] justify-between">
       <div className="flex flex-col w-full">
         <Logo />
-        <nav className="mt-16 w-full font-semibold text-stone-500 max-md:mt-10">
+
+        <nav className="mt-16 w-full font-semibold text-[#696969]">
           <NavigationSection title="GENERAL" items={generalNavItems} />
           <NavigationSection
             title="PERSONAL"
@@ -35,13 +36,14 @@ const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      <div className="mt-32 w-full font-semibold max-md:mt-10">
+      <div className="mb-6 w-full">
         <PromotionBanner />
+
         <nav className="mt-3.5 w-full space-y-2">
           {supportNavItems.map((item, index) => (
             <div
               key={index}
-              className="flex gap-2 items-center px-5 py-4 rounded-xl text-stone-500 hover:bg-gray-50"
+              className="flex w-full items-center gap-3 px-4 py-2.5 text-[#696969] hover:bg-gray-50 rounded-lg"
             >
               {item.icon}
               <span>{item.label}</span>
@@ -49,7 +51,7 @@ const Sidebar: React.FC = () => {
           ))}
         </nav>
       </div>
-    </aside>
+    </div>
   );
 };
 

@@ -18,8 +18,8 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
       className={cn(
         "flex w-full items-center gap-3 px-4 py-2.5 rounded-lg transition-colors",
         isActive
-          ? "bg-blue-100 text-blue-600"
-          : "text-gray-600 hover:bg-gray-50"
+          ? "bg-[#a9c3ed] text-white"
+          : "text-[#696969] hover:bg-gray-50"
       )}
     >
       {icon}
