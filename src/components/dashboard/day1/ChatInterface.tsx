@@ -1,9 +1,13 @@
 
-"use client";
 import React from "react";
-import ChatOption from "./ChatOption";
 
-const ChatInterface: React.FC = () => {
+const ChatInterface: React.FC<{ simplified?: boolean }> = ({ simplified = false }) => {
+  if (simplified) {
+    return (
+      <section className="relative flex flex-col h-full overflow-hidden rounded-[15px] bg-gradient-to-br from-[#E1E8FF] via-[#7BA4FC] to-[#3366FF]" />
+    );
+  }
+
   return (
     <section className="relative flex flex-col h-full overflow-hidden rounded-[15px] bg-gradient-to-br from-[#E1E8FF] via-[#7BA4FC] to-[#3366FF]">
       <div className="flex-1 overflow-y-auto px-20 py-12 max-md:px-5">
