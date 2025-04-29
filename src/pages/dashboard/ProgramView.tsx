@@ -6,8 +6,10 @@ import { EnrolledProgramCard } from "@/widgets/program_cards_design/program_enro
 import { UnenrolledProgramCard } from "@/widgets/program_cards_design/program_unenrolled_design";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import { EnrolledProgramCard as EnrolledProgramCardType, UnenrolledProgramCard as UnenrolledProgramCardType } from "@/widgets/program_cards_design/types";
-import { ArrowLeft, Square, Clock } from "lucide-react";
+import { ArrowLeft, Square, Clock, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 
 // Course data type
 interface Course {
@@ -18,6 +20,28 @@ interface Course {
   sessions: number;
   badge: string;
 }
+
+// Mentor data type
+interface Mentor {
+  name: string;
+  role: string;
+  avatar: string;
+  experience: string;
+  workHistory: string;
+  expertise: string[];
+  about: string;
+}
+
+// Mock mentor data
+const mentor: Mentor = {
+  name: "Sushmita Arora",
+  role: "Senior Front end Developer",
+  avatar: "/lovable-uploads/39611135-2d47-4f62-9b08-c1778217f3b4.png",
+  experience: "10+ years in Web Development",
+  workHistory: "Google, Microsoft, Freelance",
+  expertise: ["Frontend Architecture", "UI/UX Implementation", "JavaScript Frameworks"],
+  about: "Sarah is a passionate web developer with over a decade of experience building websites and applications. She specializes in frontend technologies and loves teaching beginners the fundamentals of web development."
+};
 
 // Mock courses data
 const courses: Course[] = [
@@ -85,7 +109,7 @@ const ProgramView = () => {
                 )}
               </div>
               
-              {/* Middle - Course content */}
+              {/* Middle - Content */}
               <div className="w-[45%] flex flex-col">
                 {/* Tab navigation */}
                 <div className="flex border-b border-white/20 mb-6">
@@ -103,35 +127,93 @@ const ProgramView = () => {
                   </button>
                 </div>
                 
-                {/* Course cards */}
-                <div className="space-y-4">
-                  {courses.map((course) => (
-                    <div key={course.id} className="bg-white/10 rounded-lg border border-white/20 p-6">
-                      <div className="mb-2">
-                        <span className="text-white bg-white/20 px-3 py-1 rounded-full text-xs">
-                          {course.badge}
-                        </span>
+                {activeTab === 'mentor' ? (
+                  // Mentor profile content
+                  <div className="bg-gray-400/30 rounded-lg p-6">
+                    <div className="flex items-center mb-6">
+                      <Avatar className="h-20 w-20 mr-4">
+                        <AvatarImage src={mentor.avatar} alt={mentor.name} />
+                        <AvatarFallback>{mentor.name.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h2 className="text-xl text-white font-medium">{mentor.name}</h2>
+                        <p className="text-white/80">{mentor.role}</p>
                       </div>
-                      <h2 className="text-xl text-white font-medium mb-2">{course.title}</h2>
-                      <p className="text-white/80 text-sm mb-4">{course.description}</p>
-                      
-                      <div className="flex items-center space-x-6 mb-4">
-                        <div className="flex items-center space-x-2">
-                          <Clock className="w-5 h-5 text-white/70" />
-                          <span className="text-white">{course.hours} Hours</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Square className="w-5 h-5 text-white/70" />
-                          <span className="text-white">{course.sessions} Sessions</span>
-                        </div>
-                      </div>
-                      
-                      <Button variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20">
-                        View Course
-                      </Button>
                     </div>
-                  ))}
-                </div>
+                    
+                    <div className="mb-6">
+                      <div className="flex items-center mb-4">
+                        <div className="bg-white/20 rounded-full p-2 mr-3">
+                          <Award className="h-5 w-5 text-white" />
+                        </div>
+                        <span className="text-white">{mentor.experience}</span>
+                      </div>
+                      
+                      <div className="flex items-center">
+                        <div className="bg-white/20 rounded-full p-2 mr-3">
+                          <Briefcase className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <span className="text-white">{mentor.workHistory}</span>
+                          <p className="text-white/70 text-sm">Work Experience</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <h3 className="text-lg text-white mb-3">Areas of Expertise</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {mentor.expertise.map((skill, index) => (
+                          <span 
+                            key={index} 
+                            className={`px-4 py-2 rounded-full text-white ${
+                              index === 0 ? 'bg-pink-500/70' : 
+                              index === 1 ? 'bg-green-500/70' : 
+                              'bg-blue-500/70'
+                            }`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg text-white mb-3">About</h3>
+                      <p className="text-white/90">{mentor.about}</p>
+                    </div>
+                  </div>
+                ) : (
+                  // Course cards
+                  <div className="space-y-4">
+                    {courses.map((course) => (
+                      <div key={course.id} className="bg-white/10 rounded-lg border border-white/20 p-6">
+                        <div className="mb-2">
+                          <span className="text-white bg-white/20 px-3 py-1 rounded-full text-xs">
+                            {course.badge}
+                          </span>
+                        </div>
+                        <h2 className="text-xl text-white font-medium mb-2">{course.title}</h2>
+                        <p className="text-white/80 text-sm mb-4">{course.description}</p>
+                        
+                        <div className="flex items-center space-x-6 mb-4">
+                          <div className="flex items-center space-x-2">
+                            <Clock className="w-5 h-5 text-white/70" />
+                            <span className="text-white">{course.hours} Hours</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Square className="w-5 h-5 text-white/70" />
+                            <span className="text-white">{course.sessions} Sessions</span>
+                          </div>
+                        </div>
+                        
+                        <Button variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20">
+                          View Course
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               
               {/* Right side - Help section directly on the gradient background */}
