@@ -28,8 +28,8 @@ const CourseHeader: React.FC<CourseHeaderProps> = ({
   const tagColorClass = getProgramTagColor(tag);
 
   const handleClick = () => {
-    // Navigate to the program dashboard when clicked
-    navigate("/program-dashboard");
+    // Navigate to the program view page when clicked
+    navigate("/dashboard-programView");
   };
 
   return (
