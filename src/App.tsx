@@ -21,7 +21,6 @@ import DashboardDay1 from "./pages/dashboard/Day1";
 import Programs from "./pages/dashboard/Programs";
 import Tasks from "./pages/dashboard/Tasks";
 import Login from "./pages/auth/Login";
-import ProgramDashboard from "./pages/dashboard/ProgramDashboard";
 
 const queryClient = new QueryClient();
 
@@ -47,7 +46,6 @@ const App = () => (
           <Route path="/dashboard-programs" element={<Programs />} />
           <Route path="/dashboard-tasks" element={<Tasks />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/program-dashboard" element={<ProgramDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
