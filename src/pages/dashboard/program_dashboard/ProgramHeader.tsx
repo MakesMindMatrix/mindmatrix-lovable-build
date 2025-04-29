@@ -1,12 +1,12 @@
 
 import React from "react";
-import { Graduation, Clock, CheckCircle } from "lucide-react";
+import { GraduationCap, Clock, CheckCircle } from "lucide-react";
 
 const ProgramHeader = () => {
   return (
     <header className="flex flex-wrap items-center px-8 py-3.5 w-full bg-blue-600 rounded-3xl max-md:px-5 max-md:max-w-full">
       <div className="flex gap-3 items-center self-stretch my-auto text-2xl font-semibold text-white whitespace-nowrap">
-        <Graduation size={28} className="text-white" />
+        <GraduationCap size={28} className="text-white" />
         <h1>Programs</h1>
       </div>
       <div className="flex gap-6 items-center self-stretch my-auto ml-auto min-w-60 max-md:max-w-full">
