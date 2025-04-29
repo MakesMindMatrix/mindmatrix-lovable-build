@@ -1,3 +1,4 @@
+
 import React from "react";
 import GradientBackground from "../../database/ScreenEmotionTag/GradientBackground";
 import ChatOption from "./ChatOption";
@@ -14,7 +15,7 @@ const ChatInterface: React.FC<{ simplified?: boolean }> = ({ simplified = false 
   return (
     <GradientBackground className="h-full">
       <section className="relative flex flex-col h-full overflow-hidden rounded-[15px]">
-        <div className="flex-1 overflow-y-auto px-20 py-12 max-md:px-5">
+        <div className="flex-1 overflow-y-auto px-20 py-12 pb-24 max-md:px-5">
           <div className="max-w-full w-[766px] mx-auto">
             <div className="flex flex-col text-white max-md:mr-2.5">
               <img
@@ -57,7 +58,7 @@ const ChatInterface: React.FC<{ simplified?: boolean }> = ({ simplified = false 
           </div>
         </div>
 
-        <div className="absolute bottom-6 left-0 right-0 mx-auto w-[766px] max-w-[90%]">
+        <div className="absolute bottom-8 left-0 right-0 mx-auto w-[766px] max-w-[90%]">
           <div className="flex overflow-hidden z-10 flex-col px-5 pt-5 pb-3 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] bg-white/50 backdrop-blur-md text-zinc-400">
             <input
               type="text"
