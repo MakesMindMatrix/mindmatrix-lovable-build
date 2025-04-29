@@ -10,6 +10,7 @@ import { ArrowLeft, Square, Clock, Award, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import ExpandedCourseCard from "@/components/dashboard/courses/ExpandedCourseCard";
 
 // Course data type
 interface Course {
@@ -19,6 +20,10 @@ interface Course {
   hours: number;
   sessions: number;
   badge: string;
+  points?: number;
+  taskCount?: number;
+  courseSessions?: { id: number; title: string }[];
+  courseTasks?: { id: number; title: string }[];
 }
 
 // Mentor data type
@@ -47,19 +52,41 @@ const mentor: Mentor = {
 const courses: Course[] = [
   {
     id: 1,
-    title: "Course Title",
+    title: "Title Header",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     hours: 2,
-    sessions: 7,
-    badge: "Course 1"
+    sessions: 3,
+    badge: "Course 1",
+    points: 50,
+    taskCount: 18,
+    courseSessions: [
+      { id: 1, title: "Session 1" },
+      { id: 2, title: "Session 2" },
+      { id: 3, title: "Session 3" }
+    ],
+    courseTasks: [
+      { id: 1, title: "Task 1" },
+      { id: 2, title: "Task 2" }
+    ]
   },
   {
     id: 2,
     title: "Course Title",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     hours: 2,
-    sessions: 7,
-    badge: "Course 2"
+    sessions: 3,
+    badge: "Course 2",
+    points: 40,
+    taskCount: 15,
+    courseSessions: [
+      { id: 1, title: "Session 1" },
+      { id: 2, title: "Session 2" },
+      { id: 3, title: "Session 3" }
+    ],
+    courseTasks: [
+      { id: 1, title: "Task 1" },
+      { id: 2, title: "Task 2" }
+    ]
   }
 ];
 
@@ -69,9 +96,14 @@ const ProgramView = () => {
   const program = location.state?.program;
   const isEnrolled = location.state?.isEnrolled;
   const [activeTab, setActiveTab] = useState("courses"); // 'courses' or 'mentor'
+  const [expandedCourseId, setExpandedCourseId] = useState<number | null>(null);
   
   const handleBackClick = () => {
     navigate("/dashboard-programs");
+  };
+  
+  const handleViewCourse = (courseId: number) => {
+    setExpandedCourseId(courseId === expandedCourseId ? null : courseId);
   };
   
   return (
@@ -187,29 +219,47 @@ const ProgramView = () => {
                   // Course cards
                   <div className="space-y-4">
                     {courses.map((course) => (
-                      <div key={course.id} className="bg-white/10 rounded-lg border border-white/20 p-6">
-                        <div className="mb-2">
-                          <span className="text-white bg-white/20 px-3 py-1 rounded-full text-xs">
-                            {course.badge}
-                          </span>
-                        </div>
-                        <h2 className="text-xl text-white font-medium mb-2">{course.title}</h2>
-                        <p className="text-white/80 text-sm mb-4">{course.description}</p>
-                        
-                        <div className="flex items-center space-x-6 mb-4">
-                          <div className="flex items-center space-x-2">
-                            <Clock className="w-5 h-5 text-white/70" />
-                            <span className="text-white">{course.hours} Hours</span>
+                      <div key={course.id}>
+                        {expandedCourseId === course.id ? (
+                          <ExpandedCourseCard 
+                            courseId={course.id}
+                            title={course.title}
+                            points={course.points || 0}
+                            taskCount={course.taskCount || 0}
+                            sessions={course.courseSessions || []}
+                            tasks={course.courseTasks || []}
+                            onClose={() => setExpandedCourseId(null)}
+                          />
+                        ) : (
+                          <div className="bg-white/10 rounded-lg border border-white/20 p-6">
+                            <div className="mb-2">
+                              <span className="text-white bg-white/20 px-3 py-1 rounded-full text-xs">
+                                {course.badge}
+                              </span>
+                            </div>
+                            <h2 className="text-xl text-white font-medium mb-2">{course.title}</h2>
+                            <p className="text-white/80 text-sm mb-4">{course.description}</p>
+                            
+                            <div className="flex items-center space-x-6 mb-4">
+                              <div className="flex items-center space-x-2">
+                                <Clock className="w-5 h-5 text-white/70" />
+                                <span className="text-white">{course.hours} Hours</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Square className="w-5 h-5 text-white/70" />
+                                <span className="text-white">{course.sessions} Sessions</span>
+                              </div>
+                            </div>
+                            
+                            <Button 
+                              variant="outline" 
+                              className="bg-white/10 text-white border-white/30 hover:bg-white/20"
+                              onClick={() => handleViewCourse(course.id)}
+                            >
+                              View Course
+                            </Button>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <Square className="w-5 h-5 text-white/70" />
-                            <span className="text-white">{course.sessions} Sessions</span>
-                          </div>
-                        </div>
-                        
-                        <Button variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20">
-                          View Course
-                        </Button>
+                        )}
                       </div>
                     ))}
                   </div>
