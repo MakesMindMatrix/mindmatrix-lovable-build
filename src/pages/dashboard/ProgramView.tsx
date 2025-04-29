@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import Desktop from "@/components/dashboard/day1/Desktop";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { EnrolledProgramCard } from "@/widgets/program_cards_design/program_enrolled_design";
 import { UnenrolledProgramCard } from "@/widgets/program_cards_design/program_unenrolled_design";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
@@ -41,9 +41,14 @@ const courses: Course[] = [
 
 const ProgramView = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const program = location.state?.program;
   const isEnrolled = location.state?.isEnrolled;
   const [activeTab, setActiveTab] = useState("courses"); // 'courses' or 'mentor'
+  
+  const handleBackClick = () => {
+    navigate("/dashboard-programs");
+  };
   
   return (
     <Desktop activeTab="programs" simplified>
@@ -52,7 +57,12 @@ const ProgramView = () => {
           <div className="p-6 w-full h-full">
             {/* Back button and title */}
             <div className="flex items-center mb-6">
-              <Button variant="ghost" size="icon" className="rounded-full bg-white/20 hover:bg-white/30 text-white mr-4">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full bg-white/20 hover:bg-white/30 text-white mr-4"
+                onClick={handleBackClick}
+              >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               <h1 className="text-xl text-white font-medium">Currently Viewing</h1>
