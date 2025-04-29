@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import Desktop from "@/components/dashboard/day1/Desktop";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
@@ -53,7 +54,7 @@ const ProgramView = () => {
               <h1 className="text-xl text-white font-medium">Currently Viewing</h1>
             </div>
             
-            <div className="flex flex-row h-full">
+            <div className="flex flex-row h-[calc(100%-64px)]">
               {/* Left side - Program Card */}
               <div className="w-[30%] mr-4">
                 {program && (
@@ -70,31 +71,34 @@ const ProgramView = () => {
                 )}
               </div>
               
-              {/* Middle - Content */}
-              <div className="w-[45%] flex flex-col">
-                {/* Tab navigation */}
+              {/* Middle - Content with scroll area */}
+              <div className="w-[45%] flex flex-col h-full">
+                {/* Tab navigation stays fixed at the top */}
                 <TabNavigation 
                   activeTab={activeTab}
                   onTabChange={setActiveTab}
                 />
                 
-                {activeTab === 'mentor' ? (
-                  // Mentor profile content
-                  <MentorProfile mentor={mentor} />
-                ) : (
-                  // Course cards
-                  <div className="space-y-4">
-                    {courses.map((course) => (
-                      <div key={course.id}>
-                        <CourseCard
-                          course={course}
-                          isExpanded={expandedCourseId === course.id}
-                          onViewCourse={handleViewCourse}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* Scrollable content area */}
+                <ScrollArea className="h-[calc(100%-46px)] pr-4">
+                  {activeTab === 'mentor' ? (
+                    // Mentor profile content
+                    <MentorProfile mentor={mentor} />
+                  ) : (
+                    // Course cards - scrollable
+                    <div className="space-y-4 pb-4">
+                      {courses.map((course) => (
+                        <div key={course.id}>
+                          <CourseCard
+                            course={course}
+                            isExpanded={expandedCourseId === course.id}
+                            onViewCourse={handleViewCourse}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </ScrollArea>
               </div>
               
               {/* Right side - Help section */}
