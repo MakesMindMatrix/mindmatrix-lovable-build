@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowLeft, Clock, Square } from "lucide-react";
+import { ArrowLeft, Clock, Square, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Course {
@@ -29,7 +29,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
 }) => {
   if (isExpanded) {
     return (
-      <div className="bg-white/10 rounded-lg border border-white/20 p-6">
+      <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 max-w-[500px]">
         {/* Back button */}
         <div className="flex justify-end mb-4">
           <Button 
@@ -62,7 +62,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         </div>
         
         {/* Sessions */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-6 flex-wrap">
           {course.courseSessions?.map((session) => (
             <Button 
               key={session.id}
@@ -105,9 +105,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
     );
   }
 
-  // Non-expanded view remains mostly the same
+  // Non-expanded view with reduced width
   return (
-    <div className="bg-white/10 rounded-lg border border-white/20 p-6">
+    <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 max-w-[500px]">
       <div className="mb-2">
         <span className="text-white bg-white/20 px-3 py-1 rounded-full text-xs">
           {course.badge}
@@ -129,7 +129,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
       
       <Button 
         variant="outline" 
-        className="bg-white/10 text-white border-white/30 hover:bg-white/20"
+        className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20"
         onClick={() => onViewCourse(course.id)}
       >
         View Course

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpenCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -88,9 +88,12 @@ const ProgramView = () => {
                         <MentorProfile mentor={mentor} />
                       ) : (
                         // Course cards - scrollable
-                        <div className="space-y-4 pb-4">
+                        <div className="space-y-8 pb-4 pl-12 relative">
                           {courses.map((course) => (
-                            <div key={course.id}>
+                            <div key={course.id} className="relative">
+                              <div className="absolute -left-12 top-8 flex justify-center items-center bg-white/20 rounded-full p-3">
+                                <BookOpenCheck className="h-5 w-5 text-white" />
+                              </div>
                               <CourseCard
                                 course={course}
                                 isExpanded={expandedCourseId === course.id}
