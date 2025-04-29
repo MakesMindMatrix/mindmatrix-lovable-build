@@ -2,11 +2,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ProgramSidebar from "./program_dashboard/Sidebar";
-import ProgramHeader from "./program_dashboard/ProgramHeader";
 import CurrentlyViewingSection from "./program_dashboard/CurrentlyViewingSection";
 import CoursesList from "./program_dashboard/CoursesList";
 import AssistantSection from "./program_dashboard/AssistantSection";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/dashboard/day1/Header";
 
@@ -33,16 +31,11 @@ function ProgramDashboard() {
             <Header />
           </div>
           
-          {/* Secondary fixed program-specific header */}
-          <div className="sticky top-[80px] z-20 px-4 pt-3.5 w-full">
-            <ProgramHeader />
-          </div>
-          
           {/* Fixed background with blue gradient */}
-          <div className="fixed top-[146px] left-[56px] right-0 bottom-0 bg-gradient-to-b from-blue-200 via-blue-300/70 to-blue-400/50 z-0" />
+          <div className="fixed top-[80px] left-[56px] right-0 bottom-0 bg-gradient-to-b from-blue-200 via-blue-300/70 to-blue-400/50 z-0" />
           
           {/* Three-column layout inside a scrollable container */}
-          <div className="relative z-10 px-4 pt-2.5 mt-2.5 h-[calc(100vh-146px)]">
+          <div className="relative z-10 px-4 pt-4 mt-2 h-[calc(100vh-80px)]">
             <div className="flex h-full">
               {/* Left column: Currently Viewing (fixed) */}
               <div className="w-[346px] h-full pr-5 flex-shrink-0">
