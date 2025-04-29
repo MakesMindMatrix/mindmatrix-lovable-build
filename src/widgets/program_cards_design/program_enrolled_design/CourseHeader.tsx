@@ -3,6 +3,7 @@ import React from "react";
 import { BookmarkCheck, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getProgramTagColor } from "../types";
+import { useNavigate } from "react-router-dom";
 
 interface CourseHeaderProps {
   tag: "AEC" | "Minor Degree" | "Certification";
@@ -23,10 +24,19 @@ const CourseHeader: React.FC<CourseHeaderProps> = ({
   weeks,
   enrollments,
 }) => {
+  const navigate = useNavigate();
   const tagColorClass = getProgramTagColor(tag);
 
+  const handleClick = () => {
+    // Navigate to the program dashboard when clicked
+    navigate("/program-dashboard");
+  };
+
   return (
-    <header className="flex flex-col justify-center items-center pt-5 pb-4 -mb-px w-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+    <header 
+      className="flex flex-col justify-center items-center pt-5 pb-4 -mb-px w-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer transition-transform hover:scale-[1.02]"
+      onClick={handleClick}
+    >
       <div className="max-w-full w-[306px]">
         <div className="w-full text-base font-medium text-white">
           <div className="w-full">
