@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
-import { ArrowLeft, Clock, Square, BookOpen, Check } from "lucide-react";
+import { ArrowLeft, Clock, Square, BookOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useNavigate } from "react-router-dom";
 
 interface Course {
   id: number;
@@ -28,11 +28,24 @@ const CourseCard: React.FC<CourseCardProps> = ({
   isExpanded, 
   onViewCourse 
 }) => {
+  const navigate = useNavigate();
   const [activeSession, setActiveSession] = useState<number | null>(null);
   
   // Handle session selection
   const handleSessionClick = (sessionId: number) => {
     setActiveSession(sessionId === activeSession ? null : sessionId);
+  };
+  
+  // Navigate to task page
+  const navigateToTask = (taskTitle: string) => {
+    navigate("/dashboard-tasks", { 
+      state: { 
+        taskTitle,
+        courseId: course.id,
+        courseTitle: course.title,
+        sessionId: activeSession 
+      } 
+    });
   };
   
   if (isExpanded) {
@@ -100,10 +113,10 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Course Content/Tasks List - Only show if a session is selected */}
         {activeSession !== null && (
           <div className="space-y-0">
-            <CourseTaskItem title="Pre Read Doc" />
-            <CourseTaskItem title="Pre Session Doc" />
-            <CourseTaskItem title="Live Tutorial" />
-            <CourseTaskItem title="Post Session Ref" />
+            <CourseTaskItem title="Pre Read Doc" onNavigate={navigateToTask} />
+            <CourseTaskItem title="Pre Session Doc" onNavigate={navigateToTask} />
+            <CourseTaskItem title="Live Tutorial" onNavigate={navigateToTask} />
+            <CourseTaskItem title="Post Session Ref" onNavigate={navigateToTask} />
             
             {/* Only show these if we're not on Quiz or A+ */}
             {activeSession > 0 && (
@@ -111,13 +124,13 @@ const CourseCard: React.FC<CourseCardProps> = ({
                 <div className="border-t border-white/20 my-2"></div>
                 
                 {course.courseTasks?.map((task) => (
-                  <CourseTaskItem key={task.id} title={task.title} />
+                  <CourseTaskItem key={task.id} title={task.title} onNavigate={navigateToTask} />
                 ))}
               </>
             )}
             
             {/* Only show assessment for regular sessions */}
-            {activeSession > 0 && <CourseTaskItem title="Assessment" />}
+            {activeSession > 0 && <CourseTaskItem title="Assessment" onNavigate={navigateToTask} />}
           </div>
         )}
       </div>
@@ -159,21 +172,21 @@ const CourseCard: React.FC<CourseCardProps> = ({
 
 interface CourseTaskItemProps {
   title: string;
+  onNavigate: (title: string) => void;
 }
 
-const CourseTaskItem: React.FC<CourseTaskItemProps> = ({ title }) => {
-  const [checked, setChecked] = useState(false);
-  
+const CourseTaskItem: React.FC<CourseTaskItemProps> = ({ title, onNavigate }) => {
   return (
     <div className="flex items-center justify-between py-3 border-b border-white/20 last:border-b-0">
       <span className="text-white">{title}</span>
-      <div className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center">
-        <Checkbox 
-          checked={checked}
-          onCheckedChange={() => setChecked(!checked)}
-          className="h-4 w-4 data-[state=checked]:bg-white data-[state=checked]:text-blue-600 border-white"
-        />
-      </div>
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => onNavigate(title)}
+        className="rounded-full bg-white/20 hover:bg-white/30 text-white h-6 w-6"
+      >
+        <ArrowRight className="h-3 w-3" />
+      </Button>
     </div>
   );
 };
