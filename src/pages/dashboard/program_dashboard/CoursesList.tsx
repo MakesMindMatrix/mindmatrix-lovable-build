@@ -7,10 +7,10 @@ const CoursesList = () => {
     <section className="flex flex-col min-w-60 w-[445px] max-md:max-w-full">
       <nav className="self-end max-w-full text-xs font-medium leading-loose whitespace-nowrap w-[387px]">
         <div className="flex flex-wrap gap-0.5 items-end w-full max-w-[387px]">
-          <button className="gap-2.5 self-stretch py-1 pr-6 pl-2.5 text-indigo-300 hover:text-indigo-100 transition-colors">
+          <button className="gap-2.5 self-stretch py-1 pr-6 pl-2.5 text-indigo-300 max-md:pr-5">
             Mentor
           </button>
-          <button className="gap-2.5 self-stretch py-1 pr-6 pl-2.5 text-white border-b-2 border-white">
+          <button className="gap-2.5 self-stretch py-1 pr-3 pl-2.5 text-white border-b-2 border-white">
             Courses
           </button>
           <img
@@ -20,7 +20,7 @@ const CoursesList = () => {
           />
         </div>
       </nav>
-      <div className="overflow-hidden mt-6 w-full max-md:max-w-full">
+      <div className="overflow-hidden mt-9 w-full max-md:max-w-full">
         <div className="w-full max-md:max-w-full">
           <div className="w-full max-md:max-w-full">
             <div className="flex gap-4 justify-between items-start w-full max-md:max-w-full">

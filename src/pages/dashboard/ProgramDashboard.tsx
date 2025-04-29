@@ -20,7 +20,7 @@ function ProgramDashboard() {
       {/* Fixed layout with sidebar and main content */}
       <div className="flex h-full">
         {/* Fixed left sidebar */}
-        <div className="fixed left-0 h-full z-10 w-[43px]">
+        <div className="fixed left-0 h-full z-10">
           <ProgramSidebar />
         </div>
         
@@ -32,15 +32,15 @@ function ProgramDashboard() {
           </div>
           
           {/* Fixed background with blue gradient */}
-          <div className="fixed top-[80px] left-[43px] right-0 bottom-0 bg-gradient-to-br from-blue-300 to-blue-200 rounded-2xl z-0" />
+          <div className="fixed top-[80px] left-[43px] right-0 bottom-0 bg-blue-200 rounded-2xl z-0" />
           
           {/* Scrollable content area */}
           <div className="relative z-10 px-4 pt-2.5 mt-2.5 h-[calc(100vh-80px)]">
             <ScrollArea className="h-full rounded-2xl overflow-hidden">
-              <div className="flex flex-col p-6 pb-20">
-                <div className="flex items-start mb-6 ml-4">
+              <div className="flex flex-col p-10 pb-20">
+                <div className="flex items-start mb-6">
                   <button 
-                    className="flex justify-center items-center p-2.5 border-2 border-white border-solid rounded-full bg-white/20 backdrop-blur-sm"
+                    className="flex justify-center items-center px-2 py-2.5 border-2 border-white border-solid rounded-[100px]"
                     onClick={handleBackClick}
                   >
                     <img
@@ -51,7 +51,7 @@ function ProgramDashboard() {
                   </button>
                 </div>
                 
-                <div className="flex flex-wrap gap-10 justify-between w-full px-4">
+                <div className="flex flex-wrap gap-10 justify-between w-full">
                   <div className="flex flex-wrap gap-10 items-start">
                     <CurrentlyViewingSection />
                     <CoursesList />
