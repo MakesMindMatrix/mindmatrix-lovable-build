@@ -1,4 +1,4 @@
 
-import EnrolledProgramCard from './EnrolledProgramCard';
+import CourseCard from './CourseCard';
 
-export { EnrolledProgramCard };
+export { CourseCard as EnrolledProgramCard };
