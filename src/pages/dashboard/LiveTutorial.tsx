@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Eye, Save, Copy, RefreshCcw, Play } from "lucide-react";
+import { ArrowLeft, Eye, Save, Copy, RefreshCcw, Play, Beaker, Link2, Bell } from "lucide-react";
 import Desktop from "@/components/dashboard/day1/Desktop";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -92,9 +92,9 @@ const LiveTutorial: React.FC = () => {
               
               {/* Tab navigation */}
               <div className="bg-blue-700/90 text-white h-12 flex">
-                <TabButton icon={<beaker className="h-5 w-5" />} label="Labs" />
-                <TabButton icon={<link-2 className="h-5 w-5" />} label="Resources" />
-                <TabButton icon={<bell className="h-5 w-5" />} label="Notifications" />
+                <TabButton icon={<Beaker className="h-5 w-5" />} label="Labs" />
+                <TabButton icon={<Link2 className="h-5 w-5" />} label="Resources" />
+                <TabButton icon={<Bell className="h-5 w-5" />} label="Notifications" />
               </div>
               
               {/* Code editor section */}
