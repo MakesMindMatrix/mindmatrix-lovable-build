@@ -9,7 +9,7 @@ const CourseProgressCard = () => {
           <span className="text-3xl leading-none">47%</span>
           <span className="text-sm">Completed</span>
         </div>
-        <div className="flex overflow-hidden flex-col items-start mt-4 w-full bg-white max-md:pr-5">
+        <div className="flex overflow-hidden flex-col items-start mt-4 w-full bg-white rounded-full h-1 max-md:pr-5">
           <div className="flex shrink-0 h-1 bg-blue-700 w-[117px]" />
         </div>
         <div className="flex gap-10 items-center mt-4 font-medium tracking-tight text-white whitespace-nowrap">

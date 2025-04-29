@@ -30,11 +30,11 @@ const CourseCard = () => {
             <div className="overflow-hidden w-full whitespace-nowrap bg-red-600 rounded-3xl">
               <div className="flex relative flex-col items-end px-8 pt-3 pb-24 w-full aspect-[2.082] max-md:pl-5">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/22e97eb0b9c1399284ea07aa8a6e1a1b4c792e5c?placeholderIfAbsent=true"
+                  src="/lovable-uploads/436d916f-15b4-47b7-a586-6e09a9c7e3f2.png"
                   className="object-cover absolute inset-0 size-full"
                   alt="Course background"
                 />
-                <span className="relative gap-10 self-stretch rounded-3xl min-h-[38px] shadow-[0px_1px_30px_rgba(69,42,124,0.1)] w-[71px]">
+                <span className="relative px-4 py-1 bg-orange-500/80 backdrop-blur-sm text-white rounded-full">
                   AEC
                 </span>
               </div>
