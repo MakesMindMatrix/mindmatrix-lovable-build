@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BookmarkCheck, Clock, Eye } from "lucide-react";
+import { BookmarkCheck, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { UnenrolledProgramCard as UnenrolledProgramCardType, getProgramTagColor } from "../types";
@@ -23,7 +23,7 @@ const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
   const tagColorClass = getProgramTagColor(program_tag);
 
   return (
-    <Card className="w-full max-w-[340px] overflow-hidden rounded-[20px] backdrop-blur-md bg-white/20 border border-white/30 transition-all hover:shadow-lg">
+    <Card className="flex flex-col justify-center pt-0 pb-4 w-full max-w-[340px] overflow-hidden rounded-3xl backdrop-blur-md bg-white/20 border border-white/30 transition-all hover:shadow-lg">
       <div className="relative">
         <img 
           src={program_image} 
@@ -31,27 +31,36 @@ const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
           className="w-full h-[160px] object-cover"
         />
         <Badge 
-          className={`absolute top-3 right-3 ${tagColorClass} text-white`}
+          className={`absolute top-3 right-3 ${tagColorClass} text-white border border-white/70`}
         >
           {program_tag}
         </Badge>
       </div>
+      
       <CardContent className="p-5">
-        <h3 className="font-semibold text-lg text-white mb-2 line-clamp-1">{program_title}</h3>
-        <p className="text-sm text-white/80 mb-4 line-clamp-2">{program_description}</p>
+        <h2 className="text-2xl font-medium leading-8 text-white mb-4 line-clamp-1">{program_title}</h2>
+        <p className="text-base text-white/90 mb-6 line-clamp-2">{program_description}</p>
         
-        <div className="flex flex-wrap gap-3 text-sm text-white/70">
-          <div className="flex items-center gap-1">
-            <BookmarkCheck className="h-4 w-4" />
-            <span>{modules_count} Modules</span>
+        <div className="flex flex-wrap justify-between items-center mt-4 w-full">
+          <div className="flex gap-1.5 items-center">
+            <BookmarkCheck className="w-[22px] h-[22px] text-white" />
+            <span className="text-sm font-medium text-white">
+              {modules_count} Modules
+            </span>
           </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span>{duration_weeks} Weeks</span>
+
+          <div className="flex gap-1.5 items-center">
+            <Clock className="w-[22px] h-[22px] text-white rounded-full" />
+            <span className="text-sm font-medium text-white">
+              {duration_weeks} Weeks
+            </span>
           </div>
-          <div className="flex items-center gap-1">
-            <Eye className="h-4 w-4" />
-            <span>{views_count} Views</span>
+
+          <div className="flex gap-1.5 items-center">
+            <Users className="w-[22px] h-[22px] text-white rounded-full" />
+            <span className="text-sm font-medium text-white">
+              {views_count}
+            </span>
           </div>
         </div>
       </CardContent>
