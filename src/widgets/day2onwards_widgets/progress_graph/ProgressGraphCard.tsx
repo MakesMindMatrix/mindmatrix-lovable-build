@@ -45,8 +45,9 @@ const ProgressGraphCard: React.FC = () => {
   const progressPercentage = Math.round((currentLevel / data[data.length - 1].target) * 100);
 
   return (
-    <Card className="w-[460px] h-[270px] bg-indigo-800/70 backdrop-blur-md border border-white/20 text-white overflow-hidden shadow-lg">
-      <CardHeader className="pb-2">
+    <Card className="w-[460px] h-[270px] bg-indigo-800/70 backdrop-blur-md border border-white/20 text-white overflow-hidden shadow-lg relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/90 to-indigo-900/90 backdrop-blur-md z-0" />
+      <CardHeader className="pb-2 relative z-10">
         <CardTitle className="text-xl font-semibold flex items-center gap-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/f33e70577e3dde645a9dd82bc8059e5bcb2f33c4?placeholderIfAbsent=true"
@@ -56,7 +57,7 @@ const ProgressGraphCard: React.FC = () => {
           Progress Graph
         </CardTitle>
       </CardHeader>
-      <CardContent className="pb-2">
+      <CardContent className="pb-2 relative z-10">
         <div className="flex gap-6 items-center mb-2">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-white"></div>
@@ -75,7 +76,7 @@ const ProgressGraphCard: React.FC = () => {
 
         <div className="h-[120px] w-full relative">
           <ChartContainer config={config} className="h-full text-white">
-            <LineChart data={data} margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
+            <LineChart data={data} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorIdeal" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.8}/>
@@ -119,17 +120,7 @@ const ProgressGraphCard: React.FC = () => {
                 dot={false}
               />
               
-              {/* Current level indicator */}
-              <ReferenceDot 
-                x="Mar" 
-                y={20} 
-                r={6} 
-                fill="white" 
-                stroke="none"
-              >
-              </ReferenceDot>
-              
-              {/* Your career goal indicator */}
+              {/* Career goal indicator with label above */}
               <ReferenceDot 
                 x="Jul" 
                 y={70} 
@@ -137,18 +128,32 @@ const ProgressGraphCard: React.FC = () => {
                 fill="white" 
                 stroke="none"
               >
+                <Label
+                  content={({ viewBox }) => {
+                    const { x, y } = viewBox as { x: number, y: number };
+                    return (
+                      <text x={x} y={y - 15} textAnchor="middle" fill="white" fontSize={12}>
+                        Your Career Goal
+                      </text>
+                    );
+                  }}
+                />
               </ReferenceDot>
+              
+              {/* Current level indicator with popup label */}
+              <ReferenceDot 
+                x="Mar" 
+                y={20} 
+                r={6} 
+                fill="white" 
+                stroke="none"
+              />
             </LineChart>
           </ChartContainer>
           
           {/* Current level label */}
           <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-blue-900 rounded-md px-3 py-2 text-xs font-medium shadow-md">
             Your Current Level
-          </div>
-          
-          {/* Career goal label */}
-          <div className="absolute top-5 right-5 text-white text-sm font-medium">
-            Your Career Goal
           </div>
         </div>
       </CardContent>

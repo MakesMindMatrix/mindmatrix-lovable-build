@@ -7,7 +7,7 @@ interface ProgressCircleProps {
 
 const ProgressCircle: React.FC<ProgressCircleProps> = ({ percentage }) => {
   // Calculate the circumference and the offset based on percentage
-  const radius = 30;
+  const radius = 40; // Increased from 30 to 40
   const strokeWidth = 3;
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = normalizedRadius * 2 * Math.PI;
@@ -45,7 +45,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({ percentage }) => {
           })`}
         />
       </svg>
-      <div className="w-[69px] z-10 text-center">
+      <div className="w-[69px] z-10 text-center mt-2"> {/* Added mt-2 to center text better */}
         <p className="text-4xl font-semibold">{percentage}%</p>
         <figcaption className="text-xs font-medium tracking-tight">
           Completed

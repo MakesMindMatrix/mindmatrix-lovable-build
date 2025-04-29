@@ -6,8 +6,11 @@ import StatItem from "./StatItem";
 
 const ProgressTracker: React.FC = () => {
   return (
-    <section className="flex overflow-hidden flex-col justify-center px-5 py-9 rounded-3xl bg-stone-900/90 backdrop-blur-md border border-white/20 w-[459px] h-[270px] rotate-[4.5911985324664784e-10rad] shadow-[0px_1px_30px_rgba(69,42,124,0.15)]">
-      <div className="w-full rotate-[-4.5911985324664784e-10rad]">
+    <section className="flex overflow-hidden flex-col justify-center px-5 py-9 rounded-3xl bg-stone-900/90 backdrop-blur-md border border-white/20 w-[459px] h-[270px] rotate-[4.5911985324664784e-10rad] shadow-[0px_1px_30px_rgba(69,42,124,0.15)] relative">
+      {/* Glass effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/90 to-stone-800/90 backdrop-blur-md z-0" />
+      
+      <div className="w-full rotate-[-4.5911985324664784e-10rad] relative z-10">
         <div className="flex justify-between items-center w-full">
           <article className="flex flex-col flex-1 shrink self-stretch my-auto w-full basis-0 min-w-60">
             <header className="flex gap-4 items-center self-start text-xl font-semibold tracking-tight text-white">
