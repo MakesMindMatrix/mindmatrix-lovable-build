@@ -6,6 +6,74 @@ import ProgressGraphCard from "@/widgets/day2onwards_widgets/progress_graph";
 import ProgressTracker from "@/widgets/day2onwards_widgets/overall_progress/ProgressTracker";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { UnenrolledProgramCard } from "@/widgets/program_cards_design/program_unenrolled_design";
+import { EnrolledProgramCard } from "@/widgets/program_cards_design/program_enrolled_design";
+import { EnrolledProgramCard as EnrolledProgramCardType, UnenrolledProgramCard as UnenrolledProgramCardType } from "@/widgets/program_cards_design/types";
+
+// Sample data for demonstration
+const enrolledPrograms: EnrolledProgramCardType[] = [
+  {
+    program_image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Advanced Engineering Concepts",
+    program_description: "Learn cutting-edge engineering principles and practical applications in this comprehensive program.",
+    program_tag: "AEC",
+    theme_color: "purple",
+    modules_count: 8,
+    duration_weeks: 12,
+    views_count: 1245,
+    progress_percent: 65,
+    completed_modules: 5,
+    in_progress_modules: 2,
+    earned_points: 350
+  },
+  {
+    program_image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Data Science Foundations",
+    program_description: "Master the fundamentals of data science with Python, statistics, and machine learning algorithms.",
+    program_tag: "Certification",
+    theme_color: "green",
+    modules_count: 6,
+    duration_weeks: 8,
+    views_count: 2312,
+    progress_percent: 42,
+    completed_modules: 2,
+    in_progress_modules: 1,
+    earned_points: 180
+  }
+];
+
+const unenrolledPrograms: UnenrolledProgramCardType[] = [
+  {
+    program_image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Computer Science Minor Degree",
+    program_description: "Complement your major with a comprehensive minor in computer science fundamentals.",
+    program_tag: "Minor Degree",
+    theme_color: "blue",
+    modules_count: 12,
+    duration_weeks: 16,
+    views_count: 3421
+  },
+  {
+    program_image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Business Leadership Certification",
+    program_description: "Develop essential leadership skills for modern business environments with practical case studies.",
+    program_tag: "Certification",
+    theme_color: "green",
+    modules_count: 5,
+    duration_weeks: 6,
+    views_count: 1870
+  },
+  {
+    program_image: "https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Artificial Intelligence AEC",
+    program_description: "Explore advanced concepts in AI, neural networks, and their real-world applications.",
+    program_tag: "AEC",
+    theme_color: "purple",
+    modules_count: 10,
+    duration_weeks: 14,
+    views_count: 2856
+  }
+];
 
 const Programs = () => {
   return (
@@ -20,10 +88,21 @@ const Programs = () => {
             </div>
           </div>
           
-          <div>
+          <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-white">My Current Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Program cards will go here in future implementation */}
+              {enrolledPrograms.map((program, index) => (
+                <EnrolledProgramCard key={`enrolled-${index}`} program={program} />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Recommended Programs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {unenrolledPrograms.map((program, index) => (
+                <UnenrolledProgramCard key={`unenrolled-${index}`} program={program} />
+              ))}
             </div>
           </div>
         </ScrollArea>
