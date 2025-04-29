@@ -42,11 +42,13 @@ const ProgressGraphCard: React.FC = () => {
   };
 
   const currentLevel = 40; // This should come from your actual data
-  const progressPercentage = Math.round((currentLevel / data[data.length - 1].target) * 100);
+  const progressPercentage = 57; // Hardcoded to match the design
 
   return (
-    <Card className="w-[460px] h-[270px] bg-indigo-800/70 backdrop-blur-md border border-white/20 text-white overflow-hidden shadow-lg relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/90 to-indigo-900/90 backdrop-blur-md z-0" />
+    <Card className="w-[400px] h-[240px] bg-indigo-700/60 backdrop-blur-md border border-white/20 text-white shadow-lg relative rounded-[20px] overflow-hidden">
+      {/* Glass effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md z-0" />
+      
       <CardHeader className="pb-2 relative z-10">
         <CardTitle className="text-xl font-semibold flex items-center gap-2">
           <img
@@ -57,8 +59,9 @@ const ProgressGraphCard: React.FC = () => {
           Progress Graph
         </CardTitle>
       </CardHeader>
+      
       <CardContent className="pb-2 relative z-10">
-        <div className="flex gap-6 items-center mb-2">
+        <div className="flex items-center gap-4 mb-2">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-white"></div>
             <span className="text-xs">Your Ideal Journey</span>
@@ -69,91 +72,93 @@ const ProgressGraphCard: React.FC = () => {
           </div>
         </div>
         
-        <div className="flex items-center mb-2">
-          <div className="text-6xl font-bold">{progressPercentage}</div>
-          <div className="text-2xl">%</div>
-        </div>
-
-        <div className="h-[120px] w-full relative">
-          <ChartContainer config={config} className="h-full text-white">
-            <LineChart data={data} margin={{ top: 20, right: 30, left: -20, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorIdeal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.2}/>
-                </linearGradient>
-                <linearGradient id="colorCurrent" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#CCCCCC" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#CCCCCC" stopOpacity={0.2}/>
-                </linearGradient>
-              </defs>
-              <XAxis 
-                dataKey="month" 
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: 'white', fontSize: 10 }}
-                stroke="rgba(255,255,255,0.3)"
-              />
-              <CartesianGrid 
-                strokeDasharray="3 3" 
-                stroke="rgba(255,255,255,0.1)" 
-                vertical={true} 
-                horizontalCoordinatesGenerator={() => []} 
-              />
-              <ChartTooltip
-                content={<ChartTooltipContent className="bg-white/80 text-blue-900" />}
-              />
-              {/* Ideal journey line */}
-              <Line 
-                type="monotone" 
-                dataKey="ideal" 
-                stroke="white" 
-                strokeWidth={2}
-                dot={false}
-              />
-              {/* Current journey line */}
-              <Line 
-                type="monotone" 
-                dataKey="current" 
-                stroke="rgba(200,200,200,0.8)" 
-                strokeWidth={2}
-                dot={false}
-              />
-              
-              {/* Career goal indicator with label above */}
-              <ReferenceDot 
-                x="Jul" 
-                y={70} 
-                r={6} 
-                fill="white" 
-                stroke="none"
-              >
-                <Label
-                  content={({ viewBox }) => {
-                    const { x, y } = viewBox as { x: number, y: number };
-                    return (
-                      <text x={x} y={y - 15} textAnchor="middle" fill="white" fontSize={12}>
+        <div className="flex items-center justify-between">
+          {/* Left side with large percentage */}
+          <div className="flex flex-col items-center mr-4">
+            <div className="text-7xl font-bold">{progressPercentage}</div>
+            <div className="text-2xl">%</div>
+          </div>
+          
+          {/* Right side with graph */}
+          <div className="flex-1 h-[140px] relative">
+            <ChartContainer config={config} className="h-full text-white">
+              <LineChart data={data} margin={{ top: 20, right: 20, left: -30, bottom: 5 }}>
+                <defs>
+                  <linearGradient id="colorIdeal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.2}/>
+                  </linearGradient>
+                  <linearGradient id="colorCurrent" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#CCCCCC" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#CCCCCC" stopOpacity={0.2}/>
+                  </linearGradient>
+                </defs>
+                <XAxis 
+                  dataKey="month" 
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: 'white', fontSize: 10 }}
+                  stroke="rgba(255,255,255,0.3)"
+                />
+                <CartesianGrid 
+                  strokeDasharray="3 3" 
+                  stroke="rgba(255,255,255,0.1)" 
+                  vertical={true} 
+                />
+                <ChartTooltip
+                  content={<ChartTooltipContent className="bg-white/80 text-blue-900" />}
+                />
+                {/* Ideal journey line */}
+                <Line 
+                  type="monotone" 
+                  dataKey="ideal" 
+                  stroke="white" 
+                  strokeWidth={2}
+                  dot={false}
+                />
+                {/* Current journey line */}
+                <Line 
+                  type="monotone" 
+                  dataKey="current" 
+                  stroke="rgba(200,200,200,0.8)" 
+                  strokeWidth={2}
+                  dot={false}
+                />
+                
+                {/* Career goal indicator with label above */}
+                <ReferenceDot 
+                  x="Jul" 
+                  y={70} 
+                  r={5} 
+                  fill="white" 
+                  stroke="none"
+                >
+                  <Label
+                    content={() => (
+                      <text x={330} y={25} textAnchor="middle" fill="white" fontSize={11}>
                         Your Career Goal
                       </text>
-                    );
-                  }}
+                    )}
+                  />
+                </ReferenceDot>
+                
+                {/* Current level indicator with popup label */}
+                <ReferenceDot 
+                  x="Mar" 
+                  y={20} 
+                  r={5} 
+                  fill="white" 
+                  stroke="none"
                 />
-              </ReferenceDot>
-              
-              {/* Current level indicator with popup label */}
-              <ReferenceDot 
-                x="Mar" 
-                y={20} 
-                r={6} 
-                fill="white" 
-                stroke="none"
-              />
-            </LineChart>
-          </ChartContainer>
-          
-          {/* Current level label */}
-          <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-blue-900 rounded-md px-3 py-2 text-xs font-medium shadow-md">
-            Your Current Level
+
+                {/* Current level label - positioned absolutely outside the chart */}
+              </LineChart>
+            </ChartContainer>
+            
+            {/* Current level label - placed with absolute positioning */}
+            <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-white text-blue-900 rounded-md px-2 py-1 text-xs font-medium shadow-md whitespace-nowrap">
+              Your Current Level
+            </div>
           </div>
         </div>
       </CardContent>
