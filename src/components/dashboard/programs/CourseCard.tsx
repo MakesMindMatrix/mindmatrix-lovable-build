@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Clock, Square } from "lucide-react";
+import { ArrowLeft, Clock, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Course {
@@ -29,22 +29,34 @@ const CourseCard: React.FC<CourseCardProps> = ({
 }) => {
   if (isExpanded) {
     return (
-      <div className="bg-blue-500/90 rounded-lg p-6 text-white w-full animate-fade-in">
+      <div className="bg-white/10 rounded-lg border border-white/20 p-6">
+        {/* Back button */}
+        <div className="flex justify-end mb-4">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white"
+            onClick={() => onViewCourse(course.id)}
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+        </div>
+        
         {/* Course Badge and Title */}
         <div className="mb-4">
-          <div className="bg-blue-600/60 text-white border border-white/40 mb-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold">
+          <div className="bg-white/20 text-white px-3 py-1 rounded-full text-xs inline-block mb-2">
             {course.badge}
           </div>
-          <h2 className="text-2xl font-medium">{course.title}</h2>
+          <h2 className="text-xl text-white font-medium">{course.title}</h2>
           
           <div className="flex items-center space-x-4 mt-2 text-sm">
             <div className="flex items-center">
               <div className="bg-white/20 w-2 h-2 rounded-full mr-2"></div>
-              <span>{course.points} PTS</span>
+              <span className="text-white">{course.points} PTS</span>
             </div>
             <div className="flex items-center">
               <div className="bg-white/20 w-2 h-2 rounded-full mr-2"></div>
-              <span>{course.taskCount} Tasks</span>
+              <span className="text-white">{course.taskCount} Tasks</span>
             </div>
           </div>
         </div>
@@ -93,6 +105,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
     );
   }
 
+  // Non-expanded view remains mostly the same
   return (
     <div className="bg-white/10 rounded-lg border border-white/20 p-6">
       <div className="mb-2">
