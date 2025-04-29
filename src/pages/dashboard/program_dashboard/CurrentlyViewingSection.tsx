@@ -5,7 +5,7 @@ import { Layers, Clock, Users } from "lucide-react";
 
 const CurrentlyViewingSection = () => {
   return (
-    <section className="min-w-60 w-[346px]">
+    <section className="min-w-60 w-full">
       <div className="w-full">
         <div className="flex flex-col w-full">
           <div className="flex gap-3.5 items-center self-start text-xl font-semibold leading-10 text-white">

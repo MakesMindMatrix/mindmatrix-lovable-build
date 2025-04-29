@@ -1,10 +1,12 @@
 
 import React from "react";
 import CourseCard from "./CourseCard";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const CoursesList = () => {
   return (
-    <section className="flex flex-col min-w-60 w-[445px] max-md:max-w-full">
+    <section className="flex flex-col min-w-60 w-full h-full">
+      {/* Fixed navigation bar */}
       <nav className="self-end max-w-full text-xs font-medium leading-loose whitespace-nowrap w-[387px] mb-4">
         <div className="flex flex-wrap items-center gap-0.5 w-full max-w-[387px]">
           <button className="py-1 px-6 text-indigo-300 hover:text-white transition-colors">
@@ -15,19 +17,38 @@ const CoursesList = () => {
           </button>
         </div>
       </nav>
-      <div className="mt-4 w-full max-md:max-w-full">
-        <div className="w-full max-md:max-w-full space-y-5">
-          <CourseItem 
-            courseNumber="Course 1"
-            title="Course Title"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <CourseItem 
-            courseNumber="Course 2"
-            title="Course Title"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-        </div>
+      
+      {/* Scrollable course cards */}
+      <div className="flex-grow overflow-hidden">
+        <ScrollArea className="h-full pr-2">
+          <div className="space-y-5 pb-8">
+            <CourseItem 
+              courseNumber="Course 1"
+              title="Course Title"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
+            <CourseItem 
+              courseNumber="Course 2"
+              title="Course Title"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
+            <CourseItem 
+              courseNumber="Course 3"
+              title="Course Title"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
+            <CourseItem 
+              courseNumber="Course 4"
+              title="Course Title"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
+            <CourseItem 
+              courseNumber="Course 5"
+              title="Course Title"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
+          </div>
+        </ScrollArea>
       </div>
     </section>
   );
