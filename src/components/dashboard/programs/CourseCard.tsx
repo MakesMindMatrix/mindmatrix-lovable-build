@@ -1,7 +1,8 @@
 
-import React from "react";
-import { ArrowLeft, Clock, Square, BookOpen } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowLeft, Clock, Square, BookOpen, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Course {
   id: number;
@@ -27,6 +28,13 @@ const CourseCard: React.FC<CourseCardProps> = ({
   isExpanded, 
   onViewCourse 
 }) => {
+  const [activeSession, setActiveSession] = useState<number | null>(null);
+  
+  // Handle session selection
+  const handleSessionClick = (sessionId: number) => {
+    setActiveSession(sessionId === activeSession ? null : sessionId);
+  };
+  
   if (isExpanded) {
     return (
       <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 max-w-[500px]">
@@ -67,40 +75,51 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <Button 
               key={session.id}
               variant="secondary" 
-              className="bg-white/20 hover:bg-white/30 text-white rounded-full text-sm"
+              className={`bg-white/20 hover:bg-white/30 text-white rounded-full text-sm ${activeSession === session.id ? 'ring-2 ring-white' : ''}`}
+              onClick={() => handleSessionClick(session.id)}
             >
               {session.title}
             </Button>
           ))}
           <Button 
             variant="secondary" 
-            className="bg-white/20 hover:bg-white/30 text-white rounded-full text-sm"
+            className={`bg-white/20 hover:bg-white/30 text-white rounded-full text-sm ${activeSession === -1 ? 'ring-2 ring-white' : ''}`}
+            onClick={() => handleSessionClick(-1)}
           >
             Quiz
           </Button>
           <Button 
             variant="secondary" 
-            className="bg-white/20 hover:bg-white/30 text-white rounded-full text-sm px-3"
+            className={`bg-white/20 hover:bg-white/30 text-white rounded-full text-sm px-3 ${activeSession === -2 ? 'ring-2 ring-white' : ''}`}
+            onClick={() => handleSessionClick(-2)}
           >
             A+
           </Button>
         </div>
         
-        {/* Course Content/Tasks List */}
-        <div className="space-y-0">
-          <CourseTaskItem title="Pre Read Doc" />
-          <CourseTaskItem title="Pre Session Doc" />
-          <CourseTaskItem title="Live Tutorial" />
-          <CourseTaskItem title="Post Session Ref" />
-          
-          <div className="border-t border-white/20 my-2"></div>
-          
-          {course.courseTasks?.map((task) => (
-            <CourseTaskItem key={task.id} title={task.title} />
-          ))}
-          
-          <CourseTaskItem title="Assessment" />
-        </div>
+        {/* Course Content/Tasks List - Only show if a session is selected */}
+        {activeSession !== null && (
+          <div className="space-y-0">
+            <CourseTaskItem title="Pre Read Doc" />
+            <CourseTaskItem title="Pre Session Doc" />
+            <CourseTaskItem title="Live Tutorial" />
+            <CourseTaskItem title="Post Session Ref" />
+            
+            {/* Only show these if we're not on Quiz or A+ */}
+            {activeSession > 0 && (
+              <>
+                <div className="border-t border-white/20 my-2"></div>
+                
+                {course.courseTasks?.map((task) => (
+                  <CourseTaskItem key={task.id} title={task.title} />
+                ))}
+              </>
+            )}
+            
+            {/* Only show assessment for regular sessions */}
+            {activeSession > 0 && <CourseTaskItem title="Assessment" />}
+          </div>
+        )}
       </div>
     );
   }
@@ -143,12 +162,18 @@ interface CourseTaskItemProps {
 }
 
 const CourseTaskItem: React.FC<CourseTaskItemProps> = ({ title }) => {
+  const [checked, setChecked] = useState(false);
+  
   return (
     <div className="flex items-center justify-between py-3 border-b border-white/20 last:border-b-0">
       <span className="text-white">{title}</span>
-      <Button variant="ghost" size="icon" className="rounded-full bg-white/20 hover:bg-white/30 text-white h-6 w-6">
-        <Square className="h-3 w-3" />
-      </Button>
+      <div className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center">
+        <Checkbox 
+          checked={checked}
+          onCheckedChange={() => setChecked(!checked)}
+          className="h-4 w-4 data-[state=checked]:bg-white data-[state=checked]:text-blue-600 border-white"
+        />
+      </div>
     </div>
   );
 };
