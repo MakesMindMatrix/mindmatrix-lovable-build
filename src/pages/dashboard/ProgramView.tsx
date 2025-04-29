@@ -80,25 +80,29 @@ const ProgramView = () => {
                 />
                 
                 {/* Scrollable content area */}
-                <ScrollArea className="h-[calc(100%-46px)] pr-4">
-                  {activeTab === 'mentor' ? (
-                    // Mentor profile content
-                    <MentorProfile mentor={mentor} />
-                  ) : (
-                    // Course cards - scrollable
-                    <div className="space-y-4 pb-4">
-                      {courses.map((course) => (
-                        <div key={course.id}>
-                          <CourseCard
-                            course={course}
-                            isExpanded={expandedCourseId === course.id}
-                            onViewCourse={handleViewCourse}
-                          />
+                <div className="h-[calc(100%-46px)] overflow-hidden">
+                  <ScrollArea className="h-full">
+                    <div className="pr-4">
+                      {activeTab === 'mentor' ? (
+                        // Mentor profile content
+                        <MentorProfile mentor={mentor} />
+                      ) : (
+                        // Course cards - scrollable
+                        <div className="space-y-4 pb-4">
+                          {courses.map((course) => (
+                            <div key={course.id}>
+                              <CourseCard
+                                course={course}
+                                isExpanded={expandedCourseId === course.id}
+                                onViewCourse={handleViewCourse}
+                              />
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
                     </div>
-                  )}
-                </ScrollArea>
+                  </ScrollArea>
+                </div>
               </div>
               
               {/* Right side - Help section */}
