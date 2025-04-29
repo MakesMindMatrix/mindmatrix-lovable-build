@@ -88,7 +88,7 @@ const Programs = () => {
     <Desktop activeTab="programs">
       <div className="flex w-full h-[calc(100vh-72px)] p-0">
         {/* Left Panel - Programs (65%) */}
-        <div className="w-[65%] bg-gradient-to-r from-blue-500 to-blue-600 p-6 mr-4 rounded-xl">
+        <div className="w-[65%] bg-gradient-to-br from-indigo-700/80 to-indigo-900/80 p-6 mr-4 rounded-xl">
           <ScrollArea className="h-full pr-4">
             {/* Enrolled Programs Section */}
             <div className="mb-8">
@@ -113,7 +113,7 @@ const Programs = () => {
         </div>
         
         {/* Right Panel - Progress Summary (30%) - Shifted right to align with top toolbar */}
-        <div className="w-[30%] bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-xl ml-4">
+        <div className="w-[30%] bg-gradient-to-br from-indigo-700/80 to-indigo-900/80 p-6 rounded-xl ml-4">
           <h2 className="text-2xl font-semibold mb-6 text-white">Progress Summary</h2>
           <div className="space-y-6">
             {/* Progress Graph */}

@@ -6,9 +6,9 @@ import StatItem from "./StatItem";
 
 const ProgressTracker: React.FC = () => {
   return (
-    <section className="flex overflow-hidden flex-col justify-center px-4 py-6 rounded-xl bg-stone-900/70 backdrop-blur-md border border-white/20 w-full shadow-lg relative">
+    <section className="flex overflow-hidden flex-col justify-center px-4 py-6 rounded-xl bg-gradient-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md border border-white/20 w-full shadow-lg relative">
       {/* Glass effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/80 to-stone-800/80 backdrop-blur-md z-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md z-0" />
       
       <div className="w-full relative z-10">
         <div className="flex justify-between items-center w-full">
