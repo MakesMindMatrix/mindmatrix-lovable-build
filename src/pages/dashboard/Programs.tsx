@@ -112,8 +112,8 @@ const Programs = () => {
           </ScrollArea>
         </div>
         
-        {/* Right Panel - Progress Summary (30%) */}
-        <div className="w-[30%] bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-xl">
+        {/* Right Panel - Progress Summary (30%) - Shifted right to align with top toolbar */}
+        <div className="w-[30%] bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-xl ml-4">
           <h2 className="text-2xl font-semibold mb-6 text-white">Progress Summary</h2>
           <div className="space-y-6">
             {/* Progress Graph */}
