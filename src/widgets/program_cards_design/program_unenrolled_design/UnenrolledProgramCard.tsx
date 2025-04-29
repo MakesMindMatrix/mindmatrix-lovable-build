@@ -1,75 +1,70 @@
 
 import React from "react";
-import { UnenrolledProgramCard as UnenrolledProgramCardType, getProgramTagColor, getProgramThemeColor } from "../types";
-import { Badge } from "@/components/ui/badge";
 import { BookmarkCheck, Clock, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { UnenrolledProgramCard as UnenrolledProgramCardType, getProgramTagColor } from "../types";
 
 interface ProgramCardProps {
   program: UnenrolledProgramCardType;
 }
 
 const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
-  const navigate = useNavigate();
-  const themeColorClass = getProgramThemeColor(program.program_tag);
-  const tagColorClass = getProgramTagColor(program.program_tag);
+  const {
+    program_image,
+    program_title,
+    program_description,
+    program_tag,
+    modules_count,
+    duration_weeks,
+    views_count,
+  } = program;
 
-  const handleViewProgram = () => {
-    navigate("/dashboard-programView", {
-      state: { program, isEnrolled: false }
-    });
-  };
+  const tagColorClass = getProgramTagColor(program_tag);
 
   return (
-    <div className={`flex flex-col w-full rounded-3xl overflow-hidden shadow-lg max-w-[340px] cursor-pointer`} onClick={handleViewProgram}>
-      {/* Banner/Image Section */}
-      <div className={`h-48 relative bg-gradient-to-r ${themeColorClass}`}>
+    <Card className="flex flex-col justify-center w-full overflow-hidden rounded-xl bg-white/10 border border-white/30 transition-all hover:shadow-lg">
+      <div className="relative">
         <img 
-          src={program.program_image} 
-          alt={program.program_title} 
-          className="w-full h-full object-cover mix-blend-overlay"
+          src={program_image} 
+          alt={program_title} 
+          className="w-full h-[140px] object-cover"
         />
         <Badge 
           className={`absolute top-3 right-3 ${tagColorClass} text-white border border-white/70`}
         >
-          {program.program_tag}
+          {program_tag}
         </Badge>
       </div>
       
-      {/* Content Section */}
-      <div className={`bg-gradient-to-r ${themeColorClass} p-5 text-white flex-1`}>
-        <h3 className="font-semibold text-xl mb-2">{program.program_title}</h3>
-        <p className="text-white/80 text-sm mb-4 line-clamp-2">{program.program_description}</p>
+      <CardContent className="p-4">
+        <h2 className="text-lg font-medium text-white mb-2 line-clamp-1">{program_title}</h2>
+        <p className="text-sm text-white/90 mb-4 line-clamp-2">{program_description}</p>
         
-        {/* Metadata */}
-        <div className="flex justify-between text-sm mb-4">
-          <div className="flex items-center gap-1">
-            <BookmarkCheck className="w-4 h-4" />
-            <span>{program.modules_count} Modules</span>
+        <div className="flex flex-wrap justify-between items-center mt-2 w-full">
+          <div className="flex gap-1 items-center">
+            <BookmarkCheck className="w-[18px] h-[18px] text-white" />
+            <span className="text-xs font-medium text-white">
+              {modules_count} Modules
+            </span>
           </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            <span>{program.duration_weeks} Weeks</span>
+
+          <div className="flex gap-1 items-center">
+            <Clock className="w-[18px] h-[18px] text-white" />
+            <span className="text-xs font-medium text-white">
+              {duration_weeks} Weeks
+            </span>
           </div>
-          <div className="flex items-center gap-1">
-            <Users className="w-4 h-4" />
-            <span>{program.views_count}</span>
+
+          <div className="flex gap-1 items-center">
+            <Users className="w-[18px] h-[18px] text-white" />
+            <span className="text-xs font-medium text-white">
+              {views_count}
+            </span>
           </div>
         </div>
-        
-        {/* Enroll Button */}
-        <Button 
-          className="w-full bg-white text-gray-800 hover:bg-white/90"
-          onClick={(e) => {
-            e.stopPropagation();
-            // Enrollment functionality would go here
-          }}
-        >
-          Enroll Now
-        </Button>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
