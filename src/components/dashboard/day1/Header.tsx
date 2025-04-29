@@ -1,17 +1,37 @@
 
 "use client";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
+  const location = useLocation();
+  const path = location.pathname;
+  
+  // Determine active tab based on path
+  const isPrograms = path.includes("programs");
+  const isTasks = path.includes("tasks");
+  
+  // Set title and icon based on active tab
+  let title = "Home";
+  let iconUrl = "https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/d89c21cb31b1fa4db769be3d289a68f2ef379589";
+  
+  if (isPrograms) {
+    title = "Programs";
+    iconUrl = "https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/3430fc681841546943ce12f63288136245f101f2";
+  } else if (isTasks) {
+    title = "Tasks";
+    iconUrl = "https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/333534a9d2531e48b58aeaa0350713eebb17d760";
+  }
+
   return (
     <header className="flex flex-wrap items-center px-8 py-3.5 w-full bg-blue-700 rounded-3xl max-md:px-5">
       <div className="flex gap-3 items-end self-stretch my-auto text-2xl font-semibold text-white whitespace-nowrap">
         <img
-          src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/d89c21cb31b1fa4db769be3d289a68f2ef379589"
-          className="object-contain shrink-0 mt-0 w-7 aspect-square"
-          alt="Home icon"
+          src={iconUrl}
+          className="object-contain shrink-0 mt-0 w-7 aspect-square brightness-0 invert"
+          alt={`${title} icon`}
         />
-        <h2>Home</h2>
+        <h2>{title}</h2>
       </div>
 
       <div className="flex gap-6 items-center self-stretch my-auto ml-auto">
