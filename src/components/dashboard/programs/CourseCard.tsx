@@ -36,10 +36,29 @@ const CourseCard: React.FC<CourseCardProps> = ({
     setActiveSession(sessionId === activeSession ? null : sessionId);
   };
   
-  // This will be updated later to navigate to component-specific pages
+  // Navigate to component-specific pages
   const handleTaskClick = (taskTitle: string) => {
     console.log(`Clicked on component: ${taskTitle}`);
-    // Navigation to specific component pages will be implemented later
+    
+    // Specific navigation for Live Tutorial
+    if (taskTitle === "Live Tutorial") {
+      navigate("/dashboard-live-tutorial", {
+        state: {
+          courseData: {
+            program: "Energy Management in Electric Vehicles",
+            course: "Introduction to Electric Vehicles",
+            session: activeSession && activeSession > 0 
+              ? `Session ${activeSession}` 
+              : activeSession === -1 ? "Quiz" : "Assessment",
+            title: "Live Class-Web Development Fundamentals",
+            courseTitle: course.title
+          }
+        }
+      });
+    } else {
+      // For other components - will be implemented later
+      console.log(`Navigation for ${taskTitle} will be implemented later`);
+    }
   };
   
   if (isExpanded) {
