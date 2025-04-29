@@ -6,7 +6,7 @@ import StatItem from "./StatItem";
 
 const ProgressTracker: React.FC = () => {
   return (
-    <section className="flex overflow-hidden flex-col justify-center px-5 py-9 rounded-3xl bg-stone-900 max-w-[459px] rotate-[4.5911985324664784e-10rad] shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+    <section className="flex overflow-hidden flex-col justify-center px-5 py-9 rounded-3xl bg-stone-900/90 backdrop-blur-md border border-white/20 w-[459px] h-[270px] rotate-[4.5911985324664784e-10rad] shadow-[0px_1px_30px_rgba(69,42,124,0.15)]">
       <div className="w-full rotate-[-4.5911985324664784e-10rad]">
         <div className="flex justify-between items-center w-full">
           <article className="flex flex-col flex-1 shrink self-stretch my-auto w-full basis-0 min-w-60">
