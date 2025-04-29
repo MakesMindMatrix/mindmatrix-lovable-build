@@ -4,10 +4,10 @@ import { BookmarkCheck, Clock, Eye, Circle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { EnrolledProgramCard, getProgramTagColor } from "../types";
+import { EnrolledProgramCard as EnrolledProgramCardType, getProgramTagColor } from "../types";
 
 interface ProgramCardProps {
-  program: EnrolledProgramCard;
+  program: EnrolledProgramCardType;
 }
 
 const EnrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {

@@ -3,10 +3,10 @@ import React from "react";
 import { BookmarkCheck, Clock, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { UnenrolledProgramCard, getProgramTagColor } from "../types";
+import { UnenrolledProgramCard as UnenrolledProgramCardType, getProgramTagColor } from "../types";
 
 interface ProgramCardProps {
-  program: UnenrolledProgramCard;
+  program: UnenrolledProgramCardType;
 }
 
 const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
