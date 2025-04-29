@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const path = location.pathname;
   
   // Determine active tab based on path
-  const isPrograms = path.includes("programs");
+  const isPrograms = path.includes("programs") || path.includes("programView");
   const isTasks = path.includes("tasks");
   
   // Set title and icon based on active tab
