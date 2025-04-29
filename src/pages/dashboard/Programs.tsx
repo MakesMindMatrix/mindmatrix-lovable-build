@@ -88,36 +88,48 @@ const unenrolledPrograms: UnenrolledProgramCardType[] = [
 const Programs = () => {
   return (
     <Desktop activeTab="programs">
-      <GradientBackground className="h-[calc(100vh-120px)] rounded-3xl overflow-hidden flex flex-col">
-        {/* Fixed Progress Summary Section */}
-        <div className="px-6 pt-6 pb-4">
-          <h2 className="text-2xl font-semibold mb-4 text-white">Progress Summary</h2>
-          <div className="flex gap-6">
-            <ProgressGraphCard />
-            <ProgressTracker />
+      <GradientBackground className="h-[calc(100vh-120px)] rounded-3xl overflow-hidden p-6">
+        <div className="flex gap-5 h-full">
+          {/* Left Card - 65% width - Programs */}
+          <div className="w-[65%] bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg overflow-hidden flex flex-col">
+            <ScrollArea className="flex-1 p-5">
+              {/* Enrolled Programs Section */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-white">My Enrolled Programs</h2>
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                  {enrolledPrograms.map((program, index) => (
+                    <EnrolledProgramCard key={`enrolled-${index}`} program={program} />
+                  ))}
+                </div>
+              </div>
+              
+              {/* Recommended Programs Section */}
+              <div className="mb-8 pb-4">
+                <h2 className="text-2xl font-semibold mb-4 text-white">My Recommended Programs</h2>
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                  {unenrolledPrograms.map((program, index) => (
+                    <UnenrolledProgramCard key={`unenrolled-${index}`} program={program} />
+                  ))}
+                </div>
+              </div>
+            </ScrollArea>
+          </div>
+          
+          {/* Right Card - 30% width - Progress Summary */}
+          <div className="w-[30%] bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg overflow-hidden flex flex-col">
+            <div className="p-5">
+              <h2 className="text-2xl font-semibold mb-4 text-white">Progress Summary</h2>
+              
+              <div className="space-y-5">
+                {/* Progress Graph Card */}
+                <ProgressGraphCard />
+                
+                {/* Progress Tracker */}
+                <ProgressTracker />
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Scrollable Programs Sections */}
-        <ScrollArea className="flex-1 px-6 overflow-y-auto">
-          <div className="mb-8 mt-4">
-            <h2 className="text-2xl font-semibold mb-4 text-white">My Enrolled Programs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {enrolledPrograms.map((program, index) => (
-                <EnrolledProgramCard key={`enrolled-${index}`} program={program} />
-              ))}
-            </div>
-          </div>
-
-          <div className="pb-10">
-            <h2 className="text-2xl font-semibold mb-4 text-white">My Recommended Programs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {unenrolledPrograms.map((program, index) => (
-                <UnenrolledProgramCard key={`unenrolled-${index}`} program={program} />
-              ))}
-            </div>
-          </div>
-        </ScrollArea>
       </GradientBackground>
     </Desktop>
   );

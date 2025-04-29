@@ -45,16 +45,16 @@ const ProgressGraphCard: React.FC = () => {
   const progressPercentage = 57; // Hardcoded to match the design
 
   return (
-    <Card className="w-[400px] h-[240px] bg-indigo-700/60 backdrop-blur-md border border-white/20 text-white shadow-lg relative rounded-[20px] overflow-hidden">
+    <Card className="w-full bg-indigo-700/60 backdrop-blur-md border border-white/20 text-white shadow-lg relative rounded-xl overflow-hidden">
       {/* Glass effect overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md z-0" />
       
       <CardHeader className="pb-2 relative z-10">
-        <CardTitle className="text-xl font-semibold flex items-center gap-2">
+        <CardTitle className="text-lg font-semibold flex items-center gap-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/f33e70577e3dde645a9dd82bc8059e5bcb2f33c4?placeholderIfAbsent=true"
             alt="Progress icon"
-            className="w-6 h-6 object-contain"
+            className="w-5 h-5 object-contain"
           />
           Progress Graph
         </CardTitle>
@@ -75,14 +75,14 @@ const ProgressGraphCard: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Left side with large percentage */}
           <div className="flex flex-col items-center mr-4">
-            <div className="text-7xl font-bold">{progressPercentage}</div>
-            <div className="text-2xl">%</div>
+            <div className="text-5xl font-bold">{progressPercentage}</div>
+            <div className="text-xl">%</div>
           </div>
           
           {/* Right side with graph */}
-          <div className="flex-1 h-[140px] relative">
+          <div className="flex-1 h-[120px] relative">
             <ChartContainer config={config} className="h-full text-white">
-              <LineChart data={data} margin={{ top: 20, right: 20, left: -30, bottom: 5 }}>
+              <LineChart data={data} margin={{ top: 20, right: 10, left: -30, bottom: 5 }}>
                 <defs>
                   <linearGradient id="colorIdeal" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.8}/>
@@ -97,7 +97,7 @@ const ProgressGraphCard: React.FC = () => {
                   dataKey="month" 
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: 'white', fontSize: 10 }}
+                  tick={{ fill: 'white', fontSize: 8 }}
                   stroke="rgba(255,255,255,0.3)"
                 />
                 <CartesianGrid 
@@ -125,38 +125,28 @@ const ProgressGraphCard: React.FC = () => {
                   dot={false}
                 />
                 
-                {/* Career goal indicator with label above */}
+                {/* Career goal indicator */}
                 <ReferenceDot 
                   x="Jul" 
                   y={70} 
-                  r={5} 
-                  fill="white" 
-                  stroke="none"
-                >
-                  <Label
-                    content={() => (
-                      <text x={330} y={25} textAnchor="middle" fill="white" fontSize={11}>
-                        Your Career Goal
-                      </text>
-                    )}
-                  />
-                </ReferenceDot>
-                
-                {/* Current level indicator with popup label */}
-                <ReferenceDot 
-                  x="Mar" 
-                  y={20} 
-                  r={5} 
+                  r={4} 
                   fill="white" 
                   stroke="none"
                 />
-
-                {/* Current level label - positioned absolutely outside the chart */}
+                
+                {/* Current level indicator */}
+                <ReferenceDot 
+                  x="Mar" 
+                  y={20} 
+                  r={4} 
+                  fill="white" 
+                  stroke="none"
+                />
               </LineChart>
             </ChartContainer>
             
             {/* Current level label - placed with absolute positioning */}
-            <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-white text-blue-900 rounded-md px-2 py-1 text-xs font-medium shadow-md whitespace-nowrap">
+            <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-white text-blue-900 rounded px-1.5 py-0.5 text-[10px] font-medium shadow-md whitespace-nowrap">
               Your Current Level
             </div>
           </div>
