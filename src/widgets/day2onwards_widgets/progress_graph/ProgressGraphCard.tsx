@@ -15,6 +15,7 @@ import {
   YAxis,
   ResponsiveContainer,
   ReferenceDot,
+  Label,
 } from "recharts";
 
 const data = [
@@ -91,7 +92,9 @@ const ProgressGraphCard: React.FC = () => {
                 strokeWidth={2} 
               />
               <ReferenceDot x="Jul" y={60} r={4} fill="white" stroke="none">
-                <label position="top" fill="white">Your Current Goal</label>
+                <Label position="top" fill="white">
+                  Your Current Goal
+                </Label>
               </ReferenceDot>
             </LineChart>
           </ChartContainer>
