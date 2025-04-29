@@ -72,6 +72,16 @@ const unenrolledPrograms: UnenrolledProgramCardType[] = [
     modules_count: 10,
     duration_weeks: 14,
     views_count: 2856
+  },
+  {
+    program_image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    program_title: "Digital Marketing Certificate",
+    program_description: "Learn modern digital marketing strategies including social media, SEO, and content marketing.",
+    program_tag: "Certification",
+    theme_color: "green",
+    modules_count: 8,
+    duration_weeks: 10,
+    views_count: 2156
   }
 ];
 
@@ -89,7 +99,7 @@ const Programs = () => {
           </div>
           
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-white">My Recommended Programs</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">My Enrolled Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {enrolledPrograms.map((program, index) => (
                 <EnrolledProgramCard key={`enrolled-${index}`} program={program} />
@@ -98,7 +108,7 @@ const Programs = () => {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-4 text-white">Recommended Programs</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">My Recommended Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {unenrolledPrograms.map((program, index) => (
                 <UnenrolledProgramCard key={`unenrolled-${index}`} program={program} />
