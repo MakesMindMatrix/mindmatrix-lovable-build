@@ -1,9 +1,9 @@
-
 import React from "react";
 import { BookmarkCheck, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getProgramTagColor } from "../types";
 import { useNavigate } from "react-router-dom";
+import { EnrolledProgramCard } from "../types";
 
 interface CourseHeaderProps {
   tag: "AEC" | "Minor Degree" | "Certification";
@@ -13,6 +13,7 @@ interface CourseHeaderProps {
   modules: number;
   weeks: number;
   enrollments: number;
+  program?: EnrolledProgramCard; // Add the full program data
 }
 
 const CourseHeader: React.FC<CourseHeaderProps> = ({
@@ -23,13 +24,19 @@ const CourseHeader: React.FC<CourseHeaderProps> = ({
   modules,
   weeks,
   enrollments,
+  program,
 }) => {
   const navigate = useNavigate();
   const tagColorClass = getProgramTagColor(tag);
 
   const handleClick = () => {
-    // Navigate to the program view page when clicked
-    navigate("/dashboard-programView");
+    // Navigate to the program view page with the program data
+    navigate("/dashboard-programView", { 
+      state: { 
+        program: program, 
+        isEnrolled: true 
+      } 
+    });
   };
 
   return (

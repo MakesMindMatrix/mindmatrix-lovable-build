@@ -37,6 +37,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ program }) => {
         modules={courseData.modules}
         weeks={courseData.weeks}
         enrollments={courseData.enrollments}
+        program={program} // Pass the full program data
       />
       <CourseProgress
         percentComplete={courseData.progress.percentComplete}

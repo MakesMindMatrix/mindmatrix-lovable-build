@@ -4,12 +4,15 @@ import { BookmarkCheck, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { UnenrolledProgramCard as UnenrolledProgramCardType, getProgramTagColor } from "../types";
+import { useNavigate } from "react-router-dom";
 
 interface ProgramCardProps {
   program: UnenrolledProgramCardType;
 }
 
 const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
+  const navigate = useNavigate();
+  
   const {
     program_image,
     program_title,
@@ -22,8 +25,20 @@ const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
 
   const tagColorClass = getProgramTagColor(program_tag);
 
+  const handleClick = () => {
+    navigate("/dashboard-programView", { 
+      state: { 
+        program: program, 
+        isEnrolled: false 
+      } 
+    });
+  };
+
   return (
-    <Card className="flex flex-col justify-center w-full overflow-hidden rounded-xl bg-white/10 border border-white/30 transition-all hover:shadow-lg">
+    <Card 
+      className="flex flex-col justify-center w-full overflow-hidden rounded-xl bg-white/10 border border-white/30 transition-all hover:shadow-lg cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="relative">
         <img 
           src={program_image} 
