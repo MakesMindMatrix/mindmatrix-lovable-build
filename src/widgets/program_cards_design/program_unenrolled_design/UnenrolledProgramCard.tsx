@@ -23,7 +23,7 @@ const UnenrolledProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
   const tagColorClass = getProgramTagColor(program_tag);
 
   return (
-    <Card className="flex flex-col justify-center pt-0 pb-4 w-full max-w-[340px] overflow-hidden rounded-3xl backdrop-blur-md bg-white/20 border border-white/30 transition-all hover:shadow-lg">
+    <Card className="flex flex-col justify-center pt-0 pb-4 w-full overflow-hidden rounded-3xl backdrop-blur-md bg-white/20 border border-white/30 transition-all hover:shadow-lg">
       <div className="relative">
         <img 
           src={program_image} 

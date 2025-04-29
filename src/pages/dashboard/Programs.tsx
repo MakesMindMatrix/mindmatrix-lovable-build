@@ -88,8 +88,8 @@ const unenrolledPrograms: UnenrolledProgramCardType[] = [
 const Programs = () => {
   return (
     <Desktop activeTab="programs">
-      <GradientBackground className="h-[calc(100vh-120px)] rounded-3xl">
-        <ScrollArea className="h-full py-6 px-6">
+      <GradientBackground className="h-[calc(100vh-120px)] rounded-3xl overflow-hidden">
+        <ScrollArea className="h-full w-full py-6 px-6 overflow-y-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-white">Progress Summary</h2>
             <div className="flex gap-6">
@@ -107,7 +107,7 @@ const Programs = () => {
             </div>
           </div>
 
-          <div>
+          <div className="pb-10">
             <h2 className="text-2xl font-semibold mb-4 text-white">My Recommended Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {unenrolledPrograms.map((program, index) => (
