@@ -39,7 +39,7 @@ function ProgramDashboard() {
           </div>
           
           {/* Fixed background with blue gradient */}
-          <div className="fixed top-[146px] left-[56px] right-0 bottom-0 bg-gradient-to-br from-blue-200 to-blue-300 rounded-tl-2xl z-0" />
+          <div className="fixed top-[146px] left-[56px] right-0 bottom-0 bg-gradient-to-b from-blue-200 via-blue-300/70 to-blue-400/50 z-0" />
           
           {/* Three-column layout inside a scrollable container */}
           <div className="relative z-10 px-4 pt-2.5 mt-2.5 h-[calc(100vh-146px)]">
