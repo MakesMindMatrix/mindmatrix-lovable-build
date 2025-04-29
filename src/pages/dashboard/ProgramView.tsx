@@ -134,9 +134,9 @@ const ProgramView = () => {
                 </div>
               </div>
               
-              {/* Right side - Help section */}
+              {/* Right side - Help section directly on the gradient background */}
               <div className="w-[25%] ml-4">
-                <div className="bg-white/5 rounded-xl border border-white/20 p-6 flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                   <div className="mb-4 bg-white/10 w-16 h-16 rounded-full flex items-center justify-center">
                     <img src="/lovable-uploads/2bc45feb-b419-4732-a199-f3e3975af95d.png" alt="Courses icon" className="w-8 h-8" />
                   </div>
