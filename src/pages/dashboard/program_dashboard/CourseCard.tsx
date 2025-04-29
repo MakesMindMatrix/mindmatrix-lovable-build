@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Clock, Layers, Users } from "lucide-react";
 
 interface CourseCardProps {
   courseNumber: string;
@@ -13,29 +14,25 @@ const CourseCard: React.FC<CourseCardProps> = ({
   description,
 }) => {
   return (
-    <article className="flex flex-col justify-center p-9 font-medium text-white bg-blue-400 rounded-3xl min-w-60 shadow-[0px_1px_30px_rgba(69,42,124,0.1)] w-[388px] max-md:px-5">
-      <div className="flex flex-col w-full">
+    <article className="flex flex-col justify-center p-5 font-medium text-white bg-blue-400 rounded-3xl min-w-60 shadow-[0px_1px_30px_rgba(69,42,124,0.1)] w-full">
+      <div className="flex flex-col w-full p-4">
         <div className="flex flex-col w-full">
-          <span className="gap-2.5 self-start px-2.5 py-1 text-xs leading-loose border border-white border-solid bg-white bg-opacity-0 rounded-[100px]">
+          <span className="gap-2.5 self-start px-2.5 py-1 text-xs leading-loose bg-white/10 rounded-[100px] mb-2">
             {courseNumber}
           </span>
-          <h3 className="mt-2.5 text-xl leading-none">{title}</h3>
+          <h3 className="text-xl font-medium leading-tight mb-4">{title}</h3>
         </div>
-        <p className="mt-4 text-base leading-5">{description}</p>
-        <div className="flex flex-col justify-center mt-4 max-w-full text-sm leading-loose w-[158px]">
-          <div className="flex gap-6 items-center w-full">
-            <div className="flex gap-1.5 items-center self-stretch my-auto">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/8835df94b588dc38f6348408762bf546ec940e22?placeholderIfAbsent=true"
-                className="object-contain shrink-0 self-stretch my-auto w-3 aspect-square"
-                alt="Time icon"
-              />
-              <span className="self-stretch my-auto">2 Hours</span>
-            </div>
-            <span className="self-stretch my-auto">7 Sessions</span>
+        <p className="text-sm leading-5 mb-4 text-white/90">{description}</p>
+        <div className="flex gap-5 items-center mt-2 mb-4 text-sm">
+          <div className="flex items-center gap-1.5">
+            <Clock size={16} className="text-white/90" />
+            <span>2 Hours</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span>7 Sessions</span>
           </div>
         </div>
-        <button className="gap-2.5 self-start px-5 py-3 mt-4 text-sm font-semibold leading-none text-center bg-white rounded-[100px] text-neutral-400">
+        <button className="self-start px-5 py-2 text-sm font-medium bg-white rounded-full text-blue-500 hover:bg-white/90 transition-colors">
           View Course
         </button>
       </div>

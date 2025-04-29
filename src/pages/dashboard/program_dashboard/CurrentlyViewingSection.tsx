@@ -1,6 +1,7 @@
 
 import React from "react";
 import CourseProgressCard from "./CourseProgressCard";
+import { Layers, Clock, Users } from "lucide-react";
 
 const CurrentlyViewingSection = () => {
   return (
@@ -23,65 +24,41 @@ const CurrentlyViewingSection = () => {
 
 const CourseCard = () => {
   return (
-    <article className="flex flex-col justify-center items-center pt-5 pb-4 w-full bg-orange-400 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
-      <div className="max-w-full w-[306px]">
-        <div className="w-full text-base font-medium text-white">
-          <div className="w-full">
-            <div className="overflow-hidden w-full whitespace-nowrap bg-red-600 rounded-3xl">
-              <div className="flex relative flex-col items-end px-8 pt-3 pb-24 w-full aspect-[2.082] max-md:pl-5">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/22e97eb0b9c1399284ea07aa8a6e1a1b4c792e5c?placeholderIfAbsent=true"
-                  className="object-cover absolute inset-0 size-full"
-                  alt="Course background"
-                />
-                <span className="relative gap-10 self-stretch rounded-3xl min-h-[38px] shadow-[0px_1px_30px_rgba(69,42,124,0.1)] w-[71px]">
-                  AEC
-                </span>
-              </div>
-            </div>
-            <h3 className="mt-4 text-2xl leading-8">
-              Introduction to Circuit Design
-            </h3>
-            <p className="mt-4">
-              Learn the core technologies that power the web. this course covers
-              everything from basic Learn the core technologies that power the
-              web. this course covers everything from basic,
-            </p>
+    <article className="flex flex-col justify-center items-start pt-0 pb-4 w-full bg-gradient-to-r from-orange-300 to-orange-400 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] overflow-hidden">
+      <div className="relative w-full">
+        <div className="relative w-full h-40 overflow-hidden">
+          <img
+            src="/lovable-uploads/ac462153-e730-4ad4-82db-b019514b8834.png"
+            className="object-cover w-full h-full"
+            alt="Course background"
+          />
+          <div className="absolute top-3 right-3 bg-orange-500 rounded-full px-3 py-1 text-xs font-medium text-white">
+            AEC
           </div>
         </div>
-        <div className="flex gap-10 items-center mt-11 w-full max-w-[306px] max-md:mt-10">
-          <div className="flex gap-1.5 items-center self-stretch my-auto">
-            <div className="flex gap-2 items-start self-stretch my-auto w-[22px]">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/ff1e5ea7c6f9adefcb8b1e3055f86b15b07ac7a6?placeholderIfAbsent=true"
-                className="object-contain aspect-square w-[22px]"
-                alt="Modules icon"
-              />
+        
+        <div className="p-6 pt-4 text-white">
+          <h3 className="text-2xl font-medium mb-4">Introduction to Circuit Design</h3>
+          <p className="text-sm mb-6">
+            Learn the core technologies that power the web. this course covers
+            everything from basic Learn the core technologies that power the
+            web. this course covers everything from basic,
+          </p>
+          
+          <div className="flex gap-5 items-center mt-4">
+            <div className="flex items-center gap-1.5">
+              <Layers size={18} className="text-white" />
+              <span className="text-sm">12 Modules</span>
             </div>
-            <span className="self-stretch my-auto text-sm font-medium text-white">
-              12 Modules
-            </span>
-          </div>
-          <div className="flex gap-5 items-center self-stretch my-auto">
-            <div className="flex gap-1.5 items-center self-stretch my-auto">
-              <div className="flex gap-2 items-start self-stretch my-auto w-[22px]">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/2f3c868cb25946159c3e78ec561917843593e5d4?placeholderIfAbsent=true"
-                  className="object-contain aspect-square rounded-[169px] w-[22px]"
-                  alt="Duration icon"
-                />
-              </div>
-              <span className="self-stretch my-auto text-sm font-medium text-white">
-                8 Weeks
-              </span>
+            
+            <div className="flex items-center gap-1.5">
+              <Clock size={18} className="text-white" />
+              <span className="text-sm">8 Weeks</span>
             </div>
-            <div className="flex gap-1.5 items-center self-stretch my-auto text-sm font-medium text-white whitespace-nowrap">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/4cf6064d0d97531f147bbd4fbccbf1371d8b8d77?placeholderIfAbsent=true"
-                className="object-contain shrink-0 self-stretch my-auto aspect-square rounded-[169px] w-[22px]"
-                alt="Students icon"
-              />
-              <span className="self-stretch my-auto">280</span>
+            
+            <div className="flex items-center gap-1.5">
+              <Users size={18} className="text-white" />
+              <span className="text-sm">280</span>
             </div>
           </div>
         </div>

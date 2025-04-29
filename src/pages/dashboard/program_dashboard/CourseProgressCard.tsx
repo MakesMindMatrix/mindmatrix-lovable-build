@@ -3,13 +3,13 @@ import React from "react";
 
 const CourseProgressCard = () => {
   return (
-    <article className="flex flex-col justify-center px-9 pt-6 pb-3 mt-1.5 mb-3 w-full bg-orange-400 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] max-md:px-5">
+    <article className="flex flex-col justify-center px-9 pt-6 pb-3 mt-1.5 mb-3 w-full bg-gradient-to-r from-orange-300 to-orange-400 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
       <div className="flex flex-col w-full max-w-[277px]">
         <div className="flex gap-2.5 items-end self-start font-medium text-white whitespace-nowrap">
           <span className="text-3xl leading-none">47%</span>
           <span className="text-sm">Completed</span>
         </div>
-        <div className="flex overflow-hidden flex-col items-start mt-4 w-full bg-white max-md:pr-5">
+        <div className="flex overflow-hidden flex-col items-start mt-4 w-full bg-white rounded-full h-1 max-md:pr-5">
           <div className="flex shrink-0 h-1 bg-blue-700 w-[117px]" />
         </div>
         <div className="flex gap-10 items-center mt-4 font-medium tracking-tight text-white whitespace-nowrap">
