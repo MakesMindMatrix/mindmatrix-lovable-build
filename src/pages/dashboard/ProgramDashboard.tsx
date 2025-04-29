@@ -31,38 +31,40 @@ function ProgramDashboard() {
             <Header />
           </div>
           
-          {/* Fixed background with blue gradient */}
+          {/* Fixed gradient background that covers entire area */}
           <div className="fixed top-[80px] left-[56px] right-0 bottom-0 bg-gradient-to-b from-blue-200 via-blue-300/70 to-blue-400/50 z-0" />
           
-          {/* Three-column layout inside a scrollable container */}
-          <div className="relative z-10 px-4 pt-4 mt-2 h-[calc(100vh-80px)]">
-            <div className="flex h-full">
-              {/* Left column: Currently Viewing (fixed) */}
-              <div className="w-[346px] h-full pr-5 flex-shrink-0">
-                <div className="h-full overflow-hidden">
-                  <div className="flex items-start mb-6">
-                    <button 
-                      className="flex justify-center items-center p-2 border-2 border-white border-solid rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
-                      onClick={handleBackClick}
-                    >
-                      <ArrowLeft className="h-4 w-4 text-white" />
-                    </button>
+          {/* Three-column layout inside a container with spacing and rounded corners */}
+          <div className="relative z-10 px-4 py-4">
+            <div className="bg-blue-700 rounded-3xl h-[calc(100vh-96px)] mx-auto my-2 p-4 shadow-lg">
+              <div className="flex h-full">
+                {/* Left column: Currently Viewing (fixed) */}
+                <div className="w-[346px] h-full pr-5 flex-shrink-0">
+                  <div className="h-full overflow-hidden">
+                    <div className="flex items-start mb-6">
+                      <button 
+                        className="flex justify-center items-center p-2 border-2 border-white border-solid rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+                        onClick={handleBackClick}
+                      >
+                        <ArrowLeft className="h-4 w-4 text-white" />
+                      </button>
+                    </div>
+                    <CurrentlyViewingSection />
                   </div>
-                  <CurrentlyViewingSection />
                 </div>
-              </div>
-              
-              {/* Middle column: Course navigation and scrollable cards */}
-              <div className="w-[445px] h-full px-5 flex-shrink-0">
-                <div className="h-full flex flex-col">
-                  <CoursesList />
+                
+                {/* Middle column: Course navigation and scrollable cards */}
+                <div className="w-[445px] h-full px-5 flex-shrink-0">
+                  <div className="h-full flex flex-col">
+                    <CoursesList />
+                  </div>
                 </div>
-              </div>
-              
-              {/* Right column: Assistant (fixed) */}
-              <div className="w-[273px] h-full pl-5 flex-shrink-0">
-                <div className="h-full overflow-hidden">
-                  <AssistantSection />
+                
+                {/* Right column: Assistant (fixed) */}
+                <div className="w-[273px] h-full pl-5 flex-shrink-0">
+                  <div className="h-full overflow-hidden">
+                    <AssistantSection />
+                  </div>
                 </div>
               </div>
             </div>
