@@ -36,18 +36,10 @@ const CourseCard: React.FC<CourseCardProps> = ({
     setActiveSession(sessionId === activeSession ? null : sessionId);
   };
   
-  // Navigate to the task page
+  // This will be updated later to navigate to component-specific pages
   const handleTaskClick = (taskTitle: string) => {
-    navigate("/dashboard-tasks", {
-      state: { 
-        taskTitle,
-        courseTitle: course.title,
-        sessionId: activeSession,
-        sessionTitle: activeSession && activeSession > 0 
-          ? course.courseSessions?.find(s => s.id === activeSession)?.title 
-          : activeSession === -1 ? "Quiz" : "Assessment"
-      }
-    });
+    console.log(`Clicked on component: ${taskTitle}`);
+    // Navigation to specific component pages will be implemented later
   };
   
   if (isExpanded) {
