@@ -7,7 +7,7 @@ export interface CourseProgress {
 }
 
 export interface CourseData {
-  tag: string;
+  tag: "AEC" | "Minor Degree" | "Certification";
   title: string;
   description: string;
   coverImage: string;

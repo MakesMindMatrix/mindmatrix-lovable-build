@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { getProgramTagColor } from "../types";
 
 interface CourseHeaderProps {
-  tag: string;
+  tag: "AEC" | "Minor Degree" | "Certification";
   title: string;
   description: string;
   coverImage: string;
