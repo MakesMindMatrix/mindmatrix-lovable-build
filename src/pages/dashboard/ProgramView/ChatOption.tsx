@@ -5,12 +5,18 @@ import { ArrowRight } from "lucide-react";
 interface ChatOptionProps {
   text: string;
   onClick?: () => void;
+  selected?: boolean;
 }
 
-const ChatOption: React.FC<ChatOptionProps> = ({ text, onClick }) => {
+const ChatOption: React.FC<ChatOptionProps> = ({ text, onClick, selected }) => {
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center w-full py-2.5 px-3 bg-white/10 hover:bg-white/15 transition-colors rounded-lg cursor-pointer" onClick={onClick}>
+      <div 
+        className={`flex justify-between items-center w-full py-2.5 px-3 ${
+          selected ? 'bg-white/15' : 'bg-white/10'
+        } hover:bg-white/15 transition-colors rounded-lg cursor-pointer`} 
+        onClick={onClick}
+      >
         <button 
           className="text-white hover:text-white/90 text-left text-base"
         >
