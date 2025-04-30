@@ -40,8 +40,25 @@ const CourseCard: React.FC<CourseCardProps> = ({
   const handleTaskClick = (taskTitle: string) => {
     console.log(`Clicked on component: ${taskTitle}`);
     
-    // For all components - will be implemented later
-    console.log(`Navigation for ${taskTitle} will be implemented later`);
+    // Specific navigation for Live Tutorial
+    if (taskTitle === "Live Tutorial") {
+      navigate("/course-session-live", {
+        state: {
+          courseData: {
+            program: "Energy Management in Electric Vehicles",
+            course: "Introduction to Electric Vehicles",
+            session: activeSession && activeSession > 0 
+              ? `Session ${activeSession}` 
+              : activeSession === -1 ? "Quiz" : "Assessment",
+            title: "Live Class-Web Development Fundamentals",
+            courseTitle: course.title
+          }
+        }
+      });
+    } else {
+      // For other components - will be implemented later
+      console.log(`Navigation for ${taskTitle} will be implemented later`);
+    }
   };
   
   if (isExpanded) {
