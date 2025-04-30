@@ -27,11 +27,11 @@ const ProgramCourseLiveTutorial = () => {
   
   return (
     <Desktop activeTab="programs" simplified>
-      <div className="relative w-full h-[calc(100vh-72px)]">
+      <div className="relative w-full h-[calc(100vh-80px)]">
         <GradientBackground className="absolute inset-0">
-          <div className="p-4 w-full h-full flex flex-col">
+          <div className="p-3 w-full h-full flex flex-col">
             {/* Back button and title */}
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-2">
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -44,12 +44,12 @@ const ProgramCourseLiveTutorial = () => {
             </div>
             
             {/* Main content - 3-column layout with reduced height */}
-            <div className="flex flex-1 gap-4 h-[calc(100%-48px)] pb-4">
+            <div className="flex flex-1 gap-3 h-[calc(100%-40px)] pb-2">
               {/* Left sidebar - Program info & Sessions */}
               <ProgramSidebar />
               
               {/* Middle section - Video and Lab */}
-              <div className="flex-1 flex flex-col gap-4">
+              <div className="flex-1 flex flex-col gap-3">
                 <VideoSection />
                 <LabSection 
                   activeTab={activeTab}
