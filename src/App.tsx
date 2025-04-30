@@ -22,6 +22,7 @@ import Programs from "./pages/dashboard/Programs";
 import Tasks from "./pages/dashboard/Tasks";
 import Login from "./pages/auth/Login";
 import ProgramView from "./pages/dashboard/ProgramView";
+import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/dashboard-programs" element={<Programs />} />
           <Route path="/dashboard-tasks" element={<Tasks />} />
           <Route path="/dashboard-programView" element={<ProgramView />} />
+          <Route path="/program-course-LiveTutorial" element={<ProgramCourseLiveTutorial />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

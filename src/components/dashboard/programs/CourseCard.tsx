@@ -39,8 +39,13 @@ const CourseCard: React.FC<CourseCardProps> = ({
   const handleTaskClick = (taskTitle: string) => {
     console.log(`Clicked on component: ${taskTitle}`);
     
-    // For all components - will be implemented later
-    console.log(`Navigation for ${taskTitle} will be implemented later`);
+    // Navigation for Live Tutorial
+    if (taskTitle === "Live Tutorial") {
+      navigate("/program-course-LiveTutorial");
+    } else {
+      // For all other components - will be implemented later
+      console.log(`Navigation for ${taskTitle} will be implemented later`);
+    }
   };
   
   if (isExpanded) {
