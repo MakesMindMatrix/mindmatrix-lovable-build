@@ -22,11 +22,7 @@ const ChatOption: React.FC<ChatOptionProps> = ({ text, onClick, selected }) => {
         >
           {text}
         </button>
-        <div 
-          className="flex justify-center items-center w-7 h-7 rounded-full bg-white/20 hover:bg-white/30"
-        >
-          <ArrowRight className="w-4 h-4 text-white" />
-        </div>
+        <ArrowRight className="w-4 h-4 text-white" />
       </div>
     </div>
   );
