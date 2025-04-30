@@ -3,15 +3,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown, Eye, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import Desktop from "@/components/dashboard/day1/Desktop";
+import ChatSidebar from "./components/ChatSidebar";
+import ProgramSidebar from "./components/ProgramSidebar";
+import LabSection from "./components/LabSection";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("labs");
   const [codeLanguage, setCodeLanguage] = useState("Python");
-  const [courseExpanded, setCourseExpanded] = useState(false);
   
   const handleBackClick = () => {
     // Navigate to the program view (course card)
@@ -22,73 +26,71 @@ const ProgramCourseLiveTutorial = () => {
     setActiveTab(tab);
   };
   
-  const toggleCourseExpanded = () => {
-    setCourseExpanded(!courseExpanded);
-  };
-  
   return (
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-80px)]">
         <GradientBackground className="absolute inset-0">
           <div className="p-3 w-full h-full flex flex-col">
             {/* Main content area */}
-            <div className="flex flex-1 gap-3 h-full">
-              {/* Left Section - Video and Chat */}
-              <div className="w-[60%] flex flex-col gap-3">
-                {/* Video Section */}
-                <div className="relative rounded-lg overflow-hidden aspect-video w-full bg-black flex items-center justify-center">
-                  {/* Back button */}
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="absolute top-3 left-3 z-10 rounded-full bg-black/40 hover:bg-black/60 text-white"
-                    onClick={handleBackClick}
-                  >
-                    <ArrowLeft className="h-5 w-5" />
-                  </Button>
-                  
-                  {/* Live indicator */}
-                  <div className="absolute top-3 left-14 z-10 bg-red-500/80 px-3 py-1 rounded flex items-center">
-                    <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                    <span className="text-white text-sm">Live Class-Web Development Fundamentals</span>
-                  </div>
-                  
-                  {/* Viewer count */}
-                  <div className="absolute top-3 right-3 z-10 bg-black/50 px-2 py-1 rounded flex items-center">
-                    <Eye className="h-4 w-4 text-white mr-1" />
-                    <span className="text-white text-sm">Attending <span className="bg-white/20 px-2 py-0.5 rounded ml-1">280</span></span>
-                  </div>
-                  
-                  {/* Video */}
-                  <video 
-                    className="w-full h-full object-cover"
-                    poster="/lovable-uploads/8eae9165-5b6f-4641-a457-52257f53f3a1.png"
-                  >
-                    <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4" />
-                  </video>
-                  
-                  {/* Play button overlay */}
-                  <div 
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-                    onClick={() => setIsPlaying(!isPlaying)}
-                  >
-                    <div className="w-14 h-14 bg-white/30 rounded-full flex items-center justify-center">
-                      {isPlaying ? (
-                        <Pause className="h-7 w-7 text-white" />
-                      ) : (
-                        <Play className="h-7 w-7 text-white ml-1" />
-                      )}
+            <div className="flex flex-1 gap-4 h-full">
+              {/* Left Section */}
+              <div className="w-[65%] flex flex-col gap-4">
+                {/* Back button positioned in top left */}
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="absolute top-5 left-5 z-10 rounded-full bg-black/40 hover:bg-black/60 text-white h-10 w-10"
+                  onClick={handleBackClick}
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </Button>
+                
+                {/* Video Section with reduced aspect ratio */}
+                <div className="mt-12 rounded-lg overflow-hidden bg-black w-full">
+                  <AspectRatio ratio={16/9} className="relative">
+                    {/* Live indicator */}
+                    <div className="absolute top-3 left-3 z-10 bg-red-500/80 px-3 py-1 rounded flex items-center">
+                      <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
+                      <span className="text-white text-sm">Live Class-Web Development Fundamentals</span>
                     </div>
-                  </div>
-                  
-                  {/* Time indicator */}
-                  <div className="absolute bottom-3 right-3 z-10 bg-black/50 px-2 py-1 rounded">
-                    <span className="text-white text-sm">52:34</span>
-                  </div>
+                    
+                    {/* Viewer count */}
+                    <div className="absolute top-3 right-3 z-10 bg-black/50 px-2 py-1 rounded flex items-center">
+                      <Eye className="h-4 w-4 text-white mr-1" />
+                      <span className="text-white text-sm">Attending <span className="bg-white/20 px-2 py-0.5 rounded ml-1">280</span></span>
+                    </div>
+                    
+                    {/* Video */}
+                    <video 
+                      className="w-full h-full object-cover"
+                      poster="/lovable-uploads/8eae9165-5b6f-4641-a457-52257f53f3a1.png"
+                    >
+                      <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4" />
+                    </video>
+                    
+                    {/* Play button overlay */}
+                    <div 
+                      className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
+                      onClick={() => setIsPlaying(!isPlaying)}
+                    >
+                      <div className="w-14 h-14 bg-white/30 rounded-full flex items-center justify-center">
+                        {isPlaying ? (
+                          <Pause className="h-7 w-7 text-white" />
+                        ) : (
+                          <Play className="h-7 w-7 text-white ml-1" />
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Time indicator */}
+                    <div className="absolute bottom-3 right-3 z-10 bg-black/50 px-2 py-1 rounded">
+                      <span className="text-white text-sm">52:34</span>
+                    </div>
+                  </AspectRatio>
                 </div>
                 
-                {/* Chat Section */}
-                <div className="flex-1 rounded-lg overflow-hidden bg-[#6388D7]">
+                {/* Chat Section - No background card */}
+                <div className="flex-1 overflow-hidden">
                   {/* Chat messages area */}
                   <div className="p-4 h-[calc(100%-60px)] overflow-y-auto">
                     <div className="mb-4">
@@ -140,48 +142,42 @@ const ProgramCourseLiveTutorial = () => {
                 </div>
               </div>
               
-              {/* Right Section - Course Details and Lab */}
-              <div className="w-[40%] flex flex-col gap-3">
-                {/* Course name card with dropdown */}
-                <div className="rounded-lg bg-[#6388D7] p-3">
-                  <Button 
-                    variant="ghost" 
-                    className="w-full flex justify-between items-center text-white hover:bg-white/10"
-                    onClick={toggleCourseExpanded}
-                  >
-                    <span>Course 1</span>
-                    <ChevronDown className={`h-5 w-5 transition-transform ${courseExpanded ? 'rotate-180' : ''}`} />
-                  </Button>
-                  
-                  {courseExpanded && (
-                    <div className="mt-2 text-white">
+              {/* Right Section */}
+              <div className="w-[35%] flex flex-col gap-4">
+                {/* Course name card with accordion */}
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="course-details" className="border-none">
+                    <AccordionTrigger className="py-3 px-4 bg-[#6388D7] rounded-lg text-white hover:no-underline">
+                      <span className="text-base font-medium">Course 1</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-[#6388D7] mt-1 rounded-lg p-3 text-white">
                       <p className="text-sm">Energy Management in Electric Vehicles</p>
                       <p className="text-xs text-white/70 mt-1">Introduction to Electric Vehicles</p>
-                    </div>
-                  )}
-                </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
                 
                 {/* Lab Navigation Card */}
-                <div className="flex-1 flex flex-col rounded-lg overflow-hidden">
+                <div className="flex-1">
                   {/* Tab navigation */}
-                  <div className="flex bg-[#2D3044]">
+                  <div className="flex bg-[#2D3044] rounded-t-lg">
                     <Button 
                       variant="ghost" 
-                      className={`${activeTab === 'labs' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+                      className={`${activeTab === 'labs' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
                       onClick={() => handleTabChange('labs')}
                     >
                       <span className="text-sm">Labs</span>
                     </Button>
                     <Button 
                       variant="ghost" 
-                      className={`${activeTab === 'resources' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+                      className={`${activeTab === 'resources' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
                       onClick={() => handleTabChange('resources')}
                     >
                       <span className="text-sm">Resources</span>
                     </Button>
                     <Button 
                       variant="ghost" 
-                      className={`${activeTab === 'notifications' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+                      className={`${activeTab === 'notifications' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
                       onClick={() => handleTabChange('notifications')}
                     >
                       <span className="text-sm">Notifications</span>
@@ -189,7 +185,7 @@ const ProgramCourseLiveTutorial = () => {
                   </div>
                   
                   {/* Content area */}
-                  <div className="flex-1 bg-[#1E1E1E] p-3 overflow-hidden flex flex-col">
+                  <div className="flex-1 bg-[#4B6291] p-3 rounded-b-lg overflow-hidden flex flex-col">
                     {activeTab === 'labs' && (
                       <>
                         {/* Lab type selection */}
@@ -213,11 +209,11 @@ const ProgramCourseLiveTutorial = () => {
                             <select
                               value={codeLanguage}
                               onChange={(e) => setCodeLanguage(e.target.value)}
-                              className="bg-[#1E1E1E] text-white border-none pr-8 appearance-none cursor-pointer text-sm"
+                              className="bg-[#4B6291] text-white border-none pr-8 appearance-none cursor-pointer text-sm"
                             >
-                              <option value="Python" className="bg-[#1E1E1E]">Python</option>
-                              <option value="JavaScript" className="bg-[#1E1E1E]">JavaScript</option>
-                              <option value="C++" className="bg-[#1E1E1E]">C++</option>
+                              <option value="Python" className="bg-[#4B6291]">Python</option>
+                              <option value="JavaScript" className="bg-[#4B6291]">JavaScript</option>
+                              <option value="C++" className="bg-[#4B6291]">C++</option>
                             </select>
                             <ArrowLeft className="absolute right-0 top-1/2 transform -translate-y-1/2 rotate-90 h-4 w-4 text-white" />
                           </div>
