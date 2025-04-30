@@ -12,9 +12,9 @@ const ChatOption: React.FC<ChatOptionProps> = ({ text, onClick, selected }) => {
   return (
     <div className="w-full">
       <div 
-        className={`flex justify-between items-center w-full py-2.5 px-3 ${
-          selected ? 'bg-white/15' : 'bg-white/10'
-        } hover:bg-white/15 transition-colors rounded-lg cursor-pointer`} 
+        className={`flex justify-between items-center w-full py-3 px-4 ${
+          selected ? 'bg-white/20' : 'bg-white/10'
+        } hover:bg-white/20 transition-colors rounded-lg cursor-pointer`} 
         onClick={onClick}
       >
         <button 
