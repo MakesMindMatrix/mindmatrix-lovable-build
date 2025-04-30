@@ -14,18 +14,16 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
 }) => {
   return (
     <div
-      className={`flex overflow-hidden flex-col justify-center items-start px-4 py-3 my-1 w-full rounded-xl ${
-        isActive ? "bg-white/20" : ""
-      }`}
+      className={`flex items-center gap-2 px-4 py-3 my-1 w-full rounded-xl ${
+        isActive ? "bg-white/10" : ""
+      } hover:bg-white/20 transition-colors`}
     >
-      <div className="flex gap-2 items-center">
-        <img
-          src={icon}
-          className="object-contain shrink-0 w-4 aspect-square"
-          alt={`${text} icon`}
-        />
-        <span className="text-white">{text}</span>
-      </div>
+      <img
+        src={icon}
+        className="w-4 h-4 object-contain"
+        alt={`${text} icon`}
+      />
+      <span className="text-white">{text}</span>
     </div>
   );
 };

@@ -6,9 +6,9 @@ import ChatInterface from "./ChatInterface";
 
 function Desktop121() {
   return (
-    <div className="flex flex-wrap gap-4 justify-between bg-transparent">
+    <div className="flex h-full w-full gap-4 bg-transparent">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <CourseHeader />
         <ChatInterface />
       </div>
