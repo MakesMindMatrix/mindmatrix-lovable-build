@@ -18,7 +18,8 @@ const ProgramCourseLiveTutorial = () => {
   const [codeLanguage, setCodeLanguage] = useState("Python");
   
   const handleBackClick = () => {
-    navigate(-1);
+    // Navigate to the program view (course card) instead of using navigate(-1)
+    navigate("/dashboard-programView");
   };
   
   const handleTabChange = (tab: string) => {
