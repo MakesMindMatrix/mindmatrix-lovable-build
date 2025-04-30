@@ -35,8 +35,8 @@ const ProgramCourseLiveTutorial = () => {
             </div>
             
             <div className="flex flex-col max-w-4xl mx-auto h-[calc(100%-64px)]">
-              {/* Mentor notification */}
-              <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 mb-8">
+              {/* Mentor notification with glass effect */}
+              <div className="backdrop-blur-md bg-white/10 border border-white/30 rounded-lg p-4 mb-8 shadow-lg">
                 <div className="flex items-center">
                   <img 
                     src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
