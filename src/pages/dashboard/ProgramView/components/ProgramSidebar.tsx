@@ -12,8 +12,8 @@ const ProgramSidebar: React.FC = () => {
   
   return (
     <div className="w-64 flex flex-col gap-3">
-      {/* Top card - Program & Course info */}
-      <div className="bg-[#1A1F2C] rounded-lg p-3">
+      {/* Top card - Program & Course info - Updated with color #6388D7 */}
+      <div className="bg-[#6388D7] rounded-lg p-3">
         <div className="mb-4">
           <p className="text-white/70 text-sm mb-1">Program:</p>
           <p className="text-white font-medium">Energy Management in Electric Vehicles</p>
@@ -24,8 +24,8 @@ const ProgramSidebar: React.FC = () => {
         </div>
       </div>
       
-      {/* Bottom card - Sessions */}
-      <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 overflow-y-auto">
+      {/* Bottom card - Sessions - Updated with color #1E1E1E */}
+      <div className="flex-1 bg-[#1E1E1E] rounded-lg p-3 overflow-y-auto">
         {/* Session 1 */}
         <div className="mb-3">
           <div 

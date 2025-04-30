@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const ChatSidebar: React.FC = () => {
   return (
-    <div className="w-64 bg-[#5e77c2] rounded-lg flex flex-col">
+    <div className="w-64 bg-transparent rounded-lg flex flex-col">
       {/* Chat messages */}
       <div className="flex-1 p-3 overflow-hidden flex flex-col">
         {/* Zuno avatar */}
