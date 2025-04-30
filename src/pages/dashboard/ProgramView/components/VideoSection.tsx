@@ -53,14 +53,14 @@ const VideoSection: React.FC = () => {
             className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
             onClick={togglePlayPause}
           >
-            <div className="w-16 h-16 bg-white/30 rounded-full flex items-center justify-center">
-              <Play className="h-8 w-8 text-white ml-1" />
+            <div className="w-14 h-14 bg-white/30 rounded-full flex items-center justify-center">
+              <Play className="h-7 w-7 text-white ml-1" />
             </div>
           </div>
         )}
         
         {/* Video controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-16 flex items-end px-4 pb-2">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-14 flex items-end px-4 pb-2">
           <button 
             className="text-white mr-4 focus:outline-none"
             onClick={togglePlayPause}

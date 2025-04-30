@@ -17,26 +17,26 @@ const LabSection: React.FC<LabSectionProps> = ({
   setCodeLanguage
 }) => {
   return (
-    <div className="flex-1 flex flex-col rounded-lg overflow-hidden">
+    <div className="flex-1 flex flex-col rounded-lg overflow-hidden max-h-[45%]">
       {/* Tab navigation */}
       <div className="flex bg-[#2D3044] rounded-t-lg">
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'labs' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-2`}
+          className={`${activeTab === 'labs' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
           onClick={() => handleTabChange('labs')}
         >
           <span className="ml-2 text-sm">Labs</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'resources' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-2`}
+          className={`${activeTab === 'resources' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
           onClick={() => handleTabChange('resources')}
         >
           <span className="ml-2 text-sm">Resources</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'notifications' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-2`}
+          className={`${activeTab === 'notifications' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
           onClick={() => handleTabChange('notifications')}
         >
           <span className="ml-2 text-sm">Notifications</span>
@@ -44,31 +44,31 @@ const LabSection: React.FC<LabSectionProps> = ({
       </div>
       
       {/* Content area */}
-      <div className="flex-1 bg-[#3a3e57] p-4 rounded-b-lg">
+      <div className="flex-1 bg-[#3a3e57] p-3 rounded-b-lg overflow-hidden">
         {activeTab === 'labs' && (
           <>
             {/* Lab type selection */}
-            <div className="mb-4">
+            <div className="mb-3">
               <Button 
-                className="mr-2 bg-white/20 hover:bg-white/30 text-white"
+                className="mr-2 bg-white/20 hover:bg-white/30 text-white text-sm py-1 h-auto px-4"
               >
                 Code
               </Button>
               <Button 
                 variant="ghost" 
-                className="text-white/60 hover:text-white"
+                className="text-white/60 hover:text-white text-sm py-1 h-auto px-4"
               >
                 CAD Labs
               </Button>
             </div>
             
             {/* Lab controls */}
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-3">
               <div className="relative">
                 <select
                   value={codeLanguage}
                   onChange={(e) => setCodeLanguage(e.target.value)}
-                  className="bg-transparent text-white border-none pr-8 appearance-none cursor-pointer"
+                  className="bg-transparent text-white border-none pr-8 appearance-none cursor-pointer text-sm"
                 >
                   <option value="Python" className="bg-gray-800">Python</option>
                   <option value="JavaScript" className="bg-gray-800">JavaScript</option>
@@ -78,23 +78,23 @@ const LabSection: React.FC<LabSectionProps> = ({
               </div>
               
               <div className="flex space-x-2">
-                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white">
+                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
                   Save
                 </Button>
-                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white">
+                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
                   Copy
                 </Button>
-                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white">
+                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
                   Reset
                 </Button>
-                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white">
+                <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
                   Run
                 </Button>
               </div>
             </div>
             
             {/* Code editor */}
-            <div className="bg-white rounded-lg p-4 h-48 font-mono text-gray-800 text-sm overflow-y-auto">
+            <div className="bg-white rounded-lg p-3 h-24 font-mono text-gray-800 text-xs overflow-y-auto">
               <p>prompt = ""</p>
               <p>You are a helpful assistant. Please answer</p>
               <p>the following question clearly and</p>
@@ -108,13 +108,13 @@ const LabSection: React.FC<LabSectionProps> = ({
         
         {activeTab === 'resources' && (
           <div className="text-white h-full flex items-center justify-center">
-            <p>Resources content will appear here</p>
+            <p className="text-sm">Resources content will appear here</p>
           </div>
         )}
         
         {activeTab === 'notifications' && (
           <div className="text-white h-full flex items-center justify-center">
-            <p>Notifications content will appear here</p>
+            <p className="text-sm">Notifications content will appear here</p>
           </div>
         )}
       </div>

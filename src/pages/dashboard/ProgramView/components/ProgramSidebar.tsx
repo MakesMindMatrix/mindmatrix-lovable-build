@@ -11,10 +11,10 @@ const ProgramSidebar: React.FC = () => {
   };
   
   return (
-    <div className="w-64 flex flex-col gap-4">
+    <div className="w-64 flex flex-col gap-3">
       {/* Top card - Program & Course info */}
-      <div className="bg-[#1A1F2C] rounded-lg p-4">
-        <div className="mb-6">
+      <div className="bg-[#1A1F2C] rounded-lg p-3">
+        <div className="mb-4">
           <p className="text-white/70 text-sm mb-1">Program:</p>
           <p className="text-white font-medium">Energy Management in Electric Vehicles</p>
         </div>
@@ -25,9 +25,9 @@ const ProgramSidebar: React.FC = () => {
       </div>
       
       {/* Bottom card - Sessions */}
-      <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-4 overflow-y-auto">
+      <div className="flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 overflow-y-auto">
         {/* Session 1 */}
-        <div className="mb-4">
+        <div className="mb-3">
           <div 
             className="flex items-center justify-between cursor-pointer"
             onClick={() => toggleSession(1)}
@@ -48,41 +48,41 @@ const ProgramSidebar: React.FC = () => {
           </div>
           
           {expandedSession === 1 && (
-            <div className="pl-8 mt-2 space-y-2">
+            <div className="pl-8 mt-2 space-y-1.5">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Learning Module</span>
+                <span className="text-white/70 text-xs">Learning Module</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Pre-session Reference</span>
+                <span className="text-white/70 text-xs">Pre-session Reference</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                <span className="text-white font-medium text-sm">Live Tutorial</span>
+                <span className="text-white font-medium text-xs">Live Tutorial</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Post-session Reference</span>
+                <span className="text-white/70 text-xs">Post-session Reference</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Task 1</span>
+                <span className="text-white/70 text-xs">Task 1</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Task 2</span>
+                <span className="text-white/70 text-xs">Task 2</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                <span className="text-white/70 text-sm">Task 3</span>
+                <span className="text-white/70 text-xs">Task 3</span>
               </div>
             </div>
           )}
         </div>
         
         {/* Session 2 */}
-        <div className="mb-4">
+        <div className="mb-3">
           <div 
             className="flex items-center justify-between cursor-pointer"
             onClick={() => toggleSession(2)}
@@ -103,7 +103,7 @@ const ProgramSidebar: React.FC = () => {
           </div>
           
           {expandedSession === 2 && (
-            <div className="pl-8 mt-2 space-y-2">
+            <div className="pl-8 mt-2 space-y-1.5">
               {/* Session 2 content would go here */}
             </div>
           )}
@@ -131,7 +131,7 @@ const ProgramSidebar: React.FC = () => {
           </div>
           
           {expandedSession === 3 && (
-            <div className="pl-8 mt-2 space-y-2">
+            <div className="pl-8 mt-2 space-y-1.5">
               {/* Session 3 content would go here */}
             </div>
           )}

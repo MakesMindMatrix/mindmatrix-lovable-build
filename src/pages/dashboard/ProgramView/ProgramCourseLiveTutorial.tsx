@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import Desktop from "@/components/dashboard/day1/Desktop";
 
-// Import new components
+// Import components
 import ProgramSidebar from "./components/ProgramSidebar";
 import VideoSection from "./components/VideoSection";
 import LabSection from "./components/LabSection";
@@ -29,9 +29,9 @@ const ProgramCourseLiveTutorial = () => {
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-72px)]">
         <GradientBackground className="absolute inset-0">
-          <div className="p-6 w-full h-full flex flex-col">
+          <div className="p-4 w-full h-full flex flex-col">
             {/* Back button and title */}
-            <div className="flex items-center mb-6">
+            <div className="flex items-center mb-4">
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -43,8 +43,8 @@ const ProgramCourseLiveTutorial = () => {
               <h1 className="text-xl text-white font-medium">Live Tutorial</h1>
             </div>
             
-            {/* Main content - 3-column layout */}
-            <div className="flex flex-1 gap-4 h-full">
+            {/* Main content - 3-column layout with reduced height */}
+            <div className="flex flex-1 gap-4 h-[calc(100%-48px)] pb-4">
               {/* Left sidebar - Program info & Sessions */}
               <ProgramSidebar />
               
