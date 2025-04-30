@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,22 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
-  const scrollRef = useRef<HTMLDivElement>(null);
   
   const handleBackClick = () => {
     navigate(-1); // Go back to previous page
   };
   
-  // Scroll to bottom when component mounts
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
-  
   return (
     <Desktop activeTab="programs" simplified>
-      <div className="relative w-full h-[calc(100vh-72px)] overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-72px)]">
         <GradientBackground className="absolute inset-0">
           <div className="p-6 w-full h-full flex flex-col">
             {/* Back button and title - fixed at top */}
@@ -44,9 +36,9 @@ const ProgramCourseLiveTutorial = () => {
               <h1 className="text-xl text-white font-medium">Live Tutorial</h1>
             </div>
             
-            <div className="flex flex-col mx-auto w-full max-w-md h-[calc(100%-130px)] relative">
+            <div className="flex flex-col max-w-3xl mx-auto w-full h-[calc(100%-130px)] relative">
               {/* Mentor notification with glass effect - fixed at top */}
-              <div className="backdrop-blur-md bg-white/10 border border-white/30 rounded-lg p-4 mb-6 shadow-lg w-full">
+              <div className="backdrop-blur-md bg-white/10 border border-white/30 rounded-lg p-4 mb-8 shadow-lg max-w-2xl mx-auto">
                 <div className="flex items-center">
                   <img 
                     src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
@@ -60,42 +52,40 @@ const ProgramCourseLiveTutorial = () => {
                 </div>
               </div>
               
-              {/* Scrollable conversation area - this is the key part */}
-              <div className="flex-1 overflow-hidden relative mb-16">
-                <ScrollArea className="h-full pr-2">
-                  <div className="flex flex-col items-center pb-4">
-                    <div className="w-16 h-16 rounded-full bg-white/30 flex items-center justify-center mb-6">
-                      <Avatar className="w-14 h-14">
-                        <AvatarImage src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" />
-                        <AvatarFallback>AI</AvatarFallback>
-                      </Avatar>
-                    </div>
-                    <p className="text-white text-center text-xl mb-12 w-full">
-                      Hey there! 👋 Your mentor will be here shortly. In the meantime, let's do a quick recap on yesterday's topic: Prompt Engineering.
-                    </p>
-                  
-                    {/* Selection options */}
-                    <div className="mt-4 w-full">
-                      <p className="text-white/80 flex items-center mb-4">
-                        <span className="mr-2">🔄</span>
-                        Select to continue conversation
-                      </p>
-                      
-                      <div className="space-y-4">
-                        <ChatOption text="Yes, let's go!" />
-                        <ChatOption text="Can we do a quick quiz instead?" />
-                        <ChatOption text="Wait, what's Prompt Engineering again?" />
-                      </div>
-                    </div>
-                    
-                    {/* Extra space at bottom to ensure content is scrollable */}
-                    <div ref={scrollRef} className="h-10"></div>
+              {/* Scrollable conversation area */}
+              <ScrollArea className="flex-1 overflow-y-auto mb-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-white/30 flex items-center justify-center mb-6">
+                    <Avatar className="w-14 h-14">
+                      <AvatarImage src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" />
+                      <AvatarFallback>AI</AvatarFallback>
+                    </Avatar>
                   </div>
-                </ScrollArea>
-              </div>
+                  <p className="text-white text-center text-xl max-w-2xl mb-12">
+                    Hey there! 👋 Your mentor will be here shortly. In the meantime, let's do a quick recap on yesterday's topic: Prompt Engineering.
+                  </p>
+                
+                  {/* Selection options */}
+                  <div className="mt-4 max-w-xl mx-auto w-full">
+                    <p className="text-white/80 flex items-center mb-4">
+                      <span className="mr-2">🔄</span>
+                      Select to continue conversation
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <ChatOption text="Yes, let's go!" />
+                      <ChatOption text="Can we do a quick quiz instead?" />
+                      <ChatOption text="Wait, what's Prompt Engineering again?" />
+                    </div>
+                  </div>
+                  
+                  {/* Add extra space at the bottom for better scrolling experience */}
+                  <div className="h-20"></div>
+                </div>
+              </ScrollArea>
               
               {/* Type something input - fixed at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 w-full">
+              <div className="absolute bottom-0 left-0 right-0 max-w-xl mx-auto w-full">
                 <div className="relative bg-white/20 backdrop-blur-sm rounded-lg">
                   <input 
                     type="text" 
