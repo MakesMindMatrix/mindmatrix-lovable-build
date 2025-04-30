@@ -7,10 +7,10 @@ import ChatInterface from "./ChatInterface";
 
 function Desktop121() {
   return (
-    <main className="overflow-hidden px-4 pt-5 bg-white">
-      <div className="flex flex-wrap gap-0.5 justify-between items-center">
+    <main className="overflow-hidden bg-white">
+      <div className="flex justify-between items-start">
         <Sidebar />
-        <section className="self-stretch my-auto min-w-60 w-[1204px] max-md:max-w-full">
+        <section className="flex-1 min-w-60 max-w-[1204px]">
           <CourseHeader />
           <ChatInterface />
         </section>
