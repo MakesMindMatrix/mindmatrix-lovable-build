@@ -45,25 +45,6 @@ const ChatInterface = () => {
         subtext="Expected to start in 15 minutes... ⏳"
         isNotification={true}
       />
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-2/3 max-w-[766px]">
-        <div className="flex flex-col px-5 pt-4 pb-3 w-full rounded-xl bg-white/20 backdrop-blur-sm border border-white/20">
-          <div className="flex items-center">
-            <input
-              type="text"
-              placeholder="Type something..."
-              className="flex-1 bg-transparent border-none outline-none text-white placeholder-white/60"
-            />
-            <button className="flex justify-center items-center ml-3 w-9 h-9 bg-white/20 rounded-full hover:bg-white/30">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/a3076426fe4c99d006fea89160a084f1f30ca051?placeholderIfAbsent=true"
-                className="w-5 h-5"
-                alt="Send message"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
