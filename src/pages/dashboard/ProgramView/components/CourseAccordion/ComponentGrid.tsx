@@ -28,7 +28,7 @@ const ComponentGrid: React.FC<ComponentGridProps> = ({
             )}
             onClick={() => handleComponentClick(session.id, component.id)}
           >
-            <Icon className="h-3.5 w-3.5" />
+            {Icon && <Icon className="h-3.5 w-3.5" />}
             <span className="text-xs font-medium truncate">
               {component.title}
             </span>

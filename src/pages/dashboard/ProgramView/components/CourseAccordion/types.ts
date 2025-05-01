@@ -23,3 +23,14 @@ export interface SessionItemProps {
   handleComponentClick: (sessionId: number, componentId: string) => void;
   currentComponent?: string;  // Added this property
 }
+
+// Add the CourseSession interface that was missing
+export interface CourseSession {
+  id: number;
+  title: string;
+  components: {
+    id: string;
+    title: string;
+    icon?: React.ElementType; // For component icons
+  }[];
+}
