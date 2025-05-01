@@ -31,13 +31,13 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
 
   return (
     <motion.div 
-      className="w-full space-y-5"
+      className="w-full space-y-3" // Reduced spacing from space-y-5 to space-y-3
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.div 
-        className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md bg-lime-600 cursor-pointer"
+        className="flex overflow-hidden gap-8 items-start px-4 py-2 w-full rounded-md bg-lime-600 cursor-pointer"
         onClick={onOptionSelect}
         variants={itemVariants}
         whileHover={{ scale: 1.02 }}
@@ -54,7 +54,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
       {["B", "C", "D"].map(option => (
         <motion.div
           key={option}
-          className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer bg-white/10"
+          className="flex overflow-hidden gap-8 items-start px-4 py-2 w-full rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer bg-white/10"
           onClick={onOptionSelect}
           variants={itemVariants}
           whileHover={{ scale: 1.02 }}
@@ -71,7 +71,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
         </motion.div>
       ))}
       
-      <div className="flex flex-wrap gap-1 items-center mt-6 text-base font-semibold tracking-tight leading-none text-center">
+      <div className="flex flex-wrap gap-1 items-center mt-4 text-base font-semibold tracking-tight leading-none text-center"> {/* Reduced margin from mt-6 to mt-4 */}
         <div className="self-stretch my-auto text-white">
           Question {currentQuestion}
         </div>

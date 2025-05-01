@@ -28,7 +28,7 @@ export const ChatStep: React.FC<ChatStepProps> = ({
         />
         
         <motion.h2 
-          className="self-stretch mt-7 text-3xl tracking-tight leading-10 text-center text-white max-md:text-xl"
+          className="self-stretch mt-5 text-3xl tracking-tight leading-10 text-center text-white max-md:text-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.2 }}
@@ -38,7 +38,7 @@ export const ChatStep: React.FC<ChatStepProps> = ({
         
         {children && (
           <motion.div 
-            className="mt-7 w-full"
+            className="mt-5"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.4 }}

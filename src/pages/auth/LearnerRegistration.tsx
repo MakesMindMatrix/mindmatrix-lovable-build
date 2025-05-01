@@ -84,7 +84,7 @@ const LearnerRegistration = () => {
                                (containerHeight / 2) + (contentHeight / 2);
           
           containerRef.current.scrollTo({
-            top: Math.max(0, scrollPosition - 100), // Adjust for better visual centering
+            top: Math.max(0, scrollPosition - 150), // Increased adjustment to move content up
             behavior: 'smooth'
           });
         }
@@ -109,9 +109,9 @@ const LearnerRegistration = () => {
         {/* Chat Container */}
         <div 
           ref={containerRef}
-          className="flex-grow flex flex-col items-center justify-center overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
+          className="flex-grow flex flex-col items-center justify-start pt-8 overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
         >
-          <div className="w-full flex flex-col items-center">
+          <div className="w-full flex flex-col items-center mt-[-40px]"> {/* Move content up with negative margin */}
             <AnimatePresence mode="wait">
               {/* Completed Steps */}
               {completedSteps.map((step, index) => (
