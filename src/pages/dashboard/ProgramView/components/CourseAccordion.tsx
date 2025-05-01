@@ -48,30 +48,30 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       "border-none shadow-lg overflow-hidden", 
       useGlassLayout ? "bg-white/10 backdrop-blur-md border border-white/20" : "bg-[#2E3A54]"
     )}>
-      <CollapsibleTrigger
-        asChild
-        onClick={toggleCourseCard}
-        className="w-full cursor-pointer"
-      >
-        <div className={cn(
-          "flex items-center justify-between p-4 transition-all",
-          useGlassLayout ? "bg-white/5 backdrop-blur-md border-b border-white/10" : "bg-[#1E293B]"
-        )}>
-          <div>
-            <p className="text-white/60 text-sm">Current Course</p>
-            <h3 className="text-white font-medium">Introduction to Electric Vehicles</h3>
-          </div>
-          <div className="flex items-center">
-            {isCourseExpanded ? (
-              <ChevronUp className="h-5 w-5 text-white/60" />
-            ) : (
-              <ChevronDown className="h-5 w-5 text-white/60" />
-            )}
-          </div>
-        </div>
-      </CollapsibleTrigger>
-
       <Collapsible open={isCourseExpanded}>
+        <CollapsibleTrigger
+          asChild
+          onClick={toggleCourseCard}
+          className="w-full cursor-pointer"
+        >
+          <div className={cn(
+            "flex items-center justify-between p-4 transition-all",
+            useGlassLayout ? "bg-white/5 backdrop-blur-md border-b border-white/10" : "bg-[#1E293B]"
+          )}>
+            <div>
+              <p className="text-white/60 text-sm">Current Course</p>
+              <h3 className="text-white font-medium">Introduction to Electric Vehicles</h3>
+            </div>
+            <div className="flex items-center">
+              {isCourseExpanded ? (
+                <ChevronUp className="h-5 w-5 text-white/60" />
+              ) : (
+                <ChevronDown className="h-5 w-5 text-white/60" />
+              )}
+            </div>
+          </div>
+        </CollapsibleTrigger>
+
         <CollapsibleContent>
           <CardContent className="p-4 space-y-3">
             {sessions.map((session) => (
