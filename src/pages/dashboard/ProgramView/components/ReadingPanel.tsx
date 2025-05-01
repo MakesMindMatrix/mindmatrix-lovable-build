@@ -114,10 +114,10 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
                   
                   <pre className="bg-gray-100 p-2 rounded-md my-3 overflow-x-auto">
                     <code>
-                      // Variable declaration{'\n'}
-                      let name = "John"; // String{'\n'}
-                      const age = 25;    // Number{'\n'}
-                      var isActive = true; // Boolean{'\n'}
+                      {`// Variable declaration
+let name = "John"; // String
+const age = 25;    // Number
+var isActive = true; // Boolean`}
                     </code>
                   </pre>
                   
@@ -134,16 +134,17 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
                   
                   <pre className="bg-gray-100 p-2 rounded-md my-3 overflow-x-auto">
                     <code>
-                      // If-else statement{'\n'}
-                      if (age >= 18) {'{'}
-                      {'\n'}  console.log("You are an adult");{'\n'}
-                      {'}'} else {'{'}
-                      {'\n'}  console.log("You are a minor");{'\n'}
-                      {'}'}{'\n\n'}
-                      // For loop{'\n'}
-                      for (let i = 0; i < 5; i++) {'{'}
-                      {'\n'}  console.log(i);{'\n'}
-                      {'}'}{'\n'}
+                      {`// If-else statement
+if (age >= 18) {
+  console.log("You are an adult");
+} else {
+  console.log("You are a minor");
+}
+
+// For loop
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}`}
                     </code>
                   </pre>
                   
@@ -154,12 +155,13 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
                   
                   <pre className="bg-gray-100 p-2 rounded-md my-3 overflow-x-auto">
                     <code>
-                      // Function declaration{'\n'}
-                      function greet(name) {'{'}
-                      {'\n'}  return `Hello, ${'{'}name{'}'}!`;{'\n'}
-                      {'}'}{'\n\n'}
-                      // Arrow function (ES6){'\n'}
-                      const multiply = (a, b) => a * b;{'\n'}
+                      {`// Function declaration
+function greet(name) {
+  return \`Hello, \${name}!\`;
+}
+
+// Arrow function (ES6)
+const multiply = (a, b) => a * b;`}
                     </code>
                   </pre>
                   
@@ -170,16 +172,17 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
                   
                   <pre className="bg-gray-100 p-2 rounded-md my-3 overflow-x-auto">
                     <code>
-                      // Object literal{'\n'}
-                      const person = {'{'}{'\n'}
-                      {'  '}name: "John",{'\n'}
-                      {'  '}age: 25,{'\n'}
-                      {'  '}greet() {'{'}{'\n'}
-                      {'    '}return `Hi, I'm ${'{'}this.name{'}'}`;{'\n'}
-                      {'  '}{'}'}
-                      {'\n'}{'}'};{'\n\n'}
-                      // Array{'\n'}
-                      const fruits = ["Apple", "Banana", "Orange"];{'\n'}
+                      {`// Object literal
+const person = {
+  name: "John",
+  age: 25,
+  greet() {
+    return \`Hi, I'm \${this.name}\`;
+  }
+};
+
+// Array
+const fruits = ["Apple", "Banana", "Orange"];`}
                     </code>
                   </pre>
                 </div>
