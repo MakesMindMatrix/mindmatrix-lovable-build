@@ -41,6 +41,9 @@ const ProgramCourseLiveTutorial = () => {
     if (componentId === "materials") {
       // Open the Resources tab when Post Session Materials is clicked
       setActiveTab("resources");
+    } else if (componentId === "tutorial" && sessionId === 1) {
+      // Already on the tutorial page, could add additional actions if needed
+      console.log("Already on tutorial page");
     }
     // Add other component handlers as needed
   };
@@ -80,15 +83,17 @@ const ProgramCourseLiveTutorial = () => {
               
               {/* Right Section - expanded from 45% to 55% */}
               <div className="w-[55%] flex flex-col gap-4 relative">
-                {/* Course name card with collapsible - Fixed position for overlay */}
-                <CourseAccordion 
-                  isCourseExpanded={isCourseExpanded}
-                  toggleCourseCard={toggleCourseCard}
-                  currentSession={currentSession}
-                  toggleSession={toggleSession}
-                  useGlassLayout={true}
-                  onComponentClick={handleComponentClick}
-                />
+                {/* Course Accordion - Fixed position for overlay */}
+                <div className="absolute top-0 right-0 z-20">
+                  <CourseAccordion 
+                    isCourseExpanded={isCourseExpanded}
+                    toggleCourseCard={toggleCourseCard}
+                    currentSession={currentSession}
+                    toggleSession={toggleSession}
+                    useGlassLayout={true}
+                    onComponentClick={handleComponentClick}
+                  />
+                </div>
                 
                 {/* Lab Navigation Card */}
                 <div className="mt-2 w-full">
