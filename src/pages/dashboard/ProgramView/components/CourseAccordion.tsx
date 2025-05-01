@@ -1,151 +1,120 @@
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import React from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { cn } from "@/lib/utils";
 
 interface CourseAccordionProps {
   isCourseExpanded: boolean;
   toggleCourseCard: () => void;
   currentSession: number;
   toggleSession: (sessionId: number) => void;
+  useGlassLayout?: boolean;
 }
 
 const CourseAccordion: React.FC<CourseAccordionProps> = ({
   isCourseExpanded,
   toggleCourseCard,
   currentSession,
-  toggleSession
+  toggleSession,
+  useGlassLayout = false,
 }) => {
+  // Course sessions data
+  const sessions = [
+    {
+      id: 1,
+      title: "Introduction to Electric Vehicles",
+      topics: ["Basic Concepts", "History", "Current Market"],
+    },
+    {
+      id: 2,
+      title: "EV Battery Technology",
+      topics: ["Battery Types", "Charging Systems", "Battery Management"],
+    },
+    {
+      id: 3,
+      title: "EV Motors and Drivetrains",
+      topics: ["Motor Types", "Power Delivery", "Efficiency"],
+    },
+  ];
+
   return (
-    <div className="relative z-20">
-      <Collapsible 
-        open={isCourseExpanded} 
-        onOpenChange={toggleCourseCard}
-        className="w-full"
+    <Card className={cn(
+      "border-none shadow-lg overflow-hidden", 
+      useGlassLayout ? "bg-white/10 backdrop-blur-md border border-white/20" : "bg-[#2E3A54]"
+    )}>
+      <CollapsibleTrigger
+        asChild
+        onClick={toggleCourseCard}
+        className="w-full cursor-pointer"
       >
-        <CollapsibleTrigger asChild>
-          <Button 
-            className="w-full py-3 px-4 bg-[#6388D7] rounded-lg text-white hover:bg-[#5679c8] justify-between h-auto" 
-          >
-            <span className="text-base font-medium">Course 1</span>
-            <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isCourseExpanded ? "transform rotate-180" : ""}`} />
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="bg-[#6388D7] mt-1 rounded-lg p-4 absolute w-full shadow-lg z-10">
-          <div className="text-white mb-4">
-            <p className="text-sm font-semibold mb-1">Energy Management in Electric Vehicles</p>
-            <p className="text-xs text-white/70">Introduction to Electric Vehicles</p>
+        <div className={cn(
+          "flex items-center justify-between p-4 transition-all",
+          useGlassLayout ? "bg-white/5 backdrop-blur-md border-b border-white/10" : "bg-[#1E293B]"
+        )}>
+          <div>
+            <p className="text-white/60 text-sm">Current Course</p>
+            <h3 className="text-white font-medium">Introduction to Electric Vehicles</h3>
           </div>
-          
-          {/* Sessions List */}
-          <div className="space-y-3">
-            {/* Session 1 */}
-            <div className="bg-[#5679c8] rounded-lg p-2">
-              <div 
-                className="flex items-center justify-between cursor-pointer"
-                onClick={() => toggleSession(1)}
-              >
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                    <span className="text-xs text-white">1</span>
-                  </div>
-                  <span className="text-white text-sm">Session 1</span>
-                </div>
-                <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 1 ? "transform rotate-180" : ""}`} />
-              </div>
-              
-              {currentSession === 1 && (
-                <div className="pl-8 mt-2 space-y-1.5">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Learning Module</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Pre-session Reference</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                    <span className="text-white font-medium text-xs">Live Tutorial</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Post-session Reference</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Task 1</span>
-                  </div>
-                </div>
-              )}
-            </div>
-            
-            {/* Session 2 */}
-            <div className="bg-[#5679c8] rounded-lg p-2">
-              <div 
-                className="flex items-center justify-between cursor-pointer"
-                onClick={() => toggleSession(2)}
-              >
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                    <span className="text-xs text-white">2</span>
-                  </div>
-                  <span className="text-white text-sm">Session 2</span>
-                </div>
-                <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 2 ? "transform rotate-180" : ""}`} />
-              </div>
-              
-              {currentSession === 2 && (
-                <div className="pl-8 mt-2 space-y-1.5">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Learning Module</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Live Tutorial</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Task 1</span>
-                  </div>
-                </div>
-              )}
-            </div>
-            
-            {/* Session 3 */}
-            <div className="bg-[#5679c8] rounded-lg p-2">
-              <div 
-                className="flex items-center justify-between cursor-pointer"
-                onClick={() => toggleSession(3)}
-              >
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                    <span className="text-xs text-white">3</span>
-                  </div>
-                  <span className="text-white text-sm">Session 3</span>
-                </div>
-                <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 3 ? "transform rotate-180" : ""}`} />
-              </div>
-              
-              {currentSession === 3 && (
-                <div className="pl-8 mt-2 space-y-1.5">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Learning Module</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                    <span className="text-white/70 text-xs">Pre-session Reference</span>
-                  </div>
-                </div>
-              )}
-            </div>
+          <div className="flex items-center">
+            {isCourseExpanded ? (
+              <ChevronUp className="h-5 w-5 text-white/60" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-white/60" />
+            )}
           </div>
+        </div>
+      </CollapsibleTrigger>
+
+      <Collapsible open={isCourseExpanded}>
+        <CollapsibleContent>
+          <CardContent className="p-4 space-y-3">
+            {sessions.map((session) => (
+              <div key={session.id} className="space-y-2">
+                <button
+                  className={cn(
+                    "w-full text-left p-3 rounded-lg transition-all",
+                    currentSession === session.id 
+                      ? useGlassLayout 
+                        ? "bg-green-500/30 backdrop-blur-md border border-green-500/30 text-white" 
+                        : "bg-[#4B6291] text-white" 
+                      : useGlassLayout 
+                        ? "bg-white/5 backdrop-blur-sm border border-white/10 text-white/80 hover:bg-white/10"
+                        : "bg-[#3A4661] text-white/80 hover:bg-[#455271]"
+                  )}
+                  onClick={() => toggleSession(session.id)}
+                >
+                  <p className="font-medium">Session {session.id}: {session.title}</p>
+                </button>
+                
+                {currentSession === session.id && (
+                  <div className="pl-4 space-y-1">
+                    {session.topics.map((topic, index) => (
+                      <p 
+                        key={index} 
+                        className={cn(
+                          "text-sm py-1.5 px-3 rounded",
+                          useGlassLayout 
+                            ? "text-white/90 bg-white/5 backdrop-blur-sm" 
+                            : "text-white/90 bg-[#2E3A54]"
+                        )}
+                      >
+                        • {topic}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </CardContent>
         </CollapsibleContent>
       </Collapsible>
-    </div>
+    </Card>
   );
 };
 

@@ -70,12 +70,13 @@ const ProgramCourseLiveTutorial = () => {
               
               {/* Right Section - expanded from 45% to 55% */}
               <div className="w-[55%] flex flex-col gap-4">
-                {/* Course name card with collapsible */}
+                {/* Course name card with collapsible - Using glass layout */}
                 <CourseAccordion 
                   isCourseExpanded={isCourseExpanded}
                   toggleCourseCard={toggleCourseCard}
                   currentSession={currentSession}
                   toggleSession={toggleSession}
+                  useGlassLayout={true}
                 />
                 
                 {/* Lab Navigation Card */}
