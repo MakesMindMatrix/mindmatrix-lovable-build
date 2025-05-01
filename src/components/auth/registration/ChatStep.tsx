@@ -7,13 +7,15 @@ interface ChatStepProps {
   avatarSrc: string;
   children?: React.ReactNode;
   isCompleted?: boolean;
+  showTitle?: boolean;
 }
 
 export const ChatStep: React.FC<ChatStepProps> = ({
   title,
   avatarSrc,
   children,
-  isCompleted = false
+  isCompleted = false,
+  showTitle = true
 }) => {
   return (
     <motion.div 
@@ -23,24 +25,28 @@ export const ChatStep: React.FC<ChatStepProps> = ({
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 0.4 }}
     >
-      <div className="flex flex-col items-center">
-        <motion.img
-          src={avatarSrc}
-          className="object-contain w-20 h-20 rounded-full mb-6"
-          alt="Chat avatar"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-        />
-        
-        <motion.h2 
-          className="text-3xl font-medium tracking-tight text-center text-white mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
-          {title}
-        </motion.h2>
+      <div className="flex flex-col items-center w-full">
+        {showTitle && (
+          <>
+            <motion.img
+              src={avatarSrc}
+              className="object-contain w-20 h-20 rounded-full mb-6"
+              alt="Chat avatar"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            
+            <motion.h2 
+              className="text-3xl font-medium tracking-tight text-center text-white mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
+              {title}
+            </motion.h2>
+          </>
+        )}
         
         {children && (
           <motion.div 
