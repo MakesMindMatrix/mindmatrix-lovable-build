@@ -16,7 +16,13 @@ export const ChatStep: React.FC<ChatStepProps> = ({
   isCompleted = false
 }) => {
   return (
-    <div className={`w-full max-w-3xl mx-auto transition-opacity duration-300 ${isCompleted ? "opacity-70" : "opacity-100"}`}>
+    <motion.div 
+      className="w-full max-w-3xl mx-auto"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -100 }}
+      transition={{ duration: 0.4 }}
+    >
       <div className="flex flex-col items-center">
         <motion.img
           src={avatarSrc}
@@ -47,6 +53,6 @@ export const ChatStep: React.FC<ChatStepProps> = ({
           </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
