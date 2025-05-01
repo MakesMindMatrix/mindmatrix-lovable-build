@@ -45,7 +45,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
     <Collapsible 
       open={isCourseExpanded}
       className={cn(
-        "fixed right-0 mr-4 z-20 w-80",
+        "fixed right-0 mr-4 z-20 w-72", // Reduced width from w-80 to w-72
         "overflow-hidden rounded-lg",
         useGlassLayout ? "shadow-lg" : "shadow-lg",
       )}
@@ -64,8 +64,8 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         </div>
       </CollapsibleTrigger>
 
-      <CollapsibleContent className="max-h-[80vh] overflow-y-auto rounded-b-lg">
-        <div className="space-y-3 py-3">
+      <CollapsibleContent className="max-h-[70vh] overflow-y-auto rounded-b-lg">  {/* Reduced max height from 80vh to 70vh */}
+        <div className="space-y-2 py-2">  {/* Reduced space-y and py from 3 to 2 */}
           {sessions.map((session) => (
             <SessionItem 
               key={session.id}
