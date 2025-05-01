@@ -25,7 +25,7 @@ const LearnerRegistration = () => {
 
   // Handle next step
   const handleNextStep = () => {
-    if (currentStepIndex < steps.length - 1) {
+    if (currentStepIndex < 8) { // 8 is the last step index (total of 9 steps)
       // Move to next step with animation
       setCurrentStepIndex(prevIndex => prevIndex + 1);
       
