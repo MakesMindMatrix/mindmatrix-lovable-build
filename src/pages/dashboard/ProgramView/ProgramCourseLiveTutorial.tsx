@@ -16,7 +16,7 @@ const ProgramCourseLiveTutorial = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("labs");
   const [codeLanguage, setCodeLanguage] = useState("Python");
-  const [isCourseExpanded, setIsCourseExpanded] = useState(false);
+  const [isCourseExpanded, setIsCourseExpanded] = useState(true); // Set to true by default
   const [currentSession, setCurrentSession] = useState(1);
   
   const handleBackClick = () => {
@@ -40,9 +40,9 @@ const ProgramCourseLiveTutorial = () => {
     // Handle component clicks with improved navigation
     const componentMap: Record<string, string> = {
       "learning": "Learning Module",
-      "preread": "Pre-read Document", 
-      "tutorial": "Tutorial",
-      "tasks": "Session Tasks",
+      "preread": "Pre-session Reference", 
+      "tutorial": "Live Tutorial",
+      "tasks": "Task",
       "assessment": "Assessment"
     };
     

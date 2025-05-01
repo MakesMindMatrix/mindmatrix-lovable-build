@@ -10,7 +10,6 @@ import {
 import { CourseAccordionProps } from "./types";
 import { sessions } from "./mockData";
 import CourseHeader from "./CourseHeader";
-import SessionTabs from "./SessionTabs";
 import SessionItem from "./SessionItem";
 
 const CourseAccordion: React.FC<CourseAccordionProps> = ({
@@ -46,9 +45,9 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
     <Collapsible 
       open={isCourseExpanded}
       className={cn(
-        "fixed right-0 mr-4 z-20 w-80", // Fixed width aligned to right
-        "border-none shadow-lg overflow-hidden rounded-xl", // Added rounded corners
-        useGlassLayout ? "bg-blue-500/10 backdrop-blur-md" : "bg-[#2E3A54]" // More glassy background
+        "fixed right-0 mr-4 z-20 w-80",
+        "overflow-hidden rounded-lg",
+        useGlassLayout ? "shadow-lg" : "shadow-lg",
       )}
     >
       <CollapsibleTrigger
@@ -56,22 +55,17 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         onClick={toggleCourseCard}
         className="w-full cursor-pointer"
       >
-        <CourseHeader 
-          isCourseExpanded={isCourseExpanded}
-          toggleCourseCard={toggleCourseCard}
-          useGlassLayout={useGlassLayout}
-        />
+        <div>
+          <CourseHeader 
+            isCourseExpanded={isCourseExpanded}
+            toggleCourseCard={toggleCourseCard}
+            useGlassLayout={useGlassLayout}
+          />
+        </div>
       </CollapsibleTrigger>
 
-      <CollapsibleContent>
-        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/40 backdrop-blur-lg rounded-b-xl">
-          {/* Navigation tabs at the top */}
-          <SessionTabs 
-            sessions={sessions} 
-            expandedSessions={expandedSessions}
-            toggleExpandSession={toggleExpandSession}
-          />
-
+      <CollapsibleContent className="max-h-[80vh] overflow-y-auto rounded-b-lg">
+        <div className="space-y-3 py-3">
           {sessions.map((session) => (
             <SessionItem 
               key={session.id}
