@@ -61,7 +61,7 @@ const ChatSidebar: React.FC = () => {
         </div>
         
         {/* Typing indicator */}
-        <div className="text-white/60 text-xs">
+        <div className="text-black text-xs">
           Zuno is typing...
         </div>
       </div>

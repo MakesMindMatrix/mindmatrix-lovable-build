@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -14,7 +15,7 @@ const ProgramCourseLiveTutorial = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("labs");
   const [codeLanguage, setCodeLanguage] = useState("Python");
-  const [isCourseExpanded, setIsCourseExpanded] = useState(true); // Set to true by default
+  const [isCourseExpanded, setIsCourseExpanded] = useState(false); // Set to false by default
   const [currentSession, setCurrentSession] = useState(1);
   
   const handleBackClick = () => {
@@ -109,7 +110,7 @@ const ProgramCourseLiveTutorial = () => {
               </div>
               
               {/* Lab Navigation Card - Added top margin to create space */}
-              <div className="mt-16 w-full">
+              <div className="mt-16 w-full h-[calc(100%-16px)]">
                 <CodeLabPanel 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}

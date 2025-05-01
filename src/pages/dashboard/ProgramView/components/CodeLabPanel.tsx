@@ -17,7 +17,7 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
   setCodeLanguage
 }) => {
   return (
-    <div className="flex-1 bg-[#4B6291] rounded-lg flex flex-col overflow-hidden z-10">
+    <div className="flex-1 bg-[#4B6291] rounded-lg flex flex-col overflow-hidden z-10 h-full">
       {/* Tab navigation */}
       <div className="flex bg-[#2D3044] rounded-t-lg">
         <Button 
@@ -93,8 +93,8 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
               </div>
             </div>
             
-            {/* Code editor */}
-            <div className="flex-1 bg-white rounded-lg p-3 font-mono text-gray-800 text-xs overflow-y-auto">
+            {/* Code editor - made taller to match chatbox */}
+            <div className="flex-1 bg-white rounded-lg p-3 font-mono text-gray-800 text-xs overflow-y-auto min-h-[calc(100%-80px)]">
               <p>prompt = ""</p>
               <p>You are a helpful assistant. Please answer</p>
               <p>the following question clearly and</p>
