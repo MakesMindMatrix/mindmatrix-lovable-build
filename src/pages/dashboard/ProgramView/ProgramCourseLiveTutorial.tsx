@@ -1,15 +1,14 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ChevronDown, Eye, Play, Pause } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import Desktop from "@/components/dashboard/day1/Desktop";
-import ChatSidebar from "./components/ChatSidebar";
-import ProgramSidebar from "./components/ProgramSidebar";
-import LabSection from "./components/LabSection";
+import VideoPlayer from "./components/VideoPlayer";
+import ChatBox from "./components/ChatBox";
+import CourseAccordion from "./components/CourseAccordion";
+import CodeLabPanel from "./components/CodeLabPanel";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
@@ -56,338 +55,31 @@ const ProgramCourseLiveTutorial = () => {
                 </Button>
                 
                 {/* Video Section with reduced aspect ratio */}
-                <div className="mt-12 rounded-lg overflow-hidden bg-black w-full">
-                  <AspectRatio ratio={16/9} className="relative">
-                    {/* Live indicator */}
-                    <div className="absolute top-3 left-3 z-10 bg-red-500/80 px-3 py-1 rounded flex items-center">
-                      <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                      <span className="text-white text-sm">Live Class-Web Development Fundamentals</span>
-                    </div>
-                    
-                    {/* Viewer count */}
-                    <div className="absolute top-3 right-3 z-10 bg-black/50 px-2 py-1 rounded flex items-center">
-                      <Eye className="h-4 w-4 text-white mr-1" />
-                      <span className="text-white text-sm">Attending <span className="bg-white/20 px-2 py-0.5 rounded ml-1">280</span></span>
-                    </div>
-                    
-                    {/* Video */}
-                    <video 
-                      className="w-full h-full object-cover"
-                      poster="/lovable-uploads/8eae9165-5b6f-4641-a457-52257f53f3a1.png"
-                    >
-                      <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4" />
-                    </video>
-                    
-                    {/* Play button overlay */}
-                    <div 
-                      className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-                      onClick={() => setIsPlaying(!isPlaying)}
-                    >
-                      <div className="w-14 h-14 bg-white/30 rounded-full flex items-center justify-center">
-                        {isPlaying ? (
-                          <Pause className="h-7 w-7 text-white" />
-                        ) : (
-                          <Play className="h-7 w-7 text-white ml-1" />
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* Time indicator */}
-                    <div className="absolute bottom-3 right-3 z-10 bg-black/50 px-2 py-1 rounded">
-                      <span className="text-white text-sm">52:34</span>
-                    </div>
-                  </AspectRatio>
+                <div className="mt-12">
+                  <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 </div>
                 
                 {/* Chat Section */}
-                <div className="flex-1 overflow-hidden">
-                  {/* Chat messages area */}
-                  <div className="p-4 h-[calc(100%-60px)] overflow-y-auto">
-                    <div className="mb-4">
-                      <div className="flex mb-2">
-                        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                          <img 
-                            src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
-                            alt="Zuno" 
-                            className="w-6 h-6 rounded-full"
-                          />
-                        </div>
-                      </div>
-                      <div className="bg-white/10 rounded-lg p-3 text-white text-sm">
-                        These courses will help you upskill at the areas you are currently still yet to improve at
-                      </div>
-                    </div>
-                    
-                    <div className="text-white/70 text-xs mb-2">
-                      Zuno is typing...
-                    </div>
-                    
-                    {/* Action button */}
-                    <div className="flex justify-end">
-                      <Button 
-                        className="bg-white text-blue-800 hover:bg-white/90 text-xs py-1 h-auto px-3 rounded-lg"
-                      >
-                        I want to know more
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  {/* Chat input */}
-                  <div className="h-[60px] p-3 flex items-center">
-                    <div className="relative w-full bg-white/20 rounded-full">
-                      <input 
-                        type="text" 
-                        placeholder="Type something..." 
-                        className="bg-transparent border-none text-white w-full outline-none pl-4 pr-10 py-2 placeholder-white/50 text-sm"
-                      />
-                      <Button 
-                        variant="ghost" 
-                        size="icon"
-                        className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full h-6 w-6 bg-white/20 hover:bg-white/30"
-                      >
-                        <ArrowLeft className="h-3 w-3 text-white rotate-180" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                <ChatBox />
               </div>
               
               {/* Right Section */}
               <div className="w-[35%] flex flex-col gap-4">
                 {/* Course name card with collapsible */}
-                <div className="relative z-20">
-                  <Collapsible 
-                    open={isCourseExpanded} 
-                    onOpenChange={toggleCourseCard}
-                    className="w-full"
-                  >
-                    <CollapsibleTrigger asChild>
-                      <Button 
-                        className="w-full py-3 px-4 bg-[#6388D7] rounded-lg text-white hover:bg-[#5679c8] justify-between h-auto" 
-                      >
-                        <span className="text-base font-medium">Course 1</span>
-                        <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isCourseExpanded ? "transform rotate-180" : ""}`} />
-                      </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="bg-[#6388D7] mt-1 rounded-lg p-4 absolute w-full shadow-lg z-10">
-                      <div className="text-white mb-4">
-                        <p className="text-sm font-semibold mb-1">Energy Management in Electric Vehicles</p>
-                        <p className="text-xs text-white/70">Introduction to Electric Vehicles</p>
-                      </div>
-                      
-                      {/* Sessions List */}
-                      <div className="space-y-3">
-                        {/* Session 1 */}
-                        <div className="bg-[#5679c8] rounded-lg p-2">
-                          <div 
-                            className="flex items-center justify-between cursor-pointer"
-                            onClick={() => toggleSession(1)}
-                          >
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                                <span className="text-xs text-white">1</span>
-                              </div>
-                              <span className="text-white text-sm">Session 1</span>
-                            </div>
-                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 1 ? "transform rotate-180" : ""}`} />
-                          </div>
-                          
-                          {currentSession === 1 && (
-                            <div className="pl-8 mt-2 space-y-1.5">
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Learning Module</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Pre-session Reference</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                                <span className="text-white font-medium text-xs">Live Tutorial</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Post-session Reference</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Task 1</span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        
-                        {/* Session 2 */}
-                        <div className="bg-[#5679c8] rounded-lg p-2">
-                          <div 
-                            className="flex items-center justify-between cursor-pointer"
-                            onClick={() => toggleSession(2)}
-                          >
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                                <span className="text-xs text-white">2</span>
-                              </div>
-                              <span className="text-white text-sm">Session 2</span>
-                            </div>
-                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 2 ? "transform rotate-180" : ""}`} />
-                          </div>
-                          
-                          {currentSession === 2 && (
-                            <div className="pl-8 mt-2 space-y-1.5">
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Learning Module</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Live Tutorial</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Task 1</span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        
-                        {/* Session 3 */}
-                        <div className="bg-[#5679c8] rounded-lg p-2">
-                          <div 
-                            className="flex items-center justify-between cursor-pointer"
-                            onClick={() => toggleSession(3)}
-                          >
-                            <div className="flex items-center">
-                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
-                                <span className="text-xs text-white">3</span>
-                              </div>
-                              <span className="text-white text-sm">Session 3</span>
-                            </div>
-                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 3 ? "transform rotate-180" : ""}`} />
-                          </div>
-                          
-                          {currentSession === 3 && (
-                            <div className="pl-8 mt-2 space-y-1.5">
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Learning Module</span>
-                              </div>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
-                                <span className="text-white/70 text-xs">Pre-session Reference</span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </div>
+                <CourseAccordion 
+                  isCourseExpanded={isCourseExpanded}
+                  toggleCourseCard={toggleCourseCard}
+                  currentSession={currentSession}
+                  toggleSession={toggleSession}
+                />
                 
                 {/* Lab Navigation Card */}
-                <div className="flex-1 bg-[#4B6291] rounded-lg flex flex-col overflow-hidden z-10">
-                  {/* Tab navigation */}
-                  <div className="flex bg-[#2D3044] rounded-t-lg">
-                    <Button 
-                      variant="ghost" 
-                      className={`${activeTab === 'labs' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
-                      onClick={() => handleTabChange('labs')}
-                    >
-                      <span className="text-sm">Labs</span>
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      className={`${activeTab === 'resources' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
-                      onClick={() => handleTabChange('resources')}
-                    >
-                      <span className="text-sm">Resources</span>
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      className={`${activeTab === 'notifications' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
-                      onClick={() => handleTabChange('notifications')}
-                    >
-                      <span className="text-sm">Notifications</span>
-                    </Button>
-                  </div>
-                  
-                  {/* Content area */}
-                  <div className="flex-1 p-3 rounded-b-lg overflow-hidden flex flex-col">
-                    {activeTab === 'labs' && (
-                      <>
-                        {/* Lab type selection */}
-                        <div className="mb-3">
-                          <Button 
-                            className="mr-2 bg-white/20 hover:bg-white/30 text-white text-sm py-1 h-auto px-4"
-                          >
-                            Code
-                          </Button>
-                          <Button 
-                            variant="ghost" 
-                            className="text-white/60 hover:text-white text-sm py-1 h-auto px-4"
-                          >
-                            CAD Labs
-                          </Button>
-                        </div>
-                        
-                        {/* Code language and controls */}
-                        <div className="flex justify-between items-center mb-3">
-                          <div className="relative">
-                            <select
-                              value={codeLanguage}
-                              onChange={(e) => setCodeLanguage(e.target.value)}
-                              className="bg-[#4B6291] text-white border-none pr-8 appearance-none cursor-pointer text-sm"
-                            >
-                              <option value="Python" className="bg-[#4B6291]">Python</option>
-                              <option value="JavaScript" className="bg-[#4B6291]">JavaScript</option>
-                              <option value="C++" className="bg-[#4B6291]">C++</option>
-                            </select>
-                            <ArrowLeft className="absolute right-0 top-1/2 transform -translate-y-1/2 rotate-90 h-4 w-4 text-white" />
-                          </div>
-                          
-                          <div className="flex space-x-2">
-                            <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
-                              Save
-                            </Button>
-                            <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
-                              Copy
-                            </Button>
-                            <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
-                              Reset
-                            </Button>
-                            <Button size="sm" variant="outline" className="bg-transparent border-white/20 text-white h-7 text-xs">
-                              Run
-                            </Button>
-                          </div>
-                        </div>
-                        
-                        {/* Code editor */}
-                        <div className="flex-1 bg-white rounded-lg p-3 font-mono text-gray-800 text-xs overflow-y-auto">
-                          <p>prompt = ""</p>
-                          <p>You are a helpful assistant. Please answer</p>
-                          <p>the following question clearly and</p>
-                          <p>concisely.</p>
-                          <br />
-                          <p>Question: &#123;user_input&#125;</p>
-                          <p>Answer:</p>
-                          <p>""</p>
-                        </div>
-                      </>
-                    )}
-                    
-                    {activeTab === 'resources' && (
-                      <div className="text-white h-full flex items-center justify-center">
-                        <p className="text-sm">Resources content will appear here</p>
-                      </div>
-                    )}
-                    
-                    {activeTab === 'notifications' && (
-                      <div className="text-white h-full flex items-center justify-center">
-                        <p className="text-sm">Notifications content will appear here</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <CodeLabPanel 
+                  activeTab={activeTab}
+                  handleTabChange={handleTabChange}
+                  codeLanguage={codeLanguage}
+                  setCodeLanguage={setCodeLanguage}
+                />
               </div>
             </div>
           </div>
