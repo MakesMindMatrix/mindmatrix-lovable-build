@@ -38,7 +38,7 @@ export const ChatStep: React.FC<ChatStepProps> = ({
         
         {children && (
           <motion.div 
-            className="mt-5"
+            className="mt-5 w-full"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.4 }}

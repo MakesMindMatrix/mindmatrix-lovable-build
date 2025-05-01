@@ -74,20 +74,10 @@ const LearnerRegistration = () => {
     if (containerRef.current) {
       // Allow the animations to complete before scrolling
       setTimeout(() => {
-        const currentContent = containerRef.current?.querySelector("[data-current='true']");
-        if (currentContent) {
-          const containerHeight = containerRef.current.clientHeight;
-          const contentHeight = currentContent.clientHeight as number;
-          const scrollPosition = currentContent.getBoundingClientRect().top + 
-                               containerRef.current.scrollTop - 
-                               containerRef.current.getBoundingClientRect().top -
-                               (containerHeight / 2) + (contentHeight / 2);
-          
-          containerRef.current.scrollTo({
-            top: Math.max(0, scrollPosition - 150), // Increased adjustment to move content up
-            behavior: 'smooth'
-          });
-        }
+        containerRef.current?.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }, 100);
     }
   }, [completedSteps, currentStepIndex]);
@@ -109,38 +99,18 @@ const LearnerRegistration = () => {
         {/* Chat Container */}
         <div 
           ref={containerRef}
-          className="flex-grow flex flex-col items-center justify-start pt-8 overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
+          className="flex-grow flex flex-col items-center justify-center overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
         >
-          <div className="w-full flex flex-col items-center mt-[-40px]"> {/* Move content up with negative margin */}
-            <AnimatePresence mode="wait">
-              {/* Completed Steps */}
-              {completedSteps.map((step, index) => (
-                <motion.div
-                  key={`${step.id}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 0.7, y: 0 }}
-                  exit={{ opacity: 0, y: -50, scale: 0.8 }}
-                  transition={{ duration: 0.5 }}
-                  className="mb-8 w-full"
-                >
-                  <ChatStep
-                    title={step.title}
-                    avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-                    isCompleted={true}
-                  >
-                    {step.component}
-                  </ChatStep>
-                </motion.div>
-              ))}
-              
-              {/* Current Step */}
+          <div className="w-full flex flex-col items-center relative"> 
+            <AnimatePresence mode="popLayout">
+              {/* Current Step - Only show current step */}
               <motion.div
-                key={`current-${currentStep.id}`}
-                initial={{ opacity: 0, y: 50 }}
+                key={`current-${currentStep.id}-${currentStepIndex}`}
+                initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
+                exit={{ opacity: 0, y: -200 }}
                 transition={{ duration: 0.5 }}
-                className="w-full"
+                className="w-full absolute top-0 left-0 right-0"
                 data-current="true"
               >
                 <ChatStep 

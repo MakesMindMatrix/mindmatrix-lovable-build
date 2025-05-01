@@ -23,7 +23,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
     <div className="flex flex-col justify-center w-full">
       <div className="w-full">
         <div className="flex flex-col w-full">
-          <div className="mt-3 w-full leading-none"> {/* Reduced margin from mt-4 to mt-3 */}
+          <div className="mt-3 w-full leading-none">
             <div className="w-full">
               <label
                 htmlFor="firstName"

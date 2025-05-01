@@ -31,7 +31,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
 
   return (
     <motion.div 
-      className="w-full space-y-3" // Reduced spacing from space-y-5 to space-y-3
+      className="w-full space-y-3" 
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -71,7 +71,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
         </motion.div>
       ))}
       
-      <div className="flex flex-wrap gap-1 items-center mt-4 text-base font-semibold tracking-tight leading-none text-center"> {/* Reduced margin from mt-6 to mt-4 */}
+      <div className="flex flex-wrap gap-1 items-center mt-4 text-base font-semibold tracking-tight leading-none text-center">
         <div className="self-stretch my-auto text-white">
           Question {currentQuestion}
         </div>
