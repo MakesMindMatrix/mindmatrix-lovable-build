@@ -29,6 +29,46 @@ const LearnerRegistration = () => {
   const totalQuestions = 10;
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Handle next step - defined before it's used in any component props
+  const handleNextStep = () => {
+    if (currentStepIndex < steps.length - 1) {
+      // Add current step to completed steps
+      setCompletedSteps(prev => [...prev, steps[currentStepIndex]]);
+      
+      // Move to next step
+      setCurrentStepIndex(prevIndex => prevIndex + 1);
+      
+      // If current step is questions, update question counter
+      if (steps[currentStepIndex].id === "questions" && currentQuestion < totalQuestions) {
+        setCurrentQuestion(prev => prev + 1);
+      }
+    } else {
+      // Registration complete, navigate to dashboard
+      navigate("/dashboard-Day1");
+    }
+  };
+
+  // Handle back button
+  const handleBack = () => {
+    if (completedSteps.length > 0) {
+      // Remove the last step from completed steps
+      const updatedCompletedSteps = [...completedSteps];
+      updatedCompletedSteps.pop();
+      setCompletedSteps(updatedCompletedSteps);
+      
+      // Go back one step
+      setCurrentStepIndex(prevIndex => prevIndex - 1);
+      
+      // If going back from questions, update question counter
+      if (steps[currentStepIndex].id === "questions" && currentQuestion > 1) {
+        setCurrentQuestion(prev => prev - 1);
+      }
+    } else {
+      // No more steps to go back to
+      navigate(-1);
+    }
+  };
+
   // Define all the registration steps
   const steps: StepType[] = [
     {
@@ -173,46 +213,6 @@ const LearnerRegistration = () => {
       buttonText: "I'm ready Zuno!"
     }
   ];
-
-  // Handle next step
-  const handleNextStep = () => {
-    if (currentStepIndex < steps.length - 1) {
-      // Add current step to completed steps
-      setCompletedSteps(prev => [...prev, steps[currentStepIndex]]);
-      
-      // Move to next step
-      setCurrentStepIndex(prevIndex => prevIndex + 1);
-      
-      // If current step is questions, update question counter
-      if (steps[currentStepIndex].id === "questions" && currentQuestion < totalQuestions) {
-        setCurrentQuestion(prev => prev + 1);
-      }
-    } else {
-      // Registration complete, navigate to dashboard
-      navigate("/dashboard-Day1");
-    }
-  };
-
-  // Handle back button
-  const handleBack = () => {
-    if (completedSteps.length > 0) {
-      // Remove the last step from completed steps
-      const updatedCompletedSteps = [...completedSteps];
-      updatedCompletedSteps.pop();
-      setCompletedSteps(updatedCompletedSteps);
-      
-      // Go back one step
-      setCurrentStepIndex(prevIndex => prevIndex - 1);
-      
-      // If going back from questions, update question counter
-      if (steps[currentStepIndex].id === "questions" && currentQuestion > 1) {
-        setCurrentQuestion(prev => prev - 1);
-      }
-    } else {
-      // No more steps to go back to
-      navigate(-1);
-    }
-  };
 
   // Scroll to bottom when new content is added
   useEffect(() => {
