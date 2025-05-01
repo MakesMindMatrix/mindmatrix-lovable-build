@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown, Eye, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 import Desktop from "@/components/dashboard/day1/Desktop";
 import ChatSidebar from "./components/ChatSidebar";
@@ -16,6 +16,8 @@ const ProgramCourseLiveTutorial = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("labs");
   const [codeLanguage, setCodeLanguage] = useState("Python");
+  const [isCourseExpanded, setIsCourseExpanded] = useState(false);
+  const [currentSession, setCurrentSession] = useState(1);
   
   const handleBackClick = () => {
     // Navigate to the program view (course card)
@@ -24,6 +26,14 @@ const ProgramCourseLiveTutorial = () => {
   
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
+  };
+  
+  const toggleCourseCard = () => {
+    setIsCourseExpanded(!isCourseExpanded);
+  };
+  
+  const toggleSession = (sessionId: number) => {
+    setCurrentSession(currentSession === sessionId ? 0 : sessionId);
   };
   
   return (
@@ -89,7 +99,7 @@ const ProgramCourseLiveTutorial = () => {
                   </AspectRatio>
                 </div>
                 
-                {/* Chat Section - No background card */}
+                {/* Chat Section */}
                 <div className="flex-1 overflow-hidden">
                   {/* Chat messages area */}
                   <div className="p-4 h-[calc(100%-60px)] overflow-y-auto">
@@ -144,21 +154,138 @@ const ProgramCourseLiveTutorial = () => {
               
               {/* Right Section */}
               <div className="w-[35%] flex flex-col gap-4">
-                {/* Course name card with accordion */}
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="course-details" className="border-none">
-                    <AccordionTrigger className="py-3 px-4 bg-[#6388D7] rounded-lg text-white hover:no-underline">
-                      <span className="text-base font-medium">Course 1</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-[#6388D7] mt-1 rounded-lg p-3 text-white">
-                      <p className="text-sm">Energy Management in Electric Vehicles</p>
-                      <p className="text-xs text-white/70 mt-1">Introduction to Electric Vehicles</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                {/* Course name card with collapsible */}
+                <div className="relative z-20">
+                  <Collapsible 
+                    open={isCourseExpanded} 
+                    onOpenChange={toggleCourseCard}
+                    className="w-full"
+                  >
+                    <CollapsibleTrigger asChild>
+                      <Button 
+                        className="w-full py-3 px-4 bg-[#6388D7] rounded-lg text-white hover:bg-[#5679c8] justify-between h-auto" 
+                      >
+                        <span className="text-base font-medium">Course 1</span>
+                        <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isCourseExpanded ? "transform rotate-180" : ""}`} />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="bg-[#6388D7] mt-1 rounded-lg p-4 absolute w-full shadow-lg z-10">
+                      <div className="text-white mb-4">
+                        <p className="text-sm font-semibold mb-1">Energy Management in Electric Vehicles</p>
+                        <p className="text-xs text-white/70">Introduction to Electric Vehicles</p>
+                      </div>
+                      
+                      {/* Sessions List */}
+                      <div className="space-y-3">
+                        {/* Session 1 */}
+                        <div className="bg-[#5679c8] rounded-lg p-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleSession(1)}
+                          >
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
+                                <span className="text-xs text-white">1</span>
+                              </div>
+                              <span className="text-white text-sm">Session 1</span>
+                            </div>
+                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 1 ? "transform rotate-180" : ""}`} />
+                          </div>
+                          
+                          {currentSession === 1 && (
+                            <div className="pl-8 mt-2 space-y-1.5">
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Learning Module</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Pre-session Reference</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
+                                <span className="text-white font-medium text-xs">Live Tutorial</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Post-session Reference</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Task 1</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Session 2 */}
+                        <div className="bg-[#5679c8] rounded-lg p-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleSession(2)}
+                          >
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
+                                <span className="text-xs text-white">2</span>
+                              </div>
+                              <span className="text-white text-sm">Session 2</span>
+                            </div>
+                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 2 ? "transform rotate-180" : ""}`} />
+                          </div>
+                          
+                          {currentSession === 2 && (
+                            <div className="pl-8 mt-2 space-y-1.5">
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Learning Module</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Live Tutorial</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Task 1</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Session 3 */}
+                        <div className="bg-[#5679c8] rounded-lg p-2">
+                          <div 
+                            className="flex items-center justify-between cursor-pointer"
+                            onClick={() => toggleSession(3)}
+                          >
+                            <div className="flex items-center">
+                              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-2">
+                                <span className="text-xs text-white">3</span>
+                              </div>
+                              <span className="text-white text-sm">Session 3</span>
+                            </div>
+                            <ChevronDown className={`h-4 w-4 text-white transition-transform duration-200 ${currentSession === 3 ? "transform rotate-180" : ""}`} />
+                          </div>
+                          
+                          {currentSession === 3 && (
+                            <div className="pl-8 mt-2 space-y-1.5">
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Learning Module</span>
+                              </div>
+                              <div className="flex items-center">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                                <span className="text-white/70 text-xs">Pre-session Reference</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </div>
                 
                 {/* Lab Navigation Card */}
-                <div className="flex-1">
+                <div className="flex-1 bg-[#4B6291] rounded-lg flex flex-col overflow-hidden z-10">
                   {/* Tab navigation */}
                   <div className="flex bg-[#2D3044] rounded-t-lg">
                     <Button 
@@ -185,7 +312,7 @@ const ProgramCourseLiveTutorial = () => {
                   </div>
                   
                   {/* Content area */}
-                  <div className="flex-1 bg-[#4B6291] p-3 rounded-b-lg overflow-hidden flex flex-col">
+                  <div className="flex-1 p-3 rounded-b-lg overflow-hidden flex flex-col">
                     {activeTab === 'labs' && (
                       <>
                         {/* Lab type selection */}
