@@ -121,8 +121,8 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       open={isCourseExpanded}
       className={cn(
         "fixed right-0 mr-4 z-20 w-80", // Fixed width aligned to right
-        "border-none shadow-lg overflow-hidden",
-        useGlassLayout ? "bg-blue-500/20 backdrop-blur-md" : "bg-[#2E3A54]"
+        "border-none shadow-lg overflow-hidden rounded-xl", // Added rounded corners
+        useGlassLayout ? "bg-blue-500/10 backdrop-blur-md" : "bg-[#2E3A54]" // More glassy background
       )}
     >
       <CollapsibleTrigger
@@ -132,7 +132,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       >
         <div className={cn(
           "flex items-center justify-between p-4 transition-all",
-          useGlassLayout ? "bg-blue-500 text-white rounded-t-lg" : "bg-[#1E293B]"
+          useGlassLayout ? "bg-blue-500/30 backdrop-blur-lg text-white rounded-t-xl" : "bg-[#1E293B]" // More glassy header
         )}>
           <div className="flex items-center space-x-3">
             <div className="text-white w-5 h-5">
@@ -143,7 +143,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
                 <path d="M3 13.5C3 11.7327 4.4327 10.3 6.2 10.3H6.2C7.9673 10.3 9.4 11.7327 9.4 13.5V17.8C9.4 19.5673 7.9673 21 6.2 21H6.2C4.4327 21 3 19.5673 3 17.8V13.5Z" stroke="currentColor" strokeWidth="2"/>
               </svg>
             </div>
-            <h3 className="text-white text-lg font-medium">Course Title</h3>
+            <h3 className="text-white text-base font-medium">Course Title</h3> {/* Reduced font size */}
           </div>
           <div>
             {isCourseExpanded ? (
@@ -156,9 +156,9 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       </CollapsibleTrigger>
 
       <CollapsibleContent>
-        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/50 backdrop-blur-md">
+        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/40 backdrop-blur-lg rounded-b-xl"> {/* Improved glassy effect */}
           {sessions.map((session) => (
-            <div key={session.id} className="mb-1 last:mb-0 bg-blue-200/50 backdrop-blur-md rounded-md mx-1 overflow-hidden">
+            <div key={session.id} className="mb-1 last:mb-0 bg-blue-200/40 backdrop-blur-lg rounded-md mx-1 overflow-hidden"> {/* Improved glassy effect for session cards */}
               <div 
                 className={`flex items-center justify-between p-3 cursor-pointer`}
                 onClick={() => toggleExpandSession(session.id)}
@@ -172,7 +172,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
                       <path d="M3 13.5C3 11.7327 4.4327 10.3 6.2 10.3H6.2C7.9673 10.3 9.4 11.7327 9.4 13.5V17.8C9.4 19.5673 7.9673 21 6.2 21H6.2C4.4327 21 3 19.5673 3 17.8V13.5Z" stroke="currentColor" strokeWidth="2"/>
                     </svg>
                   </div>
-                  <h4 className="text-blue-700 text-lg font-medium">Session {session.id}</h4>
+                  <h4 className="text-blue-700 text-base font-medium">Session {session.id}</h4> {/* Kept font size consistent with course title */}
                 </div>
                 <div>
                   {expandedSessions[session.id] ? (
@@ -193,7 +193,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
                       <div 
                         key={index}
                         className={cn(
-                          "py-2 px-3 text-blue-700 cursor-pointer hover:bg-blue-300/40 rounded-sm transition-colors",
+                          "py-2 px-3 text-blue-700 cursor-pointer hover:bg-blue-300/40 rounded-sm transition-colors text-sm", // Smaller font size for components
                           isHighlighted && "bg-blue-500 text-white"
                         )}
                         onClick={() => handleComponentClick(session.id, component.id)}

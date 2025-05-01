@@ -95,8 +95,8 @@ const ProgramCourseLiveTutorial = () => {
                   />
                 </div>
                 
-                {/* Lab Navigation Card */}
-                <div className="mt-2 w-full">
+                {/* Lab Navigation Card - Added top margin to create space */}
+                <div className="mt-16 w-full">
                   <CodeLabPanel 
                     activeTab={activeTab}
                     handleTabChange={handleTabChange}
