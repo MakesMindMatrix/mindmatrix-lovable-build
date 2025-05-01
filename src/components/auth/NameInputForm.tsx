@@ -30,13 +30,13 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
         className="w-[68px] h-[68px] object-contain rounded-[64px]"
       />
       
-      <h2 className="mt-7 text-3xl font-medium tracking-tight text-center">
+      <h2 className="mt-7 text-3xl font-medium tracking-tight text-center text-white">
         Awesome! <br />
         What should i call you?
       </h2>
       
       <div className="w-full mt-7">
-        <label htmlFor="firstName" className="text-base block">
+        <label htmlFor="firstName" className="text-base block text-white">
           First Name
         </label>
         <input
@@ -45,7 +45,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
           placeholder="Your preferred name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="w-full mt-4 px-4 py-3 text-base text-indigo-300 rounded-md bg-transparent shadow-[0px_1px_30px_rgba(69,42,124,0.1)]"
+          className="w-full mt-4 px-4 py-3 text-base text-white rounded-md bg-transparent shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white/60"
         />
       </div>
       
