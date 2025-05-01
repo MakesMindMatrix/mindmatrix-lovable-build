@@ -7,15 +7,15 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
-import CodeLabPanel from "./components/CodeLabPanel";
+import ReadingPanel from "./components/ReadingPanel";
 import { toast } from "sonner";
 
-const ProgramCourseLiveTutorial = () => {
+const ProgramCourseLearningModule = () => {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [activeTab, setActiveTab] = useState("labs");
-  const [codeLanguage, setCodeLanguage] = useState("Python");
-  const [isCourseExpanded, setIsCourseExpanded] = useState(false); // Set to false by default
+  const [activeTab, setActiveTab] = useState("read");
+  const [documentFormat, setDocumentFormat] = useState("PDF");
+  const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
   
   const handleBackClick = () => {
@@ -36,7 +36,6 @@ const ProgramCourseLiveTutorial = () => {
   };
 
   const handleComponentClick = (sessionId: number, componentId: string) => {
-    // Handle component clicks with improved navigation
     const componentMap: Record<string, string> = {
       "learning": "Learning Module",
       "preread": "Pre-session Reference", 
@@ -48,18 +47,16 @@ const ProgramCourseLiveTutorial = () => {
     const componentName = componentMap[componentId] || componentId;
     toast.info(`Opening ${componentName} from Session ${sessionId}`);
     
-    if (componentId === "tutorial") {
-      // Already on tutorial page, could play the video
-      setIsPlaying(true);
+    if (componentId === "learning") {
+      // Already on learning module page
+    } else if (componentId === "tutorial") {
+      navigate("/program-course-LiveTutorial");
     } else if (componentId === "tasks") {
       // Switch to labs tab for tasks
       setActiveTab("labs");
     } else if (componentId === "assessment") {
       // Switch to assessment tab
       setActiveTab("assessment");
-    } else if (componentId === "learning") {
-      // Navigate to learning module page
-      navigate("/program-course-LearningModule");
     } else if (componentId === "preread") {
       // Switch to resources tab for learning materials
       setActiveTab("resources");
@@ -112,17 +109,17 @@ const ProgramCourseLiveTutorial = () => {
                   toggleSession={toggleSession}
                   useGlassLayout={true}
                   onComponentClick={handleComponentClick}
-                  currentComponent="tutorial"
+                  currentComponent="learning"
                 />
               </div>
               
-              {/* Lab Navigation Card - Added top margin to create space */}
+              {/* Reading Panel - Added top margin to create space */}
               <div className="mt-16 w-full h-[calc(100%-16px)]">
-                <CodeLabPanel 
+                <ReadingPanel 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}
-                  codeLanguage={codeLanguage}
-                  setCodeLanguage={setCodeLanguage}
+                  documentFormat={documentFormat}
+                  setDocumentFormat={setDocumentFormat}
                 />
               </div>
             </div>
@@ -133,4 +130,4 @@ const ProgramCourseLiveTutorial = () => {
   );
 };
 
-export default ProgramCourseLiveTutorial;
+export default ProgramCourseLearningModule;

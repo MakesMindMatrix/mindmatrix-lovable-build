@@ -19,6 +19,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
   toggleSession,
   useGlassLayout = false,
   onComponentClick,
+  currentComponent,
 }) => {
   const [expandedSessions, setExpandedSessions] = useState<Record<number, boolean>>({
     1: true,
@@ -73,6 +74,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
               expandedSessions={expandedSessions}
               toggleExpandSession={toggleExpandSession}
               handleComponentClick={handleComponentClick}
+              currentComponent={currentComponent}
             />
           ))}
         </div>

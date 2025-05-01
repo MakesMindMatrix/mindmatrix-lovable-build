@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { ArrowLeft, Clock, Square, BookOpen, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,9 +40,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
   const handleTaskClick = (taskTitle: string) => {
     console.log(`Clicked on component: ${taskTitle}`);
     
-    // Navigation for Live Tutorial
+    // Navigation for different components
     if (taskTitle === "Live Tutorial") {
       navigate("/program-course-LiveTutorial");
+    } else if (taskTitle === "Learning Module") {
+      navigate("/program-course-LearningModule");
     } else {
       // For all other components - will be implemented later
       console.log(`Navigation for ${taskTitle} will be implemented later`);
@@ -113,7 +116,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Course Content/Tasks List - Only show if a session is selected */}
         {activeSession !== null && (
           <div className="space-y-0">
-            <CourseTaskItem title="Pre Read Doc" onTaskClick={handleTaskClick} />
+            <CourseTaskItem title="Learning Module" onTaskClick={handleTaskClick} />
             <CourseTaskItem title="Pre Session Doc" onTaskClick={handleTaskClick} />
             <CourseTaskItem title="Live Tutorial" onTaskClick={handleTaskClick} />
             <CourseTaskItem title="Post Session Ref" onTaskClick={handleTaskClick} />

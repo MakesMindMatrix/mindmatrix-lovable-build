@@ -1,62 +1,93 @@
 
-import { Book, FileText, Video, ListTodo, ClipboardCheck } from "lucide-react";
-import { CourseSession } from "./types";
-
-// Course sessions data
-export const sessions: CourseSession[] = [
+export const sessions = [
   {
     id: 1,
-    title: "Introduction to Electric Vehicles",
+    title: "Session 1",
     components: [
-      { id: "learning", title: "Learning Module", icon: Book },
-      { id: "preread", title: "Pre-read Doc", icon: FileText },
-      { id: "tutorial", title: "Tutorial", icon: Video },
-      { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
-      { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
+      {
+        id: "learning",
+        title: "Learning Module"
+      },
+      {
+        id: "preread",
+        title: "Pre-session Reference"
+      },
+      {
+        id: "tutorial",
+        title: "Live Tutorial"
+      },
+      {
+        id: "postread",
+        title: "Post-session Reference"
+      },
+      {
+        id: "task1",
+        title: "Task 1"
+      },
+      {
+        id: "task2",
+        title: "Task 2"
+      },
+      {
+        id: "task3",
+        title: "Task 3"
+      },
+      {
+        id: "assessment",
+        title: "Assessment"
+      }
     ]
   },
   {
     id: 2,
-    title: "EV Battery Technology",
+    title: "Session 2",
     components: [
-      { id: "learning", title: "Learning Module", icon: Book },
-      { id: "preread", title: "Pre-read Doc", icon: FileText },
-      { id: "tutorial", title: "Tutorial", icon: Video },
-      { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
-      { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
+      {
+        id: "learning2",
+        title: "Learning Module"
+      },
+      {
+        id: "preread2",
+        title: "Pre-session Reference"
+      },
+      {
+        id: "tutorial2",
+        title: "Live Tutorial"
+      },
+      {
+        id: "task1_2",
+        title: "Task 1"
+      },
+      {
+        id: "assessment2",
+        title: "Assessment"
+      }
     ]
   },
   {
     id: 3,
-    title: "EV Motors and Drivetrains",
+    title: "Session 3",
     components: [
-      { id: "learning", title: "Learning Module", icon: Book },
-      { id: "preread", title: "Pre-read Doc", icon: FileText },
-      { id: "tutorial", title: "Tutorial", icon: Video },
-      { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
-      { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
+      {
+        id: "learning3",
+        title: "Learning Module"
+      },
+      {
+        id: "preread3",
+        title: "Pre-session Reference"
+      },
+      {
+        id: "tutorial3",
+        title: "Live Tutorial"
+      },
+      {
+        id: "task1_3",
+        title: "Task 1"
+      },
+      {
+        id: "assessment3",
+        title: "Assessment"
+      }
     ]
-  },
-  {
-    id: 4,
-    title: "EV Charging Systems",
-    components: [
-      { id: "learning", title: "Learning Module", icon: Book },
-      { id: "preread", title: "Pre-read Doc", icon: FileText },
-      { id: "tutorial", title: "Tutorial", icon: Video },
-      { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
-      { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
-    ]
-  },
-  {
-    id: 5,
-    title: "EV Market & Future Trends",
-    components: [
-      { id: "learning", title: "Learning Module", icon: Book },
-      { id: "preread", title: "Pre-read Doc", icon: FileText },
-      { id: "tutorial", title: "Tutorial", icon: Video },
-      { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
-      { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
-    ]
-  },
+  }
 ];
