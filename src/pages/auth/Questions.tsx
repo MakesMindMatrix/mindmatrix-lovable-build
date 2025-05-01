@@ -89,7 +89,7 @@ function Questions() {
                   option.id !== "A" ? "mt-3" : ""
                 } ${
                   selectedOption === option.id 
-                    ? "bg-green-500/40 backdrop-blur-sm border border-green-500 animate-pulse" 
+                    ? "bg-green-500/40 backdrop-blur-sm border border-green-500" 
                     : "bg-white/10 backdrop-blur-sm border border-white/20"
                 } cursor-pointer transition-all duration-200 hover:bg-white/20 hover:border-white/40`}
                 onClick={() => handleOptionSelect(option.id)}
