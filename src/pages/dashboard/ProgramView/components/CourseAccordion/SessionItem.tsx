@@ -17,18 +17,11 @@ const SessionItem: React.FC<SessionItemProps> = ({
   toggleExpandSession,
   handleComponentClick,
 }) => {
-  // Determine if this session is expanded
-  const isExpanded = expandedSessions[session.id];
-  
   return (
     <div
       id={`session-${session.id}`}
       key={session.id}
-      className={`mb-4 last:mb-0 backdrop-blur-lg rounded-md overflow-hidden transition-colors duration-200 ${
-        isExpanded 
-          ? "bg-blue-300/70 shadow-md" // Darker background when expanded
-          : "bg-blue-200/40" // Original lighter background when collapsed
-      }`}
+      className="mb-1 last:mb-0 bg-blue-200/40 backdrop-blur-lg rounded-md mx-1 overflow-hidden"
     >
       <div
         className="flex items-center justify-between p-3 cursor-pointer"
@@ -46,7 +39,7 @@ const SessionItem: React.FC<SessionItemProps> = ({
           <h4 className="text-blue-700 text-base font-medium">Session {session.id}</h4>
         </div>
         <div>
-          {isExpanded ? (
+          {expandedSessions[session.id] ? (
             <ChevronUp className="h-5 w-5 text-blue-700" />
           ) : (
             <ChevronDown className="h-5 w-5 text-blue-700" />
@@ -54,8 +47,8 @@ const SessionItem: React.FC<SessionItemProps> = ({
         </div>
       </div>
 
-      {isExpanded && (
-        <div className="px-2 pb-3">
+      {expandedSessions[session.id] && (
+        <div className="px-2 pb-2">
           <ComponentGrid 
             session={session} 
             handleComponentClick={handleComponentClick} 
