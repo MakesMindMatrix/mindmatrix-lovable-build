@@ -8,11 +8,12 @@ function Questions() {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const totalQuestions = 10;
-  const [selectedOption, setSelectedOption] = useState("A");
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleContinue = () => {
     if (currentQuestion < totalQuestions) {
       setCurrentQuestion(prev => prev + 1);
+      setSelectedOption(""); // Reset selected option for next question
     } else {
       navigate("/completion");
     }
@@ -24,6 +25,7 @@ function Questions() {
     setTimeout(() => {
       if (currentQuestion < totalQuestions) {
         setCurrentQuestion(prev => prev + 1);
+        setSelectedOption(""); // Reset selection for next question
       } else {
         navigate("/completion");
       }
@@ -87,9 +89,9 @@ function Questions() {
                   option.id !== "A" ? "mt-3" : ""
                 } ${
                   selectedOption === option.id 
-                    ? "bg-green-600" 
+                    ? "bg-green-600 border-green-500" 
                     : "bg-white/10 backdrop-blur-sm border border-white/20"
-                } cursor-pointer hover:bg-opacity-90 transition-all duration-200 hover:bg-blue-700 hover:border-blue-500`}
+                } cursor-pointer transition-all duration-200 hover:bg-white/20 hover:border-white/40`}
                 onClick={() => handleOptionSelect(option.id)}
               >
                 <div className={`flex items-center justify-center w-7 h-7 text-xs font-bold bg-white rounded-full ${
