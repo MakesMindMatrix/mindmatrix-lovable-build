@@ -8,6 +8,7 @@ import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
 import ReadingPanel from "./components/ReadingPanel";
 import { toast } from "sonner";
+import { BackgroundGradient } from "@/components/database/ScreenEmotionTag/BackgroundGradient";
 
 const ProgramCourseLearningModule = () => {
   const navigate = useNavigate();
@@ -79,10 +80,17 @@ const ProgramCourseLearningModule = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Light Bluish Glass Card for chat - now taking the full height */}
-              <div className="ml-16 mt-3 flex flex-col h-full bg-blue-100/20 backdrop-blur-lg border border-blue-100/30 rounded-xl p-4 shadow-sm">
-                {/* Chat content takes full space now */}
-                <ChatBox />
+              {/* Blue gradient background card for chat */}
+              <div className="ml-16 mt-3 h-full rounded-xl relative overflow-hidden">
+                {/* Gradient background */}
+                <div className="absolute inset-0 w-full h-full">
+                  <BackgroundGradient />
+                </div>
+                
+                {/* Content overlay */}
+                <div className="relative z-10 h-full p-4">
+                  <ChatBox />
+                </div>
               </div>
             </div>
             

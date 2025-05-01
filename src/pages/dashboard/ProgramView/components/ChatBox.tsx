@@ -27,21 +27,21 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                 className="w-6 h-6 rounded-full"
               />
             </div>
-            <Badge variant="outline" className="ml-2 bg-blue-50/30 text-black text-xs">Zuno</Badge>
+            <Badge variant="outline" className="ml-2 bg-white/20 text-white text-xs">Zuno</Badge>
           </div>
-          <div className="bg-blue-100/30 backdrop-blur-sm border border-blue-200/40 rounded-lg p-3 text-black text-sm">
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 text-white text-sm">
             Welcome to the JavaScript Fundamentals learning module. I'm here to guide you through the material and answer any questions you might have.
           </div>
         </div>
         
-        <div className="text-black text-xs mb-2">
+        <div className="text-white text-xs mb-2">
           Zuno is typing...
         </div>
         
         {/* Action button */}
         <div className="flex justify-end">
           <Button 
-            className="bg-white text-blue-800 hover:bg-white/90 text-xs py-1 h-auto px-3 rounded-lg"
+            className="bg-white/20 text-white hover:bg-white/30 text-xs py-1 h-auto px-3 rounded-lg"
           >
             I want to know more
           </Button>
@@ -49,13 +49,13 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
       </div>
       
       {/* Chat input - fixed at the bottom */}
-      <div className="p-3 border-t border-blue-200/20">
+      <div className="p-3 border-t border-white/20">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}
             onChange={handleInputChange}
             placeholder="Type something..." 
-            className="min-h-[40px] bg-transparent border border-input px-4 py-2 rounded-md text-white w-full resize-none pr-10 placeholder-white/50 text-sm"
+            className="min-h-[40px] bg-transparent border border-white/30 px-4 py-2 rounded-md text-white w-full resize-none pr-10 placeholder-white/50 text-sm"
             style={{ height: '40px' }}
           />
           <Button 
