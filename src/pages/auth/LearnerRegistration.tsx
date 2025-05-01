@@ -7,7 +7,7 @@ import GradientBackground from "@/components/database/ScreenEmotionTag/GradientB
 import { ChatStep } from "@/components/auth/registration/ChatStep";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Import our new components
+// Import our components
 import { StepType } from "@/components/auth/registration/types";
 import { createRegistrationSteps } from "@/components/auth/registration/RegistrationSteps";
 import NavigationControls from "@/components/auth/registration/NavigationControls";
@@ -21,7 +21,7 @@ const LearnerRegistration = () => {
   const totalQuestions = 10;
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Handle next step
+  // Handle next step - moved this to the top to avoid the reference error
   const handleNextStep = () => {
     if (currentStepIndex < steps.length - 1) {
       // Add current step to completed steps
@@ -95,14 +95,14 @@ const LearnerRegistration = () => {
           ref={containerRef}
           className="flex-grow flex flex-col overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
         >
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {/* Completed Steps */}
             {completedSteps.map((step, index) => (
               <motion.div
                 key={`${step.id}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 0.7, y: 0 }}
+                exit={{ opacity: 0, y: -50, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
@@ -119,9 +119,11 @@ const LearnerRegistration = () => {
             {/* Current Step */}
             <motion.div
               key={`current-${currentStep.id}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.5 }}
+              className="w-full"
             >
               <ChatStep 
                 title={currentStep.title}

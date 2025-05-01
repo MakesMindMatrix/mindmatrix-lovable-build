@@ -37,7 +37,8 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
                 placeholder="Your preferred name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="overflow-hidden px-4 py-3 mt-4 w-full text-base text-indigo-300 rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)]"
+                className="overflow-hidden px-4 py-3 mt-4 w-full text-base text-white bg-white/10 rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder:text-white/50"
+                autoComplete="off"
               />
             </div>
           </div>

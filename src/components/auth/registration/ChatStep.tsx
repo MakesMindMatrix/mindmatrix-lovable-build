@@ -18,10 +18,13 @@ export const ChatStep: React.FC<ChatStepProps> = ({
   return (
     <div className={`w-full max-w-3xl mx-auto transition-opacity duration-300 ${isCompleted ? "opacity-70" : "opacity-100"}`}>
       <div className="flex flex-col items-center">
-        <img
+        <motion.img
           src={avatarSrc}
           className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
           alt="Chat avatar"
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
         />
         
         <motion.h2 

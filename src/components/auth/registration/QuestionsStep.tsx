@@ -1,5 +1,6 @@
 
 import React from "react";
+import { motion } from "framer-motion";
 
 interface QuestionsStepProps {
   currentQuestion: number;
@@ -12,11 +13,35 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
   totalQuestions,
   onOptionSelect
 }) => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="w-full space-y-5 mt-6">
-      <div 
+    <motion.div 
+      className="w-full space-y-5 mt-6"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div 
         className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md bg-lime-600 cursor-pointer"
         onClick={onOptionSelect}
+        variants={itemVariants}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
       >
         <div className="self-start px-2.5 w-7 h-7 text-xs font-bold whitespace-nowrap bg-white rounded-full text-neutral-600 flex items-center justify-center">
           A
@@ -24,12 +49,16 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
         <div className="flex-auto my-auto text-base font-medium text-center text-white">
           Talk to them directly about the issue
         </div>
-      </div>
+      </motion.div>
+      
       {["B", "C", "D"].map(option => (
-        <div
+        <motion.div
           key={option}
-          className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer"
+          className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer bg-white/10"
           onClick={onOptionSelect}
+          variants={itemVariants}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           <div className="self-start px-2.5 w-7 h-7 text-xs font-bold whitespace-nowrap bg-white rounded-full text-neutral-600 flex items-center justify-center">
             {option}
@@ -39,7 +68,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
              option === "C" ? "Do their work for them to ensure the project succeeds" : 
              "Find a new teammate"}
           </div>
-        </div>
+        </motion.div>
       ))}
       
       <div className="flex flex-wrap gap-1 items-center mt-6 text-base font-semibold tracking-tight leading-none text-center">
@@ -60,7 +89,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
           style={{ width: `${100 - (currentQuestion / totalQuestions) * 100}%` }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface NavigationControlsProps {
   handleBack: () => void;
@@ -19,21 +20,33 @@ const NavigationControls: React.FC<NavigationControlsProps> = ({
   return (
     <>
       {/* Back Button */}
-      <button
+      <motion.button
         onClick={handleBack}
         className="absolute left-8 top-8 p-3 bg-blue-700 rounded-full text-white hover:bg-blue-600 transition-colors z-10"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
       >
         <ArrowLeft className="h-5 w-5" />
-      </button>
+      </motion.button>
 
       {/* Continue Button (if no component has its own button) */}
       {showButton && (
-        <Button 
-          onClick={handleNextStep}
-          className="mt-7 w-full max-w-md mx-auto bg-blue-700 hover:bg-blue-600 text-base py-6"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
+          className="w-full max-w-md mx-auto"
         >
-          {buttonText}
-        </Button>
+          <Button 
+            onClick={handleNextStep}
+            className="mt-7 w-full mx-auto bg-blue-700 hover:bg-blue-600 text-base py-6"
+          >
+            {buttonText}
+          </Button>
+        </motion.div>
       )}
     </>
   );
