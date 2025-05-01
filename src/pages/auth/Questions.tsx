@@ -21,7 +21,7 @@ function Questions() {
 
   const handleOptionSelect = (optionId: string) => {
     setSelectedOption(optionId);
-    // Auto-advance to next question after 2 seconds delay (increased from 500ms)
+    // Auto-advance to next question after 2 seconds delay
     setTimeout(() => {
       if (currentQuestion < totalQuestions) {
         setCurrentQuestion(prev => prev + 1);
@@ -29,7 +29,7 @@ function Questions() {
       } else {
         navigate("/completion");
       }
-    }, 2000); // Changed from 500ms to 2000ms (2 seconds)
+    }, 2000); // 2 seconds delay
   };
 
   // Example question data
@@ -90,8 +90,8 @@ function Questions() {
                 } ${
                   selectedOption === option.id 
                     ? "bg-green-500/40 backdrop-blur-sm border border-green-500" 
-                    : "bg-white/10 backdrop-blur-sm border border-white/20"
-                } cursor-pointer transition-all duration-200 hover:bg-white/20 hover:border-white/40`}
+                    : "bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40"
+                } cursor-pointer transition-all duration-200`}
                 onClick={() => handleOptionSelect(option.id)}
               >
                 <div className={`flex items-center justify-center w-7 h-7 text-xs font-bold bg-white rounded-full ${
