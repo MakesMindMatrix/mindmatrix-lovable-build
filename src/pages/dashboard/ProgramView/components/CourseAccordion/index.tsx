@@ -64,7 +64,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       </CollapsibleTrigger>
 
       <CollapsibleContent>
-        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/40 backdrop-blur-lg rounded-b-xl">
+        <div className="p-0 space-y-0 max-h-[70vh] overflow-y-auto">
           {/* Navigation tabs at the top */}
           <SessionTabs 
             sessions={sessions} 
@@ -72,15 +72,18 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
             toggleExpandSession={toggleExpandSession}
           />
 
-          {sessions.map((session) => (
-            <SessionItem 
-              key={session.id}
-              session={session}
-              expandedSessions={expandedSessions}
-              toggleExpandSession={toggleExpandSession}
-              handleComponentClick={handleComponentClick}
-            />
-          ))}
+          {/* Session cards with gap between them */}
+          <div className="p-2 space-y-3">
+            {sessions.map((session) => (
+              <SessionItem 
+                key={session.id}
+                session={session}
+                expandedSessions={expandedSessions}
+                toggleExpandSession={toggleExpandSession}
+                handleComponentClick={handleComponentClick}
+              />
+            ))}
+          </div>
         </div>
       </CollapsibleContent>
     </Collapsible>
