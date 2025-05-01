@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -65,7 +64,7 @@ const ProgramCourseLiveTutorial = () => {
   
   return (
     <Desktop activeTab="programs" simplified>
-      <div className="relative w-full h-[calc(100vh-80px)] bg-gray-900">
+      <div className="relative w-full h-[calc(100vh-80px)] bg-white">
         <div className="p-3 w-full h-full flex flex-col">
           {/* Main content area */}
           <div className="flex flex-1 gap-4 h-full">

@@ -25,7 +25,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
           </div>
         </div>
         
-        <div className="text-gray-600 text-xs mb-2">
+        <div className="text-gray-700 text-xs mb-2">
           Zuno is typing...
         </div>
         
