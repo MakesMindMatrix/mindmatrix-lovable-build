@@ -1,11 +1,19 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
 
 interface ChatBoxProps {}
 
 const ChatBox: React.FC<ChatBoxProps> = () => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className="flex-1 overflow-hidden">
       {/* Chat messages area */}
@@ -19,8 +27,9 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                 className="w-6 h-6 rounded-full"
               />
             </div>
+            <Badge variant="outline" className="ml-2 bg-blue-50/30 text-black text-xs">Zuno</Badge>
           </div>
-          <div className="bg-white/10 rounded-lg p-3 text-white text-sm">
+          <div className="bg-blue-100/30 backdrop-blur-sm border border-blue-200/40 rounded-lg p-3 text-black text-sm">
             These courses will help you upskill at the areas you are currently still yet to improve at
           </div>
         </div>
@@ -41,11 +50,13 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
       
       {/* Chat input */}
       <div className="h-[60px] p-3 flex items-center">
-        <div className="relative w-full bg-white/20 rounded-full">
-          <input 
-            type="text" 
+        <div className="relative w-full">
+          <Textarea 
+            value={inputValue}
+            onChange={handleInputChange}
             placeholder="Type something..." 
-            className="bg-transparent border-none text-white w-full outline-none pl-4 pr-10 py-2 placeholder-white/50 text-sm"
+            className="min-h-[40px] bg-transparent border border-input px-4 py-2 rounded-md text-white w-full resize-none pr-10 placeholder-white/50 text-sm"
+            style={{ height: '40px' }}
           />
           <Button 
             variant="ghost" 

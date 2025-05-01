@@ -1,15 +1,23 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
 
 const ChatSidebar: React.FC = () => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className="w-64 bg-transparent rounded-lg flex flex-col">
       {/* Chat messages */}
       <div className="flex-1 p-3 overflow-hidden flex flex-col">
         {/* Zuno avatar */}
-        <div className="flex justify-center mb-2">
+        <div className="flex items-center mb-2">
           <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
             <img 
               src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
@@ -17,10 +25,11 @@ const ChatSidebar: React.FC = () => {
               className="w-6 h-6 rounded-full"
             />
           </div>
+          <Badge variant="outline" className="ml-2 bg-blue-50/30 text-black text-xs">Zuno</Badge>
         </div>
         
         {/* Welcome message */}
-        <div className="bg-white/10 rounded-lg p-2 text-white text-xs mb-3">
+        <div className="bg-blue-100/30 backdrop-blur-sm border border-blue-200/40 rounded-lg p-2 text-black text-xs mb-3">
           Welcome to this lesson! We'll explore the fundamentals of neural networks. Are you ready to get started?
         </div>
         
@@ -59,11 +68,13 @@ const ChatSidebar: React.FC = () => {
       
       {/* Chat input */}
       <div className="p-2 border-t border-white/10">
-        <div className="relative bg-white/20 rounded-lg flex items-center overflow-hidden">
-          <input 
-            type="text" 
+        <div className="relative">
+          <Textarea 
+            value={inputValue}
+            onChange={handleInputChange}
             placeholder="Type something..." 
-            className="bg-transparent text-white w-full border-none outline-none text-xs p-2 placeholder-white/50"
+            className="min-h-[40px] bg-transparent border border-input px-3 py-2 rounded-md text-white w-full resize-none pr-10 placeholder-white/50 text-xs"
+            style={{ height: '40px' }}
           />
           <Button 
             variant="ghost" 
