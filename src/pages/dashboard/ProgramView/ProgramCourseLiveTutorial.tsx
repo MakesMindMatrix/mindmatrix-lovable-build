@@ -43,24 +43,29 @@ const ProgramCourseLiveTutorial = () => {
             {/* Main content area */}
             <div className="flex flex-1 gap-4 h-full">
               {/* Left Section */}
-              <div className="w-[65%] flex flex-col gap-4">
+              <div className="w-[65%] flex flex-col gap-4 relative">
                 {/* Back button positioned in top left */}
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="absolute top-5 left-5 z-10 rounded-full bg-black/40 hover:bg-black/60 text-white h-10 w-10"
+                  className="absolute top-3 left-3 z-10 rounded-full bg-black/40 hover:bg-black/60 text-white h-10 w-10"
                   onClick={handleBackClick}
                 >
                   <ArrowLeft className="h-5 w-5" />
                 </Button>
                 
-                {/* Video Section with reduced aspect ratio */}
-                <div className="mt-12">
-                  <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                {/* Content Container with adjusted positioning */}
+                <div className="ml-16 mt-3 flex flex-col h-full">
+                  {/* Video Section with reduced height (40% of container) */}
+                  <div className="h-[40%] w-full">
+                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                  </div>
+                  
+                  {/* Chat Section */}
+                  <div className="flex-1 mt-4">
+                    <ChatBox />
+                  </div>
                 </div>
-                
-                {/* Chat Section */}
-                <ChatBox />
               </div>
               
               {/* Right Section */}

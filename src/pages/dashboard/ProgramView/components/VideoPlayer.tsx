@@ -10,7 +10,7 @@ interface VideoPlayerProps {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ isPlaying, setIsPlaying }) => {
   return (
-    <div className="rounded-lg overflow-hidden bg-black w-full">
+    <div className="rounded-lg overflow-hidden bg-black w-full h-full">
       <AspectRatio ratio={16/9} className="relative">
         {/* Live indicator */}
         <div className="absolute top-3 left-3 z-10 bg-red-500/80 px-3 py-1 rounded flex items-center">
