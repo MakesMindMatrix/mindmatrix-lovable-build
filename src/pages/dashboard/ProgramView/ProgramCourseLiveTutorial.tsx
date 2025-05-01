@@ -42,8 +42,8 @@ const ProgramCourseLiveTutorial = () => {
           <div className="p-3 w-full h-full flex flex-col">
             {/* Main content area */}
             <div className="flex flex-1 gap-4 h-full">
-              {/* Left Section - reduced to 55% to give more space to lab section */}
-              <div className="w-[55%] flex flex-col gap-4 relative">
+              {/* Left Section - reduced from 55% to 45% */}
+              <div className="w-[45%] flex flex-col gap-4 relative">
                 {/* Back button positioned in top left */}
                 <Button 
                   variant="ghost" 
@@ -68,8 +68,8 @@ const ProgramCourseLiveTutorial = () => {
                 </div>
               </div>
               
-              {/* Right Section - expanded to 45% to utilize extra space */}
-              <div className="w-[45%] flex flex-col gap-4">
+              {/* Right Section - expanded from 45% to 55% */}
+              <div className="w-[55%] flex flex-col gap-4">
                 {/* Course name card with collapsible */}
                 <CourseAccordion 
                   isCourseExpanded={isCourseExpanded}
