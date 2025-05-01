@@ -106,6 +106,7 @@ const LearnerRegistration = () => {
         <div className="w-full space-y-5 mt-6">
           <div 
             className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md bg-lime-600 cursor-pointer"
+            onClick={handleNextStep}
           >
             <div className="self-start px-2.5 w-7 h-7 text-xs font-bold whitespace-nowrap bg-white rounded-full text-neutral-600 flex items-center justify-center">
               A
@@ -118,6 +119,7 @@ const LearnerRegistration = () => {
             <div
               key={option}
               className="flex overflow-hidden gap-10 items-start px-4 py-2 w-full rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer"
+              onClick={handleNextStep}
             >
               <div className="self-start px-2.5 w-7 h-7 text-xs font-bold whitespace-nowrap bg-white rounded-full text-neutral-600 flex items-center justify-center">
                 {option}

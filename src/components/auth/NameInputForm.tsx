@@ -15,7 +15,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
 
   const handleContinue = () => {
     if (firstName.trim() && onContinue) {
-      onContinue(firstName);
+      onContinue(firstName.trim());
     }
   };
 
