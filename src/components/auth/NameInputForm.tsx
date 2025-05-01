@@ -20,37 +20,31 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-center w-full">
-      <div className="w-full">
-        <div className="flex flex-col w-full">
-          <div className="mt-3 w-full leading-none">
-            <div className="w-full">
-              <label
-                htmlFor="firstName"
-                className="text-base text-white"
-              >
-                First Name
-              </label>
-              <input
-                id="firstName"
-                type="text"
-                placeholder="Your preferred name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="overflow-hidden px-4 py-3 mt-3 w-full text-base text-white bg-white/10 rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder:text-white/50"
-                autoComplete="off"
-              />
-            </div>
-          </div>
-        </div>
-        <button
-          onClick={handleContinue}
-          className="overflow-hidden px-16 py-3 mt-6 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors"
-          disabled={!firstName.trim()}
+    <div className="flex flex-col w-full">
+      <div className="mb-6">
+        <label
+          htmlFor="firstName"
+          className="block text-white text-base mb-2"
         >
-          Let's continue
-        </button>
+          First Name
+        </label>
+        <input
+          id="firstName"
+          type="text"
+          placeholder="Your preferred name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          className="w-full py-3 px-4 rounded-md bg-white/10 text-white border border-white/30 placeholder:text-white/50 focus:outline-none focus:border-white/50"
+          autoComplete="off"
+        />
       </div>
+      <button
+        onClick={handleContinue}
+        className="w-full mt-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors font-medium disabled:opacity-70 disabled:cursor-not-allowed"
+        disabled={!firstName.trim()}
+      >
+        Let's continue
+      </button>
     </div>
   );
 };

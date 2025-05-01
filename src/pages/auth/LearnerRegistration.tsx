@@ -122,9 +122,11 @@ const LearnerRegistration = () => {
   };
 
   return (
-    <main className="flex overflow-hidden flex-col px-8 pt-2.5 pb-12 bg-white h-screen max-md:px-5">
-      <Header />
-      <GradientBackground className="mt-3 flex-grow flex flex-col relative overflow-hidden rounded-[40px]">
+    <main className="flex flex-col h-screen bg-white">
+      <div className="px-8 pt-2.5 pb-4 max-md:px-5">
+        <Header />
+      </div>
+      <GradientBackground className="flex-grow flex flex-col relative overflow-hidden rounded-[40px] mx-8 mb-8 max-md:mx-5">
         <NavigationControls 
           handleBack={handleBack}
           handleNextStep={handleNextStep}
@@ -133,14 +135,12 @@ const LearnerRegistration = () => {
         />
 
         {/* Chat Container - Center Vertically and Horizontally */}
-        <div className="flex-grow flex items-center justify-center px-4 md:px-8 overflow-hidden w-full">
-          <div className="w-full max-w-3xl mx-auto relative">
-            <AnimatePresence mode="wait">
-              <div key={`step-${currentStepIndex}`} className="w-full">
-                {renderCurrentStep()}
-              </div>
-            </AnimatePresence>
-          </div>
+        <div className="flex-grow flex items-center justify-center w-full">
+          <AnimatePresence mode="wait">
+            <div key={`step-${currentStepIndex}`} className="w-full max-w-md mx-auto">
+              {renderCurrentStep()}
+            </div>
+          </AnimatePresence>
         </div>
       </GradientBackground>
     </main>
