@@ -17,7 +17,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   return (
     <div className="flex-1 overflow-hidden">
       {/* Chat messages area */}
-      <div className="p-4 h-[calc(100%-60px)] overflow-y-auto">
+      <div className="p-4 h-[calc(100%-70px)] overflow-y-auto">
         <div className="mb-4">
           <div className="flex mb-2">
             <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -48,8 +48,8 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
         </div>
       </div>
       
-      {/* Chat input */}
-      <div className="h-[60px] p-3 flex items-center">
+      {/* Chat input - shifted down by adding mt-3 */}
+      <div className="h-[70px] p-3 mt-3 flex items-center">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}
