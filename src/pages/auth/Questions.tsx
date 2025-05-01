@@ -20,6 +20,14 @@ function Questions() {
 
   const handleOptionSelect = (optionId: string) => {
     setSelectedOption(optionId);
+    // Auto-advance to next question after a brief delay
+    setTimeout(() => {
+      if (currentQuestion < totalQuestions) {
+        setCurrentQuestion(prev => prev + 1);
+      } else {
+        navigate("/completion");
+      }
+    }, 500);
   };
 
   // Example question data
@@ -35,25 +43,25 @@ function Questions() {
 
   return (
     <AuthLayout>
-      <div className="flex flex-col w-full max-w-[560px] rounded-3xl relative">
+      <div className="flex flex-col w-full max-w-[520px] rounded-3xl relative">
         {/* Glass card background */}
         <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20" />
         
-        <div className="flex flex-col items-center px-12 py-10 relative z-10">
+        <div className="flex flex-col items-center px-10 py-8 relative z-10">
           {/* Question icon */}
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-            className="w-[68px] h-[68px] object-contain rounded-[64px]"
+            className="w-16 h-16 object-contain rounded-[64px]"
             alt="Question icon"
           />
           
           {/* Question text */}
-          <h2 className="mt-8 text-2xl font-medium tracking-tight text-center text-white">
+          <h2 className="mt-6 text-xl font-medium tracking-tight text-center text-white">
             {question}
           </h2>
 
           {/* Question counter and progress bar */}
-          <div className="flex flex-col w-full mt-12">
+          <div className="flex flex-col w-full mt-10">
             <div className="flex items-center justify-end gap-1 text-base font-semibold">
               <span className="text-white">Question {currentQuestion}</span>
               <span className="text-indigo-200">of {totalQuestions}</span>
@@ -71,17 +79,17 @@ function Questions() {
           </div>
 
           {/* Answer options */}
-          <div className="mt-8 w-full">
+          <div className="mt-6 w-full">
             {options.map((option) => (
               <div
                 key={option.id}
                 className={`flex items-center gap-4 px-5 py-4 w-full rounded-md ${
-                  option.id !== "A" ? "mt-4" : ""
+                  option.id !== "A" ? "mt-3" : ""
                 } ${
                   selectedOption === option.id 
                     ? "bg-green-600" 
                     : "bg-white/10 backdrop-blur-sm border border-white/20"
-                } cursor-pointer hover:bg-opacity-90 transition-all duration-200`}
+                } cursor-pointer hover:bg-opacity-90 transition-all duration-200 hover:bg-blue-700 hover:border-blue-500`}
                 onClick={() => handleOptionSelect(option.id)}
               >
                 <div className={`flex items-center justify-center w-7 h-7 text-xs font-bold bg-white rounded-full ${
@@ -99,7 +107,7 @@ function Questions() {
           {/* Continue button */}
           <Button 
             onClick={handleContinue}
-            className="w-full mt-8 py-6 bg-blue-600 hover:bg-blue-700 text-white text-base rounded-md font-medium"
+            className="w-full mt-6 py-5 bg-blue-600 hover:bg-blue-700 text-white text-base rounded-md font-medium"
           >
             Continue
           </Button>
