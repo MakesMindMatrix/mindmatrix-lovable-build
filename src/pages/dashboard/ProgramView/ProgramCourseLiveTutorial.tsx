@@ -9,6 +9,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
 import CodeLabPanel from "./components/CodeLabPanel";
+import { toast } from "sonner";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
@@ -36,16 +37,31 @@ const ProgramCourseLiveTutorial = () => {
   };
 
   const handleComponentClick = (sessionId: number, componentId: string) => {
-    console.log(`Clicked component ${componentId} in session ${sessionId}`);
-    // Handle component clicks
-    if (componentId === "materials") {
-      // Open the Resources tab when Post Session Materials is clicked
+    // Handle component clicks with improved navigation
+    const componentMap: Record<string, string> = {
+      "learning": "Learning Module",
+      "preread": "Pre-read Document", 
+      "tutorial": "Tutorial",
+      "tasks": "Session Tasks",
+      "assessment": "Assessment"
+    };
+    
+    const componentName = componentMap[componentId] || componentId;
+    toast.info(`Opening ${componentName} from Session ${sessionId}`);
+    
+    if (componentId === "tutorial") {
+      // Already on tutorial page, could play the video
+      setIsPlaying(true);
+    } else if (componentId === "tasks") {
+      // Switch to labs tab for tasks
+      setActiveTab("labs");
+    } else if (componentId === "assessment") {
+      // Switch to assessment tab
+      setActiveTab("assessment");
+    } else if (componentId === "learning" || componentId === "preread") {
+      // Switch to resources tab for learning materials
       setActiveTab("resources");
-    } else if (componentId === "tutorial" && sessionId === 1) {
-      // Already on the tutorial page, could add additional actions if needed
-      console.log("Already on tutorial page");
     }
-    // Add other component handlers as needed
   };
   
   return (

@@ -40,7 +40,6 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         { id: "learning", title: "Learning Module", icon: Book },
         { id: "preread", title: "Pre-read Doc", icon: FileText },
         { id: "tutorial", title: "Tutorial", icon: Video },
-        { id: "materials", title: "Post Session Materials", icon: FileText },
         { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
         { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
       ]
@@ -52,7 +51,6 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         { id: "learning", title: "Learning Module", icon: Book },
         { id: "preread", title: "Pre-read Doc", icon: FileText },
         { id: "tutorial", title: "Tutorial", icon: Video },
-        { id: "materials", title: "Post Session Materials", icon: FileText },
         { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
         { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
       ]
@@ -64,7 +62,6 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         { id: "learning", title: "Learning Module", icon: Book },
         { id: "preread", title: "Pre-read Doc", icon: FileText },
         { id: "tutorial", title: "Tutorial", icon: Video },
-        { id: "materials", title: "Post Session Materials", icon: FileText },
         { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
         { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
       ]
@@ -76,7 +73,6 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         { id: "learning", title: "Learning Module", icon: Book },
         { id: "preread", title: "Pre-read Doc", icon: FileText },
         { id: "tutorial", title: "Tutorial", icon: Video },
-        { id: "materials", title: "Post Session Materials", icon: FileText },
         { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
         { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
       ]
@@ -88,7 +84,6 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
         { id: "learning", title: "Learning Module", icon: Book },
         { id: "preread", title: "Pre-read Doc", icon: FileText },
         { id: "tutorial", title: "Tutorial", icon: Video },
-        { id: "materials", title: "Post Session Materials", icon: FileText },
         { id: "tasks", title: "Post Session Tasks", icon: ListTodo },
         { id: "assessment", title: "Post Session Assessment", icon: ClipboardCheck }
       ]
@@ -143,7 +138,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
                 <path d="M3 13.5C3 11.7327 4.4327 10.3 6.2 10.3H6.2C7.9673 10.3 9.4 11.7327 9.4 13.5V17.8C9.4 19.5673 7.9673 21 6.2 21H6.2C4.4327 21 3 19.5673 3 17.8V13.5Z" stroke="currentColor" strokeWidth="2"/>
               </svg>
             </div>
-            <h3 className="text-white text-base font-medium">Course Title</h3> {/* Reduced font size */}
+            <h3 className="text-white text-base font-medium">Course Title</h3>
           </div>
           <div>
             {isCourseExpanded ? (
@@ -156,9 +151,41 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
       </CollapsibleTrigger>
 
       <CollapsibleContent>
-        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/40 backdrop-blur-lg rounded-b-xl"> {/* Improved glassy effect */}
+        <div className="p-0 space-y-1 max-h-[70vh] overflow-y-auto bg-blue-100/40 backdrop-blur-lg rounded-b-xl"> 
+          {/* Navigation tabs at the top */}
+          <div className="sticky top-0 z-10 bg-blue-300/40 backdrop-blur-xl p-2 flex justify-between border-b border-blue-200/60">
+            <div className="flex space-x-1 overflow-x-auto pb-1 scrollbar-hide">
+              {sessions.map((session) => (
+                <button
+                  key={session.id}
+                  className={cn(
+                    "px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap transition-colors",
+                    expandedSessions[session.id] 
+                      ? "bg-blue-500 text-white" 
+                      : "bg-blue-200/60 text-blue-700 hover:bg-blue-300/60"
+                  )}
+                  onClick={() => {
+                    toggleExpandSession(session.id);
+                    // Auto-scroll to this session if it's expanded
+                    if (!expandedSessions[session.id]) {
+                      setTimeout(() => {
+                        document.getElementById(`session-${session.id}`)?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }
+                  }}
+                >
+                  {session.id}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {sessions.map((session) => (
-            <div key={session.id} className="mb-1 last:mb-0 bg-blue-200/40 backdrop-blur-lg rounded-md mx-1 overflow-hidden"> {/* Improved glassy effect for session cards */}
+            <div 
+              id={`session-${session.id}`}
+              key={session.id} 
+              className="mb-1 last:mb-0 bg-blue-200/40 backdrop-blur-lg rounded-md mx-1 overflow-hidden"
+            > 
               <div 
                 className={`flex items-center justify-between p-3 cursor-pointer`}
                 onClick={() => toggleExpandSession(session.id)}
@@ -172,7 +199,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
                       <path d="M3 13.5C3 11.7327 4.4327 10.3 6.2 10.3H6.2C7.9673 10.3 9.4 11.7327 9.4 13.5V17.8C9.4 19.5673 7.9673 21 6.2 21H6.2C4.4327 21 3 19.5673 3 17.8V13.5Z" stroke="currentColor" strokeWidth="2"/>
                     </svg>
                   </div>
-                  <h4 className="text-blue-700 text-base font-medium">Session {session.id}</h4> {/* Kept font size consistent with course title */}
+                  <h4 className="text-blue-700 text-base font-medium">Session {session.id}</h4>
                 </div>
                 <div>
                   {expandedSessions[session.id] ? (
@@ -185,23 +212,29 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
               
               {expandedSessions[session.id] && (
                 <div className="px-2 pb-2">
-                  {session.components.map((component, index) => {
-                    // Highlight the tutorial component for session 1
-                    const isHighlighted = session.id === 1 && component.id === "tutorial";
-                    
-                    return (
-                      <div 
-                        key={index}
-                        className={cn(
-                          "py-2 px-3 text-blue-700 cursor-pointer hover:bg-blue-300/40 rounded-sm transition-colors text-sm", // Smaller font size for components
-                          isHighlighted && "bg-blue-500 text-white"
-                        )}
-                        onClick={() => handleComponentClick(session.id, component.id)}
-                      >
-                        {component.title}
-                      </div>
-                    );
-                  })}
+                  <div className="grid grid-cols-2 gap-2">
+                    {session.components.map((component, index) => {
+                      // Highlight the tutorial component for session 1
+                      const isHighlighted = session.id === 1 && component.id === "tutorial";
+                      const Icon = component.icon;
+                      
+                      return (
+                        <div 
+                          key={index}
+                          className={cn(
+                            "py-2 px-2 cursor-pointer hover:bg-blue-300/40 rounded-md transition-colors flex items-center gap-2",
+                            isHighlighted ? "bg-blue-500 text-white" : "text-blue-700 bg-blue-100/40"
+                          )}
+                          onClick={() => handleComponentClick(session.id, component.id)}
+                        >
+                          <Icon className="h-4 w-4" />
+                          <span className="text-xs font-medium truncate">
+                            {component.title}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
