@@ -73,87 +73,89 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
   };
 
   return (
-    <Card className={cn(
-      "border-none shadow-lg overflow-hidden max-w-[85%] mx-auto", 
-      useGlassLayout ? "bg-white/10 backdrop-blur-md border border-white/20" : "bg-[#2E3A54]"
-    )}>
-      <Collapsible open={isCourseExpanded}>
-        <CollapsibleTrigger
-          asChild
-          onClick={toggleCourseCard}
-          className="w-full cursor-pointer"
-        >
-          <div className={cn(
-            "flex items-center justify-between p-4 transition-all",
-            useGlassLayout ? "bg-white/5 backdrop-blur-md border-b border-white/10" : "bg-[#1E293B]"
-          )}>
-            <div>
-              <p className="text-white/60 text-sm">Current Course</p>
-              <h3 className="text-white font-medium text-sm">Introduction to Electric Vehicles</h3>
-            </div>
-            <div className="flex items-center">
-              {isCourseExpanded ? (
-                <ChevronUp className="h-5 w-5 text-white/60" />
-              ) : (
-                <ChevronDown className="h-5 w-5 text-white/60" />
+    <Collapsible 
+      open={isCourseExpanded}
+      className={cn(
+        "fixed right-0 mr-4 z-20 w-80", // Fixed width, aligned to right
+        "border-none shadow-lg overflow-hidden",
+        useGlassLayout ? "bg-white/10 backdrop-blur-md border border-white/20" : "bg-[#2E3A54]"
+      )}
+    >
+      <CollapsibleTrigger
+        asChild
+        onClick={toggleCourseCard}
+        className="w-full cursor-pointer"
+      >
+        <div className={cn(
+          "flex items-center justify-between p-4 transition-all",
+          useGlassLayout ? "bg-white/5 backdrop-blur-md border-b border-white/10" : "bg-[#1E293B]"
+        )}>
+          <div>
+            <p className="text-white/60 text-sm">Current Course</p>
+            <h3 className="text-white text-sm">Introduction to Electric Vehicles</h3>
+          </div>
+          <div className="flex items-center">
+            {isCourseExpanded ? (
+              <ChevronUp className="h-5 w-5 text-white/60" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-white/60" />
+            )}
+          </div>
+        </div>
+      </CollapsibleTrigger>
+
+      <CollapsibleContent>
+        <CardContent className="p-4 space-y-3 max-h-[70vh] overflow-y-auto">
+          {sessions.map((session) => (
+            <div key={session.id} className="space-y-2">
+              <button
+                className={cn(
+                  "w-full text-left p-3 rounded-lg transition-all text-sm",
+                  currentSession === session.id 
+                    ? useGlassLayout 
+                      ? "bg-green-500/30 backdrop-blur-md border border-green-500/30 text-white" 
+                      : "bg-[#4B6291] text-white" 
+                    : useGlassLayout 
+                      ? "bg-white/5 backdrop-blur-sm border border-white/10 text-white/80 hover:bg-white/10"
+                      : "bg-[#3A4661] text-white/80 hover:bg-[#455271]"
+                )}
+                onClick={() => toggleSession(session.id)}
+              >
+                <p className="font-medium">Session {session.id}: {session.title}</p>
+              </button>
+              
+              {currentSession === session.id && (
+                <div className="pl-4 space-y-1.5">
+                  {session.components.map((component, index) => {
+                    const IconComponent = component.icon;
+                    // Highlight the tutorial component for session 1
+                    const isHighlighted = session.id === 1 && component.id === "tutorial";
+                    
+                    return (
+                      <button 
+                        key={index} 
+                        className={cn(
+                          "text-xs py-2 px-3 rounded flex items-center gap-2 w-full text-left",
+                          isHighlighted 
+                            ? "bg-blue-500/40 text-white font-medium" 
+                            : useGlassLayout 
+                              ? "text-white/90 bg-white/5 backdrop-blur-sm hover:bg-white/10" 
+                              : "text-white/90 bg-[#2E3A54] hover:bg-[#3A4661]"
+                        )}
+                        onClick={() => handleComponentClick(session.id, component.id)}
+                      >
+                        <IconComponent className="h-3.5 w-3.5" />
+                        <span>{component.title}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               )}
             </div>
-          </div>
-        </CollapsibleTrigger>
-
-        <CollapsibleContent>
-          <CardContent className="p-4 space-y-3">
-            {sessions.map((session) => (
-              <div key={session.id} className="space-y-2">
-                <button
-                  className={cn(
-                    "w-full text-left p-3 rounded-lg transition-all",
-                    currentSession === session.id 
-                      ? useGlassLayout 
-                        ? "bg-green-500/30 backdrop-blur-md border border-green-500/30 text-white" 
-                        : "bg-[#4B6291] text-white" 
-                      : useGlassLayout 
-                        ? "bg-white/5 backdrop-blur-sm border border-white/10 text-white/80 hover:bg-white/10"
-                        : "bg-[#3A4661] text-white/80 hover:bg-[#455271]"
-                  )}
-                  onClick={() => toggleSession(session.id)}
-                >
-                  <p className="font-medium">Session {session.id}: {session.title}</p>
-                </button>
-                
-                {currentSession === session.id && (
-                  <div className="pl-4 space-y-1.5">
-                    {session.components.map((component, index) => {
-                      const IconComponent = component.icon;
-                      // Highlight the tutorial component for session 1
-                      const isHighlighted = session.id === 1 && component.id === "tutorial";
-                      
-                      return (
-                        <button 
-                          key={index} 
-                          className={cn(
-                            "text-sm py-2 px-3 rounded flex items-center gap-2 w-full text-left",
-                            isHighlighted 
-                              ? "bg-blue-500/40 text-white font-medium" 
-                              : useGlassLayout 
-                                ? "text-white/90 bg-white/5 backdrop-blur-sm hover:bg-white/10" 
-                                : "text-white/90 bg-[#2E3A54] hover:bg-[#3A4661]"
-                          )}
-                          onClick={() => handleComponentClick(session.id, component.id)}
-                        >
-                          <IconComponent className="h-4 w-4" />
-                          <span>{component.title}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            ))}
-          </CardContent>
-        </CollapsibleContent>
-      </Collapsible>
-    </Card>
+          ))}
+        </CardContent>
+      </CollapsibleContent>
+    </Collapsible>
   );
 };
 

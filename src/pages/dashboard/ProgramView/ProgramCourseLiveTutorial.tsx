@@ -36,6 +36,7 @@ const ProgramCourseLiveTutorial = () => {
   };
 
   const handleComponentClick = (sessionId: number, componentId: string) => {
+    console.log(`Clicked component ${componentId} in session ${sessionId}`);
     // Handle component clicks
     if (componentId === "materials") {
       // Open the Resources tab when Post Session Materials is clicked
@@ -78,8 +79,8 @@ const ProgramCourseLiveTutorial = () => {
               </div>
               
               {/* Right Section - expanded from 45% to 55% */}
-              <div className="w-[55%] flex flex-col gap-4">
-                {/* Course name card with collapsible - Using glass layout */}
+              <div className="w-[55%] flex flex-col gap-4 relative">
+                {/* Course name card with collapsible - Fixed position for overlay */}
                 <CourseAccordion 
                   isCourseExpanded={isCourseExpanded}
                   toggleCourseCard={toggleCourseCard}
@@ -90,12 +91,14 @@ const ProgramCourseLiveTutorial = () => {
                 />
                 
                 {/* Lab Navigation Card */}
-                <CodeLabPanel 
-                  activeTab={activeTab}
-                  handleTabChange={handleTabChange}
-                  codeLanguage={codeLanguage}
-                  setCodeLanguage={setCodeLanguage}
-                />
+                <div className="mt-2 w-full">
+                  <CodeLabPanel 
+                    activeTab={activeTab}
+                    handleTabChange={handleTabChange}
+                    codeLanguage={codeLanguage}
+                    setCodeLanguage={setCodeLanguage}
+                  />
+                </div>
               </div>
             </div>
           </div>
