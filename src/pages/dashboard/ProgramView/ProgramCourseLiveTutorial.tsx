@@ -51,7 +51,7 @@ const ProgramCourseLiveTutorial = () => {
   return (
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-80px)]">
-        <GradientBackground className="absolute inset-0">
+        <GradientBackground className="absolute inset-0 -bottom-[calc(100vh-85px)]">
           <div className="p-3 w-full h-full flex flex-col">
             {/* Main content area */}
             <div className="flex flex-1 gap-4 h-full">
