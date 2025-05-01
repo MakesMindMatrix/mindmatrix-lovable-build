@@ -15,9 +15,9 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   };
 
   return (
-    <div className="flex-1 overflow-hidden">
-      {/* Chat messages area */}
-      <div className="p-4 h-[calc(100%-70px)] overflow-y-auto">
+    <div className="flex flex-col h-full overflow-hidden">
+      {/* Chat messages area - takes all available space */}
+      <div className="flex-1 p-4 overflow-y-auto">
         <div className="mb-4">
           <div className="flex mb-2">
             <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -30,7 +30,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
             <Badge variant="outline" className="ml-2 bg-blue-50/30 text-black text-xs">Zuno</Badge>
           </div>
           <div className="bg-blue-100/30 backdrop-blur-sm border border-blue-200/40 rounded-lg p-3 text-black text-sm">
-            These courses will help you upskill at the areas you are currently still yet to improve at
+            Welcome to the JavaScript Fundamentals learning module. I'm here to guide you through the material and answer any questions you might have.
           </div>
         </div>
         
@@ -48,8 +48,8 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
         </div>
       </div>
       
-      {/* Chat input - shifted down by adding mt-3 */}
-      <div className="h-[70px] p-3 mt-3 flex items-center">
+      {/* Chat input - fixed at the bottom */}
+      <div className="p-3 border-t border-blue-200/20">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}

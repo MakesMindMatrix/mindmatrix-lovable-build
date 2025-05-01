@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Desktop from "@/components/dashboard/day1/Desktop";
-import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
 import ReadingPanel from "./components/ReadingPanel";
@@ -12,7 +11,6 @@ import { toast } from "sonner";
 
 const ProgramCourseLearningModule = () => {
   const navigate = useNavigate();
-  const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("read");
   const [documentFormat, setDocumentFormat] = useState("PDF");
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
@@ -69,7 +67,7 @@ const ProgramCourseLearningModule = () => {
         <div className="p-3 w-full h-full flex flex-col">
           {/* Main content area */}
           <div className="flex flex-1 gap-4 h-full">
-            {/* Left Section - reduced from 55% to 45% */}
+            {/* Left Section - Chat Card */}
             <div className="w-[45%] flex flex-col gap-4 relative">
               {/* Back button positioned in top left */}
               <Button 
@@ -81,24 +79,14 @@ const ProgramCourseLearningModule = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Light Bluish Glass Card wrapping video and chat */}
+              {/* Light Bluish Glass Card for chat - now taking the full height */}
               <div className="ml-16 mt-3 flex flex-col h-full bg-blue-100/20 backdrop-blur-lg border border-blue-100/30 rounded-xl p-4 shadow-sm">
-                {/* Content Container with adjusted positioning */}
-                <div className="flex flex-col h-full">
-                  {/* Video Section with reduced height (40% of container) */}
-                  <div className="h-[40%] w-full">
-                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                  </div>
-                  
-                  {/* Chat Section */}
-                  <div className="flex-1 mt-4">
-                    <ChatBox />
-                  </div>
-                </div>
+                {/* Chat content takes full space now */}
+                <ChatBox />
               </div>
             </div>
             
-            {/* Right Section - expanded from 45% to 55% */}
+            {/* Right Section */}
             <div className="w-[55%] flex flex-col gap-4 relative">
               {/* Course Accordion - Fixed position for overlay */}
               <div className="absolute top-0 right-0 z-20">
