@@ -81,16 +81,19 @@ const ProgramCourseLiveTutorial = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Content Container with adjusted positioning */}
-              <div className="ml-16 mt-3 flex flex-col h-full">
-                {/* Video Section with reduced height (40% of container) */}
-                <div className="h-[40%] w-full">
-                  <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                </div>
-                
-                {/* Chat Section */}
-                <div className="flex-1 mt-4">
-                  <ChatBox />
+              {/* Light Bluish Glass Card wrapping video and chat */}
+              <div className="ml-16 mt-3 flex flex-col h-full bg-blue-100/20 backdrop-blur-lg border border-blue-100/30 rounded-xl p-4 shadow-sm">
+                {/* Content Container with adjusted positioning */}
+                <div className="flex flex-col h-full">
+                  {/* Video Section with reduced height (40% of container) */}
+                  <div className="h-[40%] w-full">
+                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                  </div>
+                  
+                  {/* Chat Section */}
+                  <div className="flex-1 mt-4">
+                    <ChatBox />
+                  </div>
                 </div>
               </div>
             </div>
