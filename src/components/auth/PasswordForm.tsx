@@ -41,7 +41,7 @@ export const PasswordForm: React.FC = () => {
           alt="App icon"
           className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
         />
-        <h2 className="self-stretch mt-7 text-3xl font-medium tracking-tight leading-10 text-center max-md:max-w-full">
+        <h2 className="self-stretch mt-7 text-3xl font-medium tracking-tight leading-10 text-center text-white max-md:max-w-full">
           Got it! Now create a{" "}
           <em className="not-italic" style={{ fontStyle: "italic" }}>
             password
