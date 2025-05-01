@@ -10,10 +10,6 @@ const SignupForm = () => {
     navigate("/signup2");
   };
 
-  const handleLearnerRegistration = () => {
-    navigate("/learner-registration");
-  };
-
   return (
     <div className="relative mb-0 max-w-full w-[456px] max-md:mb-2.5">
       <div className="flex flex-col items-center w-full max-md:max-w-full">
@@ -36,12 +32,6 @@ const SignupForm = () => {
             variant="medium"
             className="glass-btn mb-2.5"
             onClick={handleEmailSignup}
-          />
-          <ActionButton
-            text="Try New Chat Registration"
-            variant="semibold"
-            className="glass-btn mb-2.5 bg-green-600 hover:bg-green-700"
-            onClick={handleLearnerRegistration}
           />
           <ActionButton
             text="Continue with Google"

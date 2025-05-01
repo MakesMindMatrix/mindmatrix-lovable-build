@@ -16,7 +16,6 @@ import SkillScan from "./pages/auth/SkillScan";
 import Guidance from "./pages/auth/Guidance";
 import Questions from "./pages/auth/Questions";
 import Completion from "./pages/auth/Completion";
-import LearnerRegistration from "./pages/auth/LearnerRegistration";
 import NotFound from "./pages/NotFound";
 import DashboardDay1 from "./pages/dashboard/Day1";
 import Programs from "./pages/dashboard/Programs";
@@ -48,7 +47,6 @@ const App = () => {
               <Route path="/guidance" element={<Guidance />} />
               <Route path="/questions" element={<Questions />} />
               <Route path="/completion" element={<Completion />} />
-              <Route path="/learner-registration" element={<LearnerRegistration />} />
               <Route path="/dashboard-Day1" element={<DashboardDay1 />} />
               <Route path="/dashboard-programs" element={<Programs />} />
               <Route path="/dashboard-tasks" element={<Tasks />} />
