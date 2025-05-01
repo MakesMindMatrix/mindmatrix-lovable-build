@@ -9,6 +9,7 @@ import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
 import CodeLabPanel from "./components/CodeLabPanel";
 import { toast } from "sonner";
+import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
@@ -84,20 +85,22 @@ const ProgramCourseLiveTutorial = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Light Bluish Glass Card wrapping video and chat */}
-              <div className="ml-16 mt-3 flex flex-col h-full bg-blue-100/20 backdrop-blur-lg border border-blue-100/30 rounded-xl p-4 shadow-sm">
-                {/* Content Container with adjusted positioning */}
-                <div className="flex flex-col h-full">
-                  {/* Video Section with reduced height (40% of container) */}
-                  <div className="h-[40%] w-full">
-                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+              {/* Using GradientBackground instead of light blue glass */}
+              <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl">
+                <GradientBackground className="h-full w-full rounded-xl">
+                  {/* Content Container with adjusted positioning */}
+                  <div className="flex flex-col h-full p-4 relative z-10">
+                    {/* Video Section with reduced height (40% of container) */}
+                    <div className="h-[40%] w-full">
+                      <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                    </div>
+                    
+                    {/* Chat Section */}
+                    <div className="flex-1 mt-4">
+                      <ChatBox />
+                    </div>
                   </div>
-                  
-                  {/* Chat Section */}
-                  <div className="flex-1 mt-4">
-                    <ChatBox />
-                  </div>
-                </div>
+                </GradientBackground>
               </div>
             </div>
             
