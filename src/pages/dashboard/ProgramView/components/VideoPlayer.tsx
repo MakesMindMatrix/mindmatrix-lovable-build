@@ -24,26 +24,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ isPlaying, setIsPlaying }) =>
           <span className="text-white text-sm">Attending <span className="bg-white/20 px-2 py-0.5 rounded ml-1">280</span></span>
         </div>
         
-        {/* Video */}
-        <video 
-          className="w-full h-full object-cover"
-          poster="/lovable-uploads/8eae9165-5b6f-4641-a457-52257f53f3a1.png"
-        >
-          <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4" />
-        </video>
-        
-        {/* Play button overlay */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-          onClick={() => setIsPlaying(!isPlaying)}
-        >
-          <div className="w-14 h-14 bg-white/30 rounded-full flex items-center justify-center">
-            {isPlaying ? (
-              <Pause className="h-7 w-7 text-white" />
-            ) : (
-              <Play className="h-7 w-7 text-white ml-1" />
-            )}
-          </div>
+        {/* YouTube Video */}
+        <div className="w-full h-full">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/PkZNo7MFNFg?autoplay=0"
+            title="Web Development Tutorial"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
         
         {/* Time indicator */}
