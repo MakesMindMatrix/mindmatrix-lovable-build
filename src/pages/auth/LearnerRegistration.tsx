@@ -69,10 +69,26 @@ const LearnerRegistration = () => {
     setName
   });
 
-  // Scroll to bottom when new content is added
+  // Scroll to center when new content is added
   useEffect(() => {
     if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+      // Allow the animations to complete before scrolling
+      setTimeout(() => {
+        const currentContent = containerRef.current?.querySelector("[data-current='true']");
+        if (currentContent) {
+          const containerHeight = containerRef.current.clientHeight;
+          const contentHeight = currentContent.clientHeight as number;
+          const scrollPosition = currentContent.getBoundingClientRect().top + 
+                               containerRef.current.scrollTop - 
+                               containerRef.current.getBoundingClientRect().top -
+                               (containerHeight / 2) + (contentHeight / 2);
+          
+          containerRef.current.scrollTo({
+            top: Math.max(0, scrollPosition - 100), // Adjust for better visual centering
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
     }
   }, [completedSteps, currentStepIndex]);
 
@@ -93,53 +109,56 @@ const LearnerRegistration = () => {
         {/* Chat Container */}
         <div 
           ref={containerRef}
-          className="flex-grow flex flex-col overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
+          className="flex-grow flex flex-col items-center justify-center overflow-y-auto px-4 md:px-8 py-20 max-w-3xl mx-auto w-full"
         >
-          <AnimatePresence mode="wait">
-            {/* Completed Steps */}
-            {completedSteps.map((step, index) => (
-              <motion.div
-                key={`${step.id}-${index}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 0.7, y: 0 }}
-                exit={{ opacity: 0, y: -50, scale: 0.8 }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-              >
-                <ChatStep
-                  title={step.title}
-                  avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-                  isCompleted={true}
+          <div className="w-full flex flex-col items-center">
+            <AnimatePresence mode="wait">
+              {/* Completed Steps */}
+              {completedSteps.map((step, index) => (
+                <motion.div
+                  key={`${step.id}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 0.7, y: 0 }}
+                  exit={{ opacity: 0, y: -50, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-8 w-full"
                 >
-                  {step.component}
+                  <ChatStep
+                    title={step.title}
+                    avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
+                    isCompleted={true}
+                  >
+                    {step.component}
+                  </ChatStep>
+                </motion.div>
+              ))}
+              
+              {/* Current Step */}
+              <motion.div
+                key={`current-${currentStep.id}`}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+                data-current="true"
+              >
+                <ChatStep 
+                  title={currentStep.title}
+                  avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
+                >
+                  {currentStep.component || (
+                    <button 
+                      onClick={handleNextStep}
+                      className="mt-7 w-full max-w-md mx-auto bg-blue-700 hover:bg-blue-600 text-white text-base py-6 rounded-xl"
+                    >
+                      {currentStep.buttonText}
+                    </button>
+                  )}
                 </ChatStep>
               </motion.div>
-            ))}
-            
-            {/* Current Step */}
-            <motion.div
-              key={`current-${currentStep.id}`}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              <ChatStep 
-                title={currentStep.title}
-                avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-              >
-                {currentStep.component || (
-                  <button 
-                    onClick={handleNextStep}
-                    className="mt-7 w-full max-w-md mx-auto bg-blue-700 hover:bg-blue-600 text-white text-base py-6 rounded-xl"
-                  >
-                    {currentStep.buttonText}
-                  </button>
-                )}
-              </ChatStep>
-            </motion.div>
-          </AnimatePresence>
+            </AnimatePresence>
+          </div>
         </div>
       </GradientBackground>
     </main>

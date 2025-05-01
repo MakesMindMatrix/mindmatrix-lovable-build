@@ -38,7 +38,7 @@ const NavigationControls: React.FC<NavigationControlsProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.3 }}
-          className="w-full max-w-md mx-auto"
+          className="w-full max-w-md mx-auto absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <Button 
             onClick={handleNextStep}

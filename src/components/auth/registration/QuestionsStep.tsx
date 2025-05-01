@@ -31,7 +31,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
 
   return (
     <motion.div 
-      className="w-full space-y-5 mt-6"
+      className="w-full space-y-5"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

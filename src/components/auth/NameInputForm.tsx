@@ -20,7 +20,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-center self-stretch font-medium w-full">
+    <div className="flex flex-col justify-center w-full">
       <div className="w-full">
         <div className="flex flex-col w-full">
           <div className="mt-4 w-full leading-none">
