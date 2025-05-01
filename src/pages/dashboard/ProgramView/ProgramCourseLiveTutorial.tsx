@@ -42,8 +42,8 @@ const ProgramCourseLiveTutorial = () => {
           <div className="p-3 w-full h-full flex flex-col">
             {/* Main content area */}
             <div className="flex flex-1 gap-4 h-full">
-              {/* Left Section - reduced to 55% from 65% */}
-              <div className="w-[55%] flex flex-col gap-4 relative">
+              {/* Left Section */}
+              <div className="w-[65%] flex flex-col gap-4 relative">
                 {/* Back button positioned in top left */}
                 <Button 
                   variant="ghost" 
@@ -56,8 +56,8 @@ const ProgramCourseLiveTutorial = () => {
                 
                 {/* Content Container with adjusted positioning */}
                 <div className="ml-16 mt-3 flex flex-col h-full">
-                  {/* Video Section with reduced width (65% of container) */}
-                  <div className="h-[40%] w-[65%]">
+                  {/* Video Section with reduced height (40% of container) */}
+                  <div className="h-[40%] w-full">
                     <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                   </div>
                   
@@ -68,8 +68,8 @@ const ProgramCourseLiveTutorial = () => {
                 </div>
               </div>
               
-              {/* Right Section - increased to 45% from 35% */}
-              <div className="w-[45%] flex flex-col gap-4">
+              {/* Right Section */}
+              <div className="w-[35%] flex flex-col gap-4">
                 {/* Course name card with collapsible */}
                 <CourseAccordion 
                   isCourseExpanded={isCourseExpanded}
