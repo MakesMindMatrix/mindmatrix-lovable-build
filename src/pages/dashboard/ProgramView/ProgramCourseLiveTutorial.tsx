@@ -34,6 +34,15 @@ const ProgramCourseLiveTutorial = () => {
   const toggleSession = (sessionId: number) => {
     setCurrentSession(currentSession === sessionId ? 0 : sessionId);
   };
+
+  const handleComponentClick = (sessionId: number, componentId: string) => {
+    // Handle component clicks
+    if (componentId === "materials") {
+      // Open the Resources tab when Post Session Materials is clicked
+      setActiveTab("resources");
+    }
+    // Add other component handlers as needed
+  };
   
   return (
     <Desktop activeTab="programs" simplified>
@@ -77,6 +86,7 @@ const ProgramCourseLiveTutorial = () => {
                   currentSession={currentSession}
                   toggleSession={toggleSession}
                   useGlassLayout={true}
+                  onComponentClick={handleComponentClick}
                 />
                 
                 {/* Lab Navigation Card */}
