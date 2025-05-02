@@ -16,7 +16,7 @@ const ProgramCourseLiveTutorial = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("labs");
   const [codeLanguage, setCodeLanguage] = useState("Python");
-  const [isCourseExpanded, setIsCourseExpanded] = useState(false); // Set to false by default
+  const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
   
   const handleBackClick = () => {
@@ -73,7 +73,7 @@ const ProgramCourseLiveTutorial = () => {
         <div className="p-3 w-full h-full flex flex-col">
           {/* Main content area */}
           <div className="flex flex-1 gap-4 h-full">
-            {/* Left Section - reduced from 55% to 45% */}
+            {/* Left Section - 45% width */}
             <div className="w-[45%] flex flex-col gap-4 relative">
               {/* Back button positioned in top left */}
               <Button 
@@ -85,18 +85,18 @@ const ProgramCourseLiveTutorial = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Using GradientBackground instead of light blue glass */}
+              {/* Using GradientBackground with proper structure */}
               <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl">
                 <GradientBackground className="h-full w-full rounded-xl">
-                  {/* Content Container with adjusted positioning */}
-                  <div className="flex flex-col h-full p-4 relative z-10">
-                    {/* Video Section with reduced height (40% of container) */}
-                    <div className="h-[40%] w-full mb-4">
+                  {/* Content Container with fixed video and scrollable chat */}
+                  <div className="flex flex-col h-full relative z-10">
+                    {/* Fixed Video Section - Reduced height (40% of container) */}
+                    <div className="absolute top-0 left-0 right-0 h-[40%] p-4">
                       <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                     </div>
                     
-                    {/* Chat Section - now with proper overflow handling */}
-                    <div className="flex-1 overflow-hidden">
+                    {/* Scrollable Chat Section with fixed input */}
+                    <div className="absolute top-[40%] bottom-0 left-0 right-0 p-4">
                       <ChatBox />
                     </div>
                   </div>
@@ -104,7 +104,7 @@ const ProgramCourseLiveTutorial = () => {
               </div>
             </div>
             
-            {/* Right Section - expanded from 45% to 55% */}
+            {/* Right Section - 55% width */}
             <div className="w-[55%] flex flex-col gap-4 relative">
               {/* Course Accordion - Fixed position for overlay */}
               <div className="absolute top-0 right-0 z-20">
@@ -119,7 +119,7 @@ const ProgramCourseLiveTutorial = () => {
                 />
               </div>
               
-              {/* Lab Navigation Card - Added top margin to create space */}
+              {/* Lab Navigation Card */}
               <div className="mt-16 w-full h-[calc(100%-16px)]">
                 <CodeLabPanel 
                   activeTab={activeTab}

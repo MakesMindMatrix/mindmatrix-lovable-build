@@ -70,81 +70,83 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
 
   return (
     <div className="flex flex-col h-full relative">
-      {/* Chat messages area - scrollable with fixed height */}
-      <div className="absolute top-0 left-0 right-0 bottom-[60px] overflow-hidden">
-        <ScrollArea ref={scrollAreaRef} className="h-full px-4 pb-2">
-          {messages.map((message) => (
-            <div key={message.id} className="mb-4">
-              {message.sender === "zuno" ? (
-                <div className="mb-4">
-                  <div className="flex mb-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-100/50 flex items-center justify-center">
-                      <img 
-                        src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
-                        alt="Zuno" 
-                        className="w-6 h-6 rounded-full"
-                      />
+      {/* Scrollable Chat Area that fills available space */}
+      <div className="h-[calc(100%-60px)] overflow-hidden">
+        <ScrollArea ref={scrollAreaRef} className="h-full pb-2">
+          <div className="px-4">
+            {messages.map((message) => (
+              <div key={message.id} className="mb-4">
+                {message.sender === "zuno" ? (
+                  <div className="mb-4">
+                    <div className="flex mb-2">
+                      <div className="w-8 h-8 rounded-full bg-blue-100/50 flex items-center justify-center">
+                        <img 
+                          src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
+                          alt="Zuno" 
+                          className="w-6 h-6 rounded-full"
+                        />
+                      </div>
+                      <Badge variant="outline" className="ml-2 bg-blue-100/50 text-blue-900 text-xs">Zuno</Badge>
                     </div>
-                    <Badge variant="outline" className="ml-2 bg-blue-100/50 text-blue-900 text-xs">Zuno</Badge>
+                    <div className="bg-blue-100/70 backdrop-blur-sm border border-blue-200/50 rounded-lg p-3 text-blue-900 text-sm">
+                      {message.content}
+                    </div>
                   </div>
-                  <div className="bg-blue-100/70 backdrop-blur-sm border border-blue-200/50 rounded-lg p-3 text-blue-900 text-sm">
-                    {message.content}
+                ) : (
+                  <div className="flex flex-row-reverse mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gray-200/50 flex items-center justify-center ml-2">
+                      <div className="text-gray-600 text-xs font-semibold">You</div>
+                    </div>
+                    <div className="bg-gray-200/70 backdrop-blur-sm border border-gray-300/50 rounded-lg p-3 text-gray-800 text-sm">
+                      {message.content}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="flex flex-row-reverse mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-200/50 flex items-center justify-center ml-2">
-                    <div className="text-gray-600 text-xs font-semibold">You</div>
-                  </div>
-                  <div className="bg-gray-200/70 backdrop-blur-sm border border-gray-300/50 rounded-lg p-3 text-gray-800 text-sm">
-                    {message.content}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-          
-          {messages.length > 0 && messages[messages.length - 1].sender === "zuno" && (
-            <div className="text-blue-900 text-xs mb-2">
-              Zuno is ready to help...
-            </div>
-          )}
-          
-          {/* Action button */}
-          <div className="flex justify-end mb-2">
-            <Button 
-              className="bg-blue-100/50 text-blue-800 hover:bg-blue-200/50 text-xs py-1 h-auto px-3 rounded-lg"
-              onClick={() => {
-                const helpMessage = {
-                  id: `user-${new Date().getTime()}`,
-                  sender: "user",
-                  content: "I want to know more about JavaScript variables.",
-                  timestamp: new Date(),
-                };
-                
-                setMessages([...messages, helpMessage]);
-                
-                // Simulate Zuno response
-                setTimeout(() => {
-                  const zunoResponse = {
-                    id: `zuno-${new Date().getTime()}`,
-                    sender: "zuno",
-                    content: "JavaScript has three ways to declare variables: var, let, and const. Each has different scoping rules and behavior. Would you like me to explain the differences?",
+                )}
+              </div>
+            ))}
+            
+            {messages.length > 0 && messages[messages.length - 1].sender === "zuno" && (
+              <div className="text-blue-900 text-xs mb-2">
+                Zuno is ready to help...
+              </div>
+            )}
+            
+            {/* Action button */}
+            <div className="flex justify-end mb-2">
+              <Button 
+                className="bg-blue-100/50 text-blue-800 hover:bg-blue-200/50 text-xs py-1 h-auto px-3 rounded-lg"
+                onClick={() => {
+                  const helpMessage = {
+                    id: `user-${new Date().getTime()}`,
+                    sender: "user",
+                    content: "I want to know more about JavaScript variables.",
                     timestamp: new Date(),
                   };
                   
-                  setMessages(prevMessages => [...prevMessages, zunoResponse]);
-                }, 1500);
-              }}
-            >
-              I want to know more
-            </Button>
+                  setMessages([...messages, helpMessage]);
+                  
+                  // Simulate Zuno response
+                  setTimeout(() => {
+                    const zunoResponse = {
+                      id: `zuno-${new Date().getTime()}`,
+                      sender: "zuno",
+                      content: "JavaScript has three ways to declare variables: var, let, and const. Each has different scoping rules and behavior. Would you like me to explain the differences?",
+                      timestamp: new Date(),
+                    };
+                    
+                    setMessages(prevMessages => [...prevMessages, zunoResponse]);
+                  }, 1500);
+                }}
+              >
+                I want to know more
+              </Button>
+            </div>
           </div>
         </ScrollArea>
       </div>
       
-      {/* Chat input - fixed at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-blue-200/30 bg-white/10 backdrop-blur-sm">
+      {/* Fixed Chat Input at the bottom */}
+      <div className="h-[60px] border-t border-blue-200/30 bg-white/10 backdrop-blur-sm p-3">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}
