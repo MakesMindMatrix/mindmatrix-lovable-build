@@ -2,7 +2,7 @@
 import React from "react";
 import TabNavigation from "./TabNavigation";
 import LabsContent from "./LabsContent";
-import ResourcesContent from "../../components/LabSection/ResourcesContent"; // Using from LabSection
+import ResourcesContent from "./ResourcesContent";
 import NotificationsContent from "./NotificationsContent";
 
 interface CodeLabPanelProps {
@@ -11,7 +11,6 @@ interface CodeLabPanelProps {
   codeLanguage: string;
   setCodeLanguage: (language: string) => void;
   onVideoSelect?: (videoId: string) => void;
-  onResourceTypeChange?: (isVideoResource: boolean) => void;
 }
 
 const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
@@ -19,27 +18,24 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
   handleTabChange,
   codeLanguage,
   setCodeLanguage,
-  onVideoSelect,
-  onResourceTypeChange
+  onVideoSelect
 }) => {
   return (
-    <div className="h-full w-full flex flex-col bg-[#2D3044] rounded-lg overflow-hidden shadow-lg">
+    <div className="flex-1 backdrop-blur-xl bg-gradient-to-br from-[#2A3A80]/70 to-[#1A2C6B]/60 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
+      {/* Tab navigation */}
       <TabNavigation activeTab={activeTab} handleTabChange={handleTabChange} />
       
-      <div className="flex-1 bg-[#3a3e57] p-4 overflow-hidden">
-        {activeTab === "labs" && (
-          <LabsContent 
-            codeLanguage={codeLanguage} 
-            setCodeLanguage={setCodeLanguage} 
-          />
+      {/* Content area */}
+      <div className="flex-1 p-3 rounded-b-lg overflow-hidden flex flex-col">
+        {activeTab === 'labs' && (
+          <LabsContent codeLanguage={codeLanguage} setCodeLanguage={setCodeLanguage} />
         )}
-        {activeTab === "resources" && (
-          <ResourcesContent 
-            onVideoSelect={onVideoSelect} 
-            onResourceTypeChange={onResourceTypeChange}
-          />
+        
+        {activeTab === 'resources' && (
+          <ResourcesContent onVideoSelect={onVideoSelect} />
         )}
-        {activeTab === "notifications" && (
+        
+        {activeTab === 'notifications' && (
           <NotificationsContent />
         )}
       </div>

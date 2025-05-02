@@ -1,21 +1,17 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { BookOpen, BookOpenCheck, ListTodo, FileText, FileType, Youtube, Video, FileImage } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResourceItem, Task } from "../CodeLabPanel/types"; // Reuse types from CodeLabPanel
 
 interface ResourcesContentProps {
-  onVideoSelect?: (videoId: string) => void;
-  onResourceTypeChange?: (isVideoResource: boolean) => void;
+  setIsPlaying?: (isPlaying: boolean) => void;
 }
 
-const ResourcesContent: React.FC<ResourcesContentProps> = ({ 
-  onVideoSelect,
-  onResourceTypeChange
-}) => {
+const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => {
   const [resourcesSubTab, setResourcesSubTab] = useState<string>("pre-session");
-  const [selectedResourceType, setSelectedResourceType] = useState<string>("none");
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
   // Sample PDF URLs for demonstration
   const pdfSamples = [
@@ -25,51 +21,18 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
   
   // Handle video selection
   const handleVideoClick = (videoId: string) => {
-    // Set the selected resource type to video
-    setSelectedResourceType("video");
+    // Set the selected video ID to be played in the main video player
+    setSelectedVideo(videoId);
     
     // If there's a video player control function passed in, trigger it
-    if (onVideoSelect) {
-      onVideoSelect(videoId);
+    if (setIsPlaying) {
+      setIsPlaying(true);
     }
     
-    // Notify parent about resource type change
-    if (onResourceTypeChange) {
-      onResourceTypeChange(true);
-    }
-    
+    // You could emit an event here to change the main video player source
+    // For now we'll just log it
     console.log("Video selected:", videoId);
   };
-
-  // Handle non-video resource selection
-  const handleResourceClick = (resourceType: string) => {
-    setSelectedResourceType(resourceType);
-    
-    // Notify parent about resource type change (not a video)
-    if (onResourceTypeChange) {
-      onResourceTypeChange(false);
-    }
-    
-    console.log("Resource selected:", resourceType);
-  };
-
-  // Update the parent component when tab changes
-  useEffect(() => {
-    // On initial render or tab change, check if we should show video
-    const isVideoTab = resourcesSubTab === "videos";
-    
-    if (onResourceTypeChange) {
-      // If on videos tab, show video player by default
-      if (isVideoTab) {
-        onResourceTypeChange(true);
-        setSelectedResourceType("video");
-      } else {
-        // For other tabs, hide video player initially
-        onResourceTypeChange(false);
-        setSelectedResourceType("none");
-      }
-    }
-  }, [resourcesSubTab, onResourceTypeChange]);
   
   return (
     <div className="text-white h-full flex flex-col gap-2 overflow-y-auto">
@@ -110,10 +73,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
               <h3 className="text-blue-200 text-xs font-medium">Pre-Session References</h3>
             </div>
             <div className="space-y-1.5">
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("pdf")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-red-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-red-300">PDF</span>
                 </div>
@@ -125,18 +85,12 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open(pdfSamples[0], '_blank');
-                    handleResourceClick("pdf");
-                  }}
+                  onClick={() => window.open(pdfSamples[0], '_blank')}
                 >
                   View
                 </Button>
               </div>
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("url")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-green-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-green-300">URL</span>
                 </div>
@@ -148,18 +102,12 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-green-50 text-green-600 border-green-200 hover:bg-green-100"
-                  onClick={() => {
-                    window.open('https://docs.python.org/3/', '_blank');
-                    handleResourceClick("url");
-                  }}
+                  onClick={() => window.open('https://docs.python.org/3/', '_blank')}
                 >
                   Open
                 </Button>
               </div>
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("pdf")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-blue-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-blue-300">PDF</span>
                 </div>
@@ -171,10 +119,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open(pdfSamples[1], '_blank');
-                    handleResourceClick("pdf");
-                  }}
+                  onClick={() => window.open(pdfSamples[1], '_blank')}
                 >
                   View
                 </Button>
@@ -191,10 +136,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
               <h3 className="text-green-200 text-xs font-medium">Post-Session References</h3>
             </div>
             <div className="space-y-1.5">
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("ppt")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-blue-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-blue-300">PPT</span>
                 </div>
@@ -206,18 +148,12 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open('https://docs.google.com/presentation/d/1BgSKBqN3rXLnW-Qwpc28UY-8WqgbGCmO/edit?usp=sharing', '_blank');
-                    handleResourceClick("ppt");
-                  }}
+                  onClick={() => window.open('https://docs.google.com/presentation/d/1BgSKBqN3rXLnW-Qwpc28UY-8WqgbGCmO/edit?usp=sharing', '_blank')}
                 >
                   View
                 </Button>
               </div>
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("pdf")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-red-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-red-300">PDF</span>
                 </div>
@@ -229,10 +165,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open(pdfSamples[0], '_blank');
-                    handleResourceClick("pdf");
-                  }}
+                  onClick={() => window.open(pdfSamples[0], '_blank')}
                 >
                   View
                 </Button>
@@ -321,10 +254,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
               <h3 className="text-amber-200 text-xs font-medium">Tasks</h3>
             </div>
             <div className="space-y-1.5">
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("task")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-4 w-4 rounded-full border border-amber-400/50 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-amber-400 rounded-full"></div>
                 </div>
@@ -333,10 +263,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   <p className="text-[10px] text-white/60">Due: Today</p>
                 </div>
               </div>
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("task")}
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
                 </div>
@@ -345,10 +272,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({
                   <p className="text-[10px] text-white/60">Due: Tomorrow</p>
                 </div>
               </div>
-              <div 
-                className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={() => handleResourceClick("task")}  
-              >
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
                 </div>
