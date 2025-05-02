@@ -12,27 +12,27 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
   handleTabChange
 }) => {
   return (
-    <div className="flex bg-[#2D3044] rounded-t-lg">
+    <div className="flex bg-[#2D3474] rounded-t-lg text-center border-b border-[#3f4481]">
       <Button 
         variant="ghost" 
-        className={`${activeTab === 'labs' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
+        className={`${activeTab === 'labs' ? 'bg-[#545891]/80 text-white' : 'text-white/90'} rounded-none px-6 py-2 h-auto flex-1`}
         onClick={() => handleTabChange('labs')}
       >
-        <span className="ml-2 text-sm">Labs</span>
+        <span className="text-base font-medium">Labs</span>
       </Button>
       <Button 
         variant="ghost" 
-        className={`${activeTab === 'resources' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
+        className={`${activeTab === 'resources' ? 'bg-[#545891]/80 text-white' : 'text-white/90'} rounded-none px-6 py-2 h-auto flex-1`}
         onClick={() => handleTabChange('resources')}
       >
-        <span className="ml-2 text-sm">Resources</span>
+        <span className="text-base font-medium">Resources</span>
       </Button>
       <Button 
         variant="ghost" 
-        className={`${activeTab === 'notifications' ? 'bg-[#3a3e57] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto`}
+        className={`${activeTab === 'notifications' ? 'bg-[#545891]/80 text-white' : 'text-white/90'} rounded-none px-6 py-2 h-auto flex-1`}
         onClick={() => handleTabChange('notifications')}
       >
-        <span className="ml-2 text-sm">Notifications</span>
+        <span className="text-base font-medium">Notifications</span>
       </Button>
     </div>
   );

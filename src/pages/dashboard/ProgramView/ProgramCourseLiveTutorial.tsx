@@ -6,7 +6,7 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
-import CodeLabPanel from "./components/LabSection"; // Updated import path
+import LabSection from "./components/LabSection"; // Now using the correct component
 import { toast } from "sonner";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 
@@ -145,7 +145,7 @@ const ProgramCourseLiveTutorial = () => {
               
               {/* Lab Navigation Card - Reduced top margin to move it up */}
               <div className="mt-12 w-full h-[calc(100%-12px)]">
-                <CodeLabPanel 
+                <LabSection 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}
                   codeLanguage={codeLanguage}

@@ -26,7 +26,7 @@ const LabSection: React.FC<LabSectionProps> = ({
       <TabNavigation activeTab={activeTab} handleTabChange={handleTabChange} />
       
       {/* Content area */}
-      <div className="flex-1 bg-[#3a3e57] p-3 rounded-b-lg overflow-hidden">
+      <div className="flex-1 bg-[#545891]/80 p-3 rounded-b-lg overflow-hidden">
         {activeTab === 'labs' && (
           <LabsContent 
             codeLanguage={codeLanguage} 
