@@ -69,16 +69,16 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   };
 
   return (
-    <div className="flex flex-col h-full relative">
-      {/* Scrollable Chat Area that fills available space */}
-      <div className="h-[calc(100%-60px)] overflow-hidden">
+    <div className="flex flex-col h-full">
+      {/* Chat messages area - takes all available space except for the input area */}
+      <div className="flex-1 overflow-hidden mb-2">
         <ScrollArea ref={scrollAreaRef} className="h-full pb-2">
-          <div className="px-4">
+          <div className="px-2">
             {messages.map((message) => (
               <div key={message.id} className="mb-4">
                 {message.sender === "zuno" ? (
-                  <div className="mb-4">
-                    <div className="flex mb-2">
+                  <div className="mb-2">
+                    <div className="flex mb-1">
                       <div className="w-8 h-8 rounded-full bg-blue-100/50 flex items-center justify-center">
                         <img 
                           src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
@@ -93,7 +93,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-row-reverse mb-4">
+                  <div className="flex flex-row-reverse mb-2">
                     <div className="w-8 h-8 rounded-full bg-gray-200/50 flex items-center justify-center ml-2">
                       <div className="text-gray-600 text-xs font-semibold">You</div>
                     </div>
@@ -146,7 +146,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
       </div>
       
       {/* Fixed Chat Input at the bottom */}
-      <div className="h-[60px] border-t border-blue-200/30 bg-white/10 backdrop-blur-sm p-3">
+      <div className="h-[60px] border-t border-blue-200/30 bg-white/10 backdrop-blur-sm p-3 sticky bottom-0 left-0 right-0">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}

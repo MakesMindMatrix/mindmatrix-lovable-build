@@ -88,15 +88,15 @@ const ProgramCourseLiveTutorial = () => {
               {/* Using GradientBackground with proper structure */}
               <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl">
                 <GradientBackground className="h-full w-full rounded-xl">
-                  {/* Content Container with fixed video and scrollable chat */}
+                  {/* Content Container with video and chat */}
                   <div className="flex flex-col h-full relative z-10">
-                    {/* Fixed Video Section - Reduced height (40% of container) */}
-                    <div className="absolute top-0 left-0 right-0 h-[40%] p-4">
+                    {/* Fixed Video Section - 40% of container height */}
+                    <div className="h-[40%] p-4 pb-2">
                       <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                     </div>
                     
-                    {/* Scrollable Chat Section with fixed input */}
-                    <div className="absolute top-[40%] bottom-0 left-0 right-0 p-4">
+                    {/* Scrollable Chat Section - 60% of container height with fixed input */}
+                    <div className="h-[60%] p-4 pt-0 relative">
                       <ChatBox />
                     </div>
                   </div>
