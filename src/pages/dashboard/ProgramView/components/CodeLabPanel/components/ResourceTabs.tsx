@@ -10,7 +10,7 @@ interface ResourceTabsProps {
 
 const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) => {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2 items-center">
+    <div className="flex gap-2 overflow-x-auto pb-2 items-center bg-[#425094]/60 p-2 rounded-lg mb-2">
       <Button 
         size="sm"
         variant="outline"
