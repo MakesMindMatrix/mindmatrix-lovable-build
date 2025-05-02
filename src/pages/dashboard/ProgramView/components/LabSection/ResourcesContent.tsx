@@ -7,9 +7,10 @@ import { ResourceItem, Task } from "../CodeLabPanel/types"; // Reuse types from 
 
 interface ResourcesContentProps {
   setIsPlaying?: (isPlaying: boolean) => void;
+  onResourceTypeChange?: (isVideo: boolean) => void;
 }
 
-const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => {
+const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onResourceTypeChange }) => {
   const [resourcesSubTab, setResourcesSubTab] = useState<string>("pre-session");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
@@ -29,9 +30,22 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
       setIsPlaying(true);
     }
     
+    // Notify parent that we're showing a video
+    if (onResourceTypeChange) {
+      onResourceTypeChange(true);
+    }
+    
     // You could emit an event here to change the main video player source
     // For now we'll just log it
     console.log("Video selected:", videoId);
+  };
+
+  // Handle non-video resource selection
+  const handleNonVideoResourceClick = () => {
+    // Notify parent that we're showing a non-video resource
+    if (onResourceTypeChange) {
+      onResourceTypeChange(false);
+    }
   };
   
   return (
@@ -85,7 +99,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => window.open(pdfSamples[0], '_blank')}
+                  onClick={() => {
+                    window.open(pdfSamples[0], '_blank');
+                    handleNonVideoResourceClick();
+                  }}
                 >
                   View
                 </Button>
@@ -102,7 +119,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-green-50 text-green-600 border-green-200 hover:bg-green-100"
-                  onClick={() => window.open('https://docs.python.org/3/', '_blank')}
+                  onClick={() => {
+                    window.open('https://docs.python.org/3/', '_blank');
+                    handleNonVideoResourceClick();
+                  }}
                 >
                   Open
                 </Button>
@@ -119,7 +139,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => window.open(pdfSamples[1], '_blank')}
+                  onClick={() => {
+                    window.open(pdfSamples[1], '_blank');
+                    handleNonVideoResourceClick();
+                  }}
                 >
                   View
                 </Button>
@@ -148,7 +171,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => window.open('https://docs.google.com/presentation/d/1BgSKBqN3rXLnW-Qwpc28UY-8WqgbGCmO/edit?usp=sharing', '_blank')}
+                  onClick={() => {
+                    window.open('https://docs.google.com/presentation/d/1BgSKBqN3rXLnW-Qwpc28UY-8WqgbGCmO/edit?usp=sharing', '_blank');
+                    handleNonVideoResourceClick();
+                  }}
                 >
                   View
                 </Button>
@@ -165,7 +191,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   size="sm" 
                   variant="outline" 
                   className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => window.open(pdfSamples[0], '_blank')}
+                  onClick={() => {
+                    window.open(pdfSamples[0], '_blank');
+                    handleNonVideoResourceClick();
+                  }}
                 >
                   View
                 </Button>
@@ -254,7 +283,8 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
               <h3 className="text-amber-200 text-xs font-medium">Tasks</h3>
             </div>
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
+                onClick={handleNonVideoResourceClick}>
                 <div className="h-4 w-4 rounded-full border border-amber-400/50 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-amber-400 rounded-full"></div>
                 </div>
@@ -263,7 +293,8 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   <p className="text-[10px] text-white/60">Due: Today</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
+                onClick={handleNonVideoResourceClick}>
                 <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
                 </div>
@@ -272,7 +303,8 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
                   <p className="text-[10px] text-white/60">Due: Tomorrow</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
+                onClick={handleNonVideoResourceClick}>
                 <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
                 </div>

@@ -11,6 +11,7 @@ interface CodeLabPanelProps {
   codeLanguage: string;
   setCodeLanguage: (language: string) => void;
   onVideoSelect?: (videoId: string) => void;
+  onResourceTypeChange?: (isVideo: boolean) => void;
 }
 
 const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
@@ -18,7 +19,8 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
   handleTabChange,
   codeLanguage,
   setCodeLanguage,
-  onVideoSelect
+  onVideoSelect,
+  onResourceTypeChange
 }) => {
   return (
     <div className="flex-1 backdrop-blur-xl bg-gradient-to-br from-[#2A3A80]/70 to-[#1A2C6B]/60 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
@@ -32,7 +34,10 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
         )}
         
         {activeTab === 'resources' && (
-          <ResourcesContent onVideoSelect={onVideoSelect} />
+          <ResourcesContent 
+            onVideoSelect={onVideoSelect} 
+            onResourceTypeChange={onResourceTypeChange} 
+          />
         )}
         
         {activeTab === 'notifications' && (

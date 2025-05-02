@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface ChatBoxProps {}
+interface ChatBoxProps {
+  expanded?: boolean; // New prop to control expanded view
+}
 
-const ChatBox: React.FC<ChatBoxProps> = () => {
+const ChatBox: React.FC<ChatBoxProps> = ({ expanded = false }) => {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -41,7 +43,9 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
         const zunoResponse = {
           id: `zuno-${new Date().getTime()}`,
           sender: "zuno",
-          content: "I'm happy to help with JavaScript fundamentals. What specific topic would you like to explore first?",
+          content: expanded 
+            ? "I can help you understand this resource. What specific questions do you have about the material?" 
+            : "I'm happy to help with JavaScript fundamentals. What specific topic would you like to explore first?",
           timestamp: new Date(),
         };
         
@@ -68,7 +72,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   };
 
   return (
-    <div className="flex flex-col h-full relative">
+    <div className="flex flex-col h-full relative transition-all duration-300">
       {/* Chat messages area */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea ref={scrollAreaRef} className="h-full">
@@ -86,6 +90,16 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                 Zuno
               </div>
             </div>
+
+            {/* Expanded mode welcome message */}
+            {expanded && messages.length === 1 && (
+              <div className="bg-blue-50 rounded-lg p-4 text-blue-900 mb-4 max-w-[85%]">
+                <h3 className="font-medium text-base mb-1">Resource Assistant</h3>
+                <p className="text-sm">
+                  I'm here to help you understand this learning resource. Feel free to ask questions about the content or request explanations.
+                </p>
+              </div>
+            )}
 
             {/* Message bubbles */}
             {messages.map((message) => (
@@ -126,15 +140,15 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
               </div>
             )}
             
-            {/* Action button */}
+            {/* Action button - show more prominently in expanded mode */}
             <div className="flex justify-end mb-4">
               <Button 
-                className="bg-blue-100 text-blue-800 hover:bg-blue-200 rounded-full px-4 py-2"
+                className={`bg-blue-100 text-blue-800 hover:bg-blue-200 rounded-full px-4 py-2 ${expanded ? 'text-base' : ''}`}
                 onClick={() => {
                   const helpMessage = {
                     id: `user-${new Date().getTime()}`,
                     sender: "user",
-                    content: "I want to know more",
+                    content: expanded ? "Can you help me understand this resource?" : "I want to know more",
                     timestamp: new Date(),
                   };
                   
@@ -145,7 +159,9 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                     const zunoResponse = {
                       id: `zuno-${new Date().getTime()}`,
                       sender: "zuno",
-                      content: "JavaScript has three ways to declare variables: var, let, and const. Each has different scoping rules and behavior. Would you like me to explain the differences?",
+                      content: expanded 
+                        ? "I'd be happy to help you understand this resource. This material covers key concepts that will help build your programming foundation. What specific part would you like me to explain?" 
+                        : "JavaScript has three ways to declare variables: var, let, and const. Each has different scoping rules and behavior. Would you like me to explain the differences?",
                       timestamp: new Date(),
                     };
                     
@@ -153,7 +169,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
                   }, 1500);
                 }}
               >
-                I want to know more
+                {expanded ? "Help me understand this resource" : "I want to know more"}
               </Button>
             </div>
           </div>

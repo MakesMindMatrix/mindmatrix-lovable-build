@@ -19,6 +19,7 @@ const ProgramCourseLiveTutorial = () => {
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
   const [currentVideoId, setCurrentVideoId] = useState("PkZNo7MFNFg"); // Default YouTube video ID
+  const [showVideo, setShowVideo] = useState(true); // New state to control video player visibility
   
   const handleBackClick = () => {
     // Navigate to the program view (course card)
@@ -53,6 +54,7 @@ const ProgramCourseLiveTutorial = () => {
     if (componentId === "tutorial") {
       // Already on tutorial page, could play the video
       setIsPlaying(true);
+      setShowVideo(true);
     } else if (componentId === "tasks") {
       // Switch to labs tab for tasks
       setActiveTab("labs");
@@ -72,7 +74,16 @@ const ProgramCourseLiveTutorial = () => {
   const handleVideoSelect = (videoId: string) => {
     setCurrentVideoId(videoId);
     setIsPlaying(true);
+    setShowVideo(true); // Show video player when a video is selected
     toast.success("Video loaded successfully");
+  };
+  
+  // Handler to hide video player for non-video resources
+  const handleResourceTypeChange = (isVideo: boolean) => {
+    setShowVideo(isVideo);
+    if (!isVideo) {
+      setIsPlaying(false);
+    }
   };
   
   return (
@@ -112,18 +123,20 @@ const ProgramCourseLiveTutorial = () => {
                 
                 {/* Content overlay */}
                 <div className="flex flex-col h-full relative z-10">
-                  {/* Fixed Video Section - 40% of container height */}
-                  <div className="h-[40%] min-h-[180px] p-4 pb-2">
-                    <VideoPlayer 
-                      isPlaying={isPlaying} 
-                      setIsPlaying={setIsPlaying} 
-                      videoId={currentVideoId}
-                    />
-                  </div>
+                  {/* Conditional Video Section */}
+                  {showVideo ? (
+                    <div className="h-[40%] min-h-[180px] p-4 pb-2">
+                      <VideoPlayer 
+                        isPlaying={isPlaying} 
+                        setIsPlaying={setIsPlaying} 
+                        videoId={currentVideoId}
+                      />
+                    </div>
+                  ) : null}
                   
-                  {/* Chat Section - 60% of container height */}
-                  <div className="h-[60%] flex flex-col relative">
-                    <ChatBox />
+                  {/* Chat Section - dynamic height based on video visibility */}
+                  <div className={`${showVideo ? "h-[60%]" : "h-full"} flex flex-col relative transition-all duration-300`}>
+                    <ChatBox expanded={!showVideo} />
                   </div>
                 </div>
               </div>
@@ -152,6 +165,7 @@ const ProgramCourseLiveTutorial = () => {
                   codeLanguage={codeLanguage}
                   setCodeLanguage={setCodeLanguage}
                   onVideoSelect={handleVideoSelect}
+                  onResourceTypeChange={handleResourceTypeChange}
                 />
               </div>
             </div>

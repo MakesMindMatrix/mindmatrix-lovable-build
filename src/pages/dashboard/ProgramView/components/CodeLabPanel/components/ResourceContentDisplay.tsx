@@ -26,7 +26,6 @@ const ResourceContentDisplay: React.FC<ResourceContentDisplayProps> = ({
           {/* Display selected resource content */}
           {resources
             .filter(r => r.id === activeItemId)
-            .filter(r => r.type !== "VIDEO") // Only show non-video resources here
             .map((resource) => (
               <ResourcePreview 
                 key={resource.id} 

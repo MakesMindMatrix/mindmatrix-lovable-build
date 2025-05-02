@@ -10,13 +10,15 @@ interface LabSectionProps {
   handleTabChange: (tab: string) => void;
   codeLanguage: string;
   setCodeLanguage: (language: string) => void;
+  onResourceTypeChange?: (isVideo: boolean) => void;
 }
 
 const LabSection: React.FC<LabSectionProps> = ({
   activeTab,
   handleTabChange,
   codeLanguage,
-  setCodeLanguage
+  setCodeLanguage,
+  onResourceTypeChange
 }) => {
   return (
     <div className="flex-1 flex flex-col rounded-lg overflow-hidden max-h-[45%]">
@@ -33,7 +35,9 @@ const LabSection: React.FC<LabSectionProps> = ({
         )}
         
         {activeTab === 'resources' && (
-          <ResourcesContent />
+          <ResourcesContent 
+            onResourceTypeChange={onResourceTypeChange}
+          />
         )}
         
         {activeTab === 'notifications' && (

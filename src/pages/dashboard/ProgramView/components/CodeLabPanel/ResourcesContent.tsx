@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ResourceItem, Task } from "./types";
 import ResourceTabs from "./components/ResourceTabs";
 import ResourceBadges from "./components/ResourceBadges";
@@ -9,9 +9,10 @@ import ResourceContentDisplay from "./components/ResourceContentDisplay";
 
 interface ResourcesContentProps {
   onVideoSelect?: (videoId: string) => void;
+  onResourceTypeChange?: (isVideo: boolean) => void;
 }
 
-const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) => {
+const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onResourceTypeChange }) => {
   // Main Resources tab active sub-tab
   const [resourcesSubTab, setResourcesSubTab] = useState<string>("learning");
   // Secondary layer of tabs for each primary sub-tab
@@ -76,14 +77,46 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
   // Handle resource item click
   const handleResourceItemClick = (itemId: string) => {
     setActiveResourceItems(itemId);
+    
+    // Check if the selected item is a video
+    const currentResources = getCurrentResources();
+    const selectedItem = currentResources.find(r => r.id === itemId);
+    const isVideoResource = selectedItem?.type === "VIDEO";
+    
+    // Notify parent component about resource type
+    if (onResourceTypeChange) {
+      onResourceTypeChange(isVideoResource);
+    }
   };
   
   // Handle playing a video in the main player
   const handlePlayVideo = (videoId?: string) => {
     if (videoId && onVideoSelect) {
       onVideoSelect(videoId);
+      
+      // Notify parent that we're showing a video
+      if (onResourceTypeChange) {
+        onResourceTypeChange(true);
+      }
     }
   };
+
+  // Check and notify about resource type when changing tabs
+  useEffect(() => {
+    const currentResources = getCurrentResources();
+    const activeItem = currentResources.find(r => r.id === activeResourceItems);
+    
+    // If no active item found in current tab, set the first one
+    if (!activeItem && currentResources.length > 0) {
+      setActiveResourceItems(currentResources[0].id);
+      
+      if (onResourceTypeChange) {
+        onResourceTypeChange(currentResources[0].type === "VIDEO");
+      }
+    } else if (activeItem && onResourceTypeChange) {
+      onResourceTypeChange(activeItem.type === "VIDEO");
+    }
+  }, [resourcesSubTab, activeResourceItems]);
   
   const currentResources = getCurrentResources();
   const hasSelectedVideoResource = 
@@ -122,7 +155,13 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
         <TaskBadges
           tasks={tasks}
           activeTask={activeResourceItems}
-          onTaskSelect={handleResourceItemClick}
+          onTaskSelect={(taskId) => {
+            setActiveResourceItems(taskId);
+            // Tasks are never videos
+            if (onResourceTypeChange) {
+              onResourceTypeChange(false);
+            }
+          }}
         />
       )}
       
