@@ -7,7 +7,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-import { CourseAccordionProps } from "./types";
+import { CourseAccordionProps, Session } from "./types";
 import { sessions } from "./mockData";
 import CourseHeader from "./CourseHeader";
 import SessionItem from "./SessionItem";
@@ -67,7 +67,7 @@ const CourseAccordion: React.FC<CourseAccordionProps> = ({
 
       <CollapsibleContent className="max-h-[70vh] overflow-y-auto rounded-b-lg">  {/* Reduced max height from 80vh to 70vh */}
         <div className="space-y-2 py-2">  {/* Reduced space-y and py from 3 to 2 */}
-          {sessions.map((session) => (
+          {(sessions as Session[]).map((session) => (
             <SessionItem 
               key={session.id}
               session={session}

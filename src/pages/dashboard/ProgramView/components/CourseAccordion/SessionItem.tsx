@@ -93,7 +93,7 @@ const SessionItem: React.FC<SessionItemProps> = ({
                     </Button>
                   </div>
                   
-                  {expandedReferences[component.id] && (
+                  {expandedReferences[component.id] && component.subComponents && (
                     <div className="pl-4 mt-0.5 space-y-1">
                       {component.subComponents.map((subComponent) => (
                         <div 

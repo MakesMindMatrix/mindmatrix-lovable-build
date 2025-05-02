@@ -1,4 +1,6 @@
 
+import { ElementType } from "react";
+
 export interface CourseAccordionProps {
   isCourseExpanded: boolean;
   toggleCourseCard: () => void;
@@ -43,7 +45,7 @@ export interface CourseSession {
     id: string;
     title: string;
     type: "main" | "sub";
-    icon?: React.ElementType;
+    icon?: ElementType;
     subComponents?: {
       id: string;
       title: string;
