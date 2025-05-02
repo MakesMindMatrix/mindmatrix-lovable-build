@@ -17,26 +17,26 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
   setDocumentFormat
 }) => {
   return (
-    <div className="flex-1 backdrop-blur-xl bg-[#1A1F2C]/80 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
+    <div className="flex-1 backdrop-blur-xl bg-gradient-to-br from-[#2A3A80]/70 to-[#1A2C6B]/60 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
       {/* Tab navigation */}
-      <div className="flex bg-[#222]/80 backdrop-blur-md rounded-t-lg border-b border-white/5">
+      <div className="flex bg-[#1E2D6F]/80 backdrop-blur-md rounded-t-lg border-b border-white/10">
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'read' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'read' ? 'bg-[#2A3A80]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('read')}
         >
           <span className="text-sm">Read</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'resources' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'resources' ? 'bg-[#2A3A80]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('resources')}
         >
           <span className="text-sm">Resources</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'notifications' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'notifications' ? 'bg-[#2A3A80]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('notifications')}
         >
           <span className="text-sm">Notifications</span>
@@ -50,14 +50,14 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
             {/* Document type selection */}
             <div className="mb-3">
               <Button 
-                className={`mr-2 ${documentFormat === 'PDF' ? 'bg-white/30' : 'bg-white/20'} hover:bg-white/30 text-white text-sm py-1 h-auto px-4`}
+                className={`mr-2 ${documentFormat === 'PDF' ? 'bg-[#3A4A90]/40' : 'bg-[#3A4A90]/30'} hover:bg-[#3A4A90]/40 text-white text-sm py-1 h-auto px-4`}
                 onClick={() => setDocumentFormat('PDF')}
               >
                 PDF
               </Button>
               <Button 
                 variant="ghost" 
-                className={`text-white/60 hover:text-white text-sm py-1 h-auto px-4 ${documentFormat === 'PPT' ? 'bg-white/10' : ''}`}
+                className={`text-white/60 hover:text-white text-sm py-1 h-auto px-4 ${documentFormat === 'PPT' ? 'bg-[#3A4A90]/20' : ''}`}
                 onClick={() => setDocumentFormat('PPT')}
               >
                 PPT
