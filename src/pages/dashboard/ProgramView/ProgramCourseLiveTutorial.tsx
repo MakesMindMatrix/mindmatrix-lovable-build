@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Desktop from "@/components/dashboard/day1/Desktop";
 import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
 import CodeLabPanel from "./components/CodeLabPanel";
 import { toast } from "sonner";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
-import CollapsibleProgramSidebar from "./components/CollapsibleProgramSidebar";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
@@ -68,12 +68,8 @@ const ProgramCourseLiveTutorial = () => {
   };
   
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
-      {/* Collapsible Sidebar */}
-      <CollapsibleProgramSidebar activeTab="tutorial" />
-      
-      {/* Main Content */}
-      <div className="flex-1 h-screen overflow-hidden">
+    <Desktop activeTab="programs" simplified>
+      <div className="relative w-full h-[calc(100vh-80px)] bg-white">
         <div className="p-3 w-full h-full flex flex-col">
           {/* Main content area */}
           <div className="flex flex-1 gap-4 h-full">
@@ -135,7 +131,7 @@ const ProgramCourseLiveTutorial = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Desktop>
   );
 };
 
