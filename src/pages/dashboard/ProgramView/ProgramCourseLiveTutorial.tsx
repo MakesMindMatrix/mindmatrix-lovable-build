@@ -19,6 +19,7 @@ const ProgramCourseLiveTutorial = () => {
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
   const [currentVideoId, setCurrentVideoId] = useState("PkZNo7MFNFg"); // Default YouTube video ID
+  const [showVideoPlayer, setShowVideoPlayer] = useState(true); // New state to control video player visibility
   
   const handleBackClick = () => {
     // Navigate to the program view (course card)
@@ -27,6 +28,14 @@ const ProgramCourseLiveTutorial = () => {
   
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
+    
+    // When switching to resources tab, maintain the video player visibility
+    if (tab === "resources") {
+      // Don't change the showVideoPlayer state here, it will be controlled by resource selection
+    } else {
+      // For other tabs, always show the video player
+      setShowVideoPlayer(true);
+    }
   };
   
   const toggleCourseCard = () => {
@@ -53,6 +62,7 @@ const ProgramCourseLiveTutorial = () => {
     if (componentId === "tutorial") {
       // Already on tutorial page, could play the video
       setIsPlaying(true);
+      setShowVideoPlayer(true);
     } else if (componentId === "tasks") {
       // Switch to labs tab for tasks
       setActiveTab("labs");
@@ -72,7 +82,18 @@ const ProgramCourseLiveTutorial = () => {
   const handleVideoSelect = (videoId: string) => {
     setCurrentVideoId(videoId);
     setIsPlaying(true);
+    setShowVideoPlayer(true);
     toast.success("Video loaded successfully");
+  };
+
+  // Handler for non-video resource selection
+  const handleResourceTypeChange = (isVideoResource: boolean) => {
+    setShowVideoPlayer(isVideoResource);
+    if (isVideoResource) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
   };
   
   return (
@@ -112,18 +133,20 @@ const ProgramCourseLiveTutorial = () => {
                 
                 {/* Content overlay */}
                 <div className="flex flex-col h-full relative z-10">
-                  {/* Fixed Video Section - 40% of container height */}
-                  <div className="h-[40%] min-h-[180px] p-4 pb-2">
-                    <VideoPlayer 
-                      isPlaying={isPlaying} 
-                      setIsPlaying={setIsPlaying} 
-                      videoId={currentVideoId}
-                    />
-                  </div>
+                  {/* Video Section - conditionally shown */}
+                  {showVideoPlayer && (
+                    <div className="h-[40%] min-h-[180px] p-4 pb-2 transition-all duration-300">
+                      <VideoPlayer 
+                        isPlaying={isPlaying} 
+                        setIsPlaying={setIsPlaying} 
+                        videoId={currentVideoId}
+                      />
+                    </div>
+                  )}
                   
-                  {/* Chat Section - 60% of container height */}
-                  <div className="h-[60%] flex flex-col relative">
-                    <ChatBox />
+                  {/* Chat Section - adapts height based on video player visibility */}
+                  <div className={`${showVideoPlayer ? 'h-[60%]' : 'h-full'} flex flex-col relative transition-all duration-300`}>
+                    <ChatBox expandedView={!showVideoPlayer} />
                   </div>
                 </div>
               </div>
@@ -152,6 +175,7 @@ const ProgramCourseLiveTutorial = () => {
                   codeLanguage={codeLanguage}
                   setCodeLanguage={setCodeLanguage}
                   onVideoSelect={handleVideoSelect}
+                  onResourceTypeChange={handleResourceTypeChange}
                 />
               </div>
             </div>
