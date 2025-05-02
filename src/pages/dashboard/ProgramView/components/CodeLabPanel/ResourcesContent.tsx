@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType } from "lucide-react";
+import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ResourceItem, Task } from "./types";
@@ -193,7 +192,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
                 className="bg-red-500/20 border-red-500/30 text-white hover:bg-red-500/30"
                 onClick={() => handlePlayVideo(video.videoId)}
               >
-                <PlayIcon className="h-4 w-4 mr-1" /> Play
+                <Play className="h-4 w-4 mr-1" /> Play
               </Button>
             </div>
           ))}
