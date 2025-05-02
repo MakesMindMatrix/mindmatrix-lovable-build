@@ -1,6 +1,6 @@
 
 import React from "react";
-import { File, FileText, Save, Download, Play, Youtube, FilePdf } from "lucide-react";
+import { File, FileText, Save, Download, Play as PlayIcon, Youtube, FileType } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResourceItem } from "./types";
 
@@ -20,7 +20,7 @@ const ResourcePreview: React.FC<ResourcePreviewProps> = ({ resource, onPlayVideo
   const renderResourceIcon = (type: string) => {
     switch (type) {
       case "PDF":
-        return <FilePdf className="h-5 w-5 text-red-400" />;
+        return <FileType className="h-5 w-5 text-red-400" />;
       case "PPT":
         return <FileText className="h-5 w-5 text-blue-400" />;
       case "VIDEO":
@@ -72,7 +72,7 @@ const ResourcePreview: React.FC<ResourcePreviewProps> = ({ resource, onPlayVideo
               className="bg-red-500/20 border-red-400/30 text-white hover:bg-red-500/30 h-8"
               onClick={() => onPlayVideo && onPlayVideo(resource.videoId)}
             >
-              <Play className="h-4 w-4 mr-1" /> Play
+              <PlayIcon className="h-4 w-4 mr-1" /> Play
             </Button>
           )}
         </div>
@@ -82,7 +82,7 @@ const ResourcePreview: React.FC<ResourcePreviewProps> = ({ resource, onPlayVideo
       <div className="flex-1 bg-white rounded-lg flex flex-col justify-center items-center p-6 min-h-[200px]">
         {resource.type === "PDF" && (
           <div className="text-center">
-            <FilePdf className="h-16 w-16 text-red-400 mx-auto mb-3" />
+            <FileType className="h-16 w-16 text-red-400 mx-auto mb-3" />
             <p className="text-gray-700 font-medium">{resource.title}</p>
             <p className="text-gray-500 text-sm">{resource.pages} pages</p>
             <Button className="mt-4 bg-blue-600 hover:bg-blue-700" onClick={handleAction}>

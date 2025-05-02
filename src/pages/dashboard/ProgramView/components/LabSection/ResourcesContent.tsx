@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { BookOpen, BookOpenCheck, ListTodo, FileText, FilePdf, Youtube, Video, FileImage } from "lucide-react";
+import { BookOpen, BookOpenCheck, ListTodo, FileText, FileType, Youtube, Video, FileImage } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResourceItem, Task } from "../CodeLabPanel/types"; // Reuse types from CodeLabPanel
 
@@ -10,7 +9,7 @@ interface ResourcesContentProps {
 }
 
 const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => {
-  const [resourcesSubTab, setResourcesSubTab] = useState<string>("pre-session");
+  const [resourcesSubTab, setResourcesSubTab = useState<string>("pre-session");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
   // Sample PDF URLs for demonstration
@@ -69,7 +68,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
         <TabsContent value="pre-session" className="mt-0">
           <div className="bg-white/5 p-2 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
-              <FilePdf className="h-4 w-4 text-blue-300" />
+              <FileType className="h-4 w-4 text-blue-300" />
               <h3 className="text-blue-200 text-xs font-medium">Pre-Session References</h3>
             </div>
             <div className="space-y-1.5">
