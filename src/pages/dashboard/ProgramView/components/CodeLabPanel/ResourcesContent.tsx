@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType, Play } from "lucide-react";
+import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType, Play, Book } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ResourceItem, Task } from "./types";
@@ -19,11 +19,13 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
   
   // Define resource materials for each sub-tab category
   const learningModules: ResourceItem[] = [
-    { id: "pdf1", type: "PDF", title: "Introduction to Python Basics", pages: 10 },
+    { id: "pdf1", type: "PDF", title: "Learning Module - Python Basics", pages: 10 },
     { id: "pdf2", type: "PDF", title: "Intermediate Python Concepts", pages: 15 },
     { id: "ppt1", type: "PPT", title: "Python Workshop Slides", pages: 25 },
     { id: "pdf3", type: "PDF", title: "Python Data Structures", pages: 12 },
-    { id: "ppt2", type: "PPT", title: "Python Best Practices", pages: 18 }
+    { id: "ppt2", type: "PPT", title: "Python Best Practices", pages: 18 },
+    { id: "video1", type: "VIDEO", title: "Python for Beginners - Full Course", duration: "4:26:51", videoId: "rfscVS0vtbw" },
+    { id: "video2", type: "VIDEO", title: "Python Tutorial for Beginners", duration: "12:40", videoId: "8DvywoWv6fI" }
   ];
   
   const preSessionResources: ResourceItem[] = [
@@ -97,6 +99,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
           }`}
           onClick={() => setResourcesSubTab("learning")}
         >
+          <Book className="h-3.5 w-3.5 mr-1.5" />
           Learning Module
         </Button>
         <Button 
@@ -109,6 +112,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
           }`}
           onClick={() => setResourcesSubTab("pre-session")}
         >
+          <FileText className="h-3.5 w-3.5 mr-1.5" />
           Pre Session
         </Button>
         <Button 
@@ -121,6 +125,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
           }`}
           onClick={() => setResourcesSubTab("post-session")}
         >
+          <FileText className="h-3.5 w-3.5 mr-1.5" />
           Post Session
         </Button>
         <Button 
@@ -133,6 +138,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
           }`}
           onClick={() => setResourcesSubTab("tasks")}
         >
+          <ListCheck className="h-3.5 w-3.5 mr-1.5" />
           To-Dos
         </Button>
       </div>

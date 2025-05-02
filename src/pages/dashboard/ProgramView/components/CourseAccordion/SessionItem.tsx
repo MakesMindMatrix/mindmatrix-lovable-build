@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Book, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SessionItemProps } from "./types";
 import { cn } from "@/lib/utils";
@@ -60,7 +60,13 @@ const SessionItem: React.FC<SessionItemProps> = ({
                   )}
                   onClick={() => handleComponentClick(session.id, component.id)}
                 >
-                  <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${component.id.includes('tutorial') ? 'bg-red-400' : 'bg-blue-400'}`}></div>
+                  {component.id.includes('learning') ? (
+                    <Book className={`h-3 w-3 mr-1.5 text-blue-400`} />
+                  ) : component.id.includes('tutorial') ? (
+                    <div className={`w-1.5 h-1.5 rounded-full mr-1.5 bg-red-400`}></div>
+                  ) : (
+                    <div className={`w-1.5 h-1.5 rounded-full mr-1.5 bg-blue-400`}></div>
+                  )}
                   <span className={cn(
                     "text-xs",
                     currentComponent === component.id ? "text-white font-medium" : "text-white/70"
@@ -77,7 +83,7 @@ const SessionItem: React.FC<SessionItemProps> = ({
                     onClick={(e) => toggleReferenceSection(component.id, e)}
                   >
                     <div className="flex items-center">
-                      <div className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-400"></div>
+                      <FileText className="h-3 w-3 mr-1.5 text-green-400" />
                       <span className="text-xs text-white/70">{component.title}</span>
                     </div>
                     <Button 

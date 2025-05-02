@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ArrowLeft, Clock, Square, BookOpen, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, Square, BookOpen, ArrowRight, Book, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -30,6 +30,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const [activeSession, setActiveSession] = useState<number | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>("references");
   
   // Handle session selection
   const handleSessionClick = (sessionId: number) => {
@@ -113,27 +114,57 @@ const CourseCard: React.FC<CourseCardProps> = ({
           </Button>
         </div>
         
+        {/* Section Selection Tabs */}
+        {activeSession !== null && (
+          <div className="flex gap-2 mb-4">
+            <Button 
+              size="sm"
+              variant={activeSection === "references" ? "default" : "outline"}
+              className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
+                activeSection === "references" 
+                  ? "bg-blue-500 hover:bg-blue-600 text-white" 
+                  : "bg-transparent border-white/20 text-white hover:bg-white/10"
+              }`}
+              onClick={() => setActiveSection("references")}
+            >
+              <FileText className="h-3.5 w-3.5 mr-1.5" />
+              References
+            </Button>
+            <Button 
+              size="sm"
+              variant={activeSection === "tasks" ? "default" : "outline"}
+              className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
+                activeSection === "tasks" 
+                  ? "bg-amber-500 hover:bg-amber-600 text-white" 
+                  : "bg-transparent border-white/20 text-white hover:bg-white/10"
+              }`}
+              onClick={() => setActiveSection("tasks")}
+            >
+              Tasks
+            </Button>
+          </div>
+        )}
+        
         {/* Course Content/Tasks List - Only show if a session is selected */}
         {activeSession !== null && (
           <div className="space-y-0">
-            <CourseTaskItem title="Learning Module" onTaskClick={handleTaskClick} />
-            <CourseTaskItem title="Pre Session Doc" onTaskClick={handleTaskClick} />
-            <CourseTaskItem title="Live Tutorial" onTaskClick={handleTaskClick} />
-            <CourseTaskItem title="Post Session Ref" onTaskClick={handleTaskClick} />
-            
-            {/* Only show these if we're not on Quiz or A+ */}
-            {activeSession > 0 && (
+            {activeSection === "references" && (
               <>
-                <div className="border-t border-white/20 my-2"></div>
-                
-                {course.courseTasks?.map((task) => (
-                  <CourseTaskItem key={task.id} title={task.title} onTaskClick={handleTaskClick} />
-                ))}
+                <CourseTaskItem title="Learning Module" onTaskClick={handleTaskClick} icon={Book} />
+                <CourseTaskItem title="Pre Session Doc" onTaskClick={handleTaskClick} />
+                <CourseTaskItem title="Live Tutorial" onTaskClick={handleTaskClick} />
+                <CourseTaskItem title="Post Session Ref" onTaskClick={handleTaskClick} />
               </>
             )}
             
-            {/* Only show assessment for regular sessions */}
-            {activeSession > 0 && <CourseTaskItem title="Assessment" onTaskClick={handleTaskClick} />}
+            {activeSection === "tasks" && activeSession > 0 && (
+              <>
+                {course.courseTasks?.map((task) => (
+                  <CourseTaskItem key={task.id} title={task.title} onTaskClick={handleTaskClick} />
+                ))}
+                <CourseTaskItem title="Assessment" onTaskClick={handleTaskClick} />
+              </>
+            )}
           </div>
         )}
       </div>
@@ -176,12 +207,16 @@ const CourseCard: React.FC<CourseCardProps> = ({
 interface CourseTaskItemProps {
   title: string;
   onTaskClick: (taskTitle: string) => void;
+  icon?: React.ElementType;
 }
 
-const CourseTaskItem: React.FC<CourseTaskItemProps> = ({ title, onTaskClick }) => {
+const CourseTaskItem: React.FC<CourseTaskItemProps> = ({ title, onTaskClick, icon: Icon }) => {
   return (
     <div className="flex items-center justify-between py-3 border-b border-white/20 last:border-b-0">
-      <span className="text-white">{title}</span>
+      <div className="flex items-center">
+        {Icon && <Icon className="h-4 w-4 mr-2 text-white/70" />}
+        <span className="text-white">{title}</span>
+      </div>
       <Button 
         variant="ghost" 
         size="icon" 
