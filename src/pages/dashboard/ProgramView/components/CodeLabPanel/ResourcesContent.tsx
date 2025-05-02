@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,26 +21,34 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
   const learningModules: ResourceItem[] = [
     { id: "pdf1", type: "PDF", title: "Introduction to Python Basics", pages: 10 },
     { id: "pdf2", type: "PDF", title: "Intermediate Python Concepts", pages: 15 },
-    { id: "ppt1", type: "PPT", title: "Python Workshop Slides", pages: 25 }
+    { id: "ppt1", type: "PPT", title: "Python Workshop Slides", pages: 25 },
+    { id: "pdf3", type: "PDF", title: "Python Data Structures", pages: 12 },
+    { id: "ppt2", type: "PPT", title: "Python Best Practices", pages: 18 }
   ];
   
   const preSessionResources: ResourceItem[] = [
     { id: "pre-pdf1", type: "PDF", title: "Pre-Session Guide", pages: 5 },
     { id: "pre-ppt1", type: "PPT", title: "Session Preparation Materials", pages: 8 },
+    { id: "pre-pdf2", type: "PDF", title: "Setup Instructions", pages: 3 },
+    { id: "pre-ppt2", type: "PPT", title: "Course Overview", pages: 10 },
     { id: "pre-video1", type: "VIDEO", title: "Introduction Video", duration: "5:30", videoId: "PkZNo7MFNFg" }
   ];
   
   const postSessionResources: ResourceItem[] = [
     { id: "post-pdf1", type: "PDF", title: "Post-Session Summary", pages: 7 },
     { id: "post-ppt1", type: "PPT", title: "Additional Learning Materials", pages: 12 },
+    { id: "post-pdf2", type: "PDF", title: "Practice Exercises", pages: 15 },
+    { id: "post-ppt2", type: "PPT", title: "Advanced Concepts", pages: 20 },
     { id: "post-video1", type: "VIDEO", title: "Deep Dive Tutorial", duration: "10:15", videoId: "rfscVS0vtbw" }
   ];
 
-  // New video resources section
+  // Video resources section
   const videoResources: ResourceItem[] = [
     { id: "video1", type: "VIDEO", title: "JavaScript Tutorial for Beginners", duration: "16:30", videoId: "PkZNo7MFNFg" },
     { id: "video2", type: "VIDEO", title: "Python for Beginners - Full Course", duration: "4:26:51", videoId: "rfscVS0vtbw" },
-    { id: "video3", type: "VIDEO", title: "Python Tutorial for Beginners", duration: "12:40", videoId: "8DvywoWv6fI" }
+    { id: "video3", type: "VIDEO", title: "Python Tutorial for Beginners", duration: "12:40", videoId: "8DvywoWv6fI" },
+    { id: "video4", type: "VIDEO", title: "HTML & CSS Full Course", duration: "11:25", videoId: "G3e-cpL7ofc" },
+    { id: "video5", type: "VIDEO", title: "React.js Crash Course", duration: "29:54", videoId: "bMknfKXIFA8" }
   ];
   
   const tasks: Task[] = [
@@ -57,8 +66,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
         return preSessionResources;
       case "post-session":
         return postSessionResources;
-      case "videos":
-        return videoResources;
       default:
         return [];
     }
@@ -118,18 +125,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
         </Button>
         <Button 
           size="sm"
-          variant={resourcesSubTab === "videos" ? "default" : "outline"}
-          className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
-            resourcesSubTab === "videos" 
-              ? "bg-red-500 hover:bg-red-600 text-white" 
-              : "bg-transparent border-white/20 text-white hover:bg-white/10"
-          }`}
-          onClick={() => setResourcesSubTab("videos")}
-        >
-          Videos
-        </Button>
-        <Button 
-          size="sm"
           variant={resourcesSubTab === "tasks" ? "default" : "outline"}
           className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
             resourcesSubTab === "tasks" 
@@ -143,7 +138,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
       </div>
       
       {/* Layer 2 - Floating pill resources */}
-      {resourcesSubTab !== "tasks" && resourcesSubTab !== "videos" && (
+      {resourcesSubTab !== "tasks" && (
         <div className="flex flex-wrap gap-2 mb-3">
           {getCurrentResources().map((resource) => (
             <Badge
@@ -164,38 +159,40 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
         </div>
       )}
 
-      {/* Video resources section */}
-      {resourcesSubTab === "videos" && (
-        <div className="space-y-2">
-          {videoResources.map((video) => (
-            <div 
-              key={video.id}
-              className="flex items-center gap-3 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-            >
-              <div className="h-16 w-28 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
-                <img 
-                  src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} 
-                  alt={video.title} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <Youtube className="h-6 w-6 text-red-500" />
-                </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-medium text-white">{video.title}</h3>
-                <p className="text-xs text-white/60">Duration: {video.duration}</p>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-red-500/20 border-red-500/30 text-white hover:bg-red-500/30"
-                onClick={() => handlePlayVideo(video.videoId)}
+      {/* Video resources section - Now shown when any type is VIDEO */}
+      {resourcesSubTab !== "tasks" && getCurrentResources().find(r => r.id === activeResourceItems)?.type === "VIDEO" && (
+        <div className="space-y-2 mb-3">
+          {getCurrentResources()
+            .filter(resource => resource.type === "VIDEO")
+            .map((video) => (
+              <div 
+                key={video.id}
+                className="flex items-center gap-3 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
               >
-                <Play className="h-4 w-4 mr-1" /> Play
-              </Button>
-            </div>
-          ))}
+                <div className="h-16 w-28 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
+                  <img 
+                    src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} 
+                    alt={video.title} 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <Youtube className="h-6 w-6 text-red-500" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-sm font-medium text-white">{video.title}</h3>
+                  <p className="text-xs text-white/60">Duration: {video.duration}</p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-red-500/20 border-red-500/30 text-white hover:bg-red-500/30"
+                  onClick={() => handlePlayVideo(video.videoId)}
+                >
+                  <Play className="h-4 w-4 mr-1" /> Play
+                </Button>
+              </div>
+            ))}
         </div>
       )}
       
@@ -221,11 +218,12 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
       
       {/* Content display based on selected sub-tab and resource */}
       <div className="bg-white/10 p-4 rounded-lg flex-1">
-        {resourcesSubTab !== "tasks" && resourcesSubTab !== "videos" ? (
+        {resourcesSubTab !== "tasks" ? (
           <>
             {/* Display selected resource content */}
             {getCurrentResources()
               .filter(r => r.id === activeResourceItems)
+              .filter(r => r.type !== "VIDEO") // Only show non-video resources here
               .map((resource) => (
                 <ResourcePreview 
                   key={resource.id} 
@@ -234,7 +232,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
                 />
               ))}
           </>
-        ) : resourcesSubTab === "tasks" ? (
+        ) : (
           <>
             {/* Task detail view */}
             {tasks
@@ -243,10 +241,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
                 <TaskPreview key={task.id} task={task} />
               ))}
           </>
-        ) : (
-          <div className="h-full flex items-center justify-center p-4 text-center">
-            <p className="text-white/60">Select a video from the list above to play it in the main video player.</p>
-          </div>
         )}
       </div>
     </div>
