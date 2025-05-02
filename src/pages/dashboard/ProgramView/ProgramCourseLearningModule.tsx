@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Desktop from "@/components/dashboard/day1/Desktop";
 import ChatBox from "./components/ChatBox";
@@ -9,6 +8,7 @@ import CourseAccordion from "./components/CourseAccordion";
 import ReadingPanel from "./components/ReadingPanel";
 import { toast } from "sonner";
 import { BackgroundGradient } from "@/components/database/ScreenEmotionTag/BackgroundGradient";
+import CollapsibleProgramSidebar from "./components/CollapsibleProgramSidebar";
 
 const ProgramCourseLearningModule = () => {
   const navigate = useNavigate();
@@ -65,23 +65,20 @@ const ProgramCourseLearningModule = () => {
   return (
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-80px)] bg-white">
+        {/* Collapsible Sidebar */}
+        <CollapsibleProgramSidebar 
+          onBackClick={handleBackClick}
+          currentComponent="learning"
+          onComponentClick={handleComponentClick}
+        />
+        
         <div className="p-3 w-full h-full flex flex-col">
           {/* Main content area */}
-          <div className="flex flex-1 gap-4 h-full">
-            {/* Left Section - Chat Card */}
+          <div className="flex flex-1 gap-4 h-full pl-16">
+            {/* Left Section - Chat Card - Modified to take advantage of collapsed sidebar space */}
             <div className="w-[45%] flex flex-col gap-4 relative">
-              {/* Back button positioned in top left */}
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute top-3 left-3 z-10 rounded-full bg-black/40 hover:bg-black/60 text-white h-10 w-10"
-                onClick={handleBackClick}
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
-              
               {/* Blue gradient background card for chat */}
-              <div className="ml-16 mt-3 h-full rounded-xl relative overflow-hidden">
+              <div className="mt-3 h-full rounded-xl relative overflow-hidden">
                 {/* Gradient background */}
                 <div className="absolute inset-0 w-full h-full">
                   <BackgroundGradient />
