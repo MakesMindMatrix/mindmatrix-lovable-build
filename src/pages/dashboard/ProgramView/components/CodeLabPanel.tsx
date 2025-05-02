@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Link2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CodeLabPanelProps {
@@ -93,16 +93,27 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
               </div>
             </div>
             
-            {/* Code editor - made taller to match chatbox */}
-            <div className="flex-1 bg-white rounded-lg p-3 font-mono text-gray-800 text-xs overflow-y-auto min-h-[calc(100%-80px)]">
-              <p>prompt = ""</p>
-              <p>You are a helpful assistant. Please answer</p>
-              <p>the following question clearly and</p>
-              <p>concisely.</p>
-              <br />
-              <p>Question: &#123;user_input&#125;</p>
-              <p>Answer:</p>
-              <p>""</p>
+            {/* Code editor - replaced with placeholder for code environment */}
+            <div className="flex-1 bg-white rounded-lg p-3 font-mono text-gray-800 text-xs overflow-y-auto min-h-[calc(100%-80px)] flex flex-col justify-center items-center">
+              <div className="text-center max-w-md">
+                <div className="mb-4 flex justify-center">
+                  <Link2 className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-sm font-medium text-gray-700 mb-2">Connect Code Environment</h3>
+                <p className="text-xs text-gray-500 mb-4">
+                  Attach an external code environment or IDE to practice your coding skills in real-time.
+                </p>
+                <div className="flex gap-3 justify-center">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white h-8 text-xs flex items-center gap-1">
+                    <Link2 className="h-3.5 w-3.5" />
+                    Connect Environment
+                  </Button>
+                  <Button size="sm" variant="outline" className="border-gray-300 text-gray-700 h-8 text-xs flex items-center gap-1">
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Open in New Tab
+                  </Button>
+                </div>
+              </div>
             </div>
           </>
         )}
