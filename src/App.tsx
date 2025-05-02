@@ -25,10 +25,10 @@ import ProgramView from "./pages/dashboard/ProgramView";
 import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
 import ProgramCourseLearningModule from "./pages/dashboard/ProgramView/ProgramCourseLearningModule";
 
-// Create a client
-const queryClient = new QueryClient();
-
 const App = () => {
+  // Create a client inside the component
+  const queryClient = new QueryClient();
+  
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
