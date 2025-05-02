@@ -90,21 +90,30 @@ const ProgramCourseLiveTutorial = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Using GradientBackground with proper structure */}
-              <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl">
-                <GradientBackground className="h-full w-full rounded-xl">
-                  <div className="flex flex-col h-full relative z-10">
-                    {/* Fixed Video Section - 40% of container height */}
-                    <div className="h-[40%] min-h-[180px] p-4 pb-2">
-                      <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                    </div>
-                    
-                    {/* Chat Section - 60% of container height */}
-                    <div className="h-[60%] flex flex-col relative">
-                      <ChatBox />
-                    </div>
+              {/* Using GradientBackground with proper structure and faded edges */}
+              <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl relative">
+                {/* Gradient background with fading effect */}
+                <div className="absolute inset-0 w-full h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0F56CC]/60 to-[#2A3A80]/50 rounded-xl"></div>
+                  {/* Fading edges overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                </div>
+                
+                {/* Content overlay */}
+                <div className="flex flex-col h-full relative z-10">
+                  {/* Fixed Video Section - 40% of container height */}
+                  <div className="h-[40%] min-h-[180px] p-4 pb-2">
+                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                   </div>
-                </GradientBackground>
+                  
+                  {/* Chat Section - 60% of container height */}
+                  <div className="h-[60%] flex flex-col relative">
+                    <ChatBox />
+                  </div>
+                </div>
               </div>
             </div>
             

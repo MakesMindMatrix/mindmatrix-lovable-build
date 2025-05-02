@@ -85,11 +85,16 @@ const ProgramCourseLearningModule = () => {
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               
-              {/* Blue gradient background card for chat */}
+              {/* Blue gradient background card for chat with faded edges */}
               <div className="ml-16 mt-3 h-full rounded-xl relative overflow-hidden">
-                {/* Gradient background */}
+                {/* Gradient background with fading effect */}
                 <div className="absolute inset-0 w-full h-full">
-                  <BackgroundGradient />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0F56CC]/60 to-[#2A3A80]/50 rounded-xl"></div>
+                  {/* Fading edges overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
                 </div>
                 
                 {/* Content overlay */}
