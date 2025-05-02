@@ -1,11 +1,11 @@
 
 import React, { useState } from "react";
-import { File, FileText, Save, Download, ListCheck, Youtube, Video, FileType, Play, Book } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ResourceItem, Task } from "./types";
-import ResourcePreview from "./ResourcePreview";
-import TaskPreview from "./TaskPreview";
+import ResourceTabs from "./components/ResourceTabs";
+import ResourceBadges from "./components/ResourceBadges";
+import VideoResourceList from "./components/VideoResourceList";
+import TaskBadges from "./components/TaskBadges";
+import ResourceContentDisplay from "./components/ResourceContentDisplay";
 
 interface ResourcesContentProps {
   onVideoSelect?: (videoId: string) => void;
@@ -85,170 +85,55 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) =>
     }
   };
   
+  const currentResources = getCurrentResources();
+  const hasSelectedVideoResource = 
+    resourcesSubTab !== "tasks" && 
+    currentResources.find(r => r.id === activeResourceItems)?.type === "VIDEO";
+  
+  const videoResourcesForCurrentTab = currentResources.filter(resource => resource.type === "VIDEO");
+  
   return (
     <div className="text-white h-full flex flex-col gap-2 overflow-y-auto">
-      {/* Sub-tab navigation for Resources - Layer 1 */}
-      <div className="flex gap-2 overflow-x-auto pb-2 items-center">
-        <Button 
-          size="sm"
-          variant={resourcesSubTab === "learning" ? "default" : "outline"}
-          className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
-            resourcesSubTab === "learning" 
-              ? "bg-blue-500 hover:bg-blue-600 text-white" 
-              : "bg-transparent border-white/20 text-white hover:bg-white/10"
-          }`}
-          onClick={() => setResourcesSubTab("learning")}
-        >
-          <Book className="h-3.5 w-3.5 mr-1.5" />
-          Learning Module
-        </Button>
-        <Button 
-          size="sm"
-          variant={resourcesSubTab === "pre-session" ? "default" : "outline"}
-          className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
-            resourcesSubTab === "pre-session" 
-              ? "bg-green-500 hover:bg-green-600 text-white" 
-              : "bg-transparent border-white/20 text-white hover:bg-white/10"
-          }`}
-          onClick={() => setResourcesSubTab("pre-session")}
-        >
-          <FileText className="h-3.5 w-3.5 mr-1.5" />
-          Pre Session
-        </Button>
-        <Button 
-          size="sm"
-          variant={resourcesSubTab === "post-session" ? "default" : "outline"}
-          className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
-            resourcesSubTab === "post-session" 
-              ? "bg-purple-500 hover:bg-purple-600 text-white" 
-              : "bg-transparent border-white/20 text-white hover:bg-white/10"
-          }`}
-          onClick={() => setResourcesSubTab("post-session")}
-        >
-          <FileText className="h-3.5 w-3.5 mr-1.5" />
-          Post Session
-        </Button>
-        <Button 
-          size="sm"
-          variant={resourcesSubTab === "tasks" ? "default" : "outline"}
-          className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
-            resourcesSubTab === "tasks" 
-              ? "bg-amber-500 hover:bg-amber-600 text-white" 
-              : "bg-transparent border-white/20 text-white hover:bg-white/10"
-          }`}
-          onClick={() => setResourcesSubTab("tasks")}
-        >
-          <ListCheck className="h-3.5 w-3.5 mr-1.5" />
-          To-Dos
-        </Button>
-      </div>
+      {/* Tab navigation for resources */}
+      <ResourceTabs 
+        activeTab={resourcesSubTab} 
+        onTabChange={setResourcesSubTab}
+      />
       
-      {/* Layer 2 - Floating pill resources */}
+      {/* Resource badges - only show if not in tasks tab */}
       {resourcesSubTab !== "tasks" && (
-        <div className="flex flex-wrap gap-2 mb-3">
-          {getCurrentResources().map((resource) => (
-            <Badge
-              key={resource.id}
-              variant="outline"
-              className={`cursor-pointer py-1 px-3 ${
-                activeResourceItems === resource.id 
-                  ? "bg-white/20 border-white" 
-                  : "bg-transparent border-white/20"
-              } hover:bg-white/10 transition-colors`}
-              onClick={() => handleResourceItemClick(resource.id)}
-            >
-              {resource.type === "PDF" && "PDF"}
-              {resource.type === "PPT" && "PPT"}
-              {resource.type === "VIDEO" && "Video"}
-            </Badge>
-          ))}
-        </div>
+        <ResourceBadges 
+          resources={currentResources}
+          activeResource={activeResourceItems}
+          onResourceSelect={handleResourceItemClick}
+        />
       )}
 
-      {/* Video resources section - Now shown when any type is VIDEO */}
-      {resourcesSubTab !== "tasks" && getCurrentResources().find(r => r.id === activeResourceItems)?.type === "VIDEO" && (
-        <div className="space-y-2 mb-3">
-          {getCurrentResources()
-            .filter(resource => resource.type === "VIDEO")
-            .map((video) => (
-              <div 
-                key={video.id}
-                className="flex items-center gap-3 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-              >
-                <div className="h-16 w-28 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
-                  <img 
-                    src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} 
-                    alt={video.title} 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <Youtube className="h-6 w-6 text-red-500" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium text-white">{video.title}</h3>
-                  <p className="text-xs text-white/60">Duration: {video.duration}</p>
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-red-500/20 border-red-500/30 text-white hover:bg-red-500/30"
-                  onClick={() => handlePlayVideo(video.videoId)}
-                >
-                  <Play className="h-4 w-4 mr-1" /> Play
-                </Button>
-              </div>
-            ))}
-        </div>
+      {/* Video resources section */}
+      {hasSelectedVideoResource && (
+        <VideoResourceList 
+          videos={videoResourcesForCurrentTab}
+          onPlayVideo={handlePlayVideo}
+        />
       )}
       
-      {/* Task pills for tasks tab */}
+      {/* Task badges for tasks tab */}
       {resourcesSubTab === "tasks" && (
-        <div className="flex flex-wrap gap-2 mb-3">
-          {tasks.map((task) => (
-            <Badge
-              key={task.id}
-              variant="outline"
-              className={`cursor-pointer py-1 px-3 ${
-                activeResourceItems === task.id 
-                  ? "bg-amber-500/30 border-amber-400" 
-                  : "bg-transparent border-white/20"
-              } hover:bg-white/10 transition-colors`}
-              onClick={() => handleResourceItemClick(task.id)}
-            >
-              {task.title}
-            </Badge>
-          ))}
-        </div>
+        <TaskBadges
+          tasks={tasks}
+          activeTask={activeResourceItems}
+          onTaskSelect={handleResourceItemClick}
+        />
       )}
       
-      {/* Content display based on selected sub-tab and resource */}
-      <div className="bg-white/10 p-4 rounded-lg flex-1">
-        {resourcesSubTab !== "tasks" ? (
-          <>
-            {/* Display selected resource content */}
-            {getCurrentResources()
-              .filter(r => r.id === activeResourceItems)
-              .filter(r => r.type !== "VIDEO") // Only show non-video resources here
-              .map((resource) => (
-                <ResourcePreview 
-                  key={resource.id} 
-                  resource={resource} 
-                  onPlayVideo={handlePlayVideo}
-                />
-              ))}
-          </>
-        ) : (
-          <>
-            {/* Task detail view */}
-            {tasks
-              .filter(t => t.id === activeResourceItems)
-              .map((task) => (
-                <TaskPreview key={task.id} task={task} />
-              ))}
-          </>
-        )}
-      </div>
+      {/* Content display area */}
+      <ResourceContentDisplay 
+        activeTab={resourcesSubTab}
+        resources={currentResources}
+        tasks={tasks}
+        activeItemId={activeResourceItems}
+        onPlayVideo={handlePlayVideo}
+      />
     </div>
   );
 };
