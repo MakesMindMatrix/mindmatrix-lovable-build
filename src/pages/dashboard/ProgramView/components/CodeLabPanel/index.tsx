@@ -4,6 +4,7 @@ import TabNavigation from "./TabNavigation";
 import LabsContent from "./LabsContent";
 import ResourcesContent from "./ResourcesContent";
 import NotificationsContent from "./NotificationsContent";
+import TutorialContent from "./TutorialContent";
 
 interface CodeLabPanelProps {
   activeTab: string;
@@ -29,6 +30,10 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
       
       {/* Content area */}
       <div className="flex-1 p-3 rounded-b-lg overflow-hidden flex flex-col">
+        {activeTab === 'tutorial' && (
+          <TutorialContent />
+        )}
+        
         {activeTab === 'labs' && (
           <LabsContent codeLanguage={codeLanguage} setCodeLanguage={setCodeLanguage} />
         )}

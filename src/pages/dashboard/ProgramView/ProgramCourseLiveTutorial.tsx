@@ -14,7 +14,7 @@ import GradientBackground from "@/components/database/ScreenEmotionTag/GradientB
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [activeTab, setActiveTab] = useState("labs");
+  const [activeTab, setActiveTab] = useState("tutorial"); // Set default tab to tutorial
   const [codeLanguage, setCodeLanguage] = useState("Python");
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
