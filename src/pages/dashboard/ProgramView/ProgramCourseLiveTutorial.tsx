@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -9,7 +8,7 @@ import CourseAccordion from "./components/CourseAccordion";
 import CodeLabPanel from "./components/CodeLabPanel";
 import { toast } from "sonner";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
-import CollapsibleProgramSidebar from "./components/CollapsibleProgramSidebar";
+import CollapsibleProgramSidebar from "@/components/dashboard/ProgramView/components/CollapsibleProgramSidebar";
 
 const ProgramCourseLiveTutorial = () => {
   const navigate = useNavigate();
