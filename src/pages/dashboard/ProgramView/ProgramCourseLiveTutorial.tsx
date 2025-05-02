@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -39,7 +38,6 @@ const ProgramCourseLiveTutorial = () => {
   };
 
   const handleComponentClick = (sessionId: number, componentId: string) => {
-    // Handle component clicks with improved navigation
     const componentMap: Record<string, string> = {
       "learning": "Learning Module",
       "preread": "Pre-session Reference", 
@@ -52,19 +50,14 @@ const ProgramCourseLiveTutorial = () => {
     toast.info(`Opening ${componentName} from Session ${sessionId}`);
     
     if (componentId === "tutorial") {
-      // Already on tutorial page, could play the video
-      setIsPlaying(true);
-      setShowVideo(true);
+      // Already on tutorial page
     } else if (componentId === "tasks") {
       // Switch to labs tab for tasks
       setActiveTab("labs");
     } else if (componentId === "assessment") {
       // Switch to assessment tab
       setActiveTab("assessment");
-    } else if (componentId === "learning") {
-      // Navigate to learning module page
-      navigate("/program-course-LearningModule");
-    } else if (componentId === "preread") {
+    } else if (componentId === "preread" || componentId === "learning") {
       // Switch to resources tab for learning materials
       setActiveTab("resources");
     }
