@@ -90,12 +90,12 @@ const ProgramCourseLiveTutorial = () => {
                 <GradientBackground className="h-full w-full rounded-xl">
                   <div className="flex flex-col h-full relative z-10">
                     {/* Fixed Video Section - 40% of container height */}
-                    <div className="h-[40%] p-4 pb-2">
+                    <div className="h-[40%] min-h-[180px] p-4 pb-2">
                       <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                     </div>
                     
                     {/* Chat Section - 60% of container height */}
-                    <div className="h-[60%] p-4 pt-0 flex flex-col">
+                    <div className="h-[60%] flex flex-col relative">
                       <ChatBox />
                     </div>
                   </div>

@@ -2,8 +2,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatBoxProps {}
@@ -20,7 +18,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   ]);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -69,57 +67,56 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Messages container - this will scroll */}
+    <div className="flex flex-col h-full relative">
+      {/* Chat messages area */}
       <div className="flex-1 overflow-hidden">
-        <ScrollArea ref={scrollAreaRef} className="h-full pr-2">
-          <div className="p-2 space-y-3">
+        <ScrollArea ref={scrollAreaRef} className="h-full">
+          <div className="p-4 pb-20"> {/* Add padding at bottom to ensure messages aren't hidden behind input */}
+            {/* Zuno avatar and badge */}
+            <div className="flex items-center mb-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                <img 
+                  src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
+                  alt="Zuno" 
+                  className="w-8 h-8 rounded-full"
+                />
+              </div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                Zuno
+              </div>
+            </div>
+
+            {/* Message bubbles */}
             {messages.map((message) => (
-              <div key={message.id}>
+              <div key={message.id} className={`mb-4 ${message.sender === "user" ? "flex justify-end" : ""}`}>
                 {message.sender === "zuno" ? (
-                  <div className="mb-2">
-                    <div className="flex mb-1">
-                      <div className="w-8 h-8 rounded-full bg-blue-100/50 flex items-center justify-center">
-                        <img 
-                          src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
-                          alt="Zuno" 
-                          className="w-6 h-6 rounded-full"
-                        />
-                      </div>
-                      <Badge variant="outline" className="ml-2 bg-blue-100/50 text-blue-900 text-xs">Zuno</Badge>
-                    </div>
-                    <div className="bg-blue-100/70 backdrop-blur-sm border border-blue-200/50 rounded-lg p-3 text-blue-900 text-sm">
-                      {message.content}
-                    </div>
+                  <div className="bg-blue-50 rounded-lg p-4 text-blue-900 max-w-[90%]">
+                    {message.content}
                   </div>
                 ) : (
-                  <div className="flex flex-row-reverse mb-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-200/50 flex items-center justify-center ml-2">
-                      <div className="text-gray-600 text-xs font-semibold">You</div>
-                    </div>
-                    <div className="bg-gray-200/70 backdrop-blur-sm border border-gray-300/50 rounded-lg p-3 text-gray-800 text-sm">
-                      {message.content}
-                    </div>
+                  <div className="bg-blue-100 rounded-lg p-4 text-blue-900 max-w-[90%]">
+                    {message.content}
                   </div>
                 )}
               </div>
             ))}
             
+            {/* "Zuno is ready to help" status */}
             {messages.length > 0 && messages[messages.length - 1].sender === "zuno" && (
-              <div className="text-blue-900 text-xs mb-2">
+              <div className="text-blue-800 text-sm mt-4 mb-2">
                 Zuno is ready to help...
               </div>
             )}
             
             {/* Action button */}
-            <div className="flex justify-end mb-2">
+            <div className="flex justify-end mb-4">
               <Button 
-                className="bg-blue-100/50 text-blue-800 hover:bg-blue-200/50 text-xs py-1 h-auto px-3 rounded-lg"
+                className="bg-blue-100 text-blue-800 hover:bg-blue-200 rounded-full px-4 py-2"
                 onClick={() => {
                   const helpMessage = {
                     id: `user-${new Date().getTime()}`,
                     sender: "user",
-                    content: "I want to know more about JavaScript variables.",
+                    content: "I want to know more",
                     timestamp: new Date(),
                   };
                   
@@ -146,23 +143,24 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
       </div>
       
       {/* Fixed Chat Input at the bottom */}
-      <div className="mt-auto h-[60px] border-t border-blue-200/30 bg-white/10 backdrop-blur-sm p-3 sticky bottom-0 left-0 right-0">
-        <div className="relative w-full">
-          <Textarea 
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-2 bg-gradient-to-t from-blue-50 via-blue-50 to-transparent">
+        <div className="flex items-center bg-white rounded-full border border-blue-100 pr-2 overflow-hidden">
+          <input
+            type="text"
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type something..." 
-            className="min-h-[40px] bg-transparent border border-blue-200/50 px-4 py-2 rounded-md text-blue-900 w-full resize-none pr-10 placeholder-blue-400/70 text-sm"
-            style={{ height: '40px' }}
+            className="flex-1 px-4 py-3 bg-transparent outline-none text-blue-900"
           />
           <Button 
             variant="ghost" 
             size="icon"
-            className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full h-6 w-6 bg-blue-100/50 hover:bg-blue-200/50 text-blue-800"
+            className="rounded-full h-8 w-8 bg-blue-600 hover:bg-blue-700 flex items-center justify-center"
             onClick={handleSendMessage}
+            disabled={!inputValue.trim()}
           >
-            <Send className="h-3 w-3 text-blue-800 rotate-45" />
+            <Send className="h-4 w-4 text-white" />
           </Button>
         </div>
       </div>
