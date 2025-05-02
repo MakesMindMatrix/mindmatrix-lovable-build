@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import ResourceSubTabs from "./components/ResourceSubTabs";
 import PreSessionContent from "./components/PreSessionContent";
 import PostSessionContent from "./components/PostSessionContent";
@@ -8,12 +8,11 @@ import VideoResourcesContent from "./components/VideoResourcesContent";
 import TasksContent from "./components/TasksContent";
 
 interface ResourcesContentProps {
-  setIsPlaying?: (isPlaying: boolean) => void;
+  onVideoSelect?: (videoId: string) => void;
 }
 
-const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => {
+const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect }) => {
   const [resourcesSubTab, setResourcesSubTab] = useState<string>("pre-session");
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
   // Sample PDF URLs for demonstration
   const pdfSamples = [
@@ -23,12 +22,9 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
   
   // Handle video selection
   const handleVideoClick = (videoId: string) => {
-    // Set the selected video ID to be played in the main video player
-    setSelectedVideo(videoId);
-    
     // If there's a video player control function passed in, trigger it
-    if (setIsPlaying) {
-      setIsPlaying(true);
+    if (onVideoSelect) {
+      onVideoSelect(videoId);
     }
     
     console.log("Video selected:", videoId);
@@ -42,25 +38,28 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => 
         setResourcesSubTab={setResourcesSubTab} 
       />
       
-      {/* Pre-Session References Content */}
-      <TabsContent value="pre-session" className="mt-0">
-        <PreSessionContent pdfSamples={pdfSamples} />
-      </TabsContent>
-      
-      {/* Post-Session References Content */}
-      <TabsContent value="post-session" className="mt-0">
-        <PostSessionContent pdfSamples={pdfSamples} />
-      </TabsContent>
-      
-      {/* Videos Content */}
-      <TabsContent value="videos" className="mt-0">
-        <VideoResourcesContent handleVideoClick={handleVideoClick} />
-      </TabsContent>
-      
-      {/* Tasks Content */}
-      <TabsContent value="tasks" className="mt-0">
-        <TasksContent />
-      </TabsContent>
+      {/* Wrap TabsContent components with Tabs component */}
+      <Tabs value={resourcesSubTab} className="flex-1">
+        {/* Pre-Session References Content */}
+        <TabsContent value="pre-session" className="mt-0 h-full">
+          <PreSessionContent pdfSamples={pdfSamples} />
+        </TabsContent>
+        
+        {/* Post-Session References Content */}
+        <TabsContent value="post-session" className="mt-0 h-full">
+          <PostSessionContent pdfSamples={pdfSamples} />
+        </TabsContent>
+        
+        {/* Videos Content */}
+        <TabsContent value="videos" className="mt-0 h-full">
+          <VideoResourcesContent handleVideoClick={handleVideoClick} />
+        </TabsContent>
+        
+        {/* Tasks Content */}
+        <TabsContent value="tasks" className="mt-0 h-full">
+          <TasksContent />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
