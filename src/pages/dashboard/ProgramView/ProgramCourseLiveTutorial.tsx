@@ -118,8 +118,8 @@ const ProgramCourseLiveTutorial = () => {
                 />
               </div>
               
-              {/* Lab Navigation Card */}
-              <div className="mt-16 w-full h-[calc(100%-16px)]">
+              {/* Lab Navigation Card - Reduced top margin to move it up */}
+              <div className="mt-12 w-full h-[calc(100%-12px)]">
                 <CodeLabPanel 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}

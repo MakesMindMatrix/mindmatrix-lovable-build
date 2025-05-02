@@ -109,8 +109,8 @@ const ProgramCourseLearningModule = () => {
                 />
               </div>
               
-              {/* Reading Panel - Added top margin to create space */}
-              <div className="mt-16 w-full h-[calc(100%-16px)]">
+              {/* Reading Panel - Reduced top margin to move it up */}
+              <div className="mt-12 w-full h-[calc(100%-12px)]">
                 <ReadingPanel 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}
