@@ -17,26 +17,26 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
   setDocumentFormat
 }) => {
   return (
-    <div className="flex-1 bg-[#4B6291] rounded-lg flex flex-col overflow-hidden z-10 h-full">
+    <div className="flex-1 backdrop-blur-xl bg-[#1A1F2C]/80 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
       {/* Tab navigation */}
-      <div className="flex bg-[#2D3044] rounded-t-lg">
+      <div className="flex bg-[#222]/80 backdrop-blur-md rounded-t-lg border-b border-white/5">
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'read' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'read' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('read')}
         >
           <span className="text-sm">Read</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'resources' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'resources' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('resources')}
         >
           <span className="text-sm">Resources</span>
         </Button>
         <Button 
           variant="ghost" 
-          className={`${activeTab === 'notifications' ? 'bg-[#4B6291] text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
+          className={`${activeTab === 'notifications' ? 'bg-[#1A1F2C]/50 text-white' : 'text-white/60'} rounded-none px-6 py-1.5 h-auto flex-1`}
           onClick={() => handleTabChange('notifications')}
         >
           <span className="text-sm">Notifications</span>
