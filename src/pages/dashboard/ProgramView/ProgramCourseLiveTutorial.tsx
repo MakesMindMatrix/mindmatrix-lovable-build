@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -17,6 +18,7 @@ const ProgramCourseLiveTutorial = () => {
   const [codeLanguage, setCodeLanguage] = useState("Python");
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
+  const [currentVideoId, setCurrentVideoId] = useState("PkZNo7MFNFg"); // Default YouTube video ID
   
   const handleBackClick = () => {
     // Navigate to the program view (course card)
@@ -66,6 +68,13 @@ const ProgramCourseLiveTutorial = () => {
     }
   };
   
+  // Handler for video selection from resources tab
+  const handleVideoSelect = (videoId: string) => {
+    setCurrentVideoId(videoId);
+    setIsPlaying(true);
+    toast.success("Video loaded successfully");
+  };
+  
   return (
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-80px)] bg-white">
@@ -105,7 +114,11 @@ const ProgramCourseLiveTutorial = () => {
                 <div className="flex flex-col h-full relative z-10">
                   {/* Fixed Video Section - 40% of container height */}
                   <div className="h-[40%] min-h-[180px] p-4 pb-2">
-                    <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                    <VideoPlayer 
+                      isPlaying={isPlaying} 
+                      setIsPlaying={setIsPlaying} 
+                      videoId={currentVideoId}
+                    />
                   </div>
                   
                   {/* Chat Section - 60% of container height */}
@@ -138,6 +151,7 @@ const ProgramCourseLiveTutorial = () => {
                   handleTabChange={handleTabChange}
                   codeLanguage={codeLanguage}
                   setCodeLanguage={setCodeLanguage}
+                  onVideoSelect={handleVideoSelect}
                 />
               </div>
             </div>

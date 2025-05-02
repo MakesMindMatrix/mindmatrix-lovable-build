@@ -5,6 +5,7 @@ export interface ResourceItem {
   title: string;
   pages?: number;
   duration?: string;
+  videoId?: string;
 }
 
 export interface Task {
