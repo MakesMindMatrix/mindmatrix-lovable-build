@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { BookOpen, BookOpenCheck, ListTodo, FileText, FileType, Youtube, Video, FileImage } from "lucide-react";
@@ -9,7 +10,7 @@ interface ResourcesContentProps {
 }
 
 const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying }) => {
-  const [resourcesSubTab, setResourcesSubTab = useState<string>("pre-session");
+  const [resourcesSubTab, setResourcesSubTab] = useState<string>("pre-session");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
   // Sample PDF URLs for demonstration
