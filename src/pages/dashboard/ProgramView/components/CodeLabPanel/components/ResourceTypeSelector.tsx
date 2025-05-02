@@ -13,7 +13,7 @@ const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
   onResourceTypeSelect
 }) => {
   return (
-    <div className="flex flex-wrap gap-2 mb-2">
+    <div className="flex flex-wrap gap-2 mb-2 bg-[#425094]/60 p-2 rounded-lg">
       {resourceTypes.map((type) => (
         <button
           key={type}
