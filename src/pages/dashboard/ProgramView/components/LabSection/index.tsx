@@ -10,15 +10,13 @@ interface LabSectionProps {
   handleTabChange: (tab: string) => void;
   codeLanguage: string;
   setCodeLanguage: (language: string) => void;
-  onVideoSelect?: (videoId: string) => void;
 }
 
 const LabSection: React.FC<LabSectionProps> = ({
   activeTab,
   handleTabChange,
   codeLanguage,
-  setCodeLanguage,
-  onVideoSelect
+  setCodeLanguage
 }) => {
   return (
     <div className="flex-1 flex flex-col rounded-lg overflow-hidden max-h-[45%]">
@@ -26,7 +24,7 @@ const LabSection: React.FC<LabSectionProps> = ({
       <TabNavigation activeTab={activeTab} handleTabChange={handleTabChange} />
       
       {/* Content area */}
-      <div className="flex-1 bg-[#545891]/80 p-3 rounded-b-lg overflow-hidden">
+      <div className="flex-1 bg-[#3a3e57] p-3 rounded-b-lg overflow-hidden">
         {activeTab === 'labs' && (
           <LabsContent 
             codeLanguage={codeLanguage} 
@@ -35,7 +33,7 @@ const LabSection: React.FC<LabSectionProps> = ({
         )}
         
         {activeTab === 'resources' && (
-          <ResourcesContent onVideoSelect={onVideoSelect} />
+          <ResourcesContent />
         )}
         
         {activeTab === 'notifications' && (

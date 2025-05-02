@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -6,7 +7,7 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
-import LabSection from "./components/LabSection"; // Now using the correct component
+import CodeLabPanel from "./components/CodeLabPanel";
 import { toast } from "sonner";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 
@@ -145,7 +146,7 @@ const ProgramCourseLiveTutorial = () => {
               
               {/* Lab Navigation Card - Reduced top margin to move it up */}
               <div className="mt-12 w-full h-[calc(100%-12px)]">
-                <LabSection 
+                <CodeLabPanel 
                   activeTab={activeTab}
                   handleTabChange={handleTabChange}
                   codeLanguage={codeLanguage}
