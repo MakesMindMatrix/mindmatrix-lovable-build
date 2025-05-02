@@ -6,35 +6,40 @@ export const sessions = [
     components: [
       {
         id: "learning",
-        title: "Learning Module"
-      },
-      {
-        id: "preread",
-        title: "Pre-session Reference"
+        title: "Learning Module",
+        type: "main"
       },
       {
         id: "tutorial",
-        title: "Live Tutorial"
-      },
-      {
-        id: "postread",
-        title: "Post-session Reference"
-      },
-      {
-        id: "task1",
-        title: "Task 1"
-      },
-      {
-        id: "task2",
-        title: "Task 2"
-      },
-      {
-        id: "task3",
-        title: "Task 3"
+        title: "Live Tutorial",
+        type: "main"
       },
       {
         id: "assessment",
-        title: "Assessment"
+        title: "Assessments",
+        type: "main"
+      },
+      {
+        id: "references",
+        title: "References",
+        type: "main",
+        subComponents: [
+          {
+            id: "preread",
+            title: "Pre-Session References",
+            type: "sub"
+          },
+          {
+            id: "postread",
+            title: "Post-Session References",
+            type: "sub"
+          },
+          {
+            id: "todos",
+            title: "To-Dos",
+            type: "sub"
+          }
+        ]
       }
     ]
   },
@@ -44,23 +49,40 @@ export const sessions = [
     components: [
       {
         id: "learning2",
-        title: "Learning Module"
-      },
-      {
-        id: "preread2",
-        title: "Pre-session Reference"
+        title: "Learning Module",
+        type: "main"
       },
       {
         id: "tutorial2",
-        title: "Live Tutorial"
-      },
-      {
-        id: "task1_2",
-        title: "Task 1"
+        title: "Live Tutorial",
+        type: "main"
       },
       {
         id: "assessment2",
-        title: "Assessment"
+        title: "Assessments",
+        type: "main"
+      },
+      {
+        id: "references2",
+        title: "References",
+        type: "main",
+        subComponents: [
+          {
+            id: "preread2",
+            title: "Pre-Session References",
+            type: "sub"
+          },
+          {
+            id: "postread2",
+            title: "Post-Session References",
+            type: "sub"
+          },
+          {
+            id: "todos2",
+            title: "To-Dos",
+            type: "sub"
+          }
+        ]
       }
     ]
   },
@@ -70,23 +92,40 @@ export const sessions = [
     components: [
       {
         id: "learning3",
-        title: "Learning Module"
-      },
-      {
-        id: "preread3",
-        title: "Pre-session Reference"
+        title: "Learning Module",
+        type: "main"
       },
       {
         id: "tutorial3",
-        title: "Live Tutorial"
-      },
-      {
-        id: "task1_3",
-        title: "Task 1"
+        title: "Live Tutorial",
+        type: "main"
       },
       {
         id: "assessment3",
-        title: "Assessment"
+        title: "Assessments",
+        type: "main"
+      },
+      {
+        id: "references3",
+        title: "References",
+        type: "main",
+        subComponents: [
+          {
+            id: "preread3",
+            title: "Pre-Session References",
+            type: "sub"
+          },
+          {
+            id: "postread3",
+            title: "Post-Session References",
+            type: "sub"
+          },
+          {
+            id: "todos3",
+            title: "To-Dos",
+            type: "sub"
+          }
+        ]
       }
     ]
   }

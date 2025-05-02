@@ -2,35 +2,36 @@
 export interface CourseAccordionProps {
   isCourseExpanded: boolean;
   toggleCourseCard: () => void;
-  currentSession?: number;
-  toggleSession?: (sessionId: number) => void;
+  currentSession: number;
+  toggleSession: (sessionId: number) => void;
   useGlassLayout?: boolean;
   onComponentClick?: (sessionId: number, componentId: string) => void;
-  currentComponent?: string;  // Added this property to track the current component
+  currentComponent?: string;
+}
+
+export interface SessionComponent {
+  id: string;
+  title: string;
+  type: "main" | "sub";
+  subComponents?: SessionSubComponent[];
+}
+
+export interface SessionSubComponent {
+  id: string;
+  title: string;
+  type: "sub";
+}
+
+export interface Session {
+  id: number;
+  title: string;
+  components: SessionComponent[];
 }
 
 export interface SessionItemProps {
-  session: {
-    id: number;
-    title: string;
-    components: {
-      id: string;
-      title: string;
-    }[];
-  };
+  session: Session;
   expandedSessions: Record<number, boolean>;
   toggleExpandSession: (sessionId: number) => void;
   handleComponentClick: (sessionId: number, componentId: string) => void;
-  currentComponent?: string;  // Added this property
-}
-
-// Add the CourseSession interface that was missing
-export interface CourseSession {
-  id: number;
-  title: string;
-  components: {
-    id: string;
-    title: string;
-    icon?: React.ElementType; // For component icons
-  }[];
+  currentComponent?: string;
 }

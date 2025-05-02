@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SessionItemProps } from "./types";
@@ -13,6 +13,15 @@ const SessionItem: React.FC<SessionItemProps> = ({
   currentComponent
 }) => {
   const isExpanded = expandedSessions[session.id];
+  const [expandedReferences, setExpandedReferences] = useState<Record<string, boolean>>({});
+  
+  const toggleReferenceSection = (referenceId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setExpandedReferences(prev => ({
+      ...prev,
+      [referenceId]: !prev[referenceId]
+    }));
+  };
   
   return (
     <div className="bg-[#1E1E1E] p-2 rounded-lg">
@@ -42,21 +51,72 @@ const SessionItem: React.FC<SessionItemProps> = ({
       {isExpanded && (
         <div className="pl-7 mt-1.5 space-y-1.5">
           {session.components.map((component) => (
-            <div 
-              key={component.id}
-              className={cn(
-                "flex items-center cursor-pointer hover:bg-white/5 rounded px-1 py-0.5",
-                currentComponent === component.id && "bg-white/10"
+            <div key={component.id}>
+              {component.type === "main" && !component.subComponents && (
+                <div 
+                  className={cn(
+                    "flex items-center cursor-pointer hover:bg-white/5 rounded px-1 py-0.5",
+                    currentComponent === component.id && "bg-white/10"
+                  )}
+                  onClick={() => handleComponentClick(session.id, component.id)}
+                >
+                  <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${component.id.includes('tutorial') ? 'bg-red-400' : 'bg-blue-400'}`}></div>
+                  <span className={cn(
+                    "text-xs",
+                    currentComponent === component.id ? "text-white font-medium" : "text-white/70"
+                  )}>
+                    {component.title}
+                  </span>
+                </div>
               )}
-              onClick={() => handleComponentClick(session.id, component.id)}
-            >
-              <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${component.id === 'tutorial' ? 'bg-red-400' : 'bg-blue-400'}`}></div>
-              <span className={cn(
-                "text-xs",
-                currentComponent === component.id ? "text-white font-medium" : "text-white/70"
-              )}>
-                {component.title}
-              </span>
+              
+              {component.type === "main" && component.subComponents && (
+                <div key={component.id}>
+                  <div 
+                    className="flex items-center justify-between cursor-pointer hover:bg-white/5 rounded px-1 py-0.5"
+                    onClick={(e) => toggleReferenceSection(component.id, e)}
+                  >
+                    <div className="flex items-center">
+                      <div className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-400"></div>
+                      <span className="text-xs text-white/70">{component.title}</span>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className={`h-4 w-4 p-0 rounded-full bg-white/10 ${expandedReferences[component.id] ? 'rotate-180' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleReferenceSection(component.id, e);
+                      }}
+                    >
+                      <ArrowLeft className="h-2 w-2 text-white rotate-90" />
+                    </Button>
+                  </div>
+                  
+                  {expandedReferences[component.id] && (
+                    <div className="pl-4 mt-0.5 space-y-1">
+                      {component.subComponents.map((subComponent) => (
+                        <div 
+                          key={subComponent.id}
+                          className={cn(
+                            "flex items-center cursor-pointer hover:bg-white/5 rounded px-1 py-0.5",
+                            currentComponent === subComponent.id && "bg-white/10"
+                          )}
+                          onClick={() => handleComponentClick(session.id, subComponent.id)}
+                        >
+                          <div className="w-1 h-1 rounded-full mr-1.5 bg-amber-400"></div>
+                          <span className={cn(
+                            "text-xs",
+                            currentComponent === subComponent.id ? "text-white font-medium" : "text-white/60"
+                          )}>
+                            {subComponent.title}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>

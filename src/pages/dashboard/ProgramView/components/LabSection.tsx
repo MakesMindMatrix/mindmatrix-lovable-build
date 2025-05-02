@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowLeft, BookOpen, BookCheck, ListTodo } from "lucide-react";
+import { ArrowLeft, BookOpen, BookOpenCheck, ListTodo } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface LabSectionProps {
@@ -93,15 +93,20 @@ const LabSection: React.FC<LabSectionProps> = ({
               </div>
             </div>
             
-            {/* Code editor */}
-            <div className="bg-white rounded-lg p-3 h-24 font-mono text-gray-800 text-xs overflow-y-auto">
-              <p>prompt = ""</p>
-              <p>You are a helpful assistant. Please answer</p>
-              <p>the following question clearly and</p>
-              <p>concisely.</p>
-              <br />
-              <p>Question: &#123;user_input&#125;</p>
-              <p>Answer:</p>
+            {/* Code editor placeholder */}
+            <div className="bg-white rounded-lg p-3 h-24 flex flex-col justify-center items-center text-gray-500 text-center">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 w-full h-full flex flex-col justify-center items-center">
+                <p className="text-sm font-medium">Connect to Code Environment</p>
+                <p className="text-xs mt-1">Link your preferred IDE or code editor here</p>
+                <div className="flex mt-3 gap-2">
+                  <Button size="sm" variant="outline" className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100">
+                    Connect
+                  </Button>
+                  <Button size="sm" variant="ghost" className="h-7 text-xs text-gray-600 hover:bg-gray-100">
+                    Open in new tab
+                  </Button>
+                </div>
+              </div>
             </div>
           </>
         )}
@@ -139,7 +144,7 @@ const LabSection: React.FC<LabSectionProps> = ({
             {/* Post-Session References Section */}
             <div className="bg-white/5 p-2 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <BookCheck className="h-4 w-4 text-green-300" />
+                <BookOpenCheck className="h-4 w-4 text-green-300" />
                 <h3 className="text-green-200 text-xs font-medium">Post-Session References</h3>
               </div>
               <div className="space-y-1.5">
@@ -155,11 +160,11 @@ const LabSection: React.FC<LabSectionProps> = ({
               </div>
             </div>
             
-            {/* Tasks Section */}
+            {/* To-Dos Section */}
             <div className="bg-white/5 p-2 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <ListTodo className="h-4 w-4 text-amber-300" />
-                <h3 className="text-amber-200 text-xs font-medium">Tasks</h3>
+                <h3 className="text-amber-200 text-xs font-medium">To-Dos</h3>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
