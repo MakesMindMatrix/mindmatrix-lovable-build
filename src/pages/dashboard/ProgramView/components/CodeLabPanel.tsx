@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowLeft, Link2, ExternalLink } from "lucide-react";
+import { ArrowLeft, Link2, ExternalLink, BookOpen, BookCheck, ListTodo } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CodeLabPanelProps {
@@ -119,8 +119,90 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
         )}
         
         {activeTab === 'resources' && (
-          <div className="text-white h-full flex items-center justify-center">
-            <p className="text-sm">Resources content will appear here</p>
+          <div className="text-white h-full flex flex-col gap-4 overflow-y-auto">
+            {/* Pre-Session References Section */}
+            <div className="bg-white/10 p-3 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen className="h-5 w-5 text-blue-300" />
+                <h3 className="text-blue-200 font-medium">Pre-Session References</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-6 w-6 bg-blue-600/20 rounded flex items-center justify-center">
+                    <span className="text-xs text-blue-300">PDF</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Introduction to Python Programming</p>
+                    <p className="text-xs text-white/60">15 pages • Required reading</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-6 w-6 bg-green-600/20 rounded flex items-center justify-center">
+                    <span className="text-xs text-green-300">URL</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Python Documentation</p>
+                    <p className="text-xs text-white/60">External resource • Reference</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Post-Session References Section */}
+            <div className="bg-white/10 p-3 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <BookCheck className="h-5 w-5 text-green-300" />
+                <h3 className="text-green-200 font-medium">Post-Session References</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-6 w-6 bg-purple-600/20 rounded flex items-center justify-center">
+                    <span className="text-xs text-purple-300">VID</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Advanced Techniques in Python</p>
+                    <p className="text-xs text-white/60">22 min • Supplementary</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-6 w-6 bg-blue-600/20 rounded flex items-center justify-center">
+                    <span className="text-xs text-blue-300">PDF</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Practice Problems - Session 1</p>
+                    <p className="text-xs text-white/60">10 pages • Additional practice</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Tasks Section */}
+            <div className="bg-white/10 p-3 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <ListTodo className="h-5 w-5 text-amber-300" />
+                <h3 className="text-amber-200 font-medium">Tasks</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-5 w-5 rounded-full border border-amber-400/50 flex items-center justify-center">
+                    <div className="h-2 w-2 bg-amber-400 rounded-full"></div>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Complete Introduction Exercise</p>
+                    <p className="text-xs text-white/60">Due: Today • In progress</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 p-2 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
+                  <div className="h-5 w-5 rounded-full border border-white/30 flex items-center justify-center">
+                    <div className="h-2 w-2 bg-transparent rounded-full"></div>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-white">Submit Lab Assignment 1</p>
+                    <p className="text-xs text-white/60">Due: Tomorrow • Not started</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
         
