@@ -8,21 +8,15 @@ import { toast } from "sonner";
 import ReadingPanel from "./components/ReadingPanel";
 import CourseAccordion from "./components/CourseAccordion";
 import ChatBox from "./components/ChatBox";
-import CollapsibleProgramSidebar from "@/components/dashboard/ProgramView/components/CollapsibleProgramSidebar";
+import CollapsibleProgramSidebar from "./components/CollapsibleProgramSidebar";
 
 const ProgramCourseLearningModule = () => {
   const navigate = useNavigate();
   const [isCourseExpanded, setIsCourseExpanded] = useState(false);
   const [currentSession, setCurrentSession] = useState(1);
-  const [activeTab, setActiveTab] = useState("read");
-  const [documentFormat, setDocumentFormat] = useState("PDF");
   
   const handleBackClick = () => {
     navigate("/dashboard-programView");
-  };
-
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
   };
 
   const toggleCourseCard = () => {
@@ -83,12 +77,7 @@ const ProgramCourseLearningModule = () => {
               
               {/* Reading Panel */}
               <div className="ml-16 mt-3 h-full overflow-hidden rounded-xl">
-                <ReadingPanel 
-                  activeTab={activeTab}
-                  handleTabChange={handleTabChange}
-                  documentFormat={documentFormat}
-                  setDocumentFormat={setDocumentFormat}
-                />
+                <ReadingPanel />
               </div>
             </div>
             
