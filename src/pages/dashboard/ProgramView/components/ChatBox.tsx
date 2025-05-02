@@ -1,11 +1,10 @@
 
-import React, { useState } from "react";
-import { ArrowLeft, MessageCircle, Send } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { UserMessage } from "@/components/dashboard/chat/UserMessage";
-import { ZunoMessage } from "@/components/dashboard/chat/ZunoMessage";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatBoxProps {}
 
@@ -19,6 +18,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
       timestamp: new Date(),
     },
   ]);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
@@ -51,6 +51,16 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
     }
   };
 
+  // Scroll to bottom whenever messages change
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }
+    }
+  }, [messages]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -60,8 +70,8 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      {/* Chat messages area - takes all available space */}
-      <div className="flex-1 p-4 overflow-y-auto">
+      {/* Chat messages area - scrollable with fixed height */}
+      <ScrollArea ref={scrollAreaRef} className="flex-1 px-4 pb-2">
         {messages.map((message) => (
           <div key={message.id} className="mb-4">
             {message.sender === "zuno" ? (
@@ -100,7 +110,7 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
         )}
         
         {/* Action button */}
-        <div className="flex justify-end">
+        <div className="flex justify-end mb-2">
           <Button 
             className="bg-blue-100/50 text-blue-800 hover:bg-blue-200/50 text-xs py-1 h-auto px-3 rounded-lg"
             onClick={() => {
@@ -129,10 +139,10 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
             I want to know more
           </Button>
         </div>
-      </div>
+      </ScrollArea>
       
       {/* Chat input - fixed at the bottom */}
-      <div className="p-3 border-t border-blue-200/30">
+      <div className="p-3 border-t border-blue-200/30 bg-white/10 backdrop-blur-sm mt-auto">
         <div className="relative w-full">
           <Textarea 
             value={inputValue}

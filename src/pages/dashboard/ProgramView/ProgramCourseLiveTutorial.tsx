@@ -91,12 +91,12 @@ const ProgramCourseLiveTutorial = () => {
                   {/* Content Container with adjusted positioning */}
                   <div className="flex flex-col h-full p-4 relative z-10">
                     {/* Video Section with reduced height (40% of container) */}
-                    <div className="h-[40%] w-full">
+                    <div className="h-[40%] w-full mb-4">
                       <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                     </div>
                     
-                    {/* Chat Section */}
-                    <div className="flex-1 mt-4">
+                    {/* Chat Section - now with proper overflow handling */}
+                    <div className="flex-1 overflow-hidden flex flex-col">
                       <ChatBox />
                     </div>
                   </div>
