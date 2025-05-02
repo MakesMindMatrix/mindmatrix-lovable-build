@@ -16,7 +16,7 @@ const TaskBadges: React.FC<TaskBadgesProps> = ({ tasks, activeTask, onTaskSelect
         <Badge
           key={task.id}
           variant="outline"
-          className={`cursor-pointer py-1 px-3 ${
+          className={`cursor-pointer py-1 px-3 text-white ${
             activeTask === task.id 
               ? "bg-amber-500/30 border-amber-400" 
               : "bg-transparent border-white/20"

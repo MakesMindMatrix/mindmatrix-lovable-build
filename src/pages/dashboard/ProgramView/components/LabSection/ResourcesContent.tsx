@@ -178,7 +178,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
           </div>
         </TabsContent>
         
-        {/* Tasks Content */}
+        {/* Tasks Content - Updated text color to white */}
         <TabsContent value="tasks" className="mt-0">
           <div className="bg-white/5 p-2 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
@@ -186,7 +186,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
               <h3 className="text-amber-200 text-xs font-medium">Tasks</h3>
             </div>
             <div className="space-y-1.5">
-              {/* Display only one task to avoid scrolling */}
+              {/* Display only one task to avoid scrolling - text color changed to white */}
               <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
                 onClick={handleNonVideoResourceClick}>
                 <div className="h-4 w-4 rounded-full border border-amber-400/50 flex items-center justify-center">
