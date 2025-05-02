@@ -70,7 +70,12 @@ const ProgramCourseLiveTutorial = () => {
   return (
     <Desktop activeTab="programs" simplified>
       <div className="relative w-full h-[calc(100vh-80px)] bg-white">
-        <div className="p-3 w-full h-full flex flex-col">
+        {/* Add gradient background to the entire content area */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0 opacity-70">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0F56CC]/40 to-[#2A3A80]/30"></div>
+        </div>
+        
+        <div className="p-3 w-full h-full flex flex-col relative z-10">
           {/* Main content area */}
           <div className="flex flex-1 gap-4 h-full">
             {/* Left Section - 45% width */}
