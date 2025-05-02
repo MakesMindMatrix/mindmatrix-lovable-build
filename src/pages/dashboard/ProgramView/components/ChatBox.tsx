@@ -1,8 +1,9 @@
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ChatBoxProps {}
 
@@ -88,15 +89,32 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
 
             {/* Message bubbles */}
             {messages.map((message) => (
-              <div key={message.id} className={`mb-4 ${message.sender === "user" ? "flex justify-end" : ""}`}>
-                {message.sender === "zuno" ? (
-                  <div className="bg-blue-50 rounded-lg p-4 text-blue-900 max-w-[90%]">
-                    {message.content}
-                  </div>
-                ) : (
-                  <div className="bg-blue-100 rounded-lg p-4 text-blue-900 max-w-[90%]">
-                    {message.content}
-                  </div>
+              <div key={message.id} className={`mb-4 ${message.sender === "user" ? "flex justify-end" : "flex"}`}>
+                {message.sender === "zuno" && (
+                  <Avatar className="h-8 w-8 mr-2">
+                    <AvatarImage 
+                      src="/lovable-uploads/ba53cec3-ed80-4d2f-bdca-9d0a14fd6e1d.png" 
+                      alt="Zuno" 
+                    />
+                    <AvatarFallback className="bg-blue-600 text-white">Z</AvatarFallback>
+                  </Avatar>
+                )}
+                
+                <div className={`${
+                  message.sender === "zuno" 
+                    ? "bg-blue-50 rounded-lg p-4 text-blue-900" 
+                    : "bg-blue-100 rounded-lg p-4 text-blue-900"
+                  } max-w-[85%]`}>
+                  {message.content}
+                </div>
+                
+                {message.sender === "user" && (
+                  <Avatar className="h-8 w-8 ml-2">
+                    <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                    <AvatarFallback>
+                      <User className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
                 )}
               </div>
             ))}
