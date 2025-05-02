@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -7,7 +6,7 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 import VideoPlayer from "./components/VideoPlayer";
 import ChatBox from "./components/ChatBox";
 import CourseAccordion from "./components/CourseAccordion";
-import CodeLabPanel from "./components/CodeLabPanel";
+import CodeLabPanel from "./components/LabSection"; // Updated import path
 import { toast } from "sonner";
 import GradientBackground from "@/components/database/ScreenEmotionTag/GradientBackground";
 
