@@ -45,13 +45,9 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
     { id: "post-video1", type: "VIDEO", title: "Deep Dive Tutorial", duration: "10:15", videoId: "rfscVS0vtbw" }
   ];
 
-  // Video resources section
+  // Video resources section - limited to just one video to prevent scrolling
   const videoResources: ResourceItem[] = [
-    { id: "video1", type: "VIDEO", title: "JavaScript Tutorial for Beginners", duration: "16:30", videoId: "PkZNo7MFNFg" },
-    { id: "video2", type: "VIDEO", title: "Python for Beginners - Full Course", duration: "4:26:51", videoId: "rfscVS0vtbw" },
-    { id: "video3", type: "VIDEO", title: "Python Tutorial for Beginners", duration: "12:40", videoId: "8DvywoWv6fI" },
-    { id: "video4", type: "VIDEO", title: "HTML & CSS Full Course", duration: "11:25", videoId: "G3e-cpL7ofc" },
-    { id: "video5", type: "VIDEO", title: "React.js Crash Course", duration: "29:54", videoId: "bMknfKXIFA8" }
+    { id: "video1", type: "VIDEO", title: "JavaScript Tutorial for Beginners", duration: "16:30", videoId: "PkZNo7MFNFg" }
   ];
   
   const tasks: Task[] = [
@@ -126,7 +122,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
   const videoResourcesForCurrentTab = currentResources.filter(resource => resource.type === "VIDEO");
   
   return (
-    <div className="text-white h-full flex flex-col gap-2 overflow-y-auto">
+    <div className="text-white h-full flex flex-col gap-2">
       {/* Tab navigation for resources */}
       <ResourceTabs 
         activeTab={resourcesSubTab} 
@@ -142,10 +138,10 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
         />
       )}
 
-      {/* Video resources section */}
-      {hasSelectedVideoResource && (
+      {/* Video resources section - show only if video selected */}
+      {hasSelectedVideoResource && videoResourcesForCurrentTab.length > 0 && (
         <VideoResourceList 
-          videos={videoResourcesForCurrentTab}
+          videos={[videoResourcesForCurrentTab[0]]} // Only pass the first video to avoid scrolling
           onPlayVideo={handlePlayVideo}
         />
       )}

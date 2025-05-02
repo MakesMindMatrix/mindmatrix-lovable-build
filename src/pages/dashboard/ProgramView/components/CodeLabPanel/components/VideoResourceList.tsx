@@ -9,15 +9,18 @@ interface VideoResourceListProps {
 }
 
 const VideoResourceList: React.FC<VideoResourceListProps> = ({ videos, onPlayVideo }) => {
+  // Only display the first video to avoid scrolling
+  const firstVideo = videos.length > 0 ? videos[0] : null;
+  
   return (
-    <div className="space-y-2 mb-3">
-      {videos.map((video) => (
+    <div className="mb-3">
+      {firstVideo && (
         <VideoCard 
-          key={video.id} 
-          video={video} 
+          key={firstVideo.id} 
+          video={firstVideo} 
           onPlayVideo={onPlayVideo} 
         />
-      ))}
+      )}
     </div>
   );
 };

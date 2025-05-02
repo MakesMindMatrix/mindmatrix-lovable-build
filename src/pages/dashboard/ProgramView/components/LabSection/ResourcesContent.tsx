@@ -49,7 +49,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
   };
   
   return (
-    <div className="text-white h-full flex flex-col gap-2 overflow-y-auto">
+    <div className="text-white h-full flex flex-col gap-2">
       {/* Sub-tab navigation for Resources */}
       <Tabs defaultValue="pre-session" value={resourcesSubTab} onValueChange={setResourcesSubTab} className="w-full">
         <TabsList className="bg-white/10 p-1 mb-2 flex w-full space-x-1">
@@ -87,6 +87,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
               <h3 className="text-blue-200 text-xs font-medium">Pre-Session References</h3>
             </div>
             <div className="space-y-1.5">
+              {/* Display only one item to avoid scrolling */}
               <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-red-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-red-300">PDF</span>
@@ -107,46 +108,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
                   View
                 </Button>
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
-                <div className="h-5 w-5 bg-green-600/20 rounded flex items-center justify-center">
-                  <span className="text-[10px] text-green-300">URL</span>
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Python Documentation</p>
-                  <p className="text-[10px] text-white/60">External resource</p>
-                </div>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="h-7 text-xs bg-green-50 text-green-600 border-green-200 hover:bg-green-100"
-                  onClick={() => {
-                    window.open('https://docs.python.org/3/', '_blank');
-                    handleNonVideoResourceClick();
-                  }}
-                >
-                  Open
-                </Button>
-              </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
-                <div className="h-5 w-5 bg-blue-600/20 rounded flex items-center justify-center">
-                  <span className="text-[10px] text-blue-300">PDF</span>
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Python Basics Reference Guide</p>
-                  <p className="text-[10px] text-white/60">10 pages • Supplementary</p>
-                </div>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open(pdfSamples[1], '_blank');
-                    handleNonVideoResourceClick();
-                  }}
-                >
-                  View
-                </Button>
-              </div>
             </div>
           </div>
         </TabsContent>
@@ -159,6 +120,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
               <h3 className="text-green-200 text-xs font-medium">Post-Session References</h3>
             </div>
             <div className="space-y-1.5">
+              {/* Display only one item to avoid scrolling */}
               <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-5 w-5 bg-blue-600/20 rounded flex items-center justify-center">
                   <span className="text-[10px] text-blue-300">PPT</span>
@@ -179,26 +141,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
                   View
                 </Button>
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
-                <div className="h-5 w-5 bg-red-600/20 rounded flex items-center justify-center">
-                  <span className="text-[10px] text-red-300">PDF</span>
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Practice Exercises</p>
-                  <p className="text-[10px] text-white/60">8 pages • Additional practice</p>
-                </div>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="h-7 text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100"
-                  onClick={() => {
-                    window.open(pdfSamples[0], '_blank');
-                    handleNonVideoResourceClick();
-                  }}
-                >
-                  View
-                </Button>
-              </div>
             </div>
           </div>
         </TabsContent>
@@ -211,6 +153,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
               <h3 className="text-purple-200 text-xs font-medium">Video Resources</h3>
             </div>
             <div className="space-y-1.5">
+              {/* Display only one video to avoid scrolling */}
               <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
                 <div className="h-10 w-14 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -231,46 +174,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
                   Play
                 </Button>
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
-                <div className="h-10 w-14 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                    <Video className="h-4 w-4 text-white" />
-                  </div>
-                  <img src="https://img.youtube.com/vi/rfscVS0vtbw/default.jpg" alt="Thumbnail" className="w-full h-full object-cover opacity-75" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Python for Beginners - Full Course</p>
-                  <p className="text-[10px] text-white/60">4:26:51 • freeCodeCamp.org</p>
-                </div>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="h-7 text-xs bg-red-50 text-red-600 border-red-200 hover:bg-red-100"
-                  onClick={() => handleVideoClick("rfscVS0vtbw")}
-                >
-                  Play
-                </Button>
-              </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer">
-                <div className="h-10 w-14 bg-gray-900 rounded flex items-center justify-center overflow-hidden relative">
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                    <Video className="h-4 w-4 text-white" />
-                  </div>
-                  <img src="https://img.youtube.com/vi/8DvywoWv6fI/default.jpg" alt="Thumbnail" className="w-full h-full object-cover opacity-75" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Python Tutorial for Beginners</p>
-                  <p className="text-[10px] text-white/60">12:40 • Programming with Mosh</p>
-                </div>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="h-7 text-xs bg-red-50 text-red-600 border-red-200 hover:bg-red-100"
-                  onClick={() => handleVideoClick("8DvywoWv6fI")}
-                >
-                  Play
-                </Button>
-              </div>
             </div>
           </div>
         </TabsContent>
@@ -283,6 +186,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
               <h3 className="text-amber-200 text-xs font-medium">Tasks</h3>
             </div>
             <div className="space-y-1.5">
+              {/* Display only one task to avoid scrolling */}
               <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
                 onClick={handleNonVideoResourceClick}>
                 <div className="h-4 w-4 rounded-full border border-amber-400/50 flex items-center justify-center">
@@ -291,26 +195,6 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ setIsPlaying, onRes
                 <div className="flex-1">
                   <p className="text-xs text-white">Complete Introduction Exercise</p>
                   <p className="text-[10px] text-white/60">Due: Today</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={handleNonVideoResourceClick}>
-                <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
-                  <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Submit Lab Assignment 1</p>
-                  <p className="text-[10px] text-white/60">Due: Tomorrow</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 p-1.5 bg-white/5 hover:bg-white/10 transition-colors rounded border border-white/10 cursor-pointer"
-                onClick={handleNonVideoResourceClick}>
-                <div className="h-4 w-4 rounded-full border border-white/30 flex items-center justify-center">
-                  <div className="h-1.5 w-1.5 bg-transparent rounded-full"></div>
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-white">Complete Quiz</p>
-                  <p className="text-[10px] text-white/60">Due: Friday</p>
                 </div>
               </div>
             </div>
