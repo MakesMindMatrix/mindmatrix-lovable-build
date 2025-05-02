@@ -13,10 +13,10 @@ const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) =
     <div className="flex gap-2 overflow-x-auto pb-2 items-center">
       <Button 
         size="sm"
-        variant={activeTab === "learning" ? "default" : "outline"}
+        variant="outline"
         className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
           activeTab === "learning" 
-            ? "bg-blue-500 hover:bg-blue-600 text-white" 
+            ? "bg-white text-blue-600" 
             : "bg-transparent border-white/20 text-white hover:bg-white/10"
         }`}
         onClick={() => onTabChange("learning")}
@@ -26,10 +26,10 @@ const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) =
       </Button>
       <Button 
         size="sm"
-        variant={activeTab === "pre-session" ? "default" : "outline"}
+        variant="outline"
         className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
           activeTab === "pre-session" 
-            ? "bg-green-500 hover:bg-green-600 text-white" 
+            ? "bg-white text-blue-600" 
             : "bg-transparent border-white/20 text-white hover:bg-white/10"
         }`}
         onClick={() => onTabChange("pre-session")}
@@ -39,10 +39,10 @@ const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) =
       </Button>
       <Button 
         size="sm"
-        variant={activeTab === "post-session" ? "default" : "outline"}
+        variant="outline"
         className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
           activeTab === "post-session" 
-            ? "bg-purple-500 hover:bg-purple-600 text-white" 
+            ? "bg-white text-blue-600" 
             : "bg-transparent border-white/20 text-white hover:bg-white/10"
         }`}
         onClick={() => onTabChange("post-session")}
@@ -52,10 +52,10 @@ const ResourceTabs: React.FC<ResourceTabsProps> = ({ activeTab, onTabChange }) =
       </Button>
       <Button 
         size="sm"
-        variant={activeTab === "tasks" ? "default" : "outline"}
+        variant="outline"
         className={`rounded-full px-4 py-1 h-auto whitespace-nowrap text-xs ${
           activeTab === "tasks" 
-            ? "bg-amber-500 hover:bg-amber-600 text-white" 
+            ? "bg-white text-blue-600" 
             : "bg-transparent border-white/20 text-white hover:bg-white/10"
         }`}
         onClick={() => onTabChange("tasks")}

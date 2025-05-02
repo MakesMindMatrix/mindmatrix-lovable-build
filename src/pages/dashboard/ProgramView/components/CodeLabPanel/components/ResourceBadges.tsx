@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Badge } from "@/components/ui/badge";
 import { ResourceItem } from "../types";
 
 interface ResourceBadgesProps {
@@ -13,20 +12,17 @@ const ResourceBadges: React.FC<ResourceBadgesProps> = ({ resources, activeResour
   return (
     <div className="flex flex-wrap gap-2 mb-3">
       {resources.map((resource) => (
-        <Badge
+        <button
           key={resource.id}
-          variant="outline"
-          className={`cursor-pointer py-1 px-3 ${
+          className={`px-3 py-1 text-xs rounded-full cursor-pointer ${
             activeResource === resource.id 
-              ? "bg-white/20 border-white" 
-              : "bg-transparent border-white/20"
-          } hover:bg-white/10 transition-colors`}
+              ? "bg-blue-600/50 border-white text-white" 
+              : "bg-blue-600/20 text-white/90"
+          }`}
           onClick={() => onResourceSelect(resource.id)}
         >
-          {resource.type === "PDF" && "PDF"}
-          {resource.type === "PPT" && "PPT"}
-          {resource.type === "VIDEO" && "Video"}
-        </Badge>
+          {resource.title}
+        </button>
       ))}
     </div>
   );

@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { ResourceItem, Task } from "./types";
 import ResourceTabs from "./components/ResourceTabs";
-import ResourceBadges from "./components/ResourceBadges";
-import VideoResourceList from "./components/VideoResourceList";
 import TaskBadges from "./components/TaskBadges";
 import ResourceContentDisplay from "./components/ResourceContentDisplay";
 
@@ -17,6 +15,8 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
   const [resourcesSubTab, setResourcesSubTab] = useState<string>("learning");
   // Secondary layer of tabs for each primary sub-tab
   const [activeResourceItems, setActiveResourceItems] = useState<string>("pdf1");
+  // To track selected resource type
+  const [activeResourceType, setActiveResourceType] = useState<string>("PDF");
   
   // Define resource materials for each sub-tab category
   const learningModules: ResourceItem[] = [
@@ -25,15 +25,13 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
     { id: "ppt1", type: "PPT", title: "Python Workshop Slides", pages: 25 },
     { id: "pdf3", type: "PDF", title: "Python Data Structures", pages: 12 },
     { id: "ppt2", type: "PPT", title: "Python Best Practices", pages: 18 },
-    { id: "video1", type: "VIDEO", title: "Python for Beginners - Full Course", duration: "4:26:51", videoId: "rfscVS0vtbw" },
-    { id: "video2", type: "VIDEO", title: "Python Tutorial for Beginners", duration: "12:40", videoId: "8DvywoWv6fI" }
+    { id: "video1", type: "VIDEO", title: "Python for Beginners - Full Course", duration: "4:26:51", videoId: "rfscVS0vtbw" }
   ];
   
   const preSessionResources: ResourceItem[] = [
     { id: "pre-pdf1", type: "PDF", title: "Pre-Session Guide", pages: 5 },
     { id: "pre-ppt1", type: "PPT", title: "Session Preparation Materials", pages: 8 },
     { id: "pre-pdf2", type: "PDF", title: "Setup Instructions", pages: 3 },
-    { id: "pre-ppt2", type: "PPT", title: "Course Overview", pages: 10 },
     { id: "pre-video1", type: "VIDEO", title: "Introduction Video", duration: "5:30", videoId: "PkZNo7MFNFg" }
   ];
   
@@ -41,13 +39,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
     { id: "post-pdf1", type: "PDF", title: "Post-Session Summary", pages: 7 },
     { id: "post-ppt1", type: "PPT", title: "Additional Learning Materials", pages: 12 },
     { id: "post-pdf2", type: "PDF", title: "Practice Exercises", pages: 15 },
-    { id: "post-ppt2", type: "PPT", title: "Advanced Concepts", pages: 20 },
     { id: "post-video1", type: "VIDEO", title: "Deep Dive Tutorial", duration: "10:15", videoId: "rfscVS0vtbw" }
-  ];
-
-  // Video resources section - limited to just one video to prevent scrolling
-  const videoResources: ResourceItem[] = [
-    { id: "video1", type: "VIDEO", title: "JavaScript Tutorial for Beginners", duration: "16:30", videoId: "PkZNo7MFNFg" }
   ];
   
   const tasks: Task[] = [
@@ -70,6 +62,30 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
     }
   };
   
+  // Get unique resource types from current resources
+  const getResourceTypes = (): string[] => {
+    const resources = getCurrentResources();
+    return [...new Set(resources.map(r => r.type))];
+  };
+  
+  // Handle resource type selection
+  const handleResourceTypeSelect = (resourceType: string) => {
+    setActiveResourceType(resourceType);
+    
+    // Find the first resource of this type and select it
+    const resources = getCurrentResources();
+    const firstResourceOfType = resources.find(r => r.type === resourceType);
+    
+    if (firstResourceOfType) {
+      setActiveResourceItems(firstResourceOfType.id);
+      
+      // Notify parent component about resource type
+      if (onResourceTypeChange) {
+        onResourceTypeChange(resourceType === "VIDEO");
+      }
+    }
+  };
+
   // Handle resource item click
   const handleResourceItemClick = (itemId: string) => {
     setActiveResourceItems(itemId);
@@ -105,21 +121,27 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
     // If no active item found in current tab, set the first one
     if (!activeItem && currentResources.length > 0) {
       setActiveResourceItems(currentResources[0].id);
+      setActiveResourceType(currentResources[0].type);
       
       if (onResourceTypeChange) {
         onResourceTypeChange(currentResources[0].type === "VIDEO");
       }
-    } else if (activeItem && onResourceTypeChange) {
-      onResourceTypeChange(activeItem.type === "VIDEO");
+    } else if (activeItem) {
+      setActiveResourceType(activeItem.type);
+      
+      if (onResourceTypeChange) {
+        onResourceTypeChange(activeItem.type === "VIDEO");
+      }
     }
-  }, [resourcesSubTab, activeResourceItems]);
+  }, [resourcesSubTab]);
   
   const currentResources = getCurrentResources();
   const hasSelectedVideoResource = 
     resourcesSubTab !== "tasks" && 
     currentResources.find(r => r.id === activeResourceItems)?.type === "VIDEO";
   
-  const videoResourcesForCurrentTab = currentResources.filter(resource => resource.type === "VIDEO");
+  const resourceTypes = getResourceTypes();
+  const filteredResources = currentResources.filter(r => r.type === activeResourceType);
   
   return (
     <div className="text-white h-full flex flex-col gap-2">
@@ -129,21 +151,23 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
         onTabChange={setResourcesSubTab}
       />
       
-      {/* Resource badges - only show if not in tasks tab */}
+      {/* Resource type selector - show only if not in tasks tab */}
       {resourcesSubTab !== "tasks" && (
-        <ResourceBadges 
-          resources={currentResources}
-          activeResource={activeResourceItems}
-          onResourceSelect={handleResourceItemClick}
-        />
-      )}
-
-      {/* Video resources section - show only if video selected */}
-      {hasSelectedVideoResource && videoResourcesForCurrentTab.length > 0 && (
-        <VideoResourceList 
-          videos={[videoResourcesForCurrentTab[0]]} // Only pass the first video to avoid scrolling
-          onPlayVideo={handlePlayVideo}
-        />
+        <div className="flex flex-wrap gap-2 mb-2">
+          {resourceTypes.map((type) => (
+            <button
+              key={type}
+              className={`px-3 py-1 text-xs rounded-full ${
+                activeResourceType === type 
+                  ? "bg-white text-blue-600" 
+                  : "bg-blue-600/20 text-white"
+              }`}
+              onClick={() => handleResourceTypeSelect(type)}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
       )}
       
       {/* Task badges for tasks tab */}
@@ -164,7 +188,7 @@ const ResourcesContent: React.FC<ResourcesContentProps> = ({ onVideoSelect, onRe
       {/* Content display area */}
       <ResourceContentDisplay 
         activeTab={resourcesSubTab}
-        resources={currentResources}
+        resources={filteredResources}
         tasks={tasks}
         activeItemId={activeResourceItems}
         onPlayVideo={handlePlayVideo}
