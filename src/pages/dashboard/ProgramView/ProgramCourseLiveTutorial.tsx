@@ -95,8 +95,8 @@ const ProgramCourseLiveTutorial = () => {
                       <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                     </div>
                     
-                    {/* Scrollable Chat Section - 60% of container height with fixed input */}
-                    <div className="h-[60%] p-4 pt-0 relative">
+                    {/* Chat Section - 60% of container height */}
+                    <div className="h-[60%] p-4 pt-0 overflow-hidden">
                       <ChatBox />
                     </div>
                   </div>

@@ -70,12 +70,12 @@ const ChatBox: React.FC<ChatBoxProps> = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Chat messages area - takes all available space except for the input area */}
-      <div className="flex-1 overflow-hidden mb-2">
-        <ScrollArea ref={scrollAreaRef} className="h-full pb-2">
-          <div className="px-2">
+      {/* Chat messages area with scroll capability */}
+      <div className="flex-1 mb-2 overflow-hidden">
+        <ScrollArea ref={scrollAreaRef} className="h-full pr-2">
+          <div className="px-2 pb-2">
             {messages.map((message) => (
-              <div key={message.id} className="mb-4">
+              <div key={message.id} className="mb-3">
                 {message.sender === "zuno" ? (
                   <div className="mb-2">
                     <div className="flex mb-1">
