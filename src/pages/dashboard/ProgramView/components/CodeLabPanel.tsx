@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ArrowLeft, Link2, ExternalLink, FileMinus, FilePlus, ListCheck, FileText, FilePdf, Download, Save } from "lucide-react";
+import { ArrowLeft, Link2, ExternalLink, FileMinus, FilePlus, ListCheck, FileText, File, Download, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,14 @@ interface CodeLabPanelProps {
   handleTabChange: (tab: string) => void;
   codeLanguage: string;
   setCodeLanguage: (language: string) => void;
+}
+
+interface ResourceItem {
+  id: string;
+  type: string;
+  title: string;
+  pages?: number;
+  duration?: string;
 }
 
 const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
@@ -25,19 +33,19 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
   const [activeResourceItems, setActiveResourceItems] = useState<string>("pdf1");
   
   // Define resource materials for each sub-tab category
-  const learningModules = [
+  const learningModules: ResourceItem[] = [
     { id: "pdf1", type: "PDF", title: "Introduction to Python Basics", pages: 10 },
     { id: "pdf2", type: "PDF", title: "Intermediate Python Concepts", pages: 15 },
     { id: "ppt1", type: "PPT", title: "Python Workshop Slides", pages: 25 }
   ];
   
-  const preSessionResources = [
+  const preSessionResources: ResourceItem[] = [
     { id: "pre-pdf1", type: "PDF", title: "Pre-Session Guide", pages: 5 },
     { id: "pre-ppt1", type: "PPT", title: "Session Preparation Materials", pages: 8 },
     { id: "pre-video1", type: "VIDEO", title: "Introduction Video", duration: "5:30" }
   ];
   
-  const postSessionResources = [
+  const postSessionResources: ResourceItem[] = [
     { id: "post-pdf1", type: "PDF", title: "Post-Session Summary", pages: 7 },
     { id: "post-ppt1", type: "PPT", title: "Additional Learning Materials", pages: 12 },
     { id: "post-video1", type: "VIDEO", title: "Deep Dive Tutorial", duration: "10:15" }
@@ -50,7 +58,7 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
   ];
   
   // Get current resources based on active sub-tab
-  const getCurrentResources = () => {
+  const getCurrentResources = (): ResourceItem[] => {
     switch (resourcesSubTab) {
       case "learning":
         return learningModules;
@@ -68,11 +76,11 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
     setActiveResourceItems(itemId);
   };
   
-  // Rendering resource item based on type
+  // Rendering resource icon based on type
   const renderResourceIcon = (type: string) => {
     switch (type) {
       case "PDF":
-        return <FilePdf className="h-5 w-5 text-red-400" />;
+        return <File className="h-5 w-5 text-red-400" />;
       case "PPT":
         return <FileText className="h-5 w-5 text-blue-400" />;
       case "VIDEO":
@@ -313,7 +321,7 @@ const CodeLabPanel: React.FC<CodeLabPanelProps> = ({
                       <div className="flex-1 bg-white rounded-lg flex flex-col justify-center items-center p-6 min-h-[200px]">
                         {resource.type === "PDF" && (
                           <div className="text-center">
-                            <FilePdf className="h-16 w-16 text-red-400 mx-auto mb-3" />
+                            <File className="h-16 w-16 text-red-400 mx-auto mb-3" />
                             <p className="text-gray-700 font-medium">{resource.title}</p>
                             <p className="text-gray-500 text-sm">{resource.pages} pages</p>
                             <Button className="mt-4 bg-blue-600 hover:bg-blue-700">
