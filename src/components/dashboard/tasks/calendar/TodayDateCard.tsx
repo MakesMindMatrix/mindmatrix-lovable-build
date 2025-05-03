@@ -27,8 +27,8 @@ const TodayDateCard: React.FC<TodayDateCardProps> = ({
     >
       <div className="flex flex-col w-full">
         {/* Date display */}
-        <div className="flex items-center mb-2 justify-center">
-          <span className="text-blue-700 text-xl font-medium">
+        <div className="flex items-center mb-2 justify-center pt-1">
+          <span className="text-blue-700 text-lg font-medium text-center">
             {weekday} {day}
           </span>
         </div>
@@ -43,8 +43,8 @@ const TodayDateCard: React.FC<TodayDateCardProps> = ({
                 className="w-[18px] aspect-[5.99]"
               />
             </div>
-            <span className="text-blue-700 text-sm font-medium">{assignedTasks}</span>
-            <span className="text-blue-700 text-xs">Today's Tasks</span>
+            <span className="text-blue-700 text-sm font-medium text-center">{assignedTasks}</span>
+            <span className="text-blue-700 text-xs text-center">Today's Tasks</span>
           </div>
           
           <div className="flex flex-col items-center">
@@ -55,8 +55,8 @@ const TodayDateCard: React.FC<TodayDateCardProps> = ({
                 className="w-[5px] aspect-[0.83]"
               />
             </div>
-            <span className="text-blue-700 text-sm font-medium">{totalCoins}</span>
-            <span className="text-blue-700 text-xs">Total Coins</span>
+            <span className="text-blue-700 text-sm font-medium text-center">{totalCoins}</span>
+            <span className="text-blue-700 text-xs text-center">Total Coins</span>
           </div>
         </div>
       </div>

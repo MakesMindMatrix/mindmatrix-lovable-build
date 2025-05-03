@@ -28,8 +28,8 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
     >
       <div className="flex flex-col w-full">
         {/* Date display */}
-        <div className="flex items-center mb-2 justify-center">
-          <span className="text-white text-xl font-medium">
+        <div className="flex items-center mb-2 justify-center pt-1">
+          <span className="text-white text-lg font-medium text-center">
             {weekday} {day}
           </span>
         </div>
@@ -44,8 +44,8 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
                 className="w-[18px] aspect-[5.99]"
               />
             </div>
-            <span className="text-white text-sm font-medium">{missedTasks}</span>
-            <span className="text-white text-xs">Missed Tasks</span>
+            <span className="text-white text-sm font-medium text-center">{missedTasks}</span>
+            <span className="text-white text-xs text-center">Missed Tasks</span>
           </div>
           
           <div className="flex flex-col items-center">
@@ -56,8 +56,8 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
                 className="w-[5px] aspect-[0.83]"
               />
             </div>
-            <span className="text-pink-200 text-sm font-medium">{coinsRedeemable}%</span>
-            <span className="text-white text-xs">Coins Redeemable</span>
+            <span className="text-pink-200 text-sm font-medium text-center">{coinsRedeemable}%</span>
+            <span className="text-white text-xs text-center">Coins Redeemable</span>
           </div>
         </div>
       </div>
