@@ -49,26 +49,33 @@ const TasksCalendar: React.FC<TasksCalendarProps> = ({
         
         <div className="flex-1 overflow-x-auto no-scrollbar">
           <div className="flex space-x-2 min-w-max">
-            {calendarDays.map((day) => (
-              <div 
-                key={day.day}
-                className={`flex flex-col items-center justify-center rounded-md py-2 px-4 min-w-[68px] cursor-pointer transition-all 
-                ${day.day === currentDate 
-                  ? "bg-white" 
-                  : day.day === selectedDay 
-                    ? "bg-white/20 border-2 border-white" 
-                    : "bg-white/20 border border-white/30 hover:bg-white/30"
-                }`}
-                onClick={() => onDayClick(day.day)}
-              >
-                <span className={`text-lg font-medium ${day.day === currentDate ? "text-[#0F56CC]" : "text-white"}`}>
-                  {day.day}
-                </span>
-                <span className={`text-xs ${day.day === currentDate ? "text-[#0F56CC]" : "text-white/80"}`}>
-                  {day.weekday}
-                </span>
-              </div>
-            ))}
+            {calendarDays.map((day) => {
+              // Determine if this date is in the past (before today)
+              const isPastDate = day.day < currentDate;
+              
+              return (
+                <div 
+                  key={day.day}
+                  className={`flex flex-col items-center justify-center rounded-md py-2 px-4 min-w-[68px] cursor-pointer transition-all 
+                  ${day.day === currentDate 
+                    ? "bg-white" // Current date is white background
+                    : day.day === selectedDay 
+                      ? "bg-white/20 border-2 border-white" // Selected date has white border
+                      : isPastDate
+                        ? "bg-red-50/20 border border-red-500 hover:bg-red-50/30" // Past date has red border with light red background
+                        : "bg-white/20 border border-white/30 hover:bg-white/30" // Future date with default styling
+                  }`}
+                  onClick={() => onDayClick(day.day)}
+                >
+                  <span className={`text-lg font-medium ${day.day === currentDate ? "text-[#0F56CC]" : "text-white"}`}>
+                    {day.day}
+                  </span>
+                  <span className={`text-xs ${day.day === currentDate ? "text-[#0F56CC]" : "text-white/80"}`}>
+                    {day.weekday}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
         
