@@ -4,6 +4,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import TaskCard from "./TaskCard";
 import { Task } from "@/types/tasks";
+import { ClipboardList } from "lucide-react";
 
 interface TaskColumnProps {
   title: string;
@@ -25,6 +26,19 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
   droppableId
 }) => {
   console.log(`Rendering TaskColumn: ${title} with ${tasks?.length || 0} tasks`);
+  
+  // Empty state component
+  const EmptyState = () => (
+    <div className="flex flex-col items-center justify-center h-[200px] bg-white/10 rounded-lg border border-white/20 p-6 text-center">
+      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-4">
+        <ClipboardList className="h-6 w-6 text-white/70" />
+      </div>
+      <div className="bg-blue-500/30 rounded-full px-3 py-1 text-sm text-white mb-2">
+        {title}
+      </div>
+      <p className="text-white text-lg">No Tasks in {title.toLowerCase()}</p>
+    </div>
+  );
   
   return (
     <div className="flex flex-col h-full">
@@ -65,7 +79,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
                     </Draggable>
                   ))
                 ) : (
-                  <div className="text-white/70 text-center py-4">No tasks</div>
+                  <EmptyState />
                 )}
                 {provided.placeholder}
               </div>

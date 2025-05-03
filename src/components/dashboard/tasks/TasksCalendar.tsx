@@ -24,10 +24,14 @@ const TasksCalendar: React.FC<TasksCalendarProps> = ({
   onNext,
   selectedDay
 }) => {
+  // Current month and year (hardcoded for now, can be made dynamic)
+  const currentMonth = "APRIL";
+  const currentYear = "2025";
+
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white font-medium">APRIL 2025</h3>
+        <h3 className="text-white font-medium">{currentMonth} {currentYear}</h3>
       </div>
       
       <div className="flex items-center space-x-2">
