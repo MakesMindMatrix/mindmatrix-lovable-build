@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import TaskCard from "./TaskCard";
 import { Task } from "@/types/tasks";
@@ -11,6 +12,7 @@ interface TaskColumnProps {
   actionLabel?: string;
   actionVariant?: "primary" | "secondary";
   showCompletedBadge?: boolean;
+  droppableId: string;
 }
 
 const TaskColumn: React.FC<TaskColumnProps> = ({ 
@@ -19,7 +21,8 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
   colorClass, 
   actionLabel, 
   actionVariant,
-  showCompletedBadge = false
+  showCompletedBadge = false,
+  droppableId
 }) => {
   return (
     <div className="flex flex-col h-full">
@@ -28,21 +31,42 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
         <h3 className="text-white text-xl font-medium">{title}</h3>
       </div>
       
-      <div className="flex-1 bg-transparent overflow-hidden border-0">
-        <ScrollArea className="h-full pr-4">
-          <div className="space-y-4">
-            {tasks.map((task) => (
-              <TaskCard 
-                key={task.id} 
-                task={task} 
-                actionLabel={actionLabel}
-                actionVariant={actionVariant}
-                showCompletedBadge={showCompletedBadge}
-              />
-            ))}
+      <Droppable droppableId={droppableId}>
+        {(provided, snapshot) => (
+          <div
+            className={`flex-1 bg-transparent overflow-hidden border-0 ${
+              snapshot.isDraggingOver ? "bg-white/10" : ""
+            } rounded-md`}
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            <ScrollArea className="h-full pr-4">
+              <div className="space-y-4 p-1">
+                {tasks.map((task, index) => (
+                  <Draggable key={task.id} draggableId={task.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className={`${snapshot.isDragging ? "opacity-70" : ""}`}
+                      >
+                        <TaskCard 
+                          task={task} 
+                          actionLabel={actionLabel}
+                          actionVariant={actionVariant}
+                          showCompletedBadge={showCompletedBadge}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
+        )}
+      </Droppable>
     </div>
   );
 };

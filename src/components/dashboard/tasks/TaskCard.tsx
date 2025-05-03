@@ -2,7 +2,7 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ArrowUpRight, CheckCircle } from "lucide-react";
+import { FileText, ArrowUpRight, CheckCircle, MoveVertical } from "lucide-react";
 import { Task } from "@/types/tasks";
 
 interface TaskCardProps {
@@ -19,13 +19,14 @@ const TaskCard: React.FC<TaskCardProps> = ({
   showCompletedBadge = false
 }) => {
   return (
-    <Card className="bg-white/20 backdrop-blur-sm border border-white/30 overflow-hidden">
+    <Card className="bg-white/20 backdrop-blur-sm border border-white/30 overflow-hidden hover:shadow-lg transition-all duration-200 group">
       <div className="p-4">
-        {/* Status Badge */}
-        <div className="mb-3">
+        {/* Status Badge and Drag Handle */}
+        <div className="mb-3 flex items-center justify-between">
           <span className="bg-white/20 px-3 py-1 rounded-full text-xs text-white">
             {task.status}
           </span>
+          <MoveVertical className="h-4 w-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity" />
         </div>
         
         {/* Task Content */}
