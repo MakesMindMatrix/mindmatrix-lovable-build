@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Desktop from "@/components/dashboard/day1/Desktop";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -104,7 +105,7 @@ const TasksToday = () => {
 
   return (
     <Desktop activeTab="tasks">
-      <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-4">
+      <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-4 rounded-2xl">
         {/* Tabs */}
         <div className="flex border-b border-white/30 mb-6">
           <button
@@ -183,55 +184,67 @@ const TasksToday = () => {
         </div>
         
         {/* Task Columns */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 h-[calc(100vh-270px)]">
           {/* Not Started Column */}
-          <div>
+          <div className="flex flex-col h-full">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-1 h-6 bg-orange-400 rounded-sm"></div>
               <h3 className="text-white text-xl font-medium">Not Started</h3>
             </div>
             
-            {notStartedTasks.map((task) => (
-              <TaskCard 
-                key={task.id} 
-                task={task} 
-                actionLabel="Read Now"
-                actionVariant="primary"
-              />
-            ))}
+            <ScrollArea className="flex-1 pr-4">
+              <div className="space-y-4">
+                {notStartedTasks.map((task) => (
+                  <TaskCard 
+                    key={task.id} 
+                    task={task} 
+                    actionLabel="Read Now"
+                    actionVariant="primary"
+                  />
+                ))}
+              </div>
+            </ScrollArea>
           </div>
           
           {/* In Progress Column */}
-          <div>
+          <div className="flex flex-col h-full">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-1 h-6 bg-blue-400 rounded-sm"></div>
               <h3 className="text-white text-xl font-medium">Inprogress</h3>
             </div>
             
-            {inProgressTasks.map((task) => (
-              <TaskCard 
-                key={task.id} 
-                task={task} 
-                actionLabel="Resume"
-                actionVariant="primary"
-              />
-            ))}
+            <ScrollArea className="flex-1 pr-4">
+              <div className="space-y-4">
+                {inProgressTasks.map((task) => (
+                  <TaskCard 
+                    key={task.id} 
+                    task={task} 
+                    actionLabel="Resume"
+                    actionVariant="primary"
+                  />
+                ))}
+              </div>
+            </ScrollArea>
           </div>
           
           {/* Completed Column */}
-          <div>
+          <div className="flex flex-col h-full">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-1 h-6 bg-green-400 rounded-sm"></div>
               <h3 className="text-white text-xl font-medium">Completed</h3>
             </div>
             
-            {completedTasks.map((task) => (
-              <TaskCard 
-                key={task.id} 
-                task={task} 
-                showCompletedBadge
-              />
-            ))}
+            <ScrollArea className="flex-1 pr-4">
+              <div className="space-y-4">
+                {completedTasks.map((task) => (
+                  <TaskCard 
+                    key={task.id} 
+                    task={task} 
+                    showCompletedBadge
+                  />
+                ))}
+              </div>
+            </ScrollArea>
           </div>
         </div>
       </div>
@@ -254,7 +267,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   showCompletedBadge = false
 }) => {
   return (
-    <Card className="bg-white/20 backdrop-blur-sm border border-white/30 mb-4 overflow-hidden">
+    <Card className="bg-white/20 backdrop-blur-sm border border-white/30 overflow-hidden">
       <div className="p-4">
         {/* Status Badge */}
         <div className="mb-3">
