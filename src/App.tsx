@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 import DashboardDay1 from "./pages/dashboard/Day1";
 import Programs from "./pages/dashboard/Programs";
 import Tasks from "./pages/dashboard/Tasks";
+import TasksToday from "./pages/dashboard/TasksToday";
 import Login from "./pages/auth/Login";
 import ProgramView from "./pages/dashboard/ProgramView";
 import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/dashboard-Day1" element={<DashboardDay1 />} />
               <Route path="/dashboard-programs" element={<Programs />} />
               <Route path="/dashboard-tasks" element={<Tasks />} />
+              <Route path="/dashboard-Tasks-Today" element={<TasksToday />} />
               <Route path="/dashboard-programView" element={<ProgramView />} />
               <Route path="/program-course-LiveTutorial" element={<ProgramCourseLiveTutorial />} />
               <Route path="/login" element={<Login />} />

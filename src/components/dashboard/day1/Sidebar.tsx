@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
               icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/333534a9d2531e48b58aeaa0350713eebb17d760" 
               label="Tasks" 
               isActive={activeTab === 'tasks'}
-              onClick={() => navigate('/dashboard-tasks')}
+              onClick={() => navigate('/dashboard-Tasks-Today')}
             />
           </div>
         </NavigationSection>
