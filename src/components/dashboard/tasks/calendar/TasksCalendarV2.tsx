@@ -19,6 +19,8 @@ interface TasksCalendarV2Props {
   onNext: () => void;
   selectedDay: number;
   currentDate: number;
+  currentMonth: string;
+  currentYear: string;
 }
 
 const TasksCalendarV2: React.FC<TasksCalendarV2Props> = ({ 
@@ -27,12 +29,10 @@ const TasksCalendarV2: React.FC<TasksCalendarV2Props> = ({
   onPrevious, 
   onNext,
   selectedDay,
-  currentDate
+  currentDate,
+  currentMonth,
+  currentYear
 }) => {
-  // Current month and year
-  const currentMonth = "APRIL";
-  const currentYear = "2025";
-  
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-4">

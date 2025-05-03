@@ -20,7 +20,10 @@ const TasksToday = () => {
     handleDayClick,
     handlePrevious,
     handleNext,
-    updateTaskStatus
+    updateTaskStatus,
+    currentDate,
+    currentMonth,
+    currentYear
   } = useTasks();
 
   return (
@@ -44,7 +47,9 @@ const TasksToday = () => {
                 onPrevious={handlePrevious}
                 onNext={handleNext}
                 selectedDay={selectedDay}
-                currentDate={5} // Set day 5 as the current date
+                currentDate={currentDate}
+                currentMonth={currentMonth}
+                currentYear={currentYear}
               />
             </ErrorBoundary>
             

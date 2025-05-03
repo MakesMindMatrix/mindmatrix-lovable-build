@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { Task, TaskStatus } from "@/types/tasks";
 import { toast } from "sonner";
+import { useCalendar } from "./useCalendar";
 
 const initialTasks: Task[] = [
   // Tasks for day 3
@@ -134,8 +134,10 @@ const initialTasks: Task[] = [
 
 export function useTasks() {
   const [allTasks, setAllTasks] = useState<Task[]>(initialTasks);
-  const [selectedDay, setSelectedDay] = useState<number>(5); // Default to day 5 (today)
-  const [visibleDaysStart, setVisibleDaysStart] = useState<number>(0);
+  
+  // Use the calendar hook
+  const calendar = useCalendar(5, 5); // Starting with day 5 selected and as current date
+  const { selectedDay } = calendar;
   
   // Filter tasks by selected day
   const tasks = allTasks.filter(task => task.day === selectedDay);
@@ -145,43 +147,6 @@ export function useTasks() {
   const inProgressTasks = tasks.filter(task => task.status === "Inprogress");
   const completedTasks = tasks.filter(task => task.status === "Completed");
   
-  // Handle day selection
-  const handleDayClick = (day: number) => {
-    setSelectedDay(day);
-    toast.info(`Viewing tasks for day ${day}`);
-  };
-  
-  // Handle previous button click
-  const handlePrevious = () => {
-    if (visibleDaysStart > 0) {
-      setVisibleDaysStart(visibleDaysStart - 1);
-    } else {
-      toast.info("No more previous dates available");
-    }
-  };
-  
-  // Handle next button click
-  const handleNext = () => {
-    if (visibleDaysStart + 14 < 30) { // Assuming a month has up to 30 days
-      setVisibleDaysStart(visibleDaysStart + 1);
-    } else {
-      toast.info("No more future dates available");
-    }
-  };
-  
-  // Define visible calendar days based on the start index
-  const calendarDays = [
-    { day: visibleDaysStart + 3, weekday: "MON", current: false },
-    { day: visibleDaysStart + 4, weekday: "TUE", current: false },
-    { day: visibleDaysStart + 5, weekday: "WED", current: true }, // Set day 5 as current
-    { day: visibleDaysStart + 6, weekday: "THU", current: false },
-    { day: visibleDaysStart + 7, weekday: "FRI", current: false },
-    { day: visibleDaysStart + 8, weekday: "SAT", current: false },
-    { day: visibleDaysStart + 9, weekday: "SUN", current: false },
-    { day: visibleDaysStart + 10, weekday: "MON", current: false },
-    { day: visibleDaysStart + 11, weekday: "TUE", current: false },
-  ];
-
   // Update task status (for drag and drop)
   const updateTaskStatus = (taskId: string, newStatus: TaskStatus) => {
     const updatedAllTasks = allTasks.map(task => {
@@ -202,16 +167,12 @@ export function useTasks() {
   return {
     allTasks,
     tasks,
-    selectedDay,
-    visibleDaysStart,
-    calendarDays,
     notStartedTasks,
     inProgressTasks,
     completedTasks,
-    handleDayClick,
-    handlePrevious,
-    handleNext,
     updateTaskStatus,
-    setAllTasks
+    setAllTasks,
+    // Return calendar hook properties
+    ...calendar
   };
 }
