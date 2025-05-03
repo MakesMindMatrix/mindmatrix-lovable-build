@@ -16,7 +16,7 @@ const FutureDateCard: React.FC<FutureDateCardProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center rounded-md py-2 px-3 min-w-[70px] cursor-pointer transition-all
+      className={`flex flex-col items-center justify-center rounded-md py-2 px-3 w-[70px] cursor-pointer transition-all
         ${isSelected 
           ? "bg-white/20 border-2 border-white" 
           : "bg-white/20 border border-white/30 hover:bg-white/30"

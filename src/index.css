@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -93,6 +94,7 @@
   
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -149,5 +151,14 @@
   
   .glass-input {
     @apply bg-white/10 backdrop-blur-sm border border-white/30 focus:border-white/50 focus:bg-white/20 transition-all duration-300 placeholder:text-white/50;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
 }
