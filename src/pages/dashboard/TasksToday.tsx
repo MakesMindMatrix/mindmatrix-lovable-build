@@ -155,81 +155,86 @@ const TasksToday = () => {
   return (
     <Desktop activeTab="tasks">
       <ErrorBoundary>
-        <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-4 rounded-2xl">
-          {/* Tabs */}
-          <div className="flex border-b border-white/30 mb-6">
-            <button
-              className={`py-3 px-6 text-white font-medium relative ${
-                activeTab === "today" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveTab("today")}
-            >
-              Today's Tasks
-            </button>
-            <button
-              className={`py-3 px-6 text-white/70 font-medium ${
-                activeTab === "missed" ? "border-b-2 border-white" : ""
-              }`}
-              onClick={() => setActiveTab("missed")}
-            >
-              Missed Tasks
-            </button>
+        <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-4 rounded-2xl flex flex-col">
+          {/* Fixed section - Tabs, Calendar, and Legend */}
+          <div className="flex-none">
+            {/* Tabs */}
+            <div className="flex border-b border-white/30 mb-6">
+              <button
+                className={`py-3 px-6 text-white font-medium relative ${
+                  activeTab === "today" ? "border-b-2 border-white" : ""
+                }`}
+                onClick={() => setActiveTab("today")}
+              >
+                Today's Tasks
+              </button>
+              <button
+                className={`py-3 px-6 text-white/70 font-medium ${
+                  activeTab === "missed" ? "border-b-2 border-white" : ""
+                }`}
+                onClick={() => setActiveTab("missed")}
+              >
+                Missed Tasks
+              </button>
+            </div>
+            
+            {/* Calendar */}
+            <ErrorBoundary>
+              <TasksCalendar calendarDays={calendarDays} />
+            </ErrorBoundary>
+            
+            {/* Legend */}
+            <ErrorBoundary>
+              <TasksLegend 
+                notStartedCount={notStartedTasks.length} 
+                inProgressCount={inProgressTasks.length}
+                completedCount={completedTasks.length}
+              />
+            </ErrorBoundary>
           </div>
           
-          {/* Calendar */}
+          {/* Scrollable Task Columns */}
           <ErrorBoundary>
-            <TasksCalendar calendarDays={calendarDays} />
-          </ErrorBoundary>
-          
-          {/* Legend */}
-          <ErrorBoundary>
-            <TasksLegend 
-              notStartedCount={notStartedTasks.length} 
-              inProgressCount={inProgressTasks.length}
-              completedCount={completedTasks.length}
-            />
-          </ErrorBoundary>
-          
-          {/* Task Columns */}
-          <ErrorBoundary>
-            <DragDropContext onDragEnd={handleDragEnd}>
-              <div className="grid grid-cols-3 gap-4 h-[calc(100vh-270px)]">
-                {/* Not Started Column */}
-                <ErrorBoundary>
-                  <TaskColumn 
-                    title="Not Started" 
-                    tasks={notStartedTasks} 
-                    colorClass="bg-orange-400" 
-                    actionLabel="Read Now" 
-                    actionVariant="primary"
-                    droppableId="not-started"
-                  />
-                </ErrorBoundary>
-                
-                {/* In Progress Column */}
-                <ErrorBoundary>
-                  <TaskColumn 
-                    title="Inprogress" 
-                    tasks={inProgressTasks} 
-                    colorClass="bg-blue-400" 
-                    actionLabel="Resume" 
-                    actionVariant="primary"
-                    droppableId="in-progress"
-                  />
-                </ErrorBoundary>
-                
-                {/* Completed Column */}
-                <ErrorBoundary>
-                  <TaskColumn 
-                    title="Completed" 
-                    tasks={completedTasks} 
-                    colorClass="bg-green-400" 
-                    showCompletedBadge
-                    droppableId="completed"
-                  />
-                </ErrorBoundary>
-              </div>
-            </DragDropContext>
+            <div className="flex-1 overflow-y-auto">
+              <DragDropContext onDragEnd={handleDragEnd}>
+                <div className="grid grid-cols-3 gap-4 min-h-[calc(100vh-270px)]">
+                  {/* Not Started Column */}
+                  <ErrorBoundary>
+                    <TaskColumn 
+                      title="Not Started" 
+                      tasks={notStartedTasks} 
+                      colorClass="bg-orange-400" 
+                      actionLabel="Read Now" 
+                      actionVariant="primary"
+                      droppableId="not-started"
+                    />
+                  </ErrorBoundary>
+                  
+                  {/* In Progress Column */}
+                  <ErrorBoundary>
+                    <TaskColumn 
+                      title="Inprogress" 
+                      tasks={inProgressTasks} 
+                      colorClass="bg-blue-400" 
+                      actionLabel="Resume" 
+                      actionVariant="primary"
+                      droppableId="in-progress"
+                    />
+                  </ErrorBoundary>
+                  
+                  {/* Completed Column */}
+                  <ErrorBoundary>
+                    <TaskColumn 
+                      title="Completed" 
+                      tasks={completedTasks} 
+                      colorClass="bg-green-400" 
+                      showCompletedBadge
+                      droppableId="completed"
+                    />
+                  </ErrorBoundary>
+                </div>
+              </DragDropContext>
+            </div>
           </ErrorBoundary>
         </div>
       </ErrorBoundary>

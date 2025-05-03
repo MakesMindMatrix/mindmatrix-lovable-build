@@ -42,7 +42,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            <ScrollArea className="h-full pr-4">
+            <ScrollArea className="h-[calc(100vh-350px)]">
               <div className="space-y-4 p-1">
                 {tasks && tasks.length > 0 ? (
                   tasks.map((task, index) => (
