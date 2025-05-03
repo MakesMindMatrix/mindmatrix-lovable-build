@@ -24,8 +24,9 @@ const FutureDateCard: React.FC<FutureDateCardProps> = ({
       onClick={onClick}
     >
       <div className="flex flex-col items-center">
-        <span className="text-white text-sm font-medium">{weekday}</span>
-        <span className="text-white text-2xl font-medium">{day}</span>
+        <span className="text-white text-base font-medium">
+          {weekday} {day}
+        </span>
       </div>
     </div>
   );

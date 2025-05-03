@@ -26,32 +26,39 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
       }`}
       onClick={onClick}
     >
-      <div className="flex gap-2 justify-between w-full">
-        <div className="flex flex-col items-center">
-          <span className="text-white text-sm font-medium truncate">{weekday}</span>
-          <span className="text-white text-2xl font-medium">{day}</span>
+      <div className="flex flex-col w-full">
+        {/* Date display */}
+        <div className="flex items-center mb-2 justify-center">
+          <span className="text-white text-xl font-medium">
+            {weekday} {day}
+          </span>
         </div>
-        <div className="flex gap-1 items-center">
-          <TaskStatusIndicator
-            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/abfe19a73923827a1c2cd18a0e0c9a30685e6c7a?placeholderIfAbsent=true"
-            iconWidth="18px"
-            iconAspectRatio="5.99"
-            bgColor="bg-white"
-            value={missedTasks.toString()}
-            valueColor="text-white"
-            label="Missed Tasks"
-            padding="pt-3.5 pl-4"
-          />
-          <TaskStatusIndicator
-            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/8dc4bae11cfa15404f9babf9da76cf0b11ca296a?placeholderIfAbsent=true"
-            iconWidth="5px"
-            iconAspectRatio="0.83"
-            bgColor="bg-pink-200"
-            value={`${coinsRedeemable}%`}
-            valueColor="text-pink-200"
-            label="Coins Redeemable"
-            padding="pr-1.5 pl-1.5"
-          />
+        
+        {/* Stats display */}
+        <div className="flex justify-between items-center px-2">
+          <div className="flex flex-col items-center">
+            <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center mb-1">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/abfe19a73923827a1c2cd18a0e0c9a30685e6c7a?placeholderIfAbsent=true"
+                alt=""
+                className="w-[18px] aspect-[5.99]"
+              />
+            </div>
+            <span className="text-white text-sm font-medium">{missedTasks}</span>
+            <span className="text-white text-xs">Missed Tasks</span>
+          </div>
+          
+          <div className="flex flex-col items-center">
+            <div className="w-4 h-4 bg-pink-200 rounded-full flex items-center justify-center mb-1">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/8dc4bae11cfa15404f9babf9da76cf0b11ca296a?placeholderIfAbsent=true"
+                alt=""
+                className="w-[5px] aspect-[0.83]"
+              />
+            </div>
+            <span className="text-pink-200 text-sm font-medium">{coinsRedeemable}%</span>
+            <span className="text-white text-xs">Coins Redeemable</span>
+          </div>
         </div>
       </div>
     </article>

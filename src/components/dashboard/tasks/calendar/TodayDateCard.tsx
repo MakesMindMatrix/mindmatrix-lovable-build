@@ -1,6 +1,5 @@
 
 import React from "react";
-import InfoItem from "./InfoItem";
 
 interface TodayDateCardProps {
   day: number;
@@ -26,28 +25,39 @@ const TodayDateCard: React.FC<TodayDateCardProps> = ({
       }`}
       onClick={onClick}
     >
-      <div className="flex gap-2 items-center w-full justify-between">
-        <div className="flex flex-col items-center mb-1">
-          <span className="text-blue-700 text-sm font-medium">{weekday}</span>
-          <span className="text-blue-700 text-2xl font-medium">{day}</span>
+      <div className="flex flex-col w-full">
+        {/* Date display */}
+        <div className="flex items-center mb-2 justify-center">
+          <span className="text-blue-700 text-xl font-medium">
+            {weekday} {day}
+          </span>
         </div>
-        <div className="flex gap-2 items-center">
-          <InfoItem
-            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7123c25456326e4e8fc145528fa7e9601bfbf7f5?placeholderIfAbsent=true"
-            iconContainerClass="pt-3.5 pl-4 w-4 h-4"
-            iconClass="aspect-[5.99] w-[18px]"
-            value={assignedTasks.toString()}
-            label="Today's Tasks"
-            maxWidth="w-[86px]"
-          />
-          <InfoItem
-            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6b73e7a8f582d13c89f8f990333cee9eea9657e2?placeholderIfAbsent=true"
-            iconContainerClass="justify-center pr-1.5 pl-1.5 w-4 h-4 min-h-4"
-            iconClass="aspect-[0.83] w-[5px]"
-            value={totalCoins.toString()}
-            label="Total Coins"
-            maxWidth="w-[60px]"
-          />
+        
+        {/* Stats display */}
+        <div className="flex justify-between items-center px-2">
+          <div className="flex flex-col items-center">
+            <div className="w-4 h-4 bg-blue-700 rounded-full flex items-center justify-center mb-1">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7123c25456326e4e8fc145528fa7e9601bfbf7f5?placeholderIfAbsent=true"
+                alt=""
+                className="w-[18px] aspect-[5.99]"
+              />
+            </div>
+            <span className="text-blue-700 text-sm font-medium">{assignedTasks}</span>
+            <span className="text-blue-700 text-xs">Today's Tasks</span>
+          </div>
+          
+          <div className="flex flex-col items-center">
+            <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mb-1">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6b73e7a8f582d13c89f8f990333cee9eea9657e2?placeholderIfAbsent=true"
+                alt=""
+                className="w-[5px] aspect-[0.83]"
+              />
+            </div>
+            <span className="text-blue-700 text-sm font-medium">{totalCoins}</span>
+            <span className="text-blue-700 text-xs">Total Coins</span>
+          </div>
         </div>
       </div>
     </section>
