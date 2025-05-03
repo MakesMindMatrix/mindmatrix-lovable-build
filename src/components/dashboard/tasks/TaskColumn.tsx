@@ -24,6 +24,8 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
   showCompletedBadge = false,
   droppableId
 }) => {
+  console.log(`Rendering TaskColumn: ${title} with ${tasks?.length || 0} tasks`);
+  
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-2 mb-4">
@@ -42,25 +44,29 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
           >
             <ScrollArea className="h-full pr-4">
               <div className="space-y-4 p-1">
-                {tasks.map((task, index) => (
-                  <Draggable key={task.id} draggableId={task.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className={`${snapshot.isDragging ? "opacity-70" : ""}`}
-                      >
-                        <TaskCard 
-                          task={task} 
-                          actionLabel={actionLabel}
-                          actionVariant={actionVariant}
-                          showCompletedBadge={showCompletedBadge}
-                        />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
+                {tasks && tasks.length > 0 ? (
+                  tasks.map((task, index) => (
+                    <Draggable key={task.id} draggableId={task.id} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={`${snapshot.isDragging ? "opacity-70" : ""}`}
+                        >
+                          <TaskCard 
+                            task={task} 
+                            actionLabel={actionLabel}
+                            actionVariant={actionVariant}
+                            showCompletedBadge={showCompletedBadge}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))
+                ) : (
+                  <div className="text-white/70 text-center py-4">No tasks</div>
+                )}
                 {provided.placeholder}
               </div>
             </ScrollArea>

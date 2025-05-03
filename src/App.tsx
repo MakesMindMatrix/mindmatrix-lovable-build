@@ -24,6 +24,7 @@ import TasksToday from "./pages/dashboard/TasksToday";
 import Login from "./pages/auth/Login";
 import ProgramView from "./pages/dashboard/ProgramView";
 import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   // Create a client inside the component
@@ -48,12 +49,16 @@ const App = () => {
               <Route path="/guidance" element={<Guidance />} />
               <Route path="/questions" element={<Questions />} />
               <Route path="/completion" element={<Completion />} />
-              <Route path="/dashboard-Day1" element={<DashboardDay1 />} />
-              <Route path="/dashboard-programs" element={<Programs />} />
-              <Route path="/dashboard-tasks" element={<Tasks />} />
-              <Route path="/dashboard-Tasks-Today" element={<TasksToday />} />
-              <Route path="/dashboard-programView" element={<ProgramView />} />
-              <Route path="/program-course-LiveTutorial" element={<ProgramCourseLiveTutorial />} />
+              <Route path="/dashboard-Day1" element={<ErrorBoundary><DashboardDay1 /></ErrorBoundary>} />
+              <Route path="/dashboard-programs" element={<ErrorBoundary><Programs /></ErrorBoundary>} />
+              <Route path="/dashboard-tasks" element={<ErrorBoundary><Tasks /></ErrorBoundary>} />
+              <Route path="/dashboard-Tasks-Today" element={
+                <ErrorBoundary>
+                  <TasksToday />
+                </ErrorBoundary>
+              } />
+              <Route path="/dashboard-programView" element={<ErrorBoundary><ProgramView /></ErrorBoundary>} />
+              <Route path="/program-course-LiveTutorial" element={<ErrorBoundary><ProgramCourseLiveTutorial /></ErrorBoundary>} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
