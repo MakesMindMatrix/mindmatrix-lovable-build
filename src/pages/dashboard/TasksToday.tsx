@@ -11,7 +11,11 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 const TasksToday = () => {
   console.log("Rendering TasksToday component");
   const [activeTab, setActiveTab] = useState<"today" | "missed">("today");
-  const [tasks, setTasks] = useState<Task[]>([
+  const [selectedDay, setSelectedDay] = useState<number>(3); // Default selected day
+  const [visibleDaysStart, setVisibleDaysStart] = useState<number>(0); // Start index of visible days
+  
+  // Base tasks array - in a real app, this would be fetched from an API
+  const [allTasks, setAllTasks] = useState<Task[]>([
     {
       id: "1",
       title: "Introduction to AI Prompt Engineering",
@@ -20,6 +24,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
+      day: 3, // Added day property
     },
     {
       id: "2",
@@ -29,6 +34,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
+      day: 3, // Added day property
     },
     {
       id: "3",
@@ -38,6 +44,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
+      day: 3, // Added day property
     },
     {
       id: "4",
@@ -47,6 +54,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
+      day: 3, // Added day property
     },
     {
       id: "5",
@@ -56,9 +64,34 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
+      day: 3, // Added day property
       completed: true,
     },
+    // Adding tasks for other days
+    {
+      id: "6",
+      title: "Advanced Prompt Engineering",
+      description: "Advanced techniques",
+      status: "Not Started",
+      points: 300,
+      type: "Reading",
+      startDate: "March 27",
+      day: 4, // Another day
+    },
+    {
+      id: "7",
+      title: "AI System Design",
+      description: "System architecture",
+      status: "Not Started",
+      points: 250,
+      type: "Assignment",
+      startDate: "March 28",
+      day: 5, // Another day
+    },
   ]);
+  
+  // Filter tasks by selected day
+  const tasks = allTasks.filter(task => task.day === selectedDay);
   
   useEffect(() => {
     console.log("TasksToday mounted");
@@ -67,22 +100,46 @@ const TasksToday = () => {
     };
   }, []);
   
-  // Mock data for calendar days
+  // Handle day selection
+  const handleDayClick = (day: number) => {
+    setSelectedDay(day);
+    toast.info(`Viewing tasks for day ${day}`);
+  };
+  
+  // Handle previous button click
+  const handlePrevious = () => {
+    if (visibleDaysStart > 0) {
+      setVisibleDaysStart(visibleDaysStart - 1);
+    } else {
+      toast.info("No more previous dates available");
+    }
+  };
+  
+  // Handle next button click
+  const handleNext = () => {
+    if (visibleDaysStart + 14 < 30) { // Assuming a month has up to 30 days
+      setVisibleDaysStart(visibleDaysStart + 1);
+    } else {
+      toast.info("No more future dates available");
+    }
+  };
+  
+  // Define visible calendar days based on the start index
   const calendarDays = [
-    { day: 3, weekday: "MON", current: true },
-    { day: 4, weekday: "TUE", current: false },
-    { day: 5, weekday: "WED", current: false },
-    { day: 6, weekday: "THU", current: false },
-    { day: 7, weekday: "FRI", current: false },
-    { day: 8, weekday: "SAT", current: false },
-    { day: 9, weekday: "SUN", current: false },
-    { day: 10, weekday: "TUE", current: false },
-    { day: 11, weekday: "WED", current: false },
-    { day: 12, weekday: "THU", current: false },
-    { day: 13, weekday: "FRI", current: false },
-    { day: 14, weekday: "SAT", current: false },
-    { day: 15, weekday: "SUN", current: false },
-    { day: 16, weekday: "MON", current: false },
+    { day: visibleDaysStart + 3, weekday: "MON", current: visibleDaysStart + 3 === 3 },
+    { day: visibleDaysStart + 4, weekday: "TUE", current: false },
+    { day: visibleDaysStart + 5, weekday: "WED", current: false },
+    { day: visibleDaysStart + 6, weekday: "THU", current: false },
+    { day: visibleDaysStart + 7, weekday: "FRI", current: false },
+    { day: visibleDaysStart + 8, weekday: "SAT", current: false },
+    { day: visibleDaysStart + 9, weekday: "SUN", current: false },
+    { day: visibleDaysStart + 10, weekday: "MON", current: false },
+    { day: visibleDaysStart + 11, weekday: "TUE", current: false },
+    { day: visibleDaysStart + 12, weekday: "WED", current: false },
+    { day: visibleDaysStart + 13, weekday: "THU", current: false },
+    { day: visibleDaysStart + 14, weekday: "FRI", current: false },
+    { day: visibleDaysStart + 15, weekday: "SAT", current: false },
+    { day: visibleDaysStart + 16, weekday: "SUN", current: false },
   ];
   
   // Filter tasks by status
@@ -135,15 +192,15 @@ const TasksToday = () => {
         draggedTask.completed = true;
       }
       
-      // Update the task status
-      const updatedTasks = tasks.map(task => {
+      // Update the task status in the all tasks array
+      const updatedAllTasks = allTasks.map(task => {
         if (task.id === draggedTask?.id) {
           return { ...task, status: newStatus, completed: newStatus === "Completed" ? true : task.completed };
         }
         return task;
       });
       
-      setTasks(updatedTasks);
+      setAllTasks(updatedAllTasks);
       toast.success(`Task moved to ${newStatus}`);
     } catch (error) {
       console.error("Error in handleDragEnd:", error);
@@ -179,7 +236,13 @@ const TasksToday = () => {
             
             {/* Calendar */}
             <ErrorBoundary>
-              <TasksCalendar calendarDays={calendarDays} />
+              <TasksCalendar 
+                calendarDays={calendarDays} 
+                onDayClick={handleDayClick}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                selectedDay={selectedDay}
+              />
             </ErrorBoundary>
             
             {/* Legend */}

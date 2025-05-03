@@ -11,5 +11,6 @@ export interface Task {
   points: number;
   type: string;
   startDate: string;
+  day?: number;     // Added day property
   completed?: boolean;
 }
