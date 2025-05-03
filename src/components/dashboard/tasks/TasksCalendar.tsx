@@ -27,6 +27,9 @@ const TasksCalendar: React.FC<TasksCalendarProps> = ({
   // Current month and year (hardcoded for now, can be made dynamic)
   const currentMonth = "APRIL";
   const currentYear = "2025";
+  
+  // Set day 5 as the current date (today's date)
+  const currentDate = 5;
 
   return (
     <div className="mb-6">
@@ -49,13 +52,21 @@ const TasksCalendar: React.FC<TasksCalendarProps> = ({
             {calendarDays.map((day) => (
               <div 
                 key={day.day}
-                className={`flex flex-col items-center justify-center bg-white/20 rounded-md py-2 px-4 min-w-[68px] cursor-pointer transition-all hover:bg-white/30 ${
-                  day.day === selectedDay ? "border-2 border-white" : "border border-white/30"
+                className={`flex flex-col items-center justify-center rounded-md py-2 px-4 min-w-[68px] cursor-pointer transition-all 
+                ${day.day === currentDate 
+                  ? "bg-white" 
+                  : day.day === selectedDay 
+                    ? "bg-white/20 border-2 border-white" 
+                    : "bg-white/20 border border-white/30 hover:bg-white/30"
                 }`}
                 onClick={() => onDayClick(day.day)}
               >
-                <span className="text-lg font-medium text-white">{day.day}</span>
-                <span className="text-xs text-white/80">{day.weekday}</span>
+                <span className={`text-lg font-medium ${day.day === currentDate ? "text-[#0F56CC]" : "text-white"}`}>
+                  {day.day}
+                </span>
+                <span className={`text-xs ${day.day === currentDate ? "text-[#0F56CC]" : "text-white/80"}`}>
+                  {day.weekday}
+                </span>
               </div>
             ))}
           </div>

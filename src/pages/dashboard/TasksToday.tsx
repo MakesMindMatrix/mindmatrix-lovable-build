@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Desktop from "@/components/dashboard/day1/Desktop";
@@ -12,11 +11,12 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 const TasksToday = () => {
   console.log("Rendering TasksToday component");
   const [activeTab, setActiveTab] = useState<"today" | "missed">("today");
-  const [selectedDay, setSelectedDay] = useState<number>(3); // Default selected day
+  const [selectedDay, setSelectedDay] = useState<number>(5); // Changed to set day 5 as default selected
   const [visibleDaysStart, setVisibleDaysStart] = useState<number>(0); // Start index of visible days
   
   // Base tasks array - in a real app, this would be fetched from an API
   const [allTasks, setAllTasks] = useState<Task[]>([
+    // Tasks for day 3
     {
       id: "1",
       title: "Introduction to AI Prompt Engineering",
@@ -25,7 +25,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
-      day: 3, // Added day property
+      day: 3,
     },
     {
       id: "2",
@@ -35,8 +35,10 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
-      day: 3, // Added day property
+      day: 3,
     },
+    
+    // Tasks for day 4
     {
       id: "3",
       title: "Introduction to AI Prompt Engineering",
@@ -45,7 +47,7 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
-      day: 3, // Added day property
+      day: 4,
     },
     {
       id: "4",
@@ -55,39 +57,80 @@ const TasksToday = () => {
       points: 200,
       type: "Reading",
       startDate: "March 26",
-      day: 3, // Added day property
+      day: 4,
     },
+    
+    // Tasks for day 5 (current day)
     {
       id: "5",
       title: "Introduction to AI Prompt Engineering",
-      description: "Prompt Engineering",
+      description: "Prompt Engineering fundamentals and best practices",
       status: "Completed",
       points: 200,
       type: "Reading",
-      startDate: "March 26",
-      day: 3, // Added day property
+      startDate: "March 28",
+      day: 5,
       completed: true,
     },
-    // Adding tasks for other days
     {
       id: "6",
       title: "Advanced Prompt Engineering",
-      description: "Advanced techniques",
+      description: "Advanced techniques for prompt design",
       status: "Not Started",
       points: 300,
       type: "Reading",
-      startDate: "March 27",
-      day: 4, // Another day
+      startDate: "March 28",
+      day: 5,
     },
     {
       id: "7",
       title: "AI System Design",
-      description: "System architecture",
+      description: "System architecture fundamentals",
       status: "Not Started",
       points: 250,
       type: "Assignment",
       startDate: "March 28",
-      day: 5, // Another day
+      day: 5,
+    },
+    {
+      id: "8",
+      title: "Machine Learning Models",
+      description: "Understanding ML model design",
+      status: "Not Started",
+      points: 280,
+      type: "Reading",
+      startDate: "March 28",
+      day: 5,
+    },
+    {
+      id: "9",
+      title: "Data Processing Pipeline",
+      description: "Building efficient data pipelines",
+      status: "Not Started",
+      points: 320,
+      type: "Assignment",
+      startDate: "March 28",
+      day: 5,
+    },
+    {
+      id: "10",
+      title: "Neural Network Basics",
+      description: "Introduction to neural networks",
+      status: "Inprogress",
+      points: 270,
+      type: "Reading",
+      startDate: "March 28",
+      day: 5,
+    },
+    {
+      id: "11",
+      title: "Deep Learning Algorithms",
+      description: "Advanced deep learning concepts",
+      status: "Inprogress",
+      points: 330,
+      type: "Assignment",
+      startDate: "March 28",
+      day: 5,
     },
   ]);
   
@@ -127,9 +170,9 @@ const TasksToday = () => {
   
   // Define visible calendar days based on the start index
   const calendarDays = [
-    { day: visibleDaysStart + 3, weekday: "MON", current: visibleDaysStart + 3 === 3 },
+    { day: visibleDaysStart + 3, weekday: "MON", current: false },
     { day: visibleDaysStart + 4, weekday: "TUE", current: false },
-    { day: visibleDaysStart + 5, weekday: "WED", current: false },
+    { day: visibleDaysStart + 5, weekday: "WED", current: true }, // Set day 5 as current
     { day: visibleDaysStart + 6, weekday: "THU", current: false },
     { day: visibleDaysStart + 7, weekday: "FRI", current: false },
     { day: visibleDaysStart + 8, weekday: "SAT", current: false },
