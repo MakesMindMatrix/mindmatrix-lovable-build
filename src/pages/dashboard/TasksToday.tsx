@@ -192,18 +192,20 @@ const TasksToday = () => {
               <h3 className="text-white text-xl font-medium">Not Started</h3>
             </div>
             
-            <ScrollArea className="flex-1 pr-4">
-              <div className="space-y-4">
-                {notStartedTasks.map((task) => (
-                  <TaskCard 
-                    key={task.id} 
-                    task={task} 
-                    actionLabel="Read Now"
-                    actionVariant="primary"
-                  />
-                ))}
-              </div>
-            </ScrollArea>
+            <div className="flex-1 bg-transparent overflow-hidden border-0">
+              <ScrollArea className="h-full pr-4">
+                <div className="space-y-4">
+                  {notStartedTasks.map((task) => (
+                    <TaskCard 
+                      key={task.id} 
+                      task={task} 
+                      actionLabel="Read Now"
+                      actionVariant="primary"
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </div>
           
           {/* In Progress Column */}
@@ -213,18 +215,20 @@ const TasksToday = () => {
               <h3 className="text-white text-xl font-medium">Inprogress</h3>
             </div>
             
-            <ScrollArea className="flex-1 pr-4">
-              <div className="space-y-4">
-                {inProgressTasks.map((task) => (
-                  <TaskCard 
-                    key={task.id} 
-                    task={task} 
-                    actionLabel="Resume"
-                    actionVariant="primary"
-                  />
-                ))}
-              </div>
-            </ScrollArea>
+            <div className="flex-1 bg-transparent overflow-hidden border-0">
+              <ScrollArea className="h-full pr-4">
+                <div className="space-y-4">
+                  {inProgressTasks.map((task) => (
+                    <TaskCard 
+                      key={task.id} 
+                      task={task} 
+                      actionLabel="Resume"
+                      actionVariant="primary"
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </div>
           
           {/* Completed Column */}
@@ -234,17 +238,19 @@ const TasksToday = () => {
               <h3 className="text-white text-xl font-medium">Completed</h3>
             </div>
             
-            <ScrollArea className="flex-1 pr-4">
-              <div className="space-y-4">
-                {completedTasks.map((task) => (
-                  <TaskCard 
-                    key={task.id} 
-                    task={task} 
-                    showCompletedBadge
-                  />
-                ))}
-              </div>
-            </ScrollArea>
+            <div className="flex-1 bg-transparent overflow-hidden border-0">
+              <ScrollArea className="h-full pr-4">
+                <div className="space-y-4">
+                  {completedTasks.map((task) => (
+                    <TaskCard 
+                      key={task.id} 
+                      task={task} 
+                      showCompletedBadge
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </div>
         </div>
       </div>
