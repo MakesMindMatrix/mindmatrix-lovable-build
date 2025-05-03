@@ -1,5 +1,6 @@
 
 import React from "react";
+import InfoItem from "./InfoItem";
 
 interface TodayDateCardProps {
   day: number;
@@ -19,35 +20,35 @@ const TodayDateCard: React.FC<TodayDateCardProps> = ({
   totalCoins = 250,
 }) => {
   return (
-    <div
-      className={`flex flex-col items-center justify-center rounded-md py-2 px-3 min-w-[110px] cursor-pointer transition-all
-        ${isSelected ? "border-2 border-blue-500" : ""}
-        bg-white`}
+    <section 
+      className={`flex flex-col justify-center px-5 py-2.5 bg-white rounded-md min-w-[110px] cursor-pointer shadow-[0px_1px_30px_rgba(69,42,124,0.1)] ${
+        isSelected ? "border-2 border-blue-500" : "border-2 border-white"
+      }`}
       onClick={onClick}
     >
-      <div className="flex flex-col items-center mb-1">
-        <span className="text-blue-600 text-sm font-medium">{weekday}</span>
-        <span className="text-blue-600 text-2xl font-medium">{day}</span>
-      </div>
-
-      <div className="flex items-center justify-between w-full mt-1">
-        <div className="flex flex-col items-center">
-          <span className="bg-blue-500 rounded-full h-5 w-5 flex items-center justify-center">
-            <span className="text-white text-xs">+</span>
-          </span>
-          <span className="text-blue-600 text-xs">{assignedTasks}</span>
-          <span className="text-blue-700/70 text-[10px]">Today's Assigned Tasks</span>
+      <div className="flex gap-10 items-center w-full">
+        <div className="flex flex-col items-center mb-1">
+          <span className="text-blue-700 text-sm font-medium">{weekday}</span>
+          <span className="text-blue-700 text-2xl font-medium">{day}</span>
         </div>
-        
-        <div className="flex flex-col items-center">
-          <span className="bg-blue-500 rounded-full h-5 w-5 flex items-center justify-center">
-            <span className="text-white text-xs">$</span>
-          </span>
-          <span className="text-blue-600 text-xs">{totalCoins}</span>
-          <span className="text-blue-700/70 text-[10px]">Total Coins</span>
+        <div className="flex gap-5 items-center self-stretch my-auto">
+          <InfoItem
+            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7123c25456326e4e8fc145528fa7e9601bfbf7f5?placeholderIfAbsent=true"
+            iconContainerClass="pt-3.5 pl-4 w-4 h-4"
+            iconClass="aspect-[5.99] w-[18px]"
+            value={assignedTasks.toString()}
+            label="Today's Assigned Tasks"
+          />
+          <InfoItem
+            iconSrc="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6b73e7a8f582d13c89f8f990333cee9eea9657e2?placeholderIfAbsent=true"
+            iconContainerClass="justify-center pr-1.5 pl-1.5 w-4 h-4 min-h-4"
+            iconClass="aspect-[0.83] w-[5px]"
+            value={totalCoins.toString()}
+            label="Total Coins"
+          />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

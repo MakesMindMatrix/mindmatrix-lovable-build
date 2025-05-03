@@ -11,7 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const TasksToday = () => {
   console.log("Rendering TasksToday component");
-  const [selectedDay, setSelectedDay] = useState<number>(4); // Set day 4 as default selected (today)
+  const [selectedDay, setSelectedDay] = useState<number>(5); // Set day 5 as default selected (today)
   const [visibleDaysStart, setVisibleDaysStart] = useState<number>(0); // Start index of visible days
   
   // Base tasks array - in a real app, this would be fetched from an API
@@ -70,7 +70,7 @@ const TasksToday = () => {
       day: 4,
     },
     
-    // Tasks for day 5 (future day)
+    // Tasks for day 5 (current day)
     {
       id: "5",
       title: "Introduction to AI Prompt Engineering",
@@ -181,8 +181,8 @@ const TasksToday = () => {
   // Define visible calendar days based on the start index
   const calendarDays = [
     { day: visibleDaysStart + 3, weekday: "MON", current: false },
-    { day: visibleDaysStart + 4, weekday: "TUE", current: true }, // Set day 4 as current
-    { day: visibleDaysStart + 5, weekday: "WED", current: false },
+    { day: visibleDaysStart + 4, weekday: "TUE", current: false },
+    { day: visibleDaysStart + 5, weekday: "WED", current: true }, // Set day 5 as current
     { day: visibleDaysStart + 6, weekday: "THU", current: false },
     { day: visibleDaysStart + 7, weekday: "FRI", current: false },
     { day: visibleDaysStart + 8, weekday: "SAT", current: false },
@@ -298,7 +298,7 @@ const TasksToday = () => {
                 onPrevious={handlePrevious}
                 onNext={handleNext}
                 selectedDay={selectedDay}
-                currentDate={4} // Set day 4 as the current date
+                currentDate={5} // Set day 5 as the current date
               />
             </ErrorBoundary>
             
