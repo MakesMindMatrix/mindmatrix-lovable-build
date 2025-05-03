@@ -59,7 +59,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
               <Button 
                 variant="outline"
                 size="sm"
-                className="glass-btn text-gray-800 font-medium hover:bg-white/20"
+                className="bg-white/20 backdrop-blur-sm text-gray-800 font-medium hover:bg-white/30"
               >
                 Know More <ArrowUpRight className="ml-1 h-4 w-4" />
               </Button>

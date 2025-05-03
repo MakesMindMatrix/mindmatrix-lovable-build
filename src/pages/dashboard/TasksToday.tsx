@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Desktop from "@/components/dashboard/day1/Desktop";
 import TaskColumn from "@/components/dashboard/tasks/TaskColumn";
-import TasksCalendar from "@/components/dashboard/tasks/TasksCalendar";
+import TasksCalendarV2 from "@/components/dashboard/tasks/calendar/TasksCalendarV2";
 import TasksLegend from "@/components/dashboard/tasks/TasksLegend";
 import { Task, TaskStatus } from "@/types/tasks";
 import { toast } from "sonner";
@@ -10,8 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const TasksToday = () => {
   console.log("Rendering TasksToday component");
-  const [activeTab, setActiveTab] = useState<"today" | "missed">("today");
-  const [selectedDay, setSelectedDay] = useState<number>(5); // Changed to set day 5 as default selected
+  const [selectedDay, setSelectedDay] = useState<number>(4); // Set day 4 as default selected (today)
   const [visibleDaysStart, setVisibleDaysStart] = useState<number>(0); // Start index of visible days
   
   // Base tasks array - in a real app, this would be fetched from an API
@@ -29,10 +29,10 @@ const TasksToday = () => {
     },
     {
       id: "2",
-      title: "Introduction to AI Prompt Engineering",
-      description: "Prompt Engineering",
+      title: "Advanced AI Techniques",
+      description: "Advanced prompt patterns and practices",
       status: "Not Started",
-      points: 200,
+      points: 250,
       type: "Reading",
       startDate: "March 26",
       day: 3,
@@ -42,7 +42,7 @@ const TasksToday = () => {
     {
       id: "3",
       title: "Introduction to AI Prompt Engineering",
-      description: "Prompt Engineering",
+      description: "Core prompt engineering principles",
       status: "Inprogress",
       points: 200,
       type: "Reading",
@@ -51,16 +51,26 @@ const TasksToday = () => {
     },
     {
       id: "4",
-      title: "Introduction to AI Prompt Engineering",
-      description: "Prompt Engineering",
+      title: "Advanced LLM Programming",
+      description: "Programming techniques with large language models",
       status: "Inprogress",
-      points: 200,
+      points: 250,
+      type: "Assignment",
+      startDate: "March 26",
+      day: 4,
+    },
+    {
+      id: "14",
+      title: "AI Ethics Implementation",
+      description: "Practical approaches to AI ethics",
+      status: "Not Started",
+      points: 220,
       type: "Reading",
       startDate: "March 26",
       day: 4,
     },
     
-    // Tasks for day 5 (current day)
+    // Tasks for day 5 (future day)
     {
       id: "5",
       title: "Introduction to AI Prompt Engineering",
@@ -171,19 +181,14 @@ const TasksToday = () => {
   // Define visible calendar days based on the start index
   const calendarDays = [
     { day: visibleDaysStart + 3, weekday: "MON", current: false },
-    { day: visibleDaysStart + 4, weekday: "TUE", current: false },
-    { day: visibleDaysStart + 5, weekday: "WED", current: true }, // Set day 5 as current
+    { day: visibleDaysStart + 4, weekday: "TUE", current: true }, // Set day 4 as current
+    { day: visibleDaysStart + 5, weekday: "WED", current: false },
     { day: visibleDaysStart + 6, weekday: "THU", current: false },
     { day: visibleDaysStart + 7, weekday: "FRI", current: false },
     { day: visibleDaysStart + 8, weekday: "SAT", current: false },
     { day: visibleDaysStart + 9, weekday: "SUN", current: false },
     { day: visibleDaysStart + 10, weekday: "MON", current: false },
     { day: visibleDaysStart + 11, weekday: "TUE", current: false },
-    { day: visibleDaysStart + 12, weekday: "WED", current: false },
-    { day: visibleDaysStart + 13, weekday: "THU", current: false },
-    { day: visibleDaysStart + 14, weekday: "FRI", current: false },
-    { day: visibleDaysStart + 15, weekday: "SAT", current: false },
-    { day: visibleDaysStart + 16, weekday: "SUN", current: false },
   ];
   
   // Filter tasks by status
@@ -255,37 +260,45 @@ const TasksToday = () => {
   return (
     <Desktop activeTab="tasks">
       <ErrorBoundary>
-        <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-4 rounded-2xl flex flex-col">
-          {/* Fixed section - Tabs, Calendar, and Legend */}
+        <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-6 rounded-2xl flex flex-col">
+          {/* Fixed section - Calendar and Legend */}
           <div className="flex-none">
-            {/* Tabs */}
-            <div className="flex border-b border-white/30 mb-6">
-              <button
-                className={`py-3 px-6 text-white font-medium relative ${
-                  activeTab === "today" ? "border-b-2 border-white" : ""
-                }`}
-                onClick={() => setActiveTab("today")}
-              >
-                Today's Tasks
-              </button>
-              <button
-                className={`py-3 px-6 text-white/70 font-medium ${
-                  activeTab === "missed" ? "border-b-2 border-white" : ""
-                }`}
-                onClick={() => setActiveTab("missed")}
-              >
-                Missed Tasks
-              </button>
+            {/* Page header with task info */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl font-semibold text-white">Tasks</h2>
+              </div>
+              <div className="flex items-center gap-4 text-white text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="bg-white/20 rounded-full p-1">
+                    <span className="text-white">💰</span>
+                  </span>
+                  <span>50Pts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-white/20 rounded-full p-1">
+                    <span className="text-white">⏱️</span>
+                  </span>
+                  <span>1hr30min</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-white/20 rounded-full p-1">
+                    <span className="text-white">📋</span>
+                  </span>
+                  <span>0/4 completed</span>
+                </div>
+              </div>
             </div>
             
             {/* Calendar */}
             <ErrorBoundary>
-              <TasksCalendar 
+              <TasksCalendarV2 
                 calendarDays={calendarDays} 
                 onDayClick={handleDayClick}
                 onPrevious={handlePrevious}
                 onNext={handleNext}
                 selectedDay={selectedDay}
+                currentDate={4} // Set day 4 as the current date
               />
             </ErrorBoundary>
             
@@ -303,7 +316,7 @@ const TasksToday = () => {
           <ErrorBoundary>
             <div className="flex-1 overflow-y-auto">
               <DragDropContext onDragEnd={handleDragEnd}>
-                <div className="grid grid-cols-3 gap-4 min-h-[calc(100vh-270px)]">
+                <div className="grid grid-cols-3 gap-4 min-h-[calc(100vh-350px)]">
                   {/* Not Started Column */}
                   <ErrorBoundary>
                     <TaskColumn 
