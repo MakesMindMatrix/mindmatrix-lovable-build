@@ -4,7 +4,6 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 import TasksCalendarV2 from "@/components/dashboard/tasks/calendar/TasksCalendarV2";
 import TasksLegend from "@/components/dashboard/tasks/TasksLegend";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import TasksHeader from "@/components/dashboard/tasks/TasksHeader";
 import TasksContainer from "@/components/dashboard/tasks/TasksContainer";
 import { useTasks } from "@/hooks/useTasks";
 
@@ -32,13 +31,6 @@ const TasksToday = () => {
         <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-6 rounded-2xl flex flex-col">
           {/* Fixed section - Calendar and Legend */}
           <div className="flex-none">
-            {/* Page header with task info */}
-            <TasksHeader 
-              notStartedCount={notStartedTasks.length}
-              inProgressCount={inProgressTasks.length}
-              completedCount={completedTasks.length}
-            />
-            
             {/* Calendar */}
             <ErrorBoundary>
               <TasksCalendarV2 
