@@ -43,14 +43,14 @@ const TasksCalendarV2: React.FC<TasksCalendarV2Props> = ({
         <Button 
           variant="outline" 
           size="icon" 
-          className="bg-blue-700/20 border-white/20 text-white hover:bg-blue-700/30 hover:text-white shrink-0"
+          className="bg-blue-700/20 border-white/20 text-white hover:bg-blue-700/30 hover:text-white shrink-0 z-10"
           onClick={onPrevious}
         >
           <ChevronLeft className="h-5 w-5" />
         </Button>
         
-        <div className="flex-1 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 pl-2 pr-2">
+        <div className="flex-1 overflow-x-auto scrollbar-hide -mx-2">
+          <div className="flex gap-4 px-4 min-w-max">
             {calendarDays.map((day) => {
               // Determine card type based on date
               if (day.day < currentDate) {
@@ -94,7 +94,7 @@ const TasksCalendarV2: React.FC<TasksCalendarV2Props> = ({
         <Button 
           variant="outline" 
           size="icon" 
-          className="bg-blue-700/20 border-white/20 text-white hover:bg-blue-700/30 hover:text-white shrink-0"
+          className="bg-blue-700/20 border-white/20 text-white hover:bg-blue-700/30 hover:text-white shrink-0 z-10"
           onClick={onNext}
         >
           <ChevronRight className="h-5 w-5" />

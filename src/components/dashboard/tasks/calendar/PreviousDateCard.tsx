@@ -21,14 +21,14 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
 }) => {
   return (
     <article 
-      className={`flex flex-col justify-center px-2 py-2.5 rounded-md bg-pink-950 bg-opacity-50 w-[180px] cursor-pointer shadow-[0px_1px_30px_rgba(69,42,124,0.1)] ${
+      className={`flex flex-col justify-center px-2 py-2.5 rounded-md bg-pink-950 bg-opacity-50 w-[180px] h-[110px] cursor-pointer shadow-[0px_1px_30px_rgba(69,42,124,0.1)] ${
         isSelected ? "border-2 border-white" : "border border-red-500"
       }`}
       onClick={onClick}
     >
       <div className="flex gap-2 justify-between w-full">
-        <div className="flex flex-col items-center mb-1">
-          <span className="text-white text-sm font-medium">{weekday}</span>
+        <div className="flex flex-col items-center">
+          <span className="text-white text-sm font-medium truncate">{weekday}</span>
           <span className="text-white text-2xl font-medium">{day}</span>
         </div>
         <div className="flex gap-1 items-center">
@@ -39,7 +39,7 @@ const PreviousDateCard: React.FC<PreviousDateCardProps> = ({
             bgColor="bg-white"
             value={missedTasks.toString()}
             valueColor="text-white"
-            label="Total Missed Tasks"
+            label="Missed Tasks"
             padding="pt-3.5 pl-4"
           />
           <TaskStatusIndicator

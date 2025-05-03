@@ -32,10 +32,10 @@ const TaskStatusIndicator: React.FC<TaskStatusIndicatorProps> = ({
         iconAspectRatio={iconAspectRatio}
         padding={padding}
       />
-      <p className={`mt-1 text-xl font-medium tracking-tighter ${valueColor}`}>
+      <p className={`mt-1 text-xl font-medium tracking-tighter ${valueColor} truncate`}>
         {value}
       </p>
-      <p className="mt-1 text-xs font-semibold tracking-tighter text-white">
+      <p className="mt-1 text-xs font-semibold tracking-tighter text-white truncate">
         {label}
       </p>
     </section>
