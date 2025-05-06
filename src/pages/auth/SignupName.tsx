@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React from "react";
 import AuthLayout from "@/components/auth/AuthLayout";
 import NameInputForm from "@/components/auth/NameInputForm";
 import { useNavigate } from "react-router-dom";

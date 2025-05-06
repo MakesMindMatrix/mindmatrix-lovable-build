@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +16,14 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    if (onContinue) {
-      onContinue(firstName);
+    if (firstName.trim() !== "") {
+      if (onContinue) {
+        onContinue(firstName);
+      } else {
+        // If no onContinue handler provided, use default navigation
+        navigate("/name-welcome", { state: { userName: firstName } });
+      }
     }
-    navigate("/education-info");
   };
 
   return (

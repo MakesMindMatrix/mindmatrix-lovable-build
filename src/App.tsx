@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 import LandingPage from "./pages/LandingPage";
 import WelcomeScreen from "./pages/auth/WelcomeScreen";
 import Signup from "./pages/auth/Signup";
@@ -33,10 +33,10 @@ const App = () => {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <TooltipPrimitive.Provider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+        <BrowserRouter>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/welcome" element={<WelcomeScreen />} />
@@ -62,8 +62,8 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipPrimitive.Provider>
+          </TooltipProvider>
+        </BrowserRouter>
       </QueryClientProvider>
     </React.StrictMode>
   );
