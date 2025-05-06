@@ -19,7 +19,6 @@ import Completion from "./pages/auth/Completion";
 import NotFound from "./pages/NotFound";
 import DashboardDay1 from "./pages/dashboard/Day1";
 import Programs from "./pages/dashboard/Programs";
-import Tasks from "./pages/dashboard/Tasks";
 import TasksToday from "./pages/dashboard/TasksToday";
 import Login from "./pages/auth/Login";
 import ProgramView from "./pages/dashboard/ProgramView";
@@ -51,7 +50,6 @@ const App = () => {
               <Route path="/completion" element={<Completion />} />
               <Route path="/dashboard-Day1" element={<ErrorBoundary><DashboardDay1 /></ErrorBoundary>} />
               <Route path="/dashboard-programs" element={<ErrorBoundary><Programs /></ErrorBoundary>} />
-              <Route path="/dashboard-tasks" element={<ErrorBoundary><Tasks /></ErrorBoundary>} />
               <Route path="/dashboard-Tasks-Today" element={
                 <ErrorBoundary>
                   <TasksToday />
