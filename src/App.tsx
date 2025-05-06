@@ -10,6 +10,7 @@ import WelcomeScreen from "./pages/auth/WelcomeScreen";
 import Signup from "./pages/auth/Signup";
 import Signup2 from "./pages/auth/Signup2";
 import SignupName from "./pages/auth/SignupName";
+import NameWelcomeScreen from "./pages/auth/NameWelcomeScreen";
 import EducationInfo from "./pages/auth/EducationInfo";
 import InputDetails from "./pages/auth/InputDetails";
 import SkillScan from "./pages/auth/SkillScan";
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signup2" element={<Signup2 />} />
               <Route path="/signup-name" element={<SignupName />} />
+              <Route path="/name-welcome" element={<NameWelcomeScreen />} />
               <Route path="/education-info" element={<EducationInfo />} />
               <Route path="/input-details" element={<InputDetails />} />
               <Route path="/skill-scan" element={<SkillScan />} />

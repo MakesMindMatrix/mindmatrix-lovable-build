@@ -2,11 +2,16 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export const MessageContent = ({ onContinue }: { onContinue: () => void }) => {
+interface MessageContentProps {
+  onContinue: () => void;
+  userName?: string;
+}
+
+export const MessageContent = ({ onContinue, userName = "there" }: MessageContentProps) => {
   return (
     <article className="flex flex-col items-center self-stretch my-auto font-medium text-center text-white min-w-60 w-[456px] max-md:max-w-full">
       <ProfileImage />
-      <GreetingMessage />
+      <GreetingMessage userName={userName} />
       <ResponseButton onContinue={onContinue} />
     </article>
   );
@@ -22,11 +27,11 @@ const ProfileImage = () => {
   );
 };
 
-const GreetingMessage = () => {
+const GreetingMessage = ({ userName }: { userName?: string }) => {
   return (
     <p className="self-stretch mt-7 text-3xl tracking-tight leading-10 max-md:max-w-full">
       <span>Lovely to meet you </span>
-      <span className="font-semibold">Divyam</span>
+      <span className="font-semibold">{userName}</span>
       <span>.</span>
       <br />
       <span>Let's quickly know a bit about your education.</span>
