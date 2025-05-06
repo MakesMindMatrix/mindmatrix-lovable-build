@@ -3,6 +3,7 @@ import React from "react";
 import NavigationItem from "./NavigationItem";
 import PromoBanner from "./PromoBanner";
 import UserProfile from "./UserProfile";
+import SettingsDropdown from "@/components/dashboard/SettingsDropdown";
 
 const Sidebar = () => {
   return (
@@ -34,7 +35,15 @@ const Sidebar = () => {
           <PromoBanner />
           <div className="mt-5 w-full text-base whitespace-nowrap">
             <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5aa29086e2c665416805723c9d83c42521738316?placeholderIfAbsent=true" text="Support" />
-            <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/edacbccb8a414d1b7eb8ba9bb7f26b020a22a365?placeholderIfAbsent=true" text="Settings" />
+            <div className="flex items-center gap-2 px-4 py-3 my-1 w-full rounded-xl hover:bg-white/20 transition-colors">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/edacbccb8a414d1b7eb8ba9bb7f26b020a22a365?placeholderIfAbsent=true"
+                className="w-4 h-4 object-contain"
+                alt="Settings icon"
+              />
+              <span className="text-white mr-auto">Settings</span>
+              <SettingsDropdown />
+            </div>
           </div>
         </div>
         <UserProfile />

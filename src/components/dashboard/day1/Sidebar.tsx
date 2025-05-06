@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import NavigationSection from "./NavigationSection";
 import PromotionBanner from "./PromotionBanner";
+import SettingsDropdown from "@/components/dashboard/SettingsDropdown";
 
 interface SidebarProps {
   activeTab?: 'home' | 'programs' | 'tasks';
@@ -63,10 +64,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
               icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" 
               label="Support" 
             />
-            <NavigationItem 
-              icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f" 
-              label="Settings" 
-            />
+            <div className="flex items-center py-4 pr-5 pl-5 rounded-xl min-h-[49px] cursor-pointer transition-colors duration-200 hover:bg-gray-50 bg-white text-stone-500">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f"
+                className="object-contain shrink-0 w-4 aspect-square brightness-100 mr-2"
+                alt="Settings icon"
+              />
+              <span className="mr-auto">Settings</span>
+              <SettingsDropdown />
+            </div>
           </div>
         </div>
       </div>
