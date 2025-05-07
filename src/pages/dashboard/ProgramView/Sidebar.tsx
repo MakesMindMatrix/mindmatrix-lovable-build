@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import PromoBanner from "./PromoBanner";
 import UserProfile from "./UserProfile";
@@ -7,6 +8,8 @@ import { Settings } from "lucide-react";
 import SettingsDropdown from "@/components/dashboard/SettingsDropdown";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  
   return (
     <aside className="flex flex-col bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 w-[230px]">
       <div className="flex gap-2 items-center self-start text-2xl font-medium tracking-tighter whitespace-nowrap text-white">
@@ -23,14 +26,31 @@ const Sidebar = () => {
             <div className="w-full whitespace-nowrap">
               <h2 className="text-sm text-white/60">GENERAL</h2>
               <div className="mt-4 w-full text-base">
-                <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5906c964ac50d8f471b6a677100e4f31e146a8aa?placeholderIfAbsent=true" text="Home" />
-                <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7bcd36b90df8cfd087885c37ece9a5db0fdc5234?placeholderIfAbsent=true" text="Courses" isActive={true} />
-                <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5cc10efceee7a7f057787984e20e4318df523089?placeholderIfAbsent=true" text="Tasks" />
+                <NavigationItem 
+                  icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5906c964ac50d8f471b6a677100e4f31e146a8aa?placeholderIfAbsent=true" 
+                  text="Home" 
+                  onClick={() => navigate('/dashboard-Day1')}
+                />
+                <NavigationItem 
+                  icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/7bcd36b90df8cfd087885c37ece9a5db0fdc5234?placeholderIfAbsent=true" 
+                  text="Courses" 
+                  isActive={true} 
+                  onClick={() => navigate('/dashboard-programs')}
+                />
+                <NavigationItem 
+                  icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5cc10efceee7a7f057787984e20e4318df523089?placeholderIfAbsent=true" 
+                  text="Tasks" 
+                  onClick={() => navigate('/dashboard-Tasks-Today')}
+                />
               </div>
             </div>
             <div className="mt-6 w-full">
               <h2 className="text-sm text-white/60">PERSONAL</h2>
-              <NavigationItem icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5906c964ac50d8f471b6a677100e4f31e146a8aa?placeholderIfAbsent=true" text="My Space" />
+              <NavigationItem 
+                icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5906c964ac50d8f471b6a677100e4f31e146a8aa?placeholderIfAbsent=true" 
+                text="My Space" 
+                onClick={() => navigate('/my-account')}
+              />
             </div>
           </div>
           <PromoBanner />

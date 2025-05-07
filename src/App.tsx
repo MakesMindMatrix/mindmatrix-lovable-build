@@ -23,6 +23,7 @@ import Programs from "./pages/dashboard/Programs";
 import TasksToday from "./pages/dashboard/TasksToday";
 import Login from "./pages/auth/Login";
 import ProgramView from "./pages/dashboard/ProgramView";
+import MyAccount from "./pages/dashboard/MyAccount";
 import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -59,6 +60,7 @@ const App = () => {
               } />
               <Route path="/dashboard-programView" element={<ErrorBoundary><ProgramView /></ErrorBoundary>} />
               <Route path="/program-course-LiveTutorial" element={<ErrorBoundary><ProgramCourseLiveTutorial /></ErrorBoundary>} />
+              <Route path="/my-account" element={<ErrorBoundary><MyAccount /></ErrorBoundary>} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

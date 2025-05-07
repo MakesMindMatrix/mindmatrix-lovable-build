@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   // Determine active tab based on path
   const isPrograms = path.includes("programs") || path.includes("programView");
   const isTasks = path.includes("tasks");
+  const isMyAccount = path.includes("my-account");
   
   // Set title and icon based on active tab
   let title = "Home";
@@ -21,10 +22,13 @@ const Header: React.FC = () => {
   } else if (isTasks) {
     title = "Tasks";
     iconUrl = "https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/333534a9d2531e48b58aeaa0350713eebb17d760";
+  } else if (isMyAccount) {
+    title = "User Profile";
+    iconUrl = "https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/18730a68846538343f892bde033ffcb8d6f2be3e";
   }
 
   return (
-    <header className="flex flex-wrap items-center px-8 py-3.5 w-full bg-blue-700 rounded-3xl max-md:px-5">
+    <header className={`flex flex-wrap items-center px-8 py-3.5 w-full ${isMyAccount ? 'bg-blue-600' : 'bg-blue-700'} rounded-3xl max-md:px-5`}>
       <div className="flex gap-3 items-end self-stretch my-auto text-2xl font-semibold text-white whitespace-nowrap">
         <img
           src={iconUrl}

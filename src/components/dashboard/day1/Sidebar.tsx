@@ -6,9 +6,10 @@ import NavigationItem from "./NavigationItem";
 import NavigationSection from "./NavigationSection";
 import PromotionBanner from "./PromotionBanner";
 import SettingsDropdown from "@/components/dashboard/SettingsDropdown";
+import { Settings, User } from "lucide-react";
 
 interface SidebarProps {
-  activeTab?: 'home' | 'programs' | 'tasks';
+  activeTab?: 'home' | 'programs' | 'tasks' | 'my-space';
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
@@ -53,6 +54,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
           <NavigationItem 
             icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/18730a68846538343f892bde033ffcb8d6f2be3e" 
             label="My Space" 
+            isActive={activeTab === 'my-space'}
+            onClick={() => navigate('/my-account')}
           />
         </NavigationSection>
 
@@ -65,13 +68,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
               label="Support" 
             />
             <div className="flex items-center py-4 pr-5 pl-5 rounded-xl min-h-[49px] cursor-pointer transition-colors duration-200 hover:bg-gray-50 bg-white text-stone-500">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/6ecf31ca78724b9c8825d42e0af1e761f41a6b2f"
-                className="object-contain shrink-0 w-4 aspect-square brightness-100 mr-2"
-                alt="Settings icon"
-              />
+              <Settings className="w-4 h-4 text-stone-500 mr-2" />
               <span className="mr-auto">Settings</span>
-              <SettingsDropdown />
+              <div className="ml-auto">
+                <SettingsDropdown />
+              </div>
             </div>
           </div>
         </div>
