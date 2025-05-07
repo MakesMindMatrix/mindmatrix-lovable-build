@@ -11,6 +11,13 @@ const EngagementSummaryScreen = () => {
     navigate('/dashboard-Day1');
   };
 
+  // Sample engagement data
+  const engagementData = {
+    streak: 5,
+    timeInvested: 12.5, // hours
+    weeklyConsistency: 80 // percentage
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 to-blue-700">
       <div className="relative w-full max-w-5xl aspect-[16/9] rounded-3xl overflow-hidden bg-gradient-to-b from-blue-400/50 to-blue-700/50 backdrop-blur-md">
@@ -41,7 +48,11 @@ const EngagementSummaryScreen = () => {
           
           {/* Active widget */}
           <div className="w-[309px] transform scale-100 opacity-100 transition-all duration-300">
-            <EngagementSummaryCard />
+            <EngagementSummaryCard 
+              streak={engagementData.streak}
+              timeInvested={engagementData.timeInvested}
+              weeklyConsistency={engagementData.weeklyConsistency}
+            />
           </div>
         </div>
         
