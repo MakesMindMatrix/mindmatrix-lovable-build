@@ -26,6 +26,12 @@ import ProgramView from "./pages/dashboard/ProgramView";
 import MyAccount from "./pages/dashboard/MyAccount";
 import ProgramCourseLiveTutorial from "./pages/dashboard/ProgramView/ProgramCourseLiveTutorial";
 import ErrorBoundary from "./components/ErrorBoundary";
+// Import onboarding screens
+import WelcomeBack from "./pages/auth/WelcomeBack";
+import OverallProgress from "./pages/auth/OverallProgress";
+import PerformanceSummary from "./pages/auth/PerformanceSummary";
+import SkillMomentum from "./pages/auth/SkillMomentum";
+import EngagementSummary from "./pages/auth/EngagementSummary";
 
 const App = () => {
   // Create a client inside the component
@@ -62,6 +68,14 @@ const App = () => {
               <Route path="/program-course-LiveTutorial" element={<ErrorBoundary><ProgramCourseLiveTutorial /></ErrorBoundary>} />
               <Route path="/my-account" element={<ErrorBoundary><MyAccount /></ErrorBoundary>} />
               <Route path="/login" element={<Login />} />
+
+              {/* New onboarding routes */}
+              <Route path="/welcome-back" element={<WelcomeBack />} />
+              <Route path="/overall-progress" element={<OverallProgress />} />
+              <Route path="/performance-summary" element={<PerformanceSummary />} />
+              <Route path="/skill-momentum" element={<SkillMomentum />} />
+              <Route path="/engagement-summary" element={<EngagementSummary />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </TooltipProvider>
