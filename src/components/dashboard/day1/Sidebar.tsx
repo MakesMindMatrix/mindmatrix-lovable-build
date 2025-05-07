@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab = 'home' }) => {
           <NavigationItem 
             icon="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/18730a68846538343f892bde033ffcb8d6f2be3e" 
             label="My Space" 
-            isActive={activeTab === 'my-space'}
+            isActive={false} // Never highlight this anymore
             onClick={() => navigate('/my-account')}
           />
         </NavigationSection>

@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { useLocation } from "react-router-dom";
+import UserProfileDropdown from "../UserProfileDropdown";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -70,11 +71,7 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/cd1ba95f379203244c9e3f857b6fca3674f72f63"
-          className="object-contain shrink-0 self-stretch my-auto aspect-square rounded-[100px] w-[45px]"
-          alt="User profile"
-        />
+        <UserProfileDropdown />
       </div>
     </header>
   );

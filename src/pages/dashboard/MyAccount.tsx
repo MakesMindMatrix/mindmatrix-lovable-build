@@ -9,7 +9,7 @@ import Desktop from "@/components/dashboard/day1/Desktop";
 
 const MyAccount = () => {
   return (
-    <Desktop activeTab="my-space">
+    <Desktop>
       <div className="p-6 w-full max-w-7xl mx-auto">
         {/* Profile Header Section */}
         <div className="bg-blue-100/50 backdrop-blur-md rounded-2xl p-6 mb-6 border border-white/20">
