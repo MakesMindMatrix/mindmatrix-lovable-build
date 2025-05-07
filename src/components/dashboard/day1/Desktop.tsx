@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 
 interface DesktopProps {
-  activeTab?: 'home' | 'programs' | 'tasks';
+  activeTab?: 'home' | 'programs' | 'tasks' | 'my-space';
   simplified?: boolean;
   children?: ReactNode;
 }
