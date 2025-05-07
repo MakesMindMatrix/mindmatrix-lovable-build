@@ -14,7 +14,7 @@ const EngagementSummaryScreen = () => {
   // Sample engagement data
   const engagementData = {
     streak: 5,
-    timeInvested: 12.5, // hours
+    timeInvested: "12.5h", // Convert to string format
     weeklyConsistency: 80 // percentage
   };
 
