@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "@/components/ui/use-toast";
 
 type NameInputFormProps = {
   avatarSrc: string;
@@ -12,17 +13,24 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
   avatarSrc,
   onContinue,
 }) => {
-  const [firstName, setFirstName] = useState("");
+  const [fullName, setFullName] = useState("");
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    if (firstName.trim() !== "") {
+    if (fullName.trim() !== "") {
       if (onContinue) {
-        onContinue(firstName);
+        onContinue(fullName);
       } else {
         // If no onContinue handler provided, use default navigation
-        navigate("/name-welcome", { state: { userName: firstName } });
+        navigate("/name-welcome", { state: { userName: fullName } });
       }
+    }
+    else {
+      toast({
+        title: "Please enter your name",
+        description: "Your name is required to continue.",
+        variant: "destructive",        
+      })
     }
   };
 
@@ -41,15 +49,15 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
       
       <div className="w-full mt-7">
         <label htmlFor="firstName" className="text-base block text-white">
-          First Name
+          Full Name
         </label>
         <input
-          id="firstName"
+          id="fullName"
           type="text"
           placeholder="Your preferred name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          className="w-full mt-4 px-4 py-3 text-base text-white rounded-md bg-transparent shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white/60"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          className="w-full mt-4 h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white"
         />
       </div>
       
