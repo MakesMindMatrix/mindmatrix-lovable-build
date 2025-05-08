@@ -40,7 +40,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
           </button>
 
           {/* Content */}
-          <div className="relative z-10 flex items-center justify-center max-w-[456px]">
+          <div className="relative z-10 flex items-center justify-center max-w:[550px]">
             {children}
           </div>
         </div>

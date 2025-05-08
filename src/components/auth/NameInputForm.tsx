@@ -48,7 +48,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({
       </h2>
       
       <div className="w-full mt-7">
-        <label htmlFor="firstName" className="text-base block text-white">
+        <label htmlFor="fullName" className="text-base block text-white">
           Full Name
         </label>
         <input

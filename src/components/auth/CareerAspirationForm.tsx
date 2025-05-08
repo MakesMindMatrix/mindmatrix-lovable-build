@@ -13,9 +13,10 @@ export const CareerAspirationForm: React.FC<{ onContinue: () => void }> = () => 
     <div className="flex flex-col items-center justify-center w-full max-w-[456px] text-white">
       <div className="w-full">
         <label className="text-base block">
-          *Select Career Aspirations
+          Select Career Aspirations
         </label>
-        <div className="flex justify-between items-center w-full mt-4 px-4 py-3 text-base text-indigo-300 rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+        {/*  h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white */}
+        <div className="h-10 flex justify-between items-center w-full mt-4 px-4 py-3 text-base text-white glass-input rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
           <div>Select your college</div>
           <img
             src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/b780c6a227a0e47eb6f6716773e3fe4be6a5c5b9?placeholderIfAbsent=true"

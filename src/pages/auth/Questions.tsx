@@ -29,7 +29,7 @@ function Questions() {
       } else {
         navigate("/completion");
       }
-    }, 2000); // 2 seconds delay
+    }, 1000); // 1 seconds delay
   };
 
   // Example question data
@@ -45,11 +45,11 @@ function Questions() {
 
   return (
     <AuthLayout>
-      <div className="flex flex-col w-full max-w-[520px] rounded-3xl relative">
+      <div className="flex flex-col w-full max-w-[550px] max-h-[700px] rounded-3xl relative">
         {/* Glass card background */}
         <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20" />
         
-        <div className="flex flex-col items-center px-10 py-8 relative z-10">
+        <div className="flex flex-col items-center px-8 py-8 relative z-10">
           {/* Question icon */}
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
@@ -58,17 +58,17 @@ function Questions() {
           />
           
           {/* Question text */}
-          <h2 className="mt-6 text-xl font-medium tracking-tight text-center text-white">
+          <h2 className="mt-3 text-xl font-medium tracking-tight text-center text-white">
             {question}
           </h2>
 
           {/* Question counter and progress bar */}
           <div className="flex flex-col w-full mt-10">
-            <div className="flex items-center justify-end gap-1 text-base font-semibold">
+            <div className="flex items-center justify-start gap-1 text-base font-semibold">
               <span className="text-white">Question {currentQuestion}</span>
               <span className="text-indigo-200">of {totalQuestions}</span>
             </div>
-            <div className="flex h-1.5 mt-4 w-full overflow-hidden rounded-full">
+            <div className="flex h-1.5 mt-6 w-full overflow-hidden rounded-full">
               <div 
                 className="h-full bg-blue-600" 
                 style={{ width: `${(currentQuestion / totalQuestions) * 100}%` }}
@@ -85,7 +85,7 @@ function Questions() {
             {options.map((option) => (
               <div
                 key={option.id}
-                className={`flex items-center gap-4 px-5 py-4 w-full rounded-md ${
+                className={`flex items-center gap-4 px-5 py-4 w-full h-12 rounded-md ${
                   option.id !== "A" ? "mt-3" : ""
                 } ${
                   selectedOption === option.id 
