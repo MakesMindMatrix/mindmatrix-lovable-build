@@ -30,6 +30,11 @@ const WelcomeScreen: React.FC = () => {
 
         <div className="flex absolute flex-col gap-8 items-center bg-black bg-opacity-0 h-[258px] top-[287px] w-[456px] z-[1] max-md:p-5 max-md:h-auto max-md:w-[90%] max-sm:p-5 max-sm:w-full max-sm:h-auto">
           <div className="flex flex-col gap-1.5 items-center w-full">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
+              alt="App icon"
+              className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
+            />
             <h2 className="text-3xl font-bold tracking-tight text-center text-white">
               Hello, I'm Zuno.
             </h2>

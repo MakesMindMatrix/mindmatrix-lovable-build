@@ -2,6 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ActionButton from "./ActionButton";
+import { MailIcon } from "lucide-react";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -27,13 +28,14 @@ const SignupForm = () => {
         </h2>
         <div className="mt-7 max-w-full text-base leading-none w-[346px]">
           <ActionButton
-            icon="https://cdn.builder.io/api/v1/image/assets/TEMP/123d52e9f916c7e130d22894e0de7ae96543459d"
+            icon = ""
             text="Continue with Email"
             variant="medium"
             className="glass-btn mb-2.5"
             onClick={handleEmailSignup}
           />
           <ActionButton
+            icon="https://cdn.builder.io/api/v1/image/assets/TEMP/123d52e9f916c7e130d22894e0de7ae96543459d"
             text="Continue with Google"
             variant="semibold"
             className="glass-btn"

@@ -19,11 +19,11 @@ export const MessageContent = ({ onContinue, userName = "there" }: MessageConten
 
 const ProfileImage = () => {
   return (
-    <img
-      src="/lovable-uploads/6748724c-657b-4d8f-b64b-b0a8ddcd0535.png"
-      alt="Profile"
-      className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
-    />
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
+        alt="App icon"
+        className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
+      />
   );
 };
 
@@ -41,13 +41,12 @@ const GreetingMessage = ({ userName }: { userName?: string }) => {
 
 const ResponseButton = ({ onContinue }: { onContinue: () => void }) => {
   return (
-    <div className="mt-7 max-w-full text-base leading-none w-[456px]">
-      <Button 
-        onClick={onContinue} 
-        className="w-full bg-blue-700 hover:bg-blue-600"
-      >
-        Sure thing!
-      </Button>
-    </div>
+    // w-full mt-64 px-16 py-3 text-base text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors
+    <button 
+      onClick={onContinue} 
+      className="mt-7 max-w-full text-base leading-none w-[456px] px-16 h-12 text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors"
+    >
+      Sure thing!
+    </button>
   );
 };

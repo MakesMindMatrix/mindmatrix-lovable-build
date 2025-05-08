@@ -120,7 +120,7 @@ export const PasswordForm: React.FC = () => {
         <button
           type="submit"
           // w-full mt-64 px-16 py-3 text-base text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors
-          className="mt-40 px-16 py-3 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors"
+          className="h-12 mt-40 px-16 py-3 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors"
         >
           All set! What's Next?
         </button>
