@@ -8,6 +8,11 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
+	scanner: {
+		sources: {
+		negated: "never" // Add this line
+		}
+  	},
 	prefix: "",
 	theme: {
 		container: {
