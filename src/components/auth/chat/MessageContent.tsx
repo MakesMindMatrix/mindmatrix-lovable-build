@@ -34,7 +34,7 @@ const GreetingMessage = ({ userName }: { userName?: string }) => {
       <span className="font-semibold">{userName}</span>
       <span>.</span>
       <br />
-      <span>Let's quickly know a bit about your education.</span>
+      <span>Let's quickly know a bit about you.</span>
     </p>
   );
 };
