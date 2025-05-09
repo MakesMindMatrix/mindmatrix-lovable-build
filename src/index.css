@@ -1,10 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-/* @import "tailwindcss"; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')
+layer(base);
+@import 'tailwindcss';
 @config "../tailwind.config.ts";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility mindmatrix-btn-primary {
+  @apply bg-mindmatrix-primary text-white hover:bg-mindmatrix-primary/90 rounded-lg px-6 py-3 font-medium transition-all;
+}
+
+@utility mindmatrix-btn-secondary {
+  @apply bg-mindmatrix-secondary text-white hover:bg-opacity-90 rounded-lg px-6 py-3 font-medium transition-all;
+}
+
+@utility mindmatrix-btn-outline {
+  @apply border border-mindmatrix-border text-mindmatrix-primary hover:bg-mindmatrix-accent rounded-lg px-6 py-3 font-medium transition-all;
+}
+
+@utility mindmatrix-input {
+  @apply w-full px-4 py-3 rounded-lg border border-mindmatrix-border focus:ring-2 focus:ring-mindmatrix-primary/20 focus:border-mindmatrix-primary outline-hidden transition-all;
+}
+
+@utility mindmatrix-card {
+  @apply bg-white rounded-xl shadow-xs border border-mindmatrix-border p-6;
+}
+
+@utility mindmatrix-progress-container {
+  @apply w-full bg-mindmatrix-accent h-2 rounded-full overflow-hidden;
+}
+
+@utility mindmatrix-progress-bar {
+  @apply bg-mindmatrix-primary h-full transition-all duration-300 ease-in-out;
+}
+
+@utility glass-btn {
+  @apply bg-white/20 backdrop-blur-lg border border-white/30 hover:bg-white/30 transition-all duration-300;
+}
+
+@utility glass-input {
+  @apply bg-white/10 backdrop-blur-xs border border-white/30 focus:border-white/50 focus:bg-white/20 transition-all duration-300 placeholder:text-white/50;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+@utility scrollbar {
+  &::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
+
+@utility vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: -4px;
+}
 
 @layer base {
   :root {
@@ -112,80 +200,5 @@
 
   h3 {
     @apply text-xl md:text-2xl;
-  }
-}
-
-@layer components {
-  .mindmatrix-btn-primary {
-    @apply bg-mindmatrix-primary text-white hover:bg-opacity-90 rounded-lg px-6 py-3 font-medium transition-all;
-  }
-
-  .mindmatrix-btn-secondary {
-    @apply bg-mindmatrix-secondary text-white hover:bg-opacity-90 rounded-lg px-6 py-3 font-medium transition-all;
-  }
-
-  .mindmatrix-btn-outline {
-    @apply border border-mindmatrix-border text-mindmatrix-primary hover:bg-mindmatrix-accent rounded-lg px-6 py-3 font-medium transition-all;
-  }
-
-  .mindmatrix-input {
-    @apply w-full px-4 py-3 rounded-lg border border-mindmatrix-border focus:ring-2 focus:ring-mindmatrix-primary/20 focus:border-mindmatrix-primary outline-none transition-all;
-  }
-
-  .mindmatrix-card {
-    @apply bg-white rounded-xl shadow-sm border border-mindmatrix-border p-6;
-  }
-
-  .mindmatrix-progress-container {
-    @apply w-full bg-mindmatrix-accent h-2 rounded-full overflow-hidden;
-  }
-
-  .mindmatrix-progress-bar {
-    @apply bg-mindmatrix-primary h-full transition-all duration-300 ease-in-out;
-  }
-}
-
-@layer utilities {
-  .glass-btn {
-    @apply bg-white/20 backdrop-blur-lg border border-white/30 hover:bg-white/30 transition-all duration-300;
-  }
-  
-  .glass-input {
-    @apply bg-white/10 backdrop-blur-sm border border-white/30 focus:border-white/50 focus:bg-white/20 transition-all duration-300 placeholder:text-white/50;
-  }
-  
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
-  }
-
-  .scrollbar::-webkit-scrollbar {
-    width: 20px;
-    height: 20px;
-  }
-
-  .scrollbar::-webkit-scrollbar-track {
-    border-radius: 100vh;
-    background: #f7f4ed;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb {
-    background: #e0cbcb;
-    border-radius: 100vh;
-    border: 3px solid #f6f7ed;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #c0a0b9;
-  }
-  
-  .vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    letter-spacing: -4px;
   }
 }
