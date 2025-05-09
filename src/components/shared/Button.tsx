@@ -14,8 +14,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           "font-medium rounded-lg focus:outline-none transition-all",
           {
-            "bg-mindmatrix-primary text-white hover:bg-opacity-90": variant === "primary",
-            "bg-mindmatrix-secondary text-white hover:bg-opacity-90": variant === "secondary",
+            "bg-mindmatrix-primary text-white hover:bg-mindmatrix-primary/90": variant === "primary",
+            "bg-mindmatrix-secondary text-white hover:bg-mindmatrix-secondary/90": variant === "secondary",
             "border border-mindmatrix-border text-mindmatrix-primary hover:bg-mindmatrix-accent": variant === "outline",
             "text-sm px-4 py-2": size === "sm",
             "px-6 py-3": size === "md",

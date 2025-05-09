@@ -26,7 +26,7 @@ layer(base);
 }
 
 @utility mindmatrix-btn-secondary {
-  @apply bg-mindmatrix-secondary text-white hover:bg-opacity-90 rounded-lg px-6 py-3 font-medium transition-all;
+  @apply bg-mindmatrix-secondary text-white hover:bg-mindmatrix-secondary/90 rounded-lg px-6 py-3 font-medium transition-all;
 }
 
 @utility mindmatrix-btn-outline {
