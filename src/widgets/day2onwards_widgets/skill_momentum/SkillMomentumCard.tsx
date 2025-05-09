@@ -26,7 +26,7 @@ export const SkillMomentumCard: React.FC<SkillMomentumCardProps> = ({
   ],
 }) => {
   return (
-    <section className="flex flex-col items-center px-5 py-8 mx-auto max-w-none rounded-3xl border-solid shadow-lg backdrop-blur-[35px] border-[3px] border-white border-opacity-50 w-[309px] max-md:max-w-[991px] max-sm:max-w-screen-sm">
+    <section className="flex flex-col items-center px-5 py-8 mx-auto max-w-none rounded-3xl border-solid shadow-lg backdrop-blur-[35px] border-[3px] border-white border-opacity-50 w-[309px] max-md:max-w-[991px] max-sm:max-w-(--breakpoint-sm)">
       <header className="flex gap-4 items-center mb-5">
         <div>
           <svg

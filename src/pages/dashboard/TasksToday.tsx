@@ -28,7 +28,7 @@ const TasksToday = () => {
   return (
     <Desktop activeTab="tasks">
       <ErrorBoundary>
-        <div className="bg-gradient-to-r from-blue-300 to-blue-600 min-h-screen p-6 rounded-2xl flex flex-col">
+        <div className="bg-linear-to-r from-blue-300 to-blue-600 min-h-screen p-6 rounded-2xl flex flex-col">
           {/* Fixed section - Calendar and Legend */}
           <div className="flex-none">
             {/* Calendar */}

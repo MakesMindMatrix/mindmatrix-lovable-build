@@ -60,7 +60,7 @@ const VideoSection: React.FC = () => {
         )}
         
         {/* Video controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-14 flex items-end px-4 pb-2">
+        <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent h-14 flex items-end px-4 pb-2">
           <button 
             className="text-white mr-4 focus:outline-none"
             onClick={togglePlayPause}

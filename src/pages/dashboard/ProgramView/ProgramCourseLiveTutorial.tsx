@@ -84,7 +84,7 @@ const ProgramCourseLiveTutorial = () => {
       <div className="relative w-full h-[calc(100vh-80px)] bg-white">
         {/* Add gradient background to the entire content area with rounded corners and glass effect */}
         <div className="absolute inset-0 w-full h-full overflow-hidden z-0 opacity-70 p-3">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0F56CC]/40 to-[#2A3A80]/30 rounded-[15px] backdrop-blur-sm border border-white/10 shadow-lg"></div>
+          <div className="absolute inset-0 bg-linear-to-br from-[#0F56CC]/40 to-[#2A3A80]/30 rounded-[15px] backdrop-blur-sm border border-white/10 shadow-lg"></div>
         </div>
         
         <div className="p-3 w-full h-full flex flex-col relative z-10">
@@ -106,12 +106,12 @@ const ProgramCourseLiveTutorial = () => {
               <div className="ml-16 mt-3 flex flex-col h-full overflow-hidden rounded-xl relative">
                 {/* Gradient background with fading effect and glass effect */}
                 <div className="absolute inset-0 w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0F56CC]/60 to-[#2A3A80]/50 rounded-xl backdrop-blur-md border border-white/20 shadow-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-br from-[#0F56CC]/60 to-[#2A3A80]/50 rounded-xl backdrop-blur-md border border-white/20 shadow-xl"></div>
                   {/* Fading edges overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
-                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
+                  <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#0F56CC]/0 rounded-xl"></div>
                 </div>
                 
                 {/* Content overlay */}

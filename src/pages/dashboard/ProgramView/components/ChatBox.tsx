@@ -177,7 +177,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ expanded = false }) => {
       </div>
       
       {/* Fixed Chat Input at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-2 bg-gradient-to-t from-blue-50 via-blue-50 to-transparent">
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-2 bg-linear-to-t from-blue-50 via-blue-50 to-transparent">
         <div className="flex items-center bg-white rounded-full border border-blue-100 pr-2 overflow-hidden">
           <input
             type="text"

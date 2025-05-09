@@ -11,7 +11,7 @@ const WelcomeScreen: React.FC = () => {
   };
 
   return (
-    <main className="flex relative flex-col justify-center items-center mx-auto w-full max-w-none h-screen bg-white max-md:max-w-[991px] max-sm:max-w-screen-sm">
+    <main className="flex relative flex-col justify-center items-center mx-auto w-full max-w-none h-screen bg-white max-md:max-w-[991px] max-sm:max-w-(--breakpoint-sm)">
       <header className="flex absolute top-2.5 gap-2 items-center max-sm:hidden">
         <div className="flex justify-center items-center h-[23px] w-[38px]">
           <LogoIcon />
@@ -28,7 +28,7 @@ const WelcomeScreen: React.FC = () => {
           alt="Background"
         />
 
-        <div className="flex absolute flex-col gap-8 items-center bg-black bg-opacity-0 h-[258px] top-[287px] w-[456px] z-[1] max-md:p-5 max-md:h-auto max-md:w-[90%] max-sm:p-5 max-sm:w-full max-sm:h-auto">
+        <div className="flex absolute flex-col gap-8 items-center bg-black bg-opacity-0 h-[258px] top-[287px] w-[456px] z-1 max-md:p-5 max-md:h-auto max-md:w-[90%] max-sm:p-5 max-sm:w-full max-sm:h-auto">
           <div className="flex flex-col gap-1.5 items-center w-full">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"

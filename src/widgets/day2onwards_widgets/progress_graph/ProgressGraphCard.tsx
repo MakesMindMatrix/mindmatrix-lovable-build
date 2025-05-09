@@ -47,7 +47,7 @@ const ProgressGraphCard: React.FC = () => {
   return (
     <Card className="w-full bg-indigo-700/60 backdrop-blur-md border border-white/20 text-white shadow-lg relative rounded-xl overflow-hidden">
       {/* Glass effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md z-0" />
+      <div className="absolute inset-0 bg-linear-to-br from-indigo-700/70 to-indigo-900/70 backdrop-blur-md z-0" />
       
       <CardHeader className="pb-2 relative z-10">
         <CardTitle className="text-lg font-semibold flex items-center gap-2">

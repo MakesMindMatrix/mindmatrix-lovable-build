@@ -21,8 +21,8 @@ const PerformanceSummaryScreen = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 to-blue-700">
-      <div className="relative w-full max-w-5xl aspect-[16/9] rounded-3xl overflow-hidden bg-gradient-to-b from-blue-400/50 to-blue-700/50 backdrop-blur-md">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-linear-to-b from-blue-500 to-blue-700">
+      <div className="relative w-full max-w-5xl aspect-16/9 rounded-3xl overflow-hidden bg-linear-to-b from-blue-400/50 to-blue-700/50 backdrop-blur-md">
         {/* Skip button */}
         <button 
           onClick={handleSkip} 

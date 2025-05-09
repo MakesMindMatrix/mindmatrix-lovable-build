@@ -15,7 +15,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
+    <main className="min-h-screen bg-linear-to-br from-indigo-50 to-purple-50">
       {/* Glass Toolbar */}
       <nav className="fixed top-0 left-0 right-0 backdrop-blur-lg bg-white/20 border-b border-white/30 shadow-sm px-8 py-4 z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center">

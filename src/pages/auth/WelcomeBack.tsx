@@ -18,7 +18,7 @@ const WelcomeBack = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="relative w-full max-w-5xl aspect-[16/9] rounded-3xl overflow-hidden bg-white shadow-lg">
+      <div className="relative w-full max-w-5xl aspect-16/9 rounded-3xl overflow-hidden bg-white shadow-lg">
         {/* Logo at top */}
         <div className="absolute top-4 left-0 right-0 flex justify-center z-10">
           <div className="flex items-center text-gray-700 font-semibold text-lg">

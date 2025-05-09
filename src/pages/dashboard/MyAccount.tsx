@@ -46,9 +46,9 @@ const MyAccount = () => {
             
             {/* Right section with ZUNO card */}
             <div className="w-full md:w-80 lg:w-96">
-              <div className="bg-gradient-to-r from-gray-700 to-gray-900 rounded-xl p-4 shadow-lg relative overflow-hidden border border-white/10">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-30"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/40 to-purple-500/40 filter blur-xl rounded-full transform translate-x-10 -translate-y-10"></div>
+              <div className="bg-linear-to-r from-gray-700 to-gray-900 rounded-xl p-4 shadow-lg relative overflow-hidden border border-white/10">
+                <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-purple-500/20 opacity-30"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-blue-400/40 to-purple-500/40 filter blur-xl rounded-full transform translate-x-10 -translate-y-10"></div>
                 
                 <div className="relative z-10">
                   <div className="flex justify-between items-start mb-6">
@@ -112,7 +112,7 @@ const MyAccount = () => {
           <div className="divide-y divide-white/10">
             {/* School entry */}
             <div className="flex p-6 gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 rounded-md bg-white flex items-center justify-center">
                   <img 
                     src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5802f9002d90883dc1bf0288d9022d0c1d7ecc53" 
@@ -132,7 +132,7 @@ const MyAccount = () => {
             
             {/* University entry */}
             <div className="flex p-6 gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 rounded-md bg-white flex items-center justify-center">
                   <img 
                     src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/a9ced579ea853ef0485d8fd0f7a0b584b4c4733c" 
@@ -163,7 +163,7 @@ const MyAccount = () => {
           <div className="divide-y divide-white/10">
             {/* First company */}
             <div className="flex p-6 gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 rounded-md bg-white flex items-center justify-center">
                   <img 
                     src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/5802f9002d90883dc1bf0288d9022d0c1d7ecc53" 
@@ -183,7 +183,7 @@ const MyAccount = () => {
             
             {/* Second company */}
             <div className="flex p-6 gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 rounded-md bg-white flex items-center justify-center">
                   <img 
                     src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/a9ced579ea853ef0485d8fd0f7a0b584b4c4733c" 

@@ -12,7 +12,7 @@ const PerformanceSummary: React.FC = () => {
   const completionPercentage = 60;
 
   return (
-    <section className="flex flex-col items-start pt-8 pr-11 pb-6 pl-5 mx-auto max-w-none rounded-3xl border-solid shadow-lg backdrop-blur-[35px] border-[3px] border-white border-opacity-50 h-[305px] w-[309px] max-md:gap-5 max-md:p-5 max-md:max-w-[991px] max-sm:p-4 max-sm:max-w-screen-sm max-sm:rounded-lg">
+    <section className="flex flex-col items-start pt-8 pr-11 pb-6 pl-5 mx-auto max-w-none rounded-3xl border-solid shadow-lg backdrop-blur-[35px] border-[3px] border-white border-opacity-50 h-[305px] w-[309px] max-md:gap-5 max-md:p-5 max-md:max-w-[991px] max-sm:p-4 max-sm:max-w-(--breakpoint-sm) max-sm:rounded-lg">
       <header className="flex gap-4 items-center">
         <div>
           <PerformanceIcon />

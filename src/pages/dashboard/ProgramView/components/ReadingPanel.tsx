@@ -17,7 +17,7 @@ const ReadingPanel: React.FC<ReadingPanelProps> = ({
   setDocumentFormat
 }) => {
   return (
-    <div className="flex-1 backdrop-blur-xl bg-gradient-to-br from-[#2A3A80]/70 to-[#1A2C6B]/60 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
+    <div className="flex-1 backdrop-blur-xl bg-linear-to-br from-[#2A3A80]/70 to-[#1A2C6B]/60 border border-white/10 rounded-lg flex flex-col overflow-hidden z-10 h-full shadow-lg">
       {/* Tab navigation */}
       <div className="flex bg-[#1E2D6F]/80 backdrop-blur-md rounded-t-lg border-b border-white/10">
         <Button 

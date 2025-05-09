@@ -41,7 +41,7 @@ const CourseHeader: React.FC<CourseHeaderProps> = ({
 
   return (
     <header 
-      className="flex flex-col justify-center items-center pt-5 pb-4 -mb-px w-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer transition-transform hover:scale-[1.02]"
+      className="flex flex-col justify-center items-center pt-5 pb-4 -mb-px w-full bg-linear-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)] cursor-pointer transition-transform hover:scale-[1.02]"
       onClick={handleClick}
     >
       <div className="max-w-full w-[306px]">

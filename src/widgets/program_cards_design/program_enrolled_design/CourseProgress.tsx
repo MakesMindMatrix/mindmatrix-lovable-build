@@ -16,7 +16,7 @@ const CourseProgress: React.FC<CourseProgressProps> = ({
   pointsEarned,
 }) => {
   return (
-    <section className="flex flex-col justify-center px-9 pt-3 pb-3.5 mt-1 w-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
+    <section className="flex flex-col justify-center px-9 pt-3 pb-3.5 mt-1 w-full bg-linear-to-r from-blue-500 to-blue-600 rounded-3xl shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
       <div className="flex flex-col w-full max-w-[277px]">
         <div className="flex gap-2.5 items-end self-start font-medium text-white whitespace-nowrap">
           <h3 className="text-3xl leading-none">{percentComplete}%</h3>
