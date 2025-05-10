@@ -37,14 +37,14 @@ const SignupForm = () => {
           <ActionButton
             icon="https://cdn.builder.io/api/v1/image/assets/TEMP/123d52e9f916c7e130d22894e0de7ae96543459d"
             text="Continue with Google"
-            variant="semibold"
+            variant="medium"
             className="glass-btn"
           />
         </div>
       </div>
       <p className="mt-20 text-xl leading-none text-center max-md:mt-10 max-md:max-w-full">
         <span>Already have an account?</span>{" "}
-        <button className="font-semibold underline">Log in</button>
+        <button className="font-semibold underline hover:no-underline hover:cursor-pointer" onClick={() => navigate("/login")}>Log in</button>
       </p>
     </div>
   );
