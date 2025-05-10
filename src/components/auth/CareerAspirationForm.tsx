@@ -1,36 +1,50 @@
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate} from "react-router-dom";
+import SelectArrow from "../shared/SelectArrow";
+import ChipSelect from "../shared/ChipSelect";
 
 export const CareerAspirationForm: React.FC<{ onContinue: () => void }> = () => {
   const navigate = useNavigate();
   
+  const [careerAspiration, setCareerAspiration] = useState("");
+
+  const careeraspiration_options = [
+    "Web Developer",
+    "Mobile Developer",
+    "UI/UX Designer",
+    "Data Scientist",
+    "Software Engineer",
+  ]
+
+  const careerinterests_options = [
+    "Web Developer",
+    "Mobile Developer",
+    "UI/UX Designer",
+    "Data Scientist",
+    "Software Engineer",
+  ]
   const handleContinue = () => {
     navigate("/skill-scan");
   };
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-[456px] text-white">
-      <div className="w-full">
-        <label className="text-base block">
-          Select Career Aspirations
+      <div className="relative w-full max-w-md ">
+        <label className="text-base block mb-2">
+          Choose your Career Aspiration
         </label>
-        {/*  h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white */}
-        <div className="h-10 flex justify-between items-center w-full mt-4 px-4 py-3 text-base text-white glass-input rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
-          <div>Select your college</div>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/6764a8bc52ff472aa18147d84536ab6a/b780c6a227a0e47eb6f6716773e3fe4be6a5c5b9?placeholderIfAbsent=true"
-            className="w-[17px] aspect-[1.55] object-contain"
-            alt="Dropdown arrow"
-          />
-        </div>
+        <SelectArrow value={careerAspiration} setValue={setCareerAspiration} options={careeraspiration_options} />
       </div>
       
       <h2 className="mt-12 text-3xl tracking-tight text-center">
         What are your top 3 preferred career focuses?
       </h2>
-      
-      <div className="w-full mt-12 space-y-4">
+
+      <div className="w-full mt-6">
+        <ChipSelect options={careerinterests_options} />
+      </div>
+      {/* <div className="w-full mt-12 space-y-4">
         <div className="flex justify-between items-center w-full px-4 py-3 text-white rounded-md shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
           <div>Data Engineer (Highly Recommended)</div>
           <img
@@ -57,7 +71,7 @@ export const CareerAspirationForm: React.FC<{ onContinue: () => void }> = () => 
             alt="Dropdown arrow"
           />
         </div>
-      </div>
+      </div> */}
       
       <button
         onClick={handleContinue}

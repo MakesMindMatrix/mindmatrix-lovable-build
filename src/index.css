@@ -84,6 +84,16 @@
   @apply bg-white/10 backdrop-blur-xs border border-white/30 focus:border-white/50 focus:bg-white/20 transition-all duration-300 placeholder:text-white/50;
 }
 
+/* Hide the default arrow for all browsers */
+.custom-select {
+  @apply appearance-none;
+  /* fallback for browsers that don't support Tailwind's appearance-none */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
