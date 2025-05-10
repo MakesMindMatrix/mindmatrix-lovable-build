@@ -1,16 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')
-layer(base);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import 'tailwindcss';
+
 @config "../tailwind.config.ts";
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Border color compatibility for Tailwind v4 */
 @layer base {
   *,
   ::after,
@@ -21,43 +14,77 @@ layer(base);
   }
 }
 
-@utility mindmatrix-btn-primary {
+/* Define keyframes for animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes fade-in {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  0% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% { 
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Custom utility classes */
+.mindmatrix-btn-primary {
   @apply bg-mindmatrix-primary text-white hover:bg-mindmatrix-primary/90 rounded-lg px-6 py-3 font-medium transition-all;
 }
 
-@utility mindmatrix-btn-secondary {
+.mindmatrix-btn-secondary {
   @apply bg-mindmatrix-secondary text-white hover:bg-mindmatrix-secondary/90 rounded-lg px-6 py-3 font-medium transition-all;
 }
 
-@utility mindmatrix-btn-outline {
+.mindmatrix-btn-outline {
   @apply border border-mindmatrix-border text-mindmatrix-primary hover:bg-mindmatrix-accent rounded-lg px-6 py-3 font-medium transition-all;
 }
 
-@utility mindmatrix-input {
+.mindmatrix-input {
   @apply w-full px-4 py-3 rounded-lg border border-mindmatrix-border focus:ring-2 focus:ring-mindmatrix-primary/20 focus:border-mindmatrix-primary outline-hidden transition-all;
 }
 
-@utility mindmatrix-card {
+.mindmatrix-card {
   @apply bg-white rounded-xl shadow-xs border border-mindmatrix-border p-6;
 }
 
-@utility mindmatrix-progress-container {
+.mindmatrix-progress-container {
   @apply w-full bg-mindmatrix-accent h-2 rounded-full overflow-hidden;
 }
 
-@utility mindmatrix-progress-bar {
+.mindmatrix-progress-bar {
   @apply bg-mindmatrix-primary h-full transition-all duration-300 ease-in-out;
 }
 
-@utility glass-btn {
+.glass-btn {
   @apply bg-white/20 backdrop-blur-lg border border-white/30 hover:bg-white/30 transition-all duration-300;
 }
 
-@utility glass-input {
+.glass-input {
   @apply bg-white/10 backdrop-blur-xs border border-white/30 focus:border-white/50 focus:bg-white/20 transition-all duration-300 placeholder:text-white/50;
 }
 
-@utility scrollbar-hide {
+.scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
@@ -66,7 +93,7 @@ layer(base);
   }
 }
 
-@utility scrollbar {
+.scrollbar {
   &::-webkit-scrollbar {
     width: 20px;
     height: 20px;
@@ -88,7 +115,7 @@ layer(base);
   }
 }
 
-@utility vertical-text {
+.vertical-text {
   writing-mode: vertical-rl;
   text-orientation: upright;
   letter-spacing: -4px;
