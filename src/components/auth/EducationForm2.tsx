@@ -1,9 +1,11 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Main component
 const ProfessionForm = () => {
   const [activeTab, setActiveTab] = useState("student");
+  const navigate = useNavigate();
   
   // Handle tab changes
   const handleTabChange = (tab) => {
@@ -12,7 +14,8 @@ const ProfessionForm = () => {
 
   // Handle form submission
   const handleSubmit = () => {
-    console.log("Form submitted");
+    // console.log("Form submitted");
+    navigate("/input-details");
     // Navigation would happen here in a real app
   };
 
@@ -26,7 +29,7 @@ const ProfessionForm = () => {
         </Typography>
         
         {/* Tabs */}
-        <div className="flex mb-2 mt-2 w-full overflow-hidden gap-4 justify-center">
+        <div className="flex mb-2 mt-3 w-full overflow-hidden gap-4 justify-center">
           <TabButton 
             active={activeTab === "student"} 
             onClick={() => handleTabChange("student")}
@@ -47,7 +50,7 @@ const ProfessionForm = () => {
         {/* Form content */}
         {/* flex-1 overflow-y-auto px-2 py-3 */}
         {/* space-y-3 */}
-        <div className="flex-1 overflow-y-auto px-4 scrollbar">
+        <div className="flex-1 overflow-y-auto px-4 scrollbar-hide">
           {activeTab === "student" && <StudentForm />}
           {activeTab === "professional" && <ProfessionalForm />}
           {activeTab === "jobseeker" && <JobSeekerForm />}
@@ -81,10 +84,10 @@ const TabButton = ({ active, onClick, label }) => {
     <button
       type="button"
       onClick={onClick}
-      className={`flex-1 py-1 px-2 h-12 w-full text-center text-sm transition-colors rounded-lg ${
+      className={`hover:bg-blue-700 flex-1 py-1 px-2 h-12 w-full text-center text-sm transition-colors rounded-lg ${
         active 
           ? "bg-blue-700 text-white" 
-          : "bg-white bg-opacity-20 text-white backdrop-blur-sm"
+          : "bg-white/20 text-white backdrop-blur-sm"
       }`}
     >
       {label}
@@ -107,7 +110,7 @@ const FormInput = ({ label, type = "text", options, placeholder }) => {
             // w-full mt-4 h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white
             // w-full py-2 px-4 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-md appearance-none pr-10 placeholder-opacity-70
             className="w-full mt-2 h-10 px-3 py-2 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)]">
-            <option value="" disabled>{placeholder || "Select option"}</option>
+            <option value="" disabled className="bg-blue-200 text-white">{placeholder || "Select option"}</option>
             {options?.map((option) => (
               <option key={option} value={option} className="bg-blue-600 text-white">
                 {option}
