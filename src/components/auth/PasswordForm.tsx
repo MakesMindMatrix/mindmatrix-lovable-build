@@ -49,7 +49,7 @@ export const PasswordForm: React.FC = () => {
           to keep your journey safe with us.
         </h2>
         {/* <div className="mt-7 max-w-full text-base leading-none w-[346px] space-y-5"> */}
-          <div className="mt-7 items-stretch flex w-full flex-col space-y-5 max-md:max-w-full">
+          <div className="mt-7 items-stretch flex w-full flex-col space-y-4 max-md:max-w-full">
             <label
               htmlFor="email"
               className="text-base leading-none text-white max-md:max-w-full"
@@ -62,7 +62,7 @@ export const PasswordForm: React.FC = () => {
               placeholder="Your Email here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-4 h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white"
+              className="w-full h-10 px-4 py-3 text-base text-white rounded-md max-md:max-w-full glass-input shadow-[0px_1px_30px_rgba(69,42,124,0.1)] placeholder-white"
             />
             {/* <div className="relative flex items-center w-full max-md:max-w-full">
               <Input
@@ -76,7 +76,7 @@ export const PasswordForm: React.FC = () => {
               />
             </div> */}
           </div>
-          <div className="mt-7 items-stretch flex w-full flex-col space-y-5 max-md:max-w-full">
+          <div className="mt-7 items-stretch flex w-full flex-col space-y-4 max-md:max-w-full">
             <label
               htmlFor="password"
               className="text-base leading-none text-white max-md:max-w-full"
@@ -105,7 +105,7 @@ export const PasswordForm: React.FC = () => {
                 type="button"
                 // absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 focus:outline-none
                 disabled={password.length === 0}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors focus:outline-none"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors hover:cursor-pointer focus:outline-none"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
