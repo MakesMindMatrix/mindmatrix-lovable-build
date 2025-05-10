@@ -11,7 +11,7 @@ const Signup = () => {
         avatarSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
         onContinue={handleContinue}
       /> */}
-      <section className="flex relative flex-col items-center px-20 pt-52 pb-28 mt-3 text-white min-h-[732px] rounded-[40px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+      <section className="flex relative flex-col items-center px-20 pt-46 pb-28 mt-3 text-white min-h-[732px] rounded-[40px] max-md:px-5 max-md:py-24 max-md:max-w-full">
         <SignupForm />
       </section>
     </AuthLayout>
