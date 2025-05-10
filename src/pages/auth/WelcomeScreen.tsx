@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoIcon from "@/components/shared/LogoIcon";
 import { Button } from "@/components/ui/button";
+import AuthLayout from "@/components/auth/AuthLayout";
 
 const WelcomeScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -11,49 +12,55 @@ const WelcomeScreen: React.FC = () => {
   };
 
   return (
-    <main className="flex relative flex-col justify-center items-center mx-auto w-full max-w-none h-screen bg-white max-md:max-w-[991px] max-sm:max-w-(--breakpoint-sm)">
-      <header className="flex absolute top-2.5 gap-2 items-center max-sm:hidden">
-        <div className="flex justify-center items-center h-[23px] w-[38px]">
-          <LogoIcon />
+    <AuthLayout>
+      {/* <div className="flex absolute flex-col gap-8 items-center bg-transparent bg-opacity-0 h-[258px] top-[287px] w-[456px] z-1 max-md:p-5 max-md:h-auto max-md:w-[90%] max-sm:p-5 max-sm:w-full max-sm:h-auto"> */}
+      <div className="flex flex-col relative items-center w-[456px] gap-8 max-md:max-w-full">  
+        <div className="flex flex-col gap-1.5 items-center w-full">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
+            alt="App icon"
+            className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
+          />
+          <h2 className="text-[32px] mt-4 font-medium tracking-tight text-center text-white">
+            Hello, I'm Zuno.
+          </h2>
+          <p className="text-base tracking-tight text-center text-white">
+            I'm your personal career buddy. Welcome to MindMatrix, where
+            your career gets smarter every day!
+          </p>
         </div>
-        <h1 className="text-2xl font-semibold tracking-tighter text-slate-800">
-          MindMatrix
-        </h1>
-      </header>
 
-      <section className="flex justify-center items-center size-full">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/f23640c294c87b94017d825ab00a9dcb7bbe4494?placeholderIfAbsent=true"
-          className="absolute left-8 h-[88%] rounded-[40px] top-[50px] w-[95.5%] max-md:h-[85%] max-md:w-[90%] max-sm:w-full max-sm:h-4/5"
-          alt="Background"
-        />
+        <Button
+          onClick={handleContinue}
+          // h-12 mt-40 px-16 py-3 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors
+          // w-[456px] max-md:w-[90%] max-sm:w-full bg-blue-700 hover:bg-blue-800
+          className="h-12 px-16 py-3 w-full text-base leading-none text-center text-white bg-blue-700 rounded-xl hover:bg-blue-600 transition-colors"
+          size="lg"
+        >
+          Continue
+        </Button>
+      </div>
 
-        <div className="flex absolute flex-col gap-8 items-center bg-black bg-opacity-0 h-[258px] top-[287px] w-[456px] z-1 max-md:p-5 max-md:h-auto max-md:w-[90%] max-sm:p-5 max-sm:w-full max-sm:h-auto">
-          <div className="flex flex-col gap-1.5 items-center w-full">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a26d7053ea464524bf89d4c4d1b45c6ca0a5a727"
-              alt="App icon"
-              className="object-contain aspect-square rounded-[64px] shadow-[0px_47px_13px_rgba(0,0,0,0)] w-[68px]"
-            />
-            <h2 className="text-3xl font-bold tracking-tight text-center text-white">
-              Hello, I'm Zuno.
-            </h2>
-            <p className="text-base tracking-tight text-center text-white">
-              I'm your personal career buddy. Welcome to MindMatrix, where
-              your career gets smarter every day!
-            </p>
-          </div>
+    </AuthLayout>
+    // <main className="flex relative flex-col justify-center items-center mx-auto w-full max-w-none bg-white h-screen max-md:max-w-[991px] max-sm:max-w-(--breakpoint-sm)">
+    //   <header className="flex absolute top-2.5 gap-2 items-center max-sm:hidden">
+    //     <div className="flex justify-center items-center h-[23px] w-[38px]">
+    //       <LogoIcon />
+    //     </div>
+    //     <h1 className="text-2xl font-semibold tracking-tighter text-slate-800">
+    //       MindMatrix
+    //     </h1>
+        //  <section className="flex justify-center items-center size-full">
+        // <img
+        //   src="https://cdn.builder.io/api/v1/image/assets/TEMP/f23640c294c87b94017d825ab00a9dcb7bbe4494?placeholderIfAbsent=true"
+        //   className="absolute left-8 h-[88%] rounded-[40px] top-[50px] w-[95.5%] max-md:h-[85%] max-md:w-[90%] max-sm:w-full max-sm:h-4/5"
+        //   alt="Background"
+        // />
+        //      </section>
+    //   </header>
 
-          <Button
-            onClick={handleContinue}
-            className="w-[456px] max-md:w-[90%] max-sm:w-full bg-blue-700 hover:bg-blue-800"
-            size="lg"
-          >
-            Continue
-          </Button>
-        </div>
-      </section>
-    </main>
+      
+    // </main>
   );
 };
 
